@@ -4,39 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>aiDataWorks</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Book.otf') format('opentype');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-display: swap;
+  }
   :root {
-    --paper: #FAF9F6;
+    --paper: #FFFFFF;
     --white: #FFFFFF;
-    --ink-900: #0A1226;
-    --ink-800: #101C33;
-    --ink-600: #3A4761;
-    --slate-500: #6B7689;
-    --slate-400: #8A93A6;
-    --mist-200: #D8DCE4;
-    --mist-100: #EDEEF1;
-    --cobalt-600: #1B3ECC;
-    --cobalt-500: #2450FF;
-    --cobalt-100: #E4E9FF;
-    --slate-300: #9AA6BC;
-    --footer-line: #2A3550;
-    --footer-link: #C7CEDB;
+    --ink-900: #0D212C;
+    --ink-800: #051A24;
+    --ink-600: #273C46;
+    --slate-500: #4A5D66;
+    --slate-400: #6E8890;
+    --mist-200: #D6E1E5;
+    --mist-100: #EEF4F6;
+    --cobalt-600: #273C46;
+    --cobalt-500: #051A24;
+    --cobalt-100: #F6FCFF;
+    --slate-300: #8CA3AB;
+    --footer-line: #D6E1E5;
+    --footer-link: #273C46;
     --btn-shadow:
-      0 1px 2px 0 rgba(16,28,51,0.10),
-      0 4px 4px 0 rgba(16,28,51,0.09),
-      0 9px 6px 0 rgba(16,28,51,0.05),
-      0 17px 7px 0 rgba(16,28,51,0.01),
-      0 26px 7px 0 rgba(16,28,51,0),
+      0 1px 2px 0 rgba(5,26,36,0.10),
+      0 4px 4px 0 rgba(5,26,36,0.09),
+      0 9px 6px 0 rgba(5,26,36,0.05),
+      0 17px 7px 0 rgba(5,26,36,0.01),
+      0 26px 7px 0 rgba(5,26,36,0),
       inset 0 2px 8px 0 rgba(255,255,255,0.5);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     background: var(--paper);
     color: var(--ink-800);
@@ -48,17 +57,46 @@
   button { font-family: inherit; }
   a { text-decoration: none; color: inherit; }
 
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--cobalt-500);
+    outline-offset: 2px;
+  }
+
   /* ---------- Nav ---------- */
   .nav {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 20;
-    background: var(--paper);
     border-bottom: 1px solid transparent;
-    transition: border-color 200ms ease;
+    transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
   }
-  .nav.is-scrolled { border-bottom-color: var(--mist-200); }
+  .nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.32) 50%, rgba(255,255,255,0) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    transition: opacity 200ms ease;
+  }
+  .nav.is-scrolled {
+    background: var(--paper);
+    border-bottom-color: var(--mist-200);
+    box-shadow: 0 4px 16px rgba(5,26,36,0.06);
+  }
+  .nav.is-scrolled::before {
+    opacity: 0;
+  }
 
   .nav-inner {
+    position: relative;
+    z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
     padding: 12px 20px;
@@ -71,29 +109,32 @@
 
   .nav-links { display: none; align-items: center; gap: 32px; }
   .nav-links a {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 14px;
     color: var(--ink-800);
-    transition: color 200ms ease;
+    transition: color 200ms ease, text-shadow 200ms ease;
   }
-  .nav-links a:hover { color: var(--cobalt-500); }
+  .nav-links a:hover { color: var(--cobalt-600); }
 
   .nav-cta {
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 600;
     font-size: 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 9999px;
     padding: 10px 20px;
     cursor: pointer;
-    transition: background 150ms ease;
-    box-shadow: var(--btn-shadow);
+    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
     white-space: nowrap;
   }
-  .nav-cta:hover { background: var(--cobalt-600); }
+  .nav-cta:hover {
+    background: var(--cobalt-600);
+    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
+    transform: translateY(-2px);
+  }
 
   .nav-desktop-cta { display: none; }
 
@@ -107,7 +148,7 @@
     height: 40px;
     background: transparent;
     border: 1px solid var(--mist-200);
-    border-radius: 8px;
+    border-radius: 50%;
     cursor: pointer;
   }
   .nav-hamburger span {
@@ -118,6 +159,8 @@
   }
 
   .nav-mobile-panel {
+    position: relative;
+    z-index: 1;
     display: none;
     flex-direction: column;
     gap: 16px;
@@ -127,7 +170,7 @@
   }
   .nav-mobile-panel.is-open { display: flex; }
   .nav-mobile-panel a {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 16px;
     color: var(--ink-800);
@@ -146,7 +189,9 @@
   .hero {
     position: relative;
     min-height: 100vh;
+    min-height: 100svh;
     overflow: hidden;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -163,19 +208,38 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    filter: brightness(1.15) contrast(0.8) saturate(0.75) sepia(0.05);
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: rgba(250,249,246,0.55);
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    background: rgba(255,255,255,0.3);
   }
 
   .hero-inner {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  @media (min-width: 1024px) {
+    .hero-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
   }
 
   .hero-content {
@@ -185,7 +249,7 @@
   }
 
   .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 13px;
     letter-spacing: 0.08em;
@@ -197,22 +261,29 @@
   }
   @keyframes eyebrowFade { to { opacity: 1; } }
 
-  .hero-badge-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+  .hero-badges-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
+    max-width: 280px;
+    flex-shrink: 0;
+    order: -1;
     opacity: 0;
     animation: badgeRowFade 500ms ease-out 100ms forwards;
+  }
+  @media (min-width: 1024px) {
+    .hero-badges-grid { order: 0; }
   }
   @keyframes badgeRowFade {
     from { opacity: 0; filter: blur(3px); }
     to { opacity: 1; filter: blur(0); }
   }
-  .hero-badge-img { height: 64px; width: auto; object-fit: contain; display: block; }
+  .hero-badge-img { height: 64px; width: auto; object-fit: contain; display: block; margin: 0 auto; }
 
   .hero-headline {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(2rem, 4.5vw, 3.5rem);
     line-height: 1.1;
@@ -234,7 +305,7 @@
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
   .hero-subhead {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 1.6;
@@ -282,17 +353,20 @@
     white-space: nowrap;
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 600;
     font-size: 15px;
     border: none;
-    border-radius: 8px;
+    border-radius: 9999px;
     padding: 14px 28px;
     cursor: pointer;
-    transition: background 150ms ease;
-    box-shadow: var(--btn-shadow);
+    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
   }
-  .hero-cta-primary:hover { background: var(--cobalt-600); }
+  .hero-cta-primary:hover {
+    background: var(--cobalt-600);
+    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
+    transform: translateY(-2px);
+  }
 
   .hero-cta-secondary {
     flex-shrink: 0;
@@ -302,18 +376,18 @@
     border: none;
     border-radius: 9999px;
     padding: 13px 27px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 15px;
     cursor: pointer;
-    box-shadow: 0 0 0 0.5px rgba(16,28,51,0.05), 0 4px 16px rgba(16,28,51,0.08);
+    box-shadow: 0 0 0 0.5px rgba(5,26,36,0.05), 0 4px 16px rgba(5,26,36,0.08);
     transition: box-shadow 200ms ease;
   }
-  .hero-cta-secondary:hover { box-shadow: 0 4px 24px rgba(16,28,51,0.12); }
+  .hero-cta-secondary:hover { box-shadow: 0 4px 24px rgba(5,26,36,0.12); }
 
   /* ---------- Metrics ---------- */
   .metrics {
-    background: var(--white);
+    background: var(--paper);
     border-top: 1px solid var(--mist-200);
     border-bottom: 1px solid var(--mist-200);
     padding: 48px 20px;
@@ -337,7 +411,7 @@
   .metric-card.is-visible { opacity: 1; transform: translateY(0); }
 
   .metric-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 11px;
     letter-spacing: 0.06em;
@@ -347,7 +421,7 @@
   }
 
   .metric-value {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 40px;
     color: var(--ink-800);
@@ -368,14 +442,14 @@
   .global-delivery.is-visible { opacity: 1; transform: translateY(0); }
 
   .global-delivery-heading {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.5rem, 3.5vw, 2.25rem);
     color: var(--ink-800);
     margin-bottom: 12px;
   }
   .global-delivery-subhead {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 17px;
     line-height: 1.6;
@@ -391,7 +465,7 @@
   .map-marker-flag { font-size: 20px; text-anchor: middle; dominant-baseline: central; }
   .map-marker-pill { fill: var(--mist-100); }
   .map-marker-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 14px;
     fill: var(--ink-600);
@@ -403,7 +477,7 @@
   .section-container { max-width: 1200px; margin: 0 auto; }
 
   .section-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 13px;
     letter-spacing: 0.08em;
@@ -429,19 +503,19 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    box-shadow: 0 0 0 0 rgba(36, 80, 255, 0.45);
+    box-shadow: 0 0 0 0 rgba(5, 26, 36, 0.45);
     animation: ctaPulse 2s ease-out infinite;
     pointer-events: none;
   }
   @keyframes ctaPulse {
-    0% { box-shadow: 0 0 0 0 rgba(36, 80, 255, 0.45); }
-    70% { box-shadow: 0 0 0 14px rgba(36, 80, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(36, 80, 255, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(5, 26, 36, 0.45); }
+    70% { box-shadow: 0 0 0 14px rgba(5, 26, 36, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(5, 26, 36, 0); }
   }
 
   /* ---------- Client Logo Wall ---------- */
   .logo-wall {
-    background: var(--white);
+    background: var(--paper);
     padding: 64px 20px;
     overflow: hidden;
   }
@@ -490,17 +564,17 @@
   .logo-col:hover img { filter: grayscale(0%) opacity(1); }
 
   /* ---------- Services Framework ---------- */
-  .services { background: var(--paper); }
+  .services { background: var(--paper); border-top: 1px solid var(--mist-200); }
 
   .services-heading {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--ink-800);
     margin-bottom: 8px;
   }
   .services-subhead {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: var(--slate-500);
@@ -512,8 +586,9 @@
     flex-direction: row;
     gap: 4px;
     height: 420px;
-    border-radius: 16px;
+    border-radius: 24px;
     overflow: hidden;
+    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
   }
 
   .service-panel {
@@ -523,17 +598,19 @@
     background-size: cover, cover;
     background-position: center, center 15%;
     background-repeat: no-repeat;
-    border: 1px solid var(--mist-200);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: flex 400ms cubic-bezier(0.4,0,0.2,1);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: flex 400ms cubic-bezier(0.4,0,0.2,1), opacity 500ms ease-out, transform 500ms ease-out;
   }
-  .service-panel[data-panel-index="0"] { --panel-img: url('assets/service-workflow/service-1-assess.png'); }
-  .service-panel[data-panel-index="1"] { --panel-img: url('assets/service-workflow/service-2-modernize.png'); }
-  .service-panel[data-panel-index="2"] { --panel-img: url('assets/service-workflow/service-3-govern.png'); }
-  .service-panel[data-panel-index="3"] { --panel-img: url('assets/service-workflow/service-4-activate.png'); }
+  .service-panel.is-visible { opacity: 1; transform: translateY(0); }
+  .service-panel[data-panel-index="0"] { --panel-img: url('https://images.unsplash.com/photo-1764690690771-b4522d66b433?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .service-panel[data-panel-index="1"] { --panel-img: url('https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .service-panel[data-panel-index="2"] { --panel-img: url('https://images.unsplash.com/photo-1633265486064-086b219458ec?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .service-panel[data-panel-index="3"] { --panel-img: url('https://images.unsplash.com/photo-1767424412548-1a1ac7f4b9bc?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
   .service-panel.expanded {
     flex: 3.2;
     align-items: stretch;
@@ -545,7 +622,7 @@
   .service-panel-collapsed-label {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 13px;
     letter-spacing: 0.08em;
@@ -558,21 +635,21 @@
   .service-panel.expanded .service-panel-content { display: flex; }
 
   .service-panel-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 13px;
     color: var(--slate-400);
     margin-bottom: 12px;
   }
   .service-panel-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 26px;
     color: var(--ink-800);
     margin-bottom: 12px;
   }
   .service-panel-desc {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 15px;
     line-height: 1.6;
@@ -587,14 +664,14 @@
     gap: 6px;
   }
   .service-panel-accelerators li {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 13px;
     color: var(--slate-500);
   }
 
   .services-delivery-note {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-style: italic;
     font-weight: 400;
     font-size: 14px;
@@ -618,10 +695,10 @@
   }
 
   /* ---------- AI & Automation ---------- */
-  .ai-automation { background: var(--white); }
+  .ai-automation { background: var(--paper); border-top: 1px solid var(--mist-200); }
 
   .ai-heading {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--ink-800);
@@ -629,7 +706,7 @@
     margin-bottom: 16px;
   }
   .ai-spotlight {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 17px;
     line-height: 1.6;
@@ -651,14 +728,14 @@
   .step-item {
     padding: 18px 20px;
     cursor: pointer;
-    border-radius: 12px;
+    border-radius: 16px;
     border: 1px solid transparent;
     transition: background 200ms ease, padding 250ms ease, border-color 250ms ease, border-radius 250ms ease, box-shadow 250ms ease;
   }
   .step-item:hover:not(.expanded) { background: var(--paper); }
 
   .step-title {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 600;
     font-size: 16px;
     color: var(--slate-500);
@@ -669,15 +746,14 @@
 
   .step-item.expanded {
     background: var(--white);
-    border: 1px solid var(--mist-200);
     border-radius: 16px;
     padding: 24px 28px;
-    box-shadow: 0 4px 16px rgba(16,28,51,0.06);
+    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
   }
   .step-item.expanded .step-title { color: var(--ink-800); margin-bottom: 10px; }
   .step-item.expanded .step-description {
     display: block;
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.6;
@@ -690,29 +766,34 @@
     height: 3px;
     width: 100%;
     background: var(--mist-200);
-    border-radius: 2px;
+    border-radius: 9999px;
     overflow: hidden;
     margin-top: 4px;
   }
   .progress-fill {
     height: 100%;
     background: var(--cobalt-500);
-    border-radius: 2px;
+    border-radius: 9999px;
     width: 0%;
   }
 
   .diagram-card {
     position: relative;
     background: var(--white);
-    border: 1px solid var(--mist-200);
-    border-radius: 16px;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
     aspect-ratio: 4/3;
     overflow: hidden;
   }
   .step-visual {
     position: absolute;
-    inset: 40px;
-    object-fit: contain;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
     opacity: 0;
     transition: opacity 400ms ease;
   }
@@ -721,6 +802,7 @@
   /* ---------- Flagship Proof Story ---------- */
   .proof-story {
     background: var(--paper);
+    border-top: 1px solid var(--mist-200);
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 500ms ease-out, transform 500ms ease-out;
@@ -738,7 +820,7 @@
   }
 
   .proof-number {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(3rem, 6vw, 4.5rem);
     color: var(--cobalt-500);
@@ -746,7 +828,7 @@
     margin-top: 16px;
   }
   .proof-caption {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 15px;
     color: var(--slate-500);
@@ -755,20 +837,20 @@
 
   .proof-card {
     background: var(--white);
-    border: 1px solid var(--mist-200);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 40px;
     border-left: 4px solid var(--cobalt-500);
+    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
   }
   .proof-quote {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.65;
     color: var(--ink-800);
   }
   .proof-link {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 600;
     font-size: 14px;
     color: var(--cobalt-500);
@@ -782,15 +864,13 @@
   .pain-band {
     background: var(--ink-900);
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 500ms ease-out, transform 500ms ease-out;
+    transform: scale(0.98);
+    transition: opacity 700ms ease-out, transform 700ms ease-out;
   }
-  .pain-band.is-visible { opacity: 1; transform: translateY(0); }
-
-  .pain-eyebrow { margin-bottom: 20px; }
+  .pain-band.is-visible { opacity: 1; transform: scale(1); }
 
   .pain-statement {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.5rem, 3.5vw, 2.25rem);
     line-height: 1.3;
@@ -799,7 +879,7 @@
     margin-bottom: 24px;
   }
   .pain-answer {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 17px;
     line-height: 1.6;
@@ -808,8 +888,9 @@
   }
 
   /* ---------- Industries ---------- */
+  .industries { background: var(--paper); border-top: 1px solid var(--mist-200); }
   .industries-heading {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--ink-800);
@@ -824,29 +905,75 @@
   @media (min-width: 1024px) { .industries-grid { grid-template-columns: repeat(3, 1fr); } }
 
   .industry-card {
-    background: var(--white);
-    border: 1px solid var(--mist-200);
-    border-radius: 16px;
-    padding: 28px;
+    perspective: 1200px;
+    height: 260px;
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 500ms ease-out, transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+    filter: drop-shadow(0 4px 16px rgba(5,26,36,0.08));
+    transition: opacity 500ms ease-out, transform 200ms ease, filter 200ms ease;
   }
   .industry-card.is-visible { opacity: 1; transform: translateY(0); }
-  .industry-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(16,28,51,0.08);
-    border-color: var(--slate-400);
+
+  .industry-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 600ms cubic-bezier(0.4,0,0.2,1), box-shadow 200ms ease;
+    transform-style: preserve-3d;
   }
+  .industry-card:hover .industry-card-inner { transform: rotateY(180deg); }
+  .industry-card:hover { filter: drop-shadow(0 8px 24px rgba(5,26,36,0.14)); }
+
+  .industry-card-front, .industry-card-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .industry-card-front {
+    background-color: var(--mist-100);
+    background-image: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 25%, rgba(255,255,255,0) 55%), var(--industry-img);
+    background-size: cover, cover;
+    background-position: center, center 25%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+  }
+  .industry-card-name {
+    font-family: 'PP Neue Montreal', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ink-800);
+  }
+
+  .industry-card-back {
+    background: var(--white);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: rotateY(180deg);
+  }
+
+  .industry-card[data-industry="healthcare"] { --industry-img: url('https://images.unsplash.com/photo-1516841273335-e39b37888115?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="financial-services"] { --industry-img: url('https://images.unsplash.com/photo-1457059315558-e754285e416b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="insurance"] { --industry-img: url('https://images.unsplash.com/photo-1763729805496-b5dbf7f00c79?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="manufacturing"] { --industry-img: url('https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="retail-cpg"] { --industry-img: url('https://images.unsplash.com/photo-1759323321196-2813db509285?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="public-sector"] { --industry-img: url('https://images.unsplash.com/photo-1768399808130-abac2a8442e0?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+
   .industry-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 18px;
     color: var(--ink-800);
     margin-bottom: 10px;
   }
   .industry-desc {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.55;
@@ -855,7 +982,7 @@
   .industry-link {
     display: inline-block;
     margin-top: 12px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 13px;
     color: var(--cobalt-500);
@@ -864,11 +991,19 @@
   }
   .industry-link:hover { text-decoration: underline; }
 
+  @media (hover: none), (pointer: coarse) {
+    .industry-card { height: auto; }
+    .industry-card-inner { transform: none !important; }
+    .industry-card-front { display: none; }
+    .industry-card-back { position: relative; transform: none; }
+  }
+
   /* ---------- Testimonials ---------- */
+  .testimonials { background: var(--paper); border-top: 1px solid var(--mist-200); }
   .testimonials-header { margin-bottom: 40px; }
 
   .testimonials-heading {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--ink-800);
@@ -901,56 +1036,68 @@
   .testimonial-mini-card {
     flex: 0 0 auto;
     width: 320px;
-    background: var(--paper);
-    border: 1px solid var(--mist-200);
-    border-radius: 16px;
-    padding: 24px;
-    transition: border-color 200ms ease;
+    background: var(--white);
+    border-radius: 28px;
+    padding: 28px 32px 28px 28px;
+    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
+    transition: box-shadow 200ms ease, transform 200ms ease;
   }
-  .testimonial-mini-card:hover { border-color: var(--slate-400); }
+  .testimonial-mini-card:hover { box-shadow: 0 8px 24px rgba(5,26,36,0.14); transform: translateY(-2px); }
   .testimonial-mini-quote {
-    font-family: 'Inter', sans-serif;
+    position: relative;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.6;
     color: var(--ink-800);
   }
+  .testimonial-mini-quote::before {
+    content: '\201C';
+    display: block;
+    font-family: Georgia, serif;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--slate-400);
+    margin-bottom: 4px;
+  }
   .testimonial-mini-author {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     margin-top: 16px;
   }
   .testimonial-mini-avatar {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: var(--cobalt-100);
     color: var(--ink-800);
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
   .testimonial-mini-name {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-family: 'PP Neue Montreal', sans-serif;
+    font-weight: 600;
     font-size: 13px;
     color: var(--ink-800);
   }
   .testimonial-mini-company {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 12px;
     color: var(--slate-500);
   }
+  .testimonial-mini-company::before { content: '\2192  '; }
 
   /* ---------- Partner Ecosystem ---------- */
+  .partners { background: var(--paper); border-top: 1px solid var(--mist-200); }
   .partners-heading {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--ink-800);
@@ -959,27 +1106,44 @@
   .partners-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
   @media (min-width: 640px) { .partners-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .partners-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 1024px) { .partners-grid { grid-template-columns: repeat(5, 1fr); } }
 
   .partner-card {
+    position: relative;
+    overflow: hidden;
+    height: 132px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--white);
-    border: 1px solid var(--mist-200);
-    border-radius: 16px;
-    padding: 24px;
+    border-radius: 18px;
+    padding: 18px;
     text-align: left;
-    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
+    transition: transform 200ms ease, box-shadow 200ms ease;
   }
   .partner-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(16,28,51,0.08);
-    border-color: var(--slate-400);
+    box-shadow: 0 8px 24px rgba(5,26,36,0.14);
   }
-  .partner-logo { height: 28px; width: auto; object-fit: contain; margin-bottom: 14px; display: block; }
+  .partner-logo { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .partner-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    padding: 18px;
+    background: var(--white);
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+  }
+  .partner-card:hover .partner-overlay { opacity: 1; }
   .partner-blurb {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 13px;
     line-height: 1.5;
@@ -990,9 +1154,9 @@
     margin: 32px auto 0;
     background: var(--white);
     border: 1px solid var(--mist-200);
-    border-radius: 8px;
+    border-radius: 9999px;
     padding: 12px 28px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 14px;
     color: var(--ink-800);
@@ -1002,12 +1166,12 @@
   .partners-show-more:hover { border-color: var(--slate-400); }
   @media (min-width: 1024px) {
     .partner-card-extra { display: none; }
-    .partners-grid.is-expanded .partner-card-extra { display: block; }
+    .partners-grid.is-expanded .partner-card-extra { display: flex; }
     .partners-show-more { display: block; }
   }
 
   /* ---------- FAQ ---------- */
-  .faq { background: var(--white); }
+  .faq { background: var(--white); border-top: 1px solid var(--mist-200); }
 
   .faq-inner {
     display: grid;
@@ -1019,7 +1183,7 @@
   }
 
   .faq-heading {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--ink-800);
@@ -1033,7 +1197,7 @@
     cursor: pointer;
   }
   .faq-question span {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 600;
     font-size: 16px;
     color: var(--ink-800);
@@ -1043,7 +1207,7 @@
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 300ms ease; }
   .faq-item.is-open .faq-answer { padding-top: 12px; }
   .faq-answer p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 15px;
     line-height: 1.6;
@@ -1051,8 +1215,9 @@
   }
 
   /* ---------- Insights & News ---------- */
+  .insights { background: var(--paper); border-top: 1px solid var(--mist-200); }
   .insights-heading {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--ink-800);
@@ -1066,35 +1231,49 @@
   @media (min-width: 640px) { .insights-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1024px) {
     .insights-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; }
-    .insight-card-featured { grid-column: span 2; grid-row: span 2; padding: 32px; }
-    .insight-card-featured .insight-thumb { aspect-ratio: 16/9; }
-    .insight-card-featured .insight-title { font-size: 24px; }
+    .insight-card-featured { grid-column: span 2; grid-row: span 2; }
+    .insight-card-featured .insight-media { aspect-ratio: 16/9; }
+    .insight-card-featured .insight-title { font-size: 22px; }
+    .insight-card-featured .insight-overlay { padding: 28px; }
     .insight-card-wide { grid-column: span 2; }
-    .insight-card-wide .insight-thumb { aspect-ratio: 21/9; }
+    .insight-card-wide .insight-media { aspect-ratio: 21/9; }
   }
 
   .insight-card {
     background: var(--white);
-    border: 1px solid var(--mist-200);
-    border-radius: 16px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
+    border-radius: 20px;
     height: 100%;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
     transition: transform 200ms ease, box-shadow 200ms ease;
   }
-  .insight-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(16,28,51,0.08); }
+  .insight-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(5,26,36,0.14); }
+  .insight-media {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4/3;
+  }
   .insight-thumb {
     width: 100%;
-    aspect-ratio: 1/1;
+    height: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 16px;
     background: var(--mist-100);
+    display: block;
   }
   .insight-thumb-placeholder { object-fit: contain; padding: 28px; }
+  .insight-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(13,33,44,0.92) 0%, rgba(13,33,44,0.6) 55%, rgba(13,33,44,0) 100%);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
   .insight-tag {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 11px;
     letter-spacing: 0.06em;
@@ -1102,34 +1281,34 @@
     color: var(--white);
     background: var(--cobalt-500);
     padding: 3px 8px;
-    border-radius: 4px;
     margin-bottom: 10px;
     width: fit-content;
   }
   .insight-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.3;
-    color: var(--ink-800);
-    margin-bottom: auto;
+    color: var(--white);
   }
   .insight-link {
-    font-family: 'Inter', sans-serif;
+    display: inline-block;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 13px;
-    color: var(--cobalt-500);
+    color: var(--white);
+    opacity: 0.85;
     text-decoration: none;
-    margin-top: 14px;
-    transition: text-decoration 150ms ease;
+    margin-top: 10px;
+    transition: opacity 150ms ease;
   }
-  .insight-link:hover { text-decoration: underline; }
+  .insight-link:hover { text-decoration: underline; opacity: 1; }
 
   .newsletter-band {
     margin-top: 48px;
     background: var(--white);
-    border: 1px solid var(--mist-200);
-    border-radius: 16px;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
     padding: 32px;
     display: flex;
     flex-direction: column;
@@ -1139,7 +1318,7 @@
   }
   @media (min-width: 640px) { .newsletter-band { flex-direction: row; } }
   .newsletter-copy {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 18px;
     color: var(--ink-800);
@@ -1147,9 +1326,9 @@
   .newsletter-form { display: flex; gap: 10px; }
   .newsletter-input {
     border: 1px solid var(--mist-200);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 12px 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 14px;
     min-width: 240px;
@@ -1158,11 +1337,11 @@
   .newsletter-submit {
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 600;
     font-size: 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 9999px;
     padding: 12px 22px;
     cursor: pointer;
     transition: background 150ms ease;
@@ -1173,6 +1352,7 @@
   /* ---------- Final CTA Band ---------- */
   .final-cta-band {
     background: var(--paper);
+    border-top: 1px solid var(--mist-200);
     padding: 96px 20px;
     text-align: center;
     position: relative;
@@ -1181,7 +1361,7 @@
   }
   .final-cta-eyebrow { margin-bottom: 16px; position: relative; z-index: 2; }
   .final-cta-heading {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3.5vw, 2.5rem);
     color: var(--ink-800);
@@ -1198,22 +1378,25 @@
     justify-content: center;
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 600;
     font-size: 15px;
     border: none;
-    border-radius: 8px;
+    border-radius: 9999px;
     padding: 14px 32px;
     cursor: pointer;
-    transition: background 150ms ease;
-    box-shadow: var(--btn-shadow);
+    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
     position: relative;
     z-index: 2;
   }
-  .final-cta-btn:hover { background: var(--cobalt-600); }
+  .final-cta-btn:hover {
+    background: var(--cobalt-600);
+    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
+    transform: translateY(-2px);
+  }
   .final-cta-email {
     margin-top: 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: var(--slate-500);
@@ -1224,8 +1407,8 @@
 
   /* ---------- Footer ---------- */
   .site-footer {
-    background: var(--ink-900);
-    color: var(--paper);
+    background: var(--paper);
+    color: var(--ink-800);
     padding: 64px 20px 32px;
   }
   .footer-top {
@@ -1240,35 +1423,35 @@
 
   .footer-logo { height: 28px; margin-bottom: 16px; display: block; }
   .footer-tagline {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 14px;
-    color: var(--slate-300);
+    color: var(--slate-500);
     max-width: 240px;
   }
   .footer-newsletter { margin-top: 20px; display: flex; gap: 8px; }
   .footer-newsletter-input {
-    background: rgba(20,24,48,0.5);
+    background: var(--white);
     border: 1px solid var(--footer-line);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 10px 14px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 13px;
-    color: var(--paper);
+    color: var(--ink-800);
     min-width: 0;
     flex: 1;
   }
-  .footer-newsletter-input::placeholder { color: var(--slate-500); }
+  .footer-newsletter-input::placeholder { color: var(--slate-400); }
   .footer-newsletter-input:focus { border-color: var(--cobalt-500); outline: none; }
   .footer-newsletter-submit {
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 600;
     font-size: 13px;
     border: none;
-    border-radius: 8px;
+    border-radius: 9999px;
     padding: 10px 16px;
     cursor: pointer;
     transition: background 150ms ease;
@@ -1277,7 +1460,7 @@
   .footer-newsletter-submit:hover { background: var(--cobalt-600); }
 
   .footer-col-heading {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 500;
     font-size: 12px;
     text-transform: uppercase;
@@ -1287,7 +1470,7 @@
   }
   .footer-col a {
     display: block;
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: var(--footer-link);
@@ -1311,28 +1494,28 @@
   }
   @media (min-width: 640px) { .footer-bottom { flex-direction: row; } }
   .footer-copyright {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 13px;
     color: var(--slate-500);
   }
   .footer-bottom-links { display: flex; gap: 20px; align-items: center; }
   .footer-legal-link {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 400;
     font-size: 13px;
-    color: var(--slate-300);
+    color: var(--slate-500);
     transition: opacity 150ms ease;
   }
   .footer-legal-link:hover { opacity: 0.7; }
   .footer-social-link svg {
     width: 18px;
     height: 18px;
-    fill: var(--slate-300);
+    fill: var(--slate-500);
     transition: fill 150ms ease;
     display: block;
   }
-  .footer-social-link:hover svg { fill: var(--white); }
+  .footer-social-link:hover svg { fill: var(--ink-800); }
 </style>
 </head>
 <body>
@@ -1369,20 +1552,20 @@
   <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-badge-row">
-        <img class="hero-badge-img" src="assets/badges/badge-platinum.png" alt="Informatica Platinum Partner">
-        <img class="hero-badge-img" src="assets/badges/badge-reseller.png" alt="Informatica Reseller Partner">
-        <img class="hero-badge-img" src="assets/badges/badge-data360.png" alt="Salesforce Certified Data 360 Consultant">
-        <img class="hero-badge-img" src="assets/badges/badge-delivery.png" alt="Informatica Delivery Partner">
-      </div>
       <h1 class="hero-headline" id="heroHeadline" aria-label="Make Enterprise Data Your Engine for Growth"></h1>
-      <p class="hero-subhead" id="heroSubhead">AI-first data modernization, governance, and management — delivered as a service by an Informatica Platinum &amp; Salesforce partner.</p>
+      <p class="hero-subhead" id="heroSubhead">AI-first data modernization, governance, and management - delivered as a service by an Informatica Platinum &amp; Salesforce partner.</p>
       <div class="hero-bottom-row">
         <div class="hero-cta-row" id="heroCtaRow">
           <a class="hero-cta-primary cta-pulsate" href="https://calendly.com/aidata-marketing/discovery-with-aidataworks">Schedule a Meeting</a>
           <button type="button" class="hero-cta-secondary">Explore Case Studies</button>
         </div>
       </div>
+    </div>
+    <div class="hero-badges-grid">
+      <img class="hero-badge-img" src="assets/badges/badge-platinum.png" alt="Informatica Platinum Partner">
+      <img class="hero-badge-img" src="assets/badges/badge-reseller.png" alt="Informatica Reseller Partner">
+      <img class="hero-badge-img" src="assets/badges/badge-data360.png" alt="Salesforce Certified Data 360 Consultant">
+      <img class="hero-badge-img" src="assets/badges/badge-delivery.png" alt="Informatica Delivery Partner">
     </div>
   </div>
 </section>
@@ -1497,22 +1680,27 @@
 
 <section class="services section-padded" id="services">
   <div class="services-inner section-container">
-    <p class="section-eyebrow">02 · SERVICES</p>
     <h2 class="services-heading text-reveal">The aiDataWorks method</h2>
     <p class="services-subhead">Three phases, one foundation. Every engagement moves through the same sequence.</p>
     <div class="service-panels">
-      <div class="service-panel" data-panel-index="0">
+      <div class="service-panel expanded" data-panel-index="0">
         <div class="service-panel-collapsed-label"><span>01 · ASSESS</span></div>
         <div class="service-panel-content">
-          <p class="service-panel-eyebrow">01 · ASSESS</p>
+          <p class="service-panel-eyebrow">01</p>
           <h3 class="service-panel-title">Assess</h3>
           <p class="service-panel-desc">AI-readiness assessment, architecture review, and a target-state roadmap.</p>
+          <ul class="service-panel-accelerators">
+            <li>AI &amp; data readiness scorecards</li>
+            <li>Current-state architecture &amp; data lineage review</li>
+            <li>Governance &amp; security maturity assessment</li>
+            <li>Business case &amp; prioritized roadmap</li>
+          </ul>
         </div>
       </div>
-      <div class="service-panel expanded" data-panel-index="1">
+      <div class="service-panel" data-panel-index="1">
         <div class="service-panel-collapsed-label"><span>02 · MODERNIZE</span></div>
         <div class="service-panel-content">
-          <p class="service-panel-eyebrow">02 · MODERNIZE</p>
+          <p class="service-panel-eyebrow">02</p>
           <h3 class="service-panel-title">Modernize</h3>
           <p class="service-panel-desc">Migrate legacy platforms to cloud (DMC) with proven frameworks.</p>
           <ul class="service-panel-accelerators">
@@ -1527,35 +1715,46 @@
       <div class="service-panel" data-panel-index="2">
         <div class="service-panel-collapsed-label"><span>03 · GOVERN</span></div>
         <div class="service-panel-content">
-          <p class="service-panel-eyebrow">03 · GOVERN</p>
+          <p class="service-panel-eyebrow">03</p>
           <h3 class="service-panel-title">Govern</h3>
           <p class="service-panel-desc">Embed quality, MDM, governance &amp; security for trusted, compliant data.</p>
+          <ul class="service-panel-accelerators">
+            <li>Master data management (MDM) design</li>
+            <li>Data quality rules &amp; continuous monitoring</li>
+            <li>Privacy, security &amp; regulatory compliance controls</li>
+            <li>Metadata management &amp; data cataloging</li>
+          </ul>
         </div>
       </div>
       <div class="service-panel" data-panel-index="3">
         <div class="service-panel-collapsed-label"><span>04 · ACTIVATE</span></div>
         <div class="service-panel-content">
-          <p class="service-panel-eyebrow">04 · ACTIVATE</p>
+          <p class="service-panel-eyebrow">04</p>
           <h3 class="service-panel-title">Activate</h3>
           <p class="service-panel-desc">Turn governed data into analytics, custom LLMs, and agentic AI.</p>
+          <ul class="service-panel-accelerators">
+            <li>Self-service analytics &amp; BI enablement</li>
+            <li>Custom LLM &amp; agentic AI development</li>
+            <li>Real-time data products &amp; APIs</li>
+            <li>Ongoing monitoring, optimization &amp; knowledge transfer</li>
+          </ul>
         </div>
       </div>
     </div>
-    <p class="services-delivery-note">Delivery model: DMaaS — outcome-based, on-demand teams, always-on managed service.</p>
+    <p class="services-delivery-note">Delivery model: DMaaS - outcome-based, on-demand teams, always-on managed service.</p>
   </div>
 </section>
 
 <section class="ai-automation section-padded" id="ai-automation">
   <div class="ai-automation-inner section-container">
-    <p class="section-eyebrow">03 · AI &amp; AUTOMATION</p>
     <h2 class="ai-heading text-reveal">The orchestration layer for decision-making</h2>
-    <p class="ai-spotlight">Accountability drives action — momentum builds when there's a clear operating model.</p>
+    <p class="ai-spotlight">Accountability drives action - momentum builds when there's a clear operating model.</p>
     <div class="ai-layout">
       <div class="ai-steps-col">
         <div class="step-list">
           <div class="step-item expanded">
             <h3 class="step-title">AI Use-Case Inventory &amp; Risk Tiering</h3>
-            <p class="step-description">Identify, classify, and prioritize every AI use case before it's built — so risk is scored up front, not discovered after launch.</p>
+            <p class="step-description">Identify, classify, and prioritize every AI use case before it's built - so risk is scored up front, not discovered after launch.</p>
             <div class="progress-track"><div class="progress-fill"></div></div>
           </div>
           <div class="step-item">
@@ -1565,7 +1764,7 @@
           </div>
           <div class="step-item">
             <h3 class="step-title">AI Use-Case Lifecycle Management</h3>
-            <p class="step-description">Every use case moves through the same disciplined cycle — Build, Manage, and Continuously Upgrade — nothing ships and gets forgotten.</p>
+            <p class="step-description">Every use case moves through the same disciplined cycle - Build, Manage, and Continuously Upgrade - nothing ships and gets forgotten.</p>
             <div class="progress-track"><div class="progress-fill"></div></div>
           </div>
           <div class="step-item">
@@ -1575,18 +1774,18 @@
           </div>
           <div class="step-item">
             <h3 class="step-title">Continuous Oversight &amp; Knowledge Retention</h3>
-            <p class="step-description">Agents are monitored on an ongoing basis so they don't drift from intent — audit-ready at every checkpoint, not just at launch.</p>
+            <p class="step-description">Agents are monitored on an ongoing basis so they don't drift from intent - audit-ready at every checkpoint, not just at launch.</p>
             <div class="progress-track"><div class="progress-fill"></div></div>
           </div>
         </div>
       </div>
       <div class="ai-diagram-col">
         <div class="diagram-card">
-          <img class="step-visual active" src="assets/ai-automations/step-1-inventory.png" alt="AI use-case inventory and risk tiering illustration">
-          <img class="step-visual" src="assets/ai-automations/step-2-stewardship.png" alt="Decision stewardship framework illustration">
-          <img class="step-visual" src="assets/ai-automations/step-3-lifecycle.png" alt="AI use-case lifecycle management illustration">
-          <img class="step-visual" src="assets/ai-automations/step-4-community.png" alt="Stewardship community and change management illustration">
-          <img class="step-visual" src="assets/ai-automations/step-5-oversight.png" alt="Continuous oversight and knowledge retention illustration">
+          <img class="step-visual active" src="https://images.unsplash.com/photo-1633114128814-11fac33f707b?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="AI use-case inventory and risk tiering illustration">
+          <img class="step-visual" src="https://images.unsplash.com/photo-1758873268745-dd2cf0d677b5?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Decision stewardship framework illustration">
+          <img class="step-visual" src="https://images.unsplash.com/photo-1774901128283-64c62117216a?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="AI use-case lifecycle management illustration">
+          <img class="step-visual" src="https://images.unsplash.com/photo-1735639013995-086e648eaa38?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Stewardship community and change management illustration">
+          <img class="step-visual" src="https://images.unsplash.com/photo-1662638600476-d563fffbb072?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Continuous oversight and knowledge retention illustration">
         </div>
       </div>
     </div>
@@ -1596,13 +1795,12 @@
 <section class="proof-story section-padded" id="proof-story">
   <div class="proof-story-inner section-container">
     <div class="proof-left">
-      <p class="section-eyebrow">04 · PROOF</p>
       <p class="proof-number" data-ticker-target="100" data-ticker-suffix="+">100+</p>
       <p class="proof-caption">DT services modernized</p>
     </div>
     <div class="proof-right">
       <div class="proof-card">
-        <p class="proof-quote">A Tier-1 mortgage insurer needed to move off a brittle, on-premise Informatica B2B stack — PowerCenter, B2B Data Exchange, and Managed File Transfer — without disrupting EDI, X12, and MISMO trading-partner traffic. aiDataWorks re-engineered the estate onto Informatica's Cloud B2B Gateway, CDI, and CAI, modernizing 100+ data transformation services under a tight SLA — re-architected for cloud scale, not simply lifted and shifted.</p>
+        <p class="proof-quote">A Tier-1 mortgage insurer needed to move off a brittle, on-premise Informatica B2B stack - PowerCenter, B2B Data Exchange, and Managed File Transfer - without disrupting EDI, X12, and MISMO trading-partner traffic. aiDataWorks re-engineered the estate onto Informatica's Cloud B2B Gateway, CDI, and CAI, modernizing 100+ data transformation services under a tight SLA - re-architected for cloud scale, not simply lifted and shifted.</p>
         <a href="#" class="proof-link">Read the case study →</a>
       </div>
     </div>
@@ -1611,41 +1809,81 @@
 
 <section class="pain-band section-padded" id="pain-band">
   <div class="pain-band-inner section-container">
-    <p class="section-eyebrow pain-eyebrow">05 · PERSPECTIVE</p>
     <p class="pain-statement">Most enterprise data programs stall for the same reasons: fragmented data estates, stalled AI initiatives, rising cost, and governance risk.</p>
-    <p class="pain-answer">We fix the foundation, then activate it — faster innovation, lower cost, stronger governance, AI-ready data.</p>
+    <p class="pain-answer">We fix the foundation, then activate it - faster innovation, lower cost, stronger governance, AI-ready data.</p>
   </div>
 </section>
 
 <section class="industries section-padded" id="industries">
   <div class="industries-inner section-container">
-    <p class="section-eyebrow">06 · INDUSTRIES</p>
     <h2 class="industries-heading text-reveal">Where we do our best work</h2>
     <div class="industries-grid">
-      <div class="industry-card">
-        <h3 class="industry-title">Healthcare</h3>
-        <p class="industry-desc">KPI-powered dashboards for diagnosis, clinical data, patient care quality, and business management.</p>
+      <div class="industry-card" data-industry="healthcare">
+        <div class="industry-card-inner">
+          <div class="industry-card-front">
+            <h3 class="industry-card-name">Healthcare</h3>
+          </div>
+          <div class="industry-card-back">
+            <h3 class="industry-title">Healthcare</h3>
+            <p class="industry-desc">KPI-powered dashboards for diagnosis, clinical data, patient care quality, and business management.</p>
+          </div>
+        </div>
       </div>
-      <div class="industry-card">
-        <h3 class="industry-title">Financial Services</h3>
-        <p class="industry-desc">Custom manager diagnostic dashboards for deeper market insights and portfolio management, plus BI advisory.</p>
+      <div class="industry-card" data-industry="financial-services">
+        <div class="industry-card-inner">
+          <div class="industry-card-front">
+            <h3 class="industry-card-name">Financial Services</h3>
+          </div>
+          <div class="industry-card-back">
+            <h3 class="industry-title">Financial Services</h3>
+            <p class="industry-desc">Custom manager diagnostic dashboards for deeper market insights and portfolio management, plus BI advisory.</p>
+          </div>
+        </div>
       </div>
-      <div class="industry-card">
-        <h3 class="industry-title">Insurance</h3>
-        <p class="industry-desc">Sales performance dashboards collecting data from multiple sources with real-time, interactive analytics.</p>
+      <div class="industry-card" data-industry="insurance">
+        <div class="industry-card-inner">
+          <div class="industry-card-front">
+            <h3 class="industry-card-name">Insurance</h3>
+          </div>
+          <div class="industry-card-back">
+            <h3 class="industry-title">Insurance</h3>
+            <p class="industry-desc">Sales performance dashboards collecting data from multiple sources with real-time, interactive analytics.</p>
+          </div>
+        </div>
       </div>
-      <div class="industry-card">
-        <h3 class="industry-title">Manufacturing</h3>
-        <p class="industry-desc">Data Science and Big Data-powered solutions for price optimization, demand forecasting, preventive maintenance, and fault prediction.</p>
-        <a href="#ai-automation" class="industry-link">See our AI Manufacturing Copilot →</a>
+      <div class="industry-card" data-industry="manufacturing">
+        <div class="industry-card-inner">
+          <div class="industry-card-front">
+            <h3 class="industry-card-name">Manufacturing</h3>
+          </div>
+          <div class="industry-card-back">
+            <h3 class="industry-title">Manufacturing</h3>
+            <p class="industry-desc">Data Science and Big Data-powered solutions for price optimization, demand forecasting, preventive maintenance, and fault prediction.</p>
+            <a href="#ai-automation" class="industry-link">See our AI Manufacturing Copilot →</a>
+          </div>
+        </div>
       </div>
-      <div class="industry-card">
-        <h3 class="industry-title">Retail &amp; CPG</h3>
-        <p class="industry-desc">Recommendation engines tracking cart abandonment, purchase behavior, and cross-selling opportunities.</p>
+      <div class="industry-card" data-industry="retail-cpg">
+        <div class="industry-card-inner">
+          <div class="industry-card-front">
+            <h3 class="industry-card-name">Retail &amp; CPG</h3>
+          </div>
+          <div class="industry-card-back">
+            <h3 class="industry-title">Retail &amp; CPG</h3>
+            <p class="industry-desc">Recommendation engines tracking cart abandonment, purchase behavior, and cross-selling opportunities.</p>
+          </div>
+        </div>
       </div>
-      <div class="industry-card">
-        <h3 class="industry-title">Public Sector</h3>
-        <p class="industry-desc">Modernized case-management and constituent-data platforms so agencies see one citizen record across departments.</p>
+      <div class="industry-card" data-industry="public-sector">
+        <div class="industry-card-inner">
+          <div class="industry-card-front">
+            <h3 class="industry-card-name">Public Sector</h3>
+          </div>
+          <div class="industry-card-back">
+            <h3 class="industry-title">Public Sector</h3>
+            <p class="industry-desc">Modernized case-management and constituent-data platforms so agencies see one citizen record across departments.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1654,14 +1892,13 @@
 <section class="testimonials section-padded" id="testimonials">
   <div class="testimonials-inner section-container">
     <div class="testimonials-header">
-      <p class="section-eyebrow">07 · WHAT CLIENTS SAY</p>
       <h2 class="testimonials-heading text-reveal">In their words</h2>
     </div>
     <div class="testimonial-marquee-wrap">
       <div class="testimonial-row">
         <div class="testimonial-row-track">
           <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;Modernizing our data foundation with aiDataWorks gave our teams one reliable view of patient and operational data — something we couldn't get from our legacy integration stack.&rdquo;</p>
+            <p class="testimonial-mini-quote">&ldquo;Modernizing our data foundation with aiDataWorks gave our teams one reliable view of patient and operational data - something we couldn't get from our legacy integration stack.&rdquo;</p>
             <div class="testimonial-mini-author">
               <div class="testimonial-mini-avatar">CH</div>
               <div>
@@ -1681,7 +1918,7 @@
             </div>
           </div>
           <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;aiDataWorks didn't just migrate our systems — they left us with governance and data quality practices our team could run on our own.&rdquo;</p>
+            <p class="testimonial-mini-quote">&ldquo;aiDataWorks didn't just migrate our systems - they left us with governance and data quality practices our team could run on our own.&rdquo;</p>
             <div class="testimonial-mini-author">
               <div class="testimonial-mini-avatar">UP</div>
               <div>
@@ -1721,7 +1958,7 @@
             </div>
           </div>
           <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;Modernizing our data foundation with aiDataWorks gave our teams one reliable view of patient and operational data — something we couldn't get from our legacy integration stack.&rdquo;</p>
+            <p class="testimonial-mini-quote">&ldquo;Modernizing our data foundation with aiDataWorks gave our teams one reliable view of patient and operational data - something we couldn't get from our legacy integration stack.&rdquo;</p>
             <div class="testimonial-mini-author">
               <div class="testimonial-mini-avatar">CH</div>
               <div>
@@ -1741,7 +1978,7 @@
             </div>
           </div>
           <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;aiDataWorks didn't just migrate our systems — they left us with governance and data quality practices our team could run on our own.&rdquo;</p>
+            <p class="testimonial-mini-quote">&ldquo;aiDataWorks didn't just migrate our systems - they left us with governance and data quality practices our team could run on our own.&rdquo;</p>
             <div class="testimonial-mini-author">
               <div class="testimonial-mini-avatar">UP</div>
               <div>
@@ -1785,7 +2022,7 @@
       <div class="testimonial-row testimonial-row-reverse">
         <div class="testimonial-row-track">
           <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;The DMaaS model meant we paid for outcomes, not headcount — that alone changed how we planned the whole program.&rdquo;</p>
+            <p class="testimonial-mini-quote">&ldquo;The DMaaS model meant we paid for outcomes, not headcount - that alone changed how we planned the whole program.&rdquo;</p>
             <div class="testimonial-mini-author">
               <div class="testimonial-mini-avatar">MG</div>
               <div>
@@ -1845,7 +2082,7 @@
             </div>
           </div>
           <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;The DMaaS model meant we paid for outcomes, not headcount — that alone changed how we planned the whole program.&rdquo;</p>
+            <p class="testimonial-mini-quote">&ldquo;The DMaaS model meant we paid for outcomes, not headcount - that alone changed how we planned the whole program.&rdquo;</p>
             <div class="testimonial-mini-author">
               <div class="testimonial-mini-avatar">MG</div>
               <div>
@@ -1912,48 +2149,47 @@
 
 <section class="partners section-padded" id="partners">
   <div class="partners-inner section-container">
-    <p class="section-eyebrow">08 · PARTNERS</p>
     <h2 class="partners-heading text-reveal">Built on a certified ecosystem</h2>
     <div class="partners-grid" id="partnersGrid">
       <div class="partner-card">
         <img class="partner-logo" src="assets/partners/informatica-logo.png" alt="Informatica">
-        <p class="partner-blurb">Backbone of our data integration, governance, quality, MDM, and automation solutions.</p>
+        <div class="partner-overlay"><p class="partner-blurb">Backbone of our data integration, governance, quality, MDM, and automation solutions.</p></div>
       </div>
       <div class="partner-card">
         <img class="partner-logo" src="assets/partners/salesforce-logo.jpg" alt="Salesforce">
-        <p class="partner-blurb">Customer 360 / Data 360 insights, real-time data exchange across sales, marketing, and service.</p>
+        <div class="partner-overlay"><p class="partner-blurb">Customer 360 / Data 360 insights, real-time data exchange across sales, marketing, and service.</p></div>
       </div>
       <div class="partner-card">
         <img class="partner-logo" src="assets/partners/fortra-logo.png" alt="Fortra">
-        <p class="partner-blurb">Data security and compliance tooling extending our governance and privacy practice.</p>
+        <div class="partner-overlay"><p class="partner-blurb">Data security and compliance tooling extending our governance and privacy practice.</p></div>
       </div>
       <div class="partner-card">
         <img class="partner-logo" src="assets/partners/epic-logo.png" alt="Epic">
-        <p class="partner-blurb">EHR implementation and integration, including EPIC AWS Informatica integration for healthcare data interoperability.</p>
+        <div class="partner-overlay"><p class="partner-blurb">EHR implementation and integration, including EPIC AWS Informatica integration for healthcare data interoperability.</p></div>
       </div>
       <div class="partner-card">
         <img class="partner-logo" src="assets/partners/databricks-logo.png" alt="Databricks">
-        <p class="partner-blurb">AI/ML engineering, lakehouse architecture, high-scale analytics pipelines.</p>
+        <div class="partner-overlay"><p class="partner-blurb">AI/ML engineering, lakehouse architecture, high-scale analytics pipelines.</p></div>
       </div>
-      <div class="partner-card">
+      <div class="partner-card partner-card-extra">
         <img class="partner-logo" src="assets/partners/snowflake-logo.png" alt="Snowflake">
-        <p class="partner-blurb">Cloud data warehouse and data lake engineering, cost governance, analytics modernization.</p>
+        <div class="partner-overlay"><p class="partner-blurb">Cloud data warehouse and data lake engineering, cost governance, analytics modernization.</p></div>
       </div>
-      <div class="partner-card">
+      <div class="partner-card partner-card-extra">
         <img class="partner-logo" src="assets/partners/aws-logo.png" alt="AWS">
-        <p class="partner-blurb">Cloud-native data lakes, pipelines, and AI workloads on Amazon Web Services.</p>
+        <div class="partner-overlay"><p class="partner-blurb">Cloud-native data lakes, pipelines, and AI workloads on Amazon Web Services.</p></div>
       </div>
-      <div class="partner-card">
+      <div class="partner-card partner-card-extra">
         <img class="partner-logo" src="assets/partners/azure-logo.png" alt="Microsoft Azure">
-        <p class="partner-blurb">Cloud-native data lakes, pipelines, and AI workloads on Microsoft Azure.</p>
+        <div class="partner-overlay"><p class="partner-blurb">Cloud-native data lakes, pipelines, and AI workloads on Microsoft Azure.</p></div>
       </div>
       <div class="partner-card partner-card-extra">
         <img class="partner-logo" src="assets/partners/gcp-logo.png" alt="Google Cloud">
-        <p class="partner-blurb">Cloud-native data lakes, pipelines, and AI workloads on Google Cloud.</p>
+        <div class="partner-overlay"><p class="partner-blurb">Cloud-native data lakes, pipelines, and AI workloads on Google Cloud.</p></div>
       </div>
       <div class="partner-card partner-card-extra">
         <img class="partner-logo" src="[PLACEHOLDER: /assets/partner-logos/gem.svg]" alt="GEM" onerror="this.onerror=null; this.src='[PLACEHOLDER: /assets/aidataworks-logo-mark.svg]'">
-        <p class="partner-blurb">AI Driven Manufacturing Copilot and Precare SaaS AI/ML Analytics Platform for smart manufacturing.</p>
+        <div class="partner-overlay"><p class="partner-blurb">AI Driven Manufacturing Copilot and Precare SaaS AI/ML Analytics Platform for smart manufacturing.</p></div>
       </div>
     </div>
     <button type="button" class="partners-show-more" id="partnersShowMore">Show all partners</button>
@@ -1963,33 +2199,32 @@
 <section class="faq section-padded" id="faq">
   <div class="faq-inner section-container">
     <div class="faq-heading-col">
-      <p class="section-eyebrow">09 · FAQ</p>
       <h2 class="faq-heading text-reveal">Questions, answered</h2>
     </div>
     <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-question"><span>How is aiDataWorks different from a typical Informatica reseller?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#6B7689" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>We're a Platinum Informatica partner and Informatica Migration Factory partner, but we deliver full lifecycle outcomes — assess, modernize, govern, and activate — not just licensing. Most engagements run as DMaaS, an outcome-based managed service, not time-and-materials staffing.</p></div>
+      <div class="faq-question"><span>How is aiDataWorks different from a typical Informatica reseller?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>We're a Platinum Informatica partner and Informatica Migration Factory partner, but we deliver full lifecycle outcomes - assess, modernize, govern, and activate - not just licensing. Most engagements run as DMaaS, an outcome-based managed service, not time-and-materials staffing.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question"><span>What does the DMaaS engagement model actually include?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#6B7689" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-question"><span>What does the DMaaS engagement model actually include?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="faq-answer"><p>Data Management as a Service is priced to business results and SLAs, not billable hours or headcount. You get flexible, on-demand expert teams and continuous run-monitor-optimize delivery, so your data platform keeps improving after go-live instead of sitting with whoever built it.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question"><span>How long does a typical modernization or migration engagement take?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#6B7689" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-question"><span>How long does a typical modernization or migration engagement take?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="faq-answer"><p>It depends on scope, but most engagements start with a framework-based proof of concept to validate feasibility and timeline before a full commitment.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question"><span>How do you handle data security and compliance during migration?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#6B7689" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>Governance, quality, and security controls are embedded from the Assess phase onward — audit-ready compliance frameworks and policy/privacy controls are part of the Govern step of every engagement.</p></div>
+      <div class="faq-question"><span>How do you handle data security and compliance during migration?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>Governance, quality, and security controls are embedded from the Assess phase onward - audit-ready compliance frameworks and policy/privacy controls are part of the Govern step of every engagement.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question"><span>Do you work with organizations that aren't yet on Informatica?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#6B7689" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>Yes — we also work across Databricks, Snowflake, Salesforce, AWS, Azure, and Google Cloud, and can advise on the right platform mix before recommending Informatica specifically.</p></div>
+      <div class="faq-question"><span>Do you work with organizations that aren't yet on Informatica?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>Yes - we also work across Databricks, Snowflake, Salesforce, AWS, Azure, and Google Cloud, and can advise on the right platform mix before recommending Informatica specifically.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question"><span>Do you offer AI capabilities beyond data management?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#6B7689" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>Yes — our Agentic AI Copilot for Informatica &amp; Snowflake, custom LLM and agent-flow development, and purpose-built platforms like our GEM AI Manufacturing Copilot bring AI directly into daily operations, not just into the data layer.</p></div>
+      <div class="faq-question"><span>Do you offer AI capabilities beyond data management?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>Yes - our Agentic AI Copilot for Informatica &amp; Snowflake, custom LLM and agent-flow development, and purpose-built platforms like our GEM AI Manufacturing Copilot bring AI directly into daily operations, not just into the data layer.</p></div>
     </div>
     </div>
   </div>
@@ -1997,29 +2232,44 @@
 
 <section class="insights section-padded" id="insights">
   <div class="insights-inner section-container">
-    <p class="section-eyebrow">10 · INSIGHTS &amp; NEWS</p>
     <h2 class="insights-heading text-reveal">Recent thinking</h2>
     <div class="insights-grid">
       <div class="insight-card insight-card-featured">
-        <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
-        <span class="insight-tag">NEWS</span>
-        <h3 class="insight-title">aiDataWorks Becomes a Certified Salesforce &amp; MuleSoft Partner</h3>
-        <a href="#" class="insight-link">Read more →</a>
+        <div class="insight-media">
+          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
+          <div class="insight-overlay">
+            <span class="insight-tag">NEWS</span>
+            <h3 class="insight-title">aiDataWorks Becomes a Certified Salesforce &amp; MuleSoft Partner</h3>
+            <a href="#" class="insight-link">Read more →</a>
+          </div>
+        </div>
       </div>
       <div class="insight-card">
-        <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
-        <h3 class="insight-title">Choosing a Migration Path off Legacy ETL</h3>
-        <a href="#" class="insight-link">Read more →</a>
+        <div class="insight-media">
+          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
+          <div class="insight-overlay">
+            <h3 class="insight-title">Choosing a Migration Path off Legacy ETL</h3>
+            <a href="#" class="insight-link">Read more →</a>
+          </div>
+        </div>
       </div>
       <div class="insight-card">
-        <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
-        <h3 class="insight-title">What Good Data Governance Actually Looks Like</h3>
-        <a href="#" class="insight-link">Read more →</a>
+        <div class="insight-media">
+          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
+          <div class="insight-overlay">
+            <h3 class="insight-title">What Good Data Governance Actually Looks Like</h3>
+            <a href="#" class="insight-link">Read more →</a>
+          </div>
+        </div>
       </div>
       <div class="insight-card insight-card-wide">
-        <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
-        <h3 class="insight-title">Running Informatica in a Multi-Cloud Estate</h3>
-        <a href="#" class="insight-link">Read more →</a>
+        <div class="insight-media">
+          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
+          <div class="insight-overlay">
+            <h3 class="insight-title">Running Informatica in a Multi-Cloud Estate</h3>
+            <a href="#" class="insight-link">Read more →</a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="newsletter-band">
@@ -2043,7 +2293,7 @@
   <div class="footer-inner section-container">
     <div class="footer-top">
       <div class="footer-col footer-col-brand">
-        <img class="footer-logo" src="uploads/aidataworks-reversed.svg" alt="aiDataWorks">
+        <img class="footer-logo" src="uploads/aidataworks-primary.svg" alt="aiDataWorks">
         <p class="footer-tagline">AI-first data modernization, governance, and management.</p>
         <form class="footer-newsletter" onsubmit="return false;">
           <input type="email" class="footer-newsletter-input" placeholder="you@company.com" required>
@@ -2115,7 +2365,7 @@
     hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 
-  /* Cursor-scrubbed video disabled for now — video just autoplays on loop instead.
+  /* Cursor-scrubbed video disabled for now - video just autoplays on loop instead.
   var video = document.querySelector('.hero-video');
   var prevX = null, targetTime = 0, pending = false;
   var SENSITIVITY = 0.8;
@@ -2231,7 +2481,16 @@
     step.addEventListener('click', function () { activateAiStep(i); });
   });
 
-  if (steps.length) activateAiStep(0);
+  var aiAutomationSection = document.getElementById('ai-automation');
+  var aiAutomationObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting && steps.length) {
+        activateAiStep(0);
+        aiAutomationObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  if (aiAutomationSection) aiAutomationObserver.observe(aiAutomationSection);
 
   var proofSection = document.getElementById('proof-story');
   var proofObserver = new IntersectionObserver(function (entries) {
@@ -2279,6 +2538,17 @@
   }, { threshold: 0.2 });
   industryCards.forEach(function (card) { industryObserver.observe(card); });
 
+  var methodPanels = document.querySelectorAll('.service-panel');
+  var methodPanelObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (entry.isIntersecting) {
+        setTimeout(function () { entry.target.classList.add('is-visible'); }, i * 80);
+        methodPanelObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  methodPanels.forEach(function (panel) { methodPanelObserver.observe(panel); });
+
   var faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(function (item) {
     var question = item.querySelector('.faq-question');
@@ -2305,10 +2575,10 @@
     var rect = ctaBand.getBoundingClientRect();
     var el = document.createElement('div');
     el.className = 'cta-trail-fragment';
-    var isDot = spawnCount % 4 === 0;
-    var size = isDot ? 6 : 12;
-    var angle = isDot ? 0 : (Math.random() * 20 - 10);
-    el.style.cssText = 'position:absolute; left:' + (clientX - rect.left) + 'px; top:' + (clientY - rect.top) + 'px; width:' + size + 'px; height:' + (isDot ? size : 2) + 'px; border-radius:' + (isDot ? '50%' : '1px') + '; background:' + (isDot ? '#2450FF' : '#3A4761') + '; transform:rotate(' + angle + 'deg) scale(1); opacity:1; transition:opacity 1000ms ease-out, transform 1000ms ease-out; pointer-events:none; z-index:1;';
+    var isBig = spawnCount % 4 === 0;
+    var size = isBig ? 16 : 10;
+    var angle = Math.random() * 360;
+    el.style.cssText = 'position:absolute; left:' + (clientX - rect.left) + 'px; top:' + (clientY - rect.top) + 'px; width:' + size + 'px; height:' + size + 'px; clip-path:polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%); background:' + (isBig ? '#051A24' : '#273C46') + '; transform:rotate(' + angle + 'deg) scale(1); opacity:1; transition:opacity 1000ms ease-out, transform 1000ms ease-out; pointer-events:none; z-index:1;';
     ctaBand.appendChild(el);
     requestAnimationFrame(function () {
       el.style.opacity = '0';
