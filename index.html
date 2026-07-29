@@ -463,9 +463,14 @@
     font-size: var(--fs-sm);
     cursor: pointer;
     box-shadow: 0 0 0 0.5px rgba(5,26,36,0.05), 0 4px 16px rgba(5,26,36,0.08);
-    transition: box-shadow 200ms ease;
+    transition: background 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 150ms ease;
   }
-  .hero-cta-secondary:hover { box-shadow: 0 4px 24px rgba(5,26,36,0.12); }
+  .hero-cta-secondary:hover {
+    background: var(--ink-800);
+    color: var(--white);
+    box-shadow: 0 6px 16px rgba(5,26,36,0.2);
+    transform: translateY(-2px);
+  }
 
   /* ---------- Metrics ---------- */
   .metrics {
@@ -532,6 +537,9 @@
     color: var(--slate-500);
     max-width: 480px;
     margin-bottom: 40px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .dotted-map-wrap { overflow-x: auto; overflow-y: hidden; }
@@ -699,6 +707,10 @@
     font-size: var(--fs-body);
     color: var(--slate-500);
     margin-bottom: 48px;
+    text-align: center;
+    max-width: 62ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* ============================================================
@@ -927,6 +939,9 @@
     color: var(--ink-600);
     max-width: 620px;
     margin-bottom: 48px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .ai-layout {
@@ -1125,6 +1140,9 @@
     color: var(--slate-500);
     max-width: 560px;
     margin-bottom: 40px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .proof-story-inner {
@@ -1410,12 +1428,12 @@
     transform: rotateY(180deg);
   }
 
-  .industry-card[data-industry="healthcare"] { --industry-img: url('https://images.unsplash.com/photo-1516841273335-e39b37888115?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="financial-services"] { --industry-img: url('https://images.unsplash.com/photo-1457059315558-e754285e416b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="insurance"] { --industry-img: url('https://images.unsplash.com/photo-1763729805496-b5dbf7f00c79?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="manufacturing"] { --industry-img: url('https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="retail-cpg"] { --industry-img: url('https://images.unsplash.com/photo-1759323321196-2813db509285?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="public-sector"] { --industry-img: url('https://images.unsplash.com/photo-1768399808130-abac2a8442e0?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="healthcare"] { --industry-img: url('assets/industries/healthcare.png'); }
+  .industry-card[data-industry="financial-services"] { --industry-img: url('assets/industries/financial-services.png'); }
+  .industry-card[data-industry="insurance"] { --industry-img: url('assets/industries/insurance.png'); }
+  .industry-card[data-industry="manufacturing"] { --industry-img: url('assets/industries/manufacturing.png'); }
+  .industry-card[data-industry="retail-cpg"] { --industry-img: url('assets/industries/retail-cpg.png'); }
+  .industry-card[data-industry="public-sector"] { --industry-img: url('assets/industries/public-sector.png'); }
 
   .industry-title {
     font-family: var(--font-sans);
@@ -1461,36 +1479,71 @@
     color: var(--ink-800);
   }
 
-  .testimonial-marquee-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  .testimonial-carousel {
+    display: grid;
+    max-width: 640px;
+    margin: 0 auto;
   }
-  .testimonial-row { overflow: hidden; }
-  .testimonial-row-track {
-    display: flex;
-    gap: 20px;
-    width: max-content;
-    animation: testimonialScrollLeft 60s linear infinite;
+  .testimonial-slide {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 600ms ease, transform 600ms ease;
+    pointer-events: none;
   }
-  .testimonial-row-reverse .testimonial-row-track {
-    animation-name: testimonialScrollRight;
-    animation-duration: 65s;
+  .testimonial-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    z-index: 2;
   }
-  .testimonial-row:hover .testimonial-row-track { animation-play-state: paused; }
+  .testimonial-slide.prev { transform: translateX(-40px); }
 
-  @keyframes testimonialScrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes testimonialScrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  .testimonial-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 32px;
+  }
+  .testimonial-pause-btn {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-base);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 150ms ease, border-color 150ms ease;
+  }
+  .testimonial-pause-btn:hover { background: var(--surface-sunken); border-color: var(--text-muted); }
+  .testimonial-pause-btn .icon-play { display: none; }
+  .testimonial-pause-btn.is-paused .icon-pause { display: none; }
+  .testimonial-pause-btn.is-paused .icon-play { display: block; }
+
+  .testimonial-dots { display: flex; align-items: center; gap: 8px; }
+  .testimonial-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--border-strong);
+    cursor: pointer;
+    transition: background 200ms ease, transform 200ms ease;
+  }
+  .testimonial-dot:hover { background: var(--text-muted); }
+  .testimonial-dot.active { background: var(--accent-500); transform: scale(1.3); }
 
   .testimonial-mini-card {
-    flex: 0 0 auto;
-    width: 320px;
+    width: 100%;
     background: var(--white);
     border-radius: 28px;
-    padding: 28px 32px 28px 28px;
+    padding: 40px 44px;
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
     transition: box-shadow 200ms ease, transform 200ms ease;
   }
@@ -1499,7 +1552,7 @@
     position: relative;
     font-family: var(--font-sans);
     font-weight: var(--fw-regular);
-    font-size: var(--fs-xs);
+    font-size: var(--fs-md);
     line-height: 1.6;
     color: var(--ink-800);
   }
@@ -1802,10 +1855,14 @@
     border-radius: 9999px;
     padding: 12px 22px;
     cursor: pointer;
-    transition: background 150ms ease;
+    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
     white-space: nowrap;
   }
-  .newsletter-submit:hover { background: var(--cobalt-600); }
+  .newsletter-submit:hover {
+    background: var(--cobalt-600);
+    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
+    transform: translateY(-2px);
+  }
 
   /* ---------- Final CTA Band ---------- */
   .final-cta-band {
@@ -1910,10 +1967,14 @@
     border-radius: 9999px;
     padding: 10px 16px;
     cursor: pointer;
-    transition: background 150ms ease;
+    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
     white-space: nowrap;
   }
-  .footer-newsletter-submit:hover { background: var(--cobalt-600); }
+  .footer-newsletter-submit:hover {
+    background: var(--cobalt-600);
+    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
+    transform: translateY(-2px);
+  }
 
   .footer-col-heading {
     font-family: var(--font-sans);
@@ -1987,6 +2048,9 @@
     line-height: var(--lh-snug);
     letter-spacing: var(--tracking-snug);
     text-wrap: balance;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero-headline { text-wrap: balance; }
 
@@ -2132,8 +2196,8 @@
     <div class="hero-badges-grid">
       <img class="hero-badge-img" src="assets/badges/badge-platinum.png" alt="Informatica Platinum Partner">
       <img class="hero-badge-img" src="assets/badges/badge-reseller.png" alt="Informatica Reseller Partner">
-      <img class="hero-badge-img" src="assets/badges/badge-data360.png" alt="Salesforce Certified Data 360 Consultant">
       <img class="hero-badge-img" src="assets/badges/badge-delivery.png" alt="Informatica Delivery Partner">
+      <img class="hero-badge-img" src="assets/badges/badge-data360.png" alt="Salesforce Certified Data 360 Consultant">
       <img class="hero-badge-img" src="assets/badges/badge-mulesoft.png" alt="MuleSoft Certified Partner">
     </div>
   </div>
@@ -2679,256 +2743,55 @@
 <section class="testimonials section-padded" id="testimonials">
   <div class="testimonials-inner section-container">
     <div class="testimonials-header">
-      <h2 class="testimonials-heading text-reveal">In their words</h2>
+      <h2 class="testimonials-heading text-reveal">What Experts Are Saying about aiDataWorks</h2>
     </div>
-    <div class="testimonial-marquee-wrap">
-      <div class="testimonial-row">
-        <div class="testimonial-row-track">
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;Modernizing our data foundation with aiDataWorks gave our teams one reliable view of patient and operational data - something we couldn't get from our legacy integration stack.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">CH</div>
-              <div>
-                <p class="testimonial-mini-name">[Title]</p>
-                <p class="testimonial-mini-company">Corewell Health</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;Our production data used to live in five different systems. Now it's one governed source everyone trusts.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">AM</div>
-              <div>
-                <p class="testimonial-mini-name">VP of Operations</p>
-                <p class="testimonial-mini-company">Alderbrook Manufacturing</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;aiDataWorks didn't just migrate our systems - they left us with governance and data quality practices our team could run on our own.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">UP</div>
-              <div>
-                <p class="testimonial-mini-name">[Title]</p>
-                <p class="testimonial-mini-company">UPMC</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;The migration ran faster than we planned for, and the platform's been rock solid since go-live.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">SE</div>
-              <div>
-                <p class="testimonial-mini-name">Director of IT</p>
-                <p class="testimonial-mini-company">Summit Energy Partners</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;We finally have real-time visibility into inventory and demand instead of week-old reports.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">CR</div>
-              <div>
-                <p class="testimonial-mini-name">Head of Data</p>
-                <p class="testimonial-mini-company">Coastline Retail Co.</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;aiDataWorks' team felt like an extension of ours, not a vendor checking boxes.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">VL</div>
-              <div>
-                <p class="testimonial-mini-name">CIO</p>
-                <p class="testimonial-mini-company">Vantage Logistics</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;Modernizing our data foundation with aiDataWorks gave our teams one reliable view of patient and operational data - something we couldn't get from our legacy integration stack.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">CH</div>
-              <div>
-                <p class="testimonial-mini-name">[Title]</p>
-                <p class="testimonial-mini-company">Corewell Health</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;Our production data used to live in five different systems. Now it's one governed source everyone trusts.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">AM</div>
-              <div>
-                <p class="testimonial-mini-name">VP of Operations</p>
-                <p class="testimonial-mini-company">Alderbrook Manufacturing</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;aiDataWorks didn't just migrate our systems - they left us with governance and data quality practices our team could run on our own.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">UP</div>
-              <div>
-                <p class="testimonial-mini-name">[Title]</p>
-                <p class="testimonial-mini-company">UPMC</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;The migration ran faster than we planned for, and the platform's been rock solid since go-live.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">SE</div>
-              <div>
-                <p class="testimonial-mini-name">Director of IT</p>
-                <p class="testimonial-mini-company">Summit Energy Partners</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;We finally have real-time visibility into inventory and demand instead of week-old reports.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">CR</div>
-              <div>
-                <p class="testimonial-mini-name">Head of Data</p>
-                <p class="testimonial-mini-company">Coastline Retail Co.</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;aiDataWorks' team felt like an extension of ours, not a vendor checking boxes.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">VL</div>
-              <div>
-                <p class="testimonial-mini-name">CIO</p>
-                <p class="testimonial-mini-company">Vantage Logistics</p>
-              </div>
+    <div class="testimonial-carousel" id="testimonialCarousel">
+      <div class="testimonial-slide active" data-slide-index="0">
+        <div class="testimonial-mini-card">
+          <p class="testimonial-mini-quote">&ldquo;aiDataWorks&rsquo; team felt like an extension of ours, not a vendor checking boxes.&rdquo;</p>
+          <div class="testimonial-mini-author">
+            <div class="testimonial-mini-avatar">VL</div>
+            <div>
+              <p class="testimonial-mini-name">CIO</p>
+              <p class="testimonial-mini-company">Vantage Logistics</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="testimonial-row testimonial-row-reverse">
-        <div class="testimonial-row-track">
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;The DMaaS model meant we paid for outcomes, not headcount - that alone changed how we planned the whole program.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">MG</div>
-              <div>
-                <p class="testimonial-mini-name">[Title]</p>
-                <p class="testimonial-mini-company">MGIC</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;Governance used to be our biggest bottleneck. Now it's just built into how we ship.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">BI</div>
-              <div>
-                <p class="testimonial-mini-name">Chief Data Officer</p>
-                <p class="testimonial-mini-company">BrightPath Insurance</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;Cost predictability was the whole point of DMaaS for us, and it's delivered exactly that.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">NF</div>
-              <div>
-                <p class="testimonial-mini-name">VP of Technology</p>
-                <p class="testimonial-mini-company">Northbridge Financial Group</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;Standardizing on Informatica across our cloud estate cut our integration backlog in half.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">MT</div>
-              <div>
-                <p class="testimonial-mini-name">Director of Data Engineering</p>
-                <p class="testimonial-mini-company">Meridian Telecom</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;Our clinicians get cleaner data faster, which is really the only metric that matters to us.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">LH</div>
-              <div>
-                <p class="testimonial-mini-name">VP of Clinical Systems</p>
-                <p class="testimonial-mini-company">Lakeshore Health Partners</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card">
-            <p class="testimonial-mini-quote">&ldquo;One citizen record across departments sounded ambitious. aiDataWorks made it real.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">PC</div>
-              <div>
-                <p class="testimonial-mini-name">Director of IT Services</p>
-                <p class="testimonial-mini-company">Prairie County Services</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;The DMaaS model meant we paid for outcomes, not headcount - that alone changed how we planned the whole program.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">MG</div>
-              <div>
-                <p class="testimonial-mini-name">[Title]</p>
-                <p class="testimonial-mini-company">MGIC</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;Governance used to be our biggest bottleneck. Now it's just built into how we ship.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">BI</div>
-              <div>
-                <p class="testimonial-mini-name">Chief Data Officer</p>
-                <p class="testimonial-mini-company">BrightPath Insurance</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;Cost predictability was the whole point of DMaaS for us, and it's delivered exactly that.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">NF</div>
-              <div>
-                <p class="testimonial-mini-name">VP of Technology</p>
-                <p class="testimonial-mini-company">Northbridge Financial Group</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;Standardizing on Informatica across our cloud estate cut our integration backlog in half.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">MT</div>
-              <div>
-                <p class="testimonial-mini-name">Director of Data Engineering</p>
-                <p class="testimonial-mini-company">Meridian Telecom</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;Our clinicians get cleaner data faster, which is really the only metric that matters to us.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">LH</div>
-              <div>
-                <p class="testimonial-mini-name">VP of Clinical Systems</p>
-                <p class="testimonial-mini-company">Lakeshore Health Partners</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-mini-card" aria-hidden="true">
-            <p class="testimonial-mini-quote">&ldquo;One citizen record across departments sounded ambitious. aiDataWorks made it real.&rdquo;</p>
-            <div class="testimonial-mini-author">
-              <div class="testimonial-mini-avatar">PC</div>
-              <div>
-                <p class="testimonial-mini-name">Director of IT Services</p>
-                <p class="testimonial-mini-company">Prairie County Services</p>
-              </div>
+      <div class="testimonial-slide" data-slide-index="1">
+        <div class="testimonial-mini-card">
+          <p class="testimonial-mini-quote">&ldquo;Governance used to be our biggest bottleneck. Now it&rsquo;s just built into how we ship.&rdquo;</p>
+          <div class="testimonial-mini-author">
+            <div class="testimonial-mini-avatar">BI</div>
+            <div>
+              <p class="testimonial-mini-name">Chief Data Officer</p>
+              <p class="testimonial-mini-company">BrightPath Insurance</p>
             </div>
           </div>
         </div>
+      </div>
+      <div class="testimonial-slide" data-slide-index="2">
+        <div class="testimonial-mini-card">
+          <p class="testimonial-mini-quote">&ldquo;We finally have real-time visibility into inventory and demand instead of week-old reports.&rdquo;</p>
+          <div class="testimonial-mini-author">
+            <div class="testimonial-mini-avatar">CR</div>
+            <div>
+              <p class="testimonial-mini-name">Head of Data</p>
+              <p class="testimonial-mini-company">Coastline Retail Co.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-controls">
+      <button type="button" class="testimonial-pause-btn" id="testimonialPauseBtn" aria-label="Pause automatic playback" aria-pressed="false">
+        <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>
+        <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><polygon points="7,5 19,12 7,19" fill="currentColor"/></svg>
+      </button>
+      <div class="testimonial-dots" role="group" aria-label="Jump to review">
+        <button type="button" class="testimonial-dot active" data-slide-index="0" aria-label="Review 1: Vantage Logistics" aria-current="step"></button>
+        <button type="button" class="testimonial-dot" data-slide-index="1" aria-label="Review 2: BrightPath Insurance"></button>
+        <button type="button" class="testimonial-dot" data-slide-index="2" aria-label="Review 3: Coastline Retail Co."></button>
       </div>
     </div>
   </div>
@@ -3144,8 +3007,8 @@
     <div class="footer-badges">
       <img class="footer-badge-img" src="assets/badges/badge-platinum.png" alt="Informatica Platinum Partner">
       <img class="footer-badge-img" src="assets/badges/badge-reseller.png" alt="Informatica Reseller Partner">
-      <img class="footer-badge-img" src="assets/badges/badge-data360.png" alt="Salesforce Certified Data 360 Consultant">
       <img class="footer-badge-img" src="assets/badges/badge-delivery.png" alt="Informatica Delivery Partner">
+      <img class="footer-badge-img" src="assets/badges/badge-data360.png" alt="Salesforce Certified Data 360 Consultant">
       <img class="footer-badge-img" src="assets/badges/badge-mulesoft.png" alt="MuleSoft Certified Partner">
     </div>
     <div class="footer-bottom">
@@ -3424,6 +3287,64 @@
       });
     }, { threshold: 0.2 });
     proofCarouselObserver.observe(proofSection);
+  }
+
+  var testimonialSection = document.getElementById('testimonials');
+  var testimonialSlides = document.querySelectorAll('.testimonial-slide');
+  var testimonialDots = document.querySelectorAll('.testimonial-dot');
+  var testimonialPauseBtn = document.getElementById('testimonialPauseBtn');
+  var testimonialCurrent = 0;
+  var testimonialTimer = null;
+  var testimonialPaused = false;
+  var TESTIMONIAL_SLIDE_DURATION = 6000;
+
+  function scheduleNextTestimonialSlide(index) {
+    clearTimeout(testimonialTimer);
+    if (testimonialPaused || prefersReducedMotion || testimonialSlides.length < 2) return;
+    testimonialTimer = setTimeout(function () { activateTestimonialSlide((index + 1) % testimonialSlides.length); }, TESTIMONIAL_SLIDE_DURATION);
+  }
+
+  function activateTestimonialSlide(index) {
+    var previous = testimonialCurrent;
+    if (previous !== index) {
+      testimonialSlides[previous].classList.remove('active');
+      testimonialSlides[previous].classList.add('prev');
+      setTimeout(function (el) { return function () { el.classList.remove('prev'); }; }(testimonialSlides[previous]), 650);
+    }
+    testimonialCurrent = index;
+    testimonialSlides.forEach(function (slide, i) { if (i === index) slide.classList.add('active'); else if (i !== previous) slide.classList.remove('active'); });
+    testimonialDots.forEach(function (dot, i) {
+      var isActive = i === index;
+      dot.classList.toggle('active', isActive);
+      if (isActive) { dot.setAttribute('aria-current', 'step'); } else { dot.removeAttribute('aria-current'); }
+    });
+    scheduleNextTestimonialSlide(index);
+  }
+
+  testimonialDots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () { activateTestimonialSlide(i); });
+  });
+
+  if (testimonialPauseBtn) {
+    testimonialPauseBtn.addEventListener('click', function () {
+      testimonialPaused = !testimonialPaused;
+      testimonialPauseBtn.classList.toggle('is-paused', testimonialPaused);
+      testimonialPauseBtn.setAttribute('aria-label', testimonialPaused ? 'Resume automatic playback' : 'Pause automatic playback');
+      testimonialPauseBtn.setAttribute('aria-pressed', testimonialPaused ? 'true' : 'false');
+      if (testimonialPaused) { clearTimeout(testimonialTimer); } else { scheduleNextTestimonialSlide(testimonialCurrent); }
+    });
+  }
+
+  if (testimonialSlides.length > 1 && testimonialSection) {
+    var testimonialCarouselObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          scheduleNextTestimonialSlide(testimonialCurrent);
+          testimonialCarouselObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    testimonialCarouselObserver.observe(testimonialSection);
   }
 
   var painBand = document.getElementById('pain-band');
