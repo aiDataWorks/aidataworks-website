@@ -8,31 +8,113 @@
   @font-face {
     font-family: 'PP Neue Montreal';
     src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Book.otf') format('opentype');
-    font-weight: 400;
+    font-weight:400;
     font-display: swap;
   }
   @font-face {
     font-family: 'PP Neue Montreal';
     src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Medium.otf') format('opentype');
-    font-weight: 500;
+    font-weight:500;
     font-display: swap;
   }
+
+  /* ============================================================
+     DESIGN TOKENS
+     Every value below is a knob. The theme editor overlay writes
+     directly to these custom properties at runtime.
+     ============================================================ */
   :root {
-    --paper: #FFFFFF;
-    --white: #FFFFFF;
-    --ink-900: #0D212C;
-    --ink-800: #051A24;
-    --ink-600: #273C46;
-    --slate-500: #4A5D66;
-    --slate-400: #6E8890;
-    --mist-200: #D6E1E5;
-    --mist-100: #EEF4F6;
-    --cobalt-600: #273C46;
-    --cobalt-500: #051A24;
-    --cobalt-100: #F6FCFF;
-    --slate-300: #8CA3AB;
-    --footer-line: #D6E1E5;
-    --footer-link: #273C46;
+    /* ---- Typeface ---- */
+    --font-sans: 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
+    --fw-regular: 400;
+    --fw-medium: 500;
+
+    /* ---- Type scale (fluid; --fs-ratio scales the whole system) ---- */
+    --fs-ratio: 1;
+    --fs-display: calc(clamp(2.5rem, 5.2vw, 4rem)      * var(--fs-ratio));
+    --fs-h1:      calc(clamp(2rem, 4.2vw, 3.25rem)     * var(--fs-ratio));
+    --fs-h2:      calc(clamp(1.75rem, 3.2vw, 2.75rem)  * var(--fs-ratio));
+    --fs-h3:      calc(clamp(1.5rem, 2.6vw, 2.125rem)  * var(--fs-ratio));
+    --fs-h4:      calc(clamp(1.1875rem, 1.6vw, 1.5rem) * var(--fs-ratio));
+    --fs-lg:      calc(1.125rem  * var(--fs-ratio));
+    --fs-md:      calc(1.0625rem * var(--fs-ratio));
+    --fs-body:    calc(1rem      * var(--fs-ratio));
+    --fs-sm:      calc(0.9375rem * var(--fs-ratio));
+    --fs-xs:      calc(0.875rem  * var(--fs-ratio));
+    --fs-2xs:     calc(0.8125rem * var(--fs-ratio));
+    --fs-3xs:     calc(0.75rem   * var(--fs-ratio));
+
+    /* ---- Line height & tracking ---- */
+    --lh-tight: 1.08;
+    --lh-snug: 1.22;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.65;
+    --tracking-tight: -0.02em;
+    --tracking-snug: -0.01em;
+
+    /* ---- Spacing (4px base) ---- */
+    --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+    --space-5: 20px;  --space-6: 24px;  --space-8: 32px;  --space-10: 40px;
+    --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+
+    /* ---- Layout rhythm ---- */
+    --section-py: clamp(72px, 8vw, 120px);
+    --section-px: clamp(20px, 4vw, 48px);
+    --container: 1200px;
+
+    /* ---- Brand accent (the site previously had none) ---- */
+    --accent-600: #0B4FD1;
+    --accent-500: #1668F0;
+    --accent-400: #4A8DFF;
+    --accent-100: #E8F1FE;
+
+    /* ---- Semantic surfaces ---- */
+    --surface-base: #FFFFFF;
+    --surface-sunken: #F3F8FA;
+    --surface-raised: #FFFFFF;
+    --surface-inverse: #0D212C;
+    --surface-inverse-deep: #071820;
+
+    /* ---- Semantic text ---- */
+    --text-primary: #051A24;
+    --text-secondary: #3D525C;
+    --text-muted: #5A7480;
+    --text-on-inverse: #FFFFFF;
+    --text-on-inverse-secondary: #9FB4BC;
+
+    /* ---- Borders ---- */
+    --border-subtle: #E3EBEE;
+    --border-strong: #CBD9DE;
+    --border-inverse: rgba(255,255,255,0.12);
+
+    /* ---- Radii ---- */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-pill: 9999px;
+
+    /* ---- Elevation ---- */
+    --shadow-1: 0 1px 2px rgba(5,26,36,0.04), 0 2px 8px rgba(5,26,36,0.05);
+    --shadow-2: 0 2px 4px rgba(5,26,36,0.05), 0 8px 24px rgba(5,26,36,0.08);
+    --shadow-3: 0 4px 8px rgba(5,26,36,0.06), 0 16px 40px rgba(5,26,36,0.12);
+
+    /* ---- Legacy aliases: existing rules resolve through these ---- */
+    --paper: var(--surface-base);
+    --white: var(--surface-raised);
+    --ink-900: var(--surface-inverse);
+    --ink-800: var(--text-primary);
+    --ink-600: var(--text-secondary);
+    --slate-500: var(--text-secondary);
+    --slate-400: var(--text-muted);
+    --mist-200: var(--border-subtle);
+    --mist-100: var(--surface-sunken);
+    --cobalt-600: #16323E;
+    --cobalt-500: var(--text-primary);
+    --cobalt-100: var(--accent-100);
+    --slate-300: var(--text-on-inverse-secondary);
+    --footer-line: var(--border-subtle);
+    --footer-link: var(--text-secondary);
     --btn-shadow:
       0 1px 2px 0 rgba(5,26,36,0.10),
       0 4px 4px 0 rgba(5,26,36,0.09),
@@ -45,8 +127,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
     background: var(--paper);
     color: var(--ink-800);
     -webkit-font-smoothing: antialiased;
@@ -115,9 +197,9 @@
 
   .nav-links { display: none; align-items: center; gap: 32px; }
   .nav-links a {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-xs);
     color: var(--ink-800);
     transition: color 200ms ease, text-shadow 200ms ease;
   }
@@ -126,9 +208,9 @@
   .nav-cta {
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-xs);
     border: none;
     border-radius: 9999px;
     padding: 10px 20px;
@@ -176,14 +258,16 @@
   }
   .nav-mobile-panel.is-open { display: flex; }
   .nav-mobile-panel a {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-body);
     color: var(--ink-800);
   }
   .nav-mobile-cta { width: 100%; text-align: center; }
 
-  @media (min-width: 768px) {
+  /* Six links plus a logo and CTA do not fit until ~1024px; below that the
+     desktop CTA was rendering off the right edge of the viewport. */
+  @media (min-width: 1024px) {
     .nav-logo { height: 36px; }
     .nav-links { display: flex; }
     .nav-desktop-cta { display: inline-block; }
@@ -247,9 +331,9 @@
   }
 
   .hero-eyebrow {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-2xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-800);
@@ -281,9 +365,9 @@
   .hero-badge-img { height: 96px; width: auto; object-fit: contain; display: block; }
 
   .hero-headline {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h1);
     line-height: 1.1;
     letter-spacing: -0.01em;
     color: var(--ink-800);
@@ -303,9 +387,9 @@
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
   .hero-subhead {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-lg);
     line-height: 1.6;
     color: var(--ink-600);
     max-width: 480px;
@@ -351,9 +435,9 @@
     white-space: nowrap;
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
     border: none;
     border-radius: 9999px;
     padding: 14px 28px;
@@ -374,9 +458,9 @@
     border: none;
     border-radius: 9999px;
     padding: 13px 27px;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 15px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
     cursor: pointer;
     box-shadow: 0 0 0 0.5px rgba(5,26,36,0.05), 0 4px 16px rgba(5,26,36,0.08);
     transition: box-shadow 200ms ease;
@@ -385,12 +469,10 @@
 
   /* ---------- Metrics ---------- */
   .metrics {
-    background: var(--paper);
-    border-top: 1px solid var(--mist-200);
-    border-bottom: 1px solid var(--mist-200);
-    padding: 48px 20px;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: var(--space-12) var(--section-px);
   }
-  @media (min-width: 640px) { .metrics { padding: 48px 48px; } }
 
   .metrics-inner {
     max-width: 1200px;
@@ -409,9 +491,9 @@
   .metric-card.is-visible { opacity: 1; transform: translateY(0); }
 
   .metric-eyebrow {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 11px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-3xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--slate-400);
@@ -419,36 +501,33 @@
   }
 
   .metric-value {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 40px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
     color: var(--ink-800);
   }
   .metric-value-accent { color: var(--cobalt-500); }
 
   /* ---------- Global Delivery Map ---------- */
   .global-delivery {
-    background: var(--white);
-    border-top: 1px solid var(--mist-200);
-    padding: 72px 20px;
+    padding: var(--section-py) var(--section-px);
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 500ms ease-out, transform 500ms ease-out;
   }
-  @media (min-width: 640px) { .global-delivery { padding: 88px 48px; } }
   .global-delivery.is-visible { opacity: 1; transform: translateY(0); }
 
   .global-delivery-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h3);
     color: var(--ink-800);
     margin-bottom: 12px;
   }
   .global-delivery-subhead {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 17px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-md);
     line-height: 1.6;
     color: var(--slate-500);
     max-width: 480px;
@@ -462,29 +541,68 @@
   .map-marker-flag { font-size: 20px; text-anchor: middle; dominant-baseline: central; }
   .map-marker-pill { fill: var(--mist-100); }
   .map-marker-label {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-xs);
     fill: var(--ink-600);
     text-anchor: middle;
     dominant-baseline: central;
   }
 
   /* ---------- Shared section utilities ---------- */
-  .section-container { max-width: 1200px; margin: 0 auto; }
+  .section-container { max-width: var(--container); margin: 0 auto; }
+  .section-padded { padding: var(--section-py) var(--section-px); }
 
-  .section-eyebrow {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--slate-400);
-    margin-bottom: 16px;
+  /* ============================================================
+     SURFACE SYSTEM
+     Three roles only. Sections are assigned a role below, which
+     produces the page's light / dark rhythm. Hairline rules are
+     used only where two same-coloured surfaces meet.
+     ============================================================ */
+
+  /* -- Base: plain paper -- */
+  .logo-wall, .partners, .industries, .insights, .metrics, .global-delivery, .site-footer {
+    background: var(--surface-base);
   }
 
-  .section-padded { padding: 80px 20px; }
-  @media (min-width: 640px) { .section-padded { padding: 96px 48px; } }
+  /* -- Sunken: tinted, recedes -- */
+  .services, .proof-story, .testimonials, .faq {
+    position: relative;
+    background:
+      radial-gradient(115% 75% at 12% 0%, rgba(22,104,240,0.055) 0%, rgba(22,104,240,0) 58%),
+      var(--surface-sunken);
+  }
+
+  /* -- Inverse: the feature moments -- */
+  .pain-band, .ai-automation, .final-cta-band {
+    position: relative;
+    background:
+      radial-gradient(85% 65% at 88% 2%,  rgba(74,141,255,0.20) 0%, rgba(74,141,255,0) 60%),
+      radial-gradient(70% 60% at 4% 100%, rgba(22,104,240,0.16) 0%, rgba(22,104,240,0) 58%),
+      var(--surface-inverse);
+    color: var(--text-on-inverse);
+  }
+
+  /* Boundary hairlines: only between two base surfaces. */
+  .metrics + .global-delivery,
+  .industries + .insights { border-top: 1px solid var(--border-subtle); }
+
+  /* ---------- Shared section heading rhythm ---------- */
+  .section-title {
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-medium);
+    line-height: var(--lh-snug);
+    letter-spacing: var(--tracking-snug);
+  }
+  .section-lede {
+    font-size: var(--fs-md);
+    line-height: var(--lh-relaxed);
+    color: var(--text-secondary);
+    max-width: 62ch;
+  }
+  .pain-band .section-lede,
+  .ai-automation .section-lede,
+  .final-cta-band .section-lede { color: var(--text-on-inverse-secondary); }
 
   .text-reveal-word {
     display: inline-block;
@@ -512,13 +630,18 @@
 
   /* ---------- Client Logo Wall ---------- */
   .logo-wall {
-    background: var(--paper);
-    padding: 64px 20px;
+    padding: var(--space-20) var(--section-px);
     overflow: hidden;
   }
-  @media (min-width: 640px) { .logo-wall { padding: 80px 48px; } }
 
-  .logo-wall-eyebrow { text-align: center; margin-bottom: 40px; }
+  .logo-wall-heading {
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
+    color: var(--ink-800);
+    text-align: center;
+    margin-bottom: 40px;
+  }
 
   .logo-wall-grid {
     display: grid;
@@ -561,122 +684,215 @@
   .logo-col img:hover { filter: grayscale(100%) opacity(0.6); }
 
   /* ---------- Services Framework ---------- */
-  .services { background: var(--paper); border-top: 1px solid var(--mist-200); }
+  .services { position: relative; }
 
   .services-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
     color: var(--ink-800);
     margin-bottom: 8px;
   }
   .services-subhead {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-body);
     color: var(--slate-500);
     margin-bottom: 48px;
   }
 
+  /* ============================================================
+     METHOD CARDS - horizontal accordion
+     One panel expanded at a time. Desktop: hover to switch, click
+     or Enter/Space also expand (so touch and keyboard reach every
+     phase, which plain :hover could not do). Mobile: no accordion,
+     all four panels render open and stacked.
+     ============================================================ */
   .service-panels {
     display: flex;
     flex-direction: row;
     gap: 4px;
-    height: 420px;
-    border-radius: 24px;
+    /* Sized to the tallest real content (~444px, measured at the
+       narrowest row-layout width, 900px) plus the panel's own 30px
+       top/bottom padding and a small buffer - not an arbitrary round
+       number. Shorter cards (fewer lines at wider widths) no longer
+       get stretched to match. */
+    height: 530px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
   }
 
   .service-panel {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     flex: 1;
-    background-color: var(--white);
-    background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), var(--panel-img);
-    background-size: cover, cover;
-    background-position: center, center 15%;
-    background-repeat: no-repeat;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     opacity: 0;
     transform: translateY(16px);
-    transition: flex 400ms cubic-bezier(0.4,0,0.2,1), opacity 500ms ease-out, transform 500ms ease-out;
+    transition: flex 450ms cubic-bezier(.2,.7,.3,1), opacity 500ms ease-out, transform 400ms cubic-bezier(.2,.7,.3,1);
   }
   .service-panel.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* Photography sits behind the copy as texture, not subject matter. */
+  .service-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: var(--panel-img);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.24;
+    transition: opacity 400ms ease;
+  }
+  .service-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg,
+      rgba(7,24,32,0.55) 0%,
+      rgba(7,24,32,0.88) 60%,
+      rgba(7,24,32,0.97) 100%);
+  }
+  .service-panel:not(.expanded):hover::before,
+  .service-panel:not(.expanded):focus-visible::before { opacity: 0.34; }
+
   .service-panel[data-panel-index="0"] { --panel-img: url('https://images.unsplash.com/photo-1764690690771-b4522d66b433?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
   .service-panel[data-panel-index="1"] { --panel-img: url('https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
   .service-panel[data-panel-index="2"] { --panel-img: url('https://images.unsplash.com/photo-1633265486064-086b219458ec?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
   .service-panel[data-panel-index="3"] { --panel-img: url('https://images.unsplash.com/photo-1767424412548-1a1ac7f4b9bc?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+
   .service-panel.expanded {
-    flex: 3.2;
+    flex: 3.4;
     align-items: stretch;
     justify-content: flex-end;
-    padding: 40px 32px;
+    padding: 30px 36px;
     cursor: default;
   }
 
+  /* ---- Collapsed: vertical rail ----
+     Bumped well past --fs-xs: at 500px of card height there is no
+     risk of the longest label ("04 · Activate") running out of
+     room, so there is no reason for this to read as a caption. */
   .service-panel-collapsed-label {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    color: var(--ink-800);
+    font-weight: var(--fw-medium);
+    font-size: calc(clamp(1.375rem, 1.9vw, 1.875rem) * var(--fs-ratio));
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
     white-space: nowrap;
   }
   .service-panel.expanded .service-panel-collapsed-label { display: none; }
 
-  .service-panel-content { display: none; flex-direction: column; }
+  /* ---- Expanded: full content stack ---- */
+  .service-panel-content { display: none; flex-direction: column; height: 100%; }
   .service-panel.expanded .service-panel-content { display: flex; }
 
-  .service-panel-eyebrow {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    color: var(--slate-400);
-    margin-bottom: 12px;
+  /* Bigger and less faint - at 0.2 this was nearly invisible against
+     the dark scrim, which is why it read as "no contrast." */
+  .service-phase-num {
+    position: absolute;
+    top: 22px;
+    right: 30px;
+    font-weight: var(--fw-medium);
+    font-size: calc(clamp(2.5rem, 4vw, 3.5rem) * var(--fs-ratio));
+    line-height: 1;
+    color: rgba(255,255,255,0.4);
+    pointer-events: none;
+    user-select: none;
   }
+
   .service-panel-title {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 26px;
-    color: var(--ink-800);
-    margin-bottom: 12px;
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h3);
+    line-height: var(--lh-snug);
+    color: #FFFFFF;
+    padding-right: 92px;
   }
-  .service-panel-desc {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--ink-600);
-    max-width: 420px;
+  .service-panel-rule {
+    width: 44px;
+    height: 3px;
+    background: var(--accent-400);
+    margin: 12px 0 16px;
+    flex-shrink: 0;
   }
+
+  .service-panel-outcome {
+    font-size: var(--fs-md);
+    line-height: 1.5;
+    color: rgba(255,255,255,0.9);
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+
+  .service-work-label {
+    font-size: var(--fs-2xs);
+    color: rgba(255,255,255,0.58);
+    margin-bottom: 8px;
+  }
+
   .service-panel-accelerators {
-    list-style: disc;
-    margin: 16px 0 0 18px;
+    /* No longer margin-bottom:auto. That forced "You walk away with"
+       to the card's bottom edge, so shorter cards showed a large,
+       unexplained gap between the last bullet and the deliverable
+       line instead of the two sitting close together. */
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
   .service-panel-accelerators li {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    color: var(--slate-500);
+    position: relative;
+    padding-left: 18px;
+    font-size: var(--fs-sm);
+    line-height: 1.5;
+    color: rgba(255,255,255,0.82);
+    max-width: 480px;
+  }
+  .service-panel-accelerators li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-400);
+  }
+
+  .service-deliverable {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.14);
+  }
+  .service-deliverable-label {
+    font-size: var(--fs-2xs);
+    color: rgba(255,255,255,0.58);
+    margin-bottom: 6px;
+  }
+  .service-deliverable-text {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-medium);
+    line-height: 1.4;
+    color: #FFFFFF;
   }
 
   .services-delivery-note {
-    font-family: 'PP Neue Montreal', sans-serif;
     font-style: italic;
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--slate-500);
-    margin-top: 24px;
+    font-size: var(--fs-xs);
+    color: var(--text-secondary);
+    margin-top: 28px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 899px) {
     .service-panels { flex-direction: column; height: auto; }
     .service-panel {
       flex: none;
@@ -684,28 +900,29 @@
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-end;
-      padding: 32px 24px;
+      padding: 32px 26px;
       cursor: default;
     }
     .service-panel-collapsed-label { display: none; }
     .service-panel-content { display: flex; }
+    .service-panel::before { opacity: 0.24 !important; }
   }
 
   /* ---------- AI & Automation ---------- */
-  .ai-automation { background: var(--paper); border-top: 1px solid var(--mist-200); }
+  .ai-automation { position: relative; }
 
   .ai-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
     color: var(--ink-800);
     max-width: 640px;
     margin-bottom: 16px;
   }
   .ai-spotlight {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 17px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-md);
     line-height: 1.6;
     color: var(--ink-600);
     max-width: 620px;
@@ -731,12 +948,29 @@
   }
   .step-item:hover:not(.expanded) { background: var(--paper); }
 
+  /* Numeral echoes the phase-numeral treatment already used on the
+     methodology cards above this section, and matches the numeral
+     drawn into each diagram on the right. */
+  .step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    transition: margin-bottom 250ms ease;
+  }
+  .step-num {
+    flex-shrink: 0;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
+    color: var(--accent-400);
+  }
+
   .step-title {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-body);
     color: var(--slate-500);
-    transition: color 250ms ease, margin-bottom 250ms ease;
+    transition: color 250ms ease;
   }
 
   .step-description, .progress-track { display: none; }
@@ -747,12 +981,13 @@
     padding: 24px 28px;
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
   }
-  .step-item.expanded .step-title { color: var(--ink-800); margin-bottom: 10px; }
+  .step-item.expanded .step-head { margin-bottom: 10px; }
+  .step-item.expanded .step-title { color: var(--ink-800); }
   .step-item.expanded .step-description {
     display: block;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-xs);
     line-height: 1.6;
     color: var(--ink-600);
     margin-bottom: 16px;
@@ -796,15 +1031,101 @@
   }
   .step-visual.active { opacity: 1; }
 
+  /* ---- Diagram line-art (replaces unrelated stock photography) ----
+     Shared utility classes so all five diagrams read as one family
+     and retint automatically if --accent-400 changes via the theme
+     editor, instead of five independently hard-coded illustrations. */
+  .d-line { fill: none; stroke: rgba(255,255,255,0.32); stroke-width: 2; stroke-linecap: round; }
+  .d-line-strong { fill: none; stroke: rgba(255,255,255,0.55); stroke-width: 2.5; stroke-linecap: round; }
+  .d-accent-line { fill: none; stroke: var(--accent-400); stroke-width: 2.5; stroke-linecap: round; }
+  .d-node { fill: rgba(255,255,255,0.10); stroke: rgba(255,255,255,0.55); stroke-width: 1.75; }
+  .d-node-active { fill: var(--accent-400); stroke: var(--accent-400); }
+  .d-bin-low { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.35); stroke-width: 1.5; }
+  .d-bin-med { fill: rgba(255,255,255,0.09); stroke: rgba(255,255,255,0.45); stroke-width: 1.5; }
+  .d-bin-high { fill: rgba(74,141,255,0.16); stroke: var(--accent-400); stroke-width: 1.75; }
+  .d-num { font-family: var(--font-sans); font-weight: var(--fw-medium); font-size: 20px; fill: rgba(255,255,255,0.24); }
+
+  /* ---- Playback controls, overlaid on the diagram card ---- */
+  .step-controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: linear-gradient(to top, rgba(7,24,32,0.6) 0%, rgba(7,24,32,0) 100%);
+  }
+  .step-pause-btn {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.32);
+    background: rgba(255,255,255,0.08);
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background 150ms ease, border-color 150ms ease;
+  }
+  .step-pause-btn:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); }
+  .step-pause-btn .icon-play { display: none; }
+  .step-pause-btn.is-paused .icon-pause { display: none; }
+  .step-pause-btn.is-paused .icon-play { display: block; }
+
+  .step-dots { display: flex; align-items: center; gap: 8px; }
+  .step-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.32);
+    cursor: pointer;
+    transition: background 200ms ease, transform 200ms ease;
+  }
+  .step-dot:hover { background: rgba(255,255,255,0.55); }
+  .step-dot.active { background: var(--accent-400); transform: scale(1.3); }
+
+  .ai-proof {
+    margin-top: 16px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-xs);
+    line-height: 1.5;
+    color: var(--text-on-inverse-secondary);
+    max-width: 480px;
+  }
+  .ai-proof-source { color: rgba(255,255,255,0.62); }
+
   /* ---------- Flagship Proof Story ---------- */
   .proof-story {
-    background: var(--paper);
-    border-top: 1px solid var(--mist-200);
+    position: relative;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 500ms ease-out, transform 500ms ease-out;
   }
   .proof-story.is-visible { opacity: 1; transform: translateY(0); }
+
+  .proof-story-heading {
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
+    color: var(--ink-800);
+    margin-bottom: 12px;
+  }
+  .proof-story-lede {
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-md);
+    color: var(--slate-500);
+    max-width: 560px;
+    margin-bottom: 40px;
+  }
 
   .proof-story-inner {
     display: grid;
@@ -816,18 +1137,73 @@
     .proof-story-inner { grid-template-columns: 0.9fr 1.1fr; }
   }
 
+  /* ---- Carousel: one .proof-slide active at a time ---- */
+  .proof-slide { display: none; }
+  .proof-slide.active { display: block; }
+
+  .proof-tag {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-3xs);
+    color: var(--accent-600);
+    background: var(--accent-100);
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 12px;
+  }
+
+  .proof-controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 32px;
+  }
+  .proof-pause-btn {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-base);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 150ms ease, border-color 150ms ease;
+  }
+  .proof-pause-btn:hover { background: var(--surface-sunken); border-color: var(--text-muted); }
+  .proof-pause-btn .icon-play { display: none; }
+  .proof-pause-btn.is-paused .icon-pause { display: none; }
+  .proof-pause-btn.is-paused .icon-play { display: block; }
+
+  .proof-dots { display: flex; align-items: center; gap: 8px; }
+  .proof-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--border-strong);
+    cursor: pointer;
+    transition: background 200ms ease, transform 200ms ease;
+  }
+  .proof-dot:hover { background: var(--text-muted); }
+  .proof-dot.active { background: var(--accent-500); transform: scale(1.3); }
+
   .proof-number {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-display);
     color: var(--cobalt-500);
     line-height: 1;
     margin-top: 16px;
   }
   .proof-caption {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 15px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
     color: var(--slate-500);
     margin-top: 8px;
   }
@@ -840,16 +1216,16 @@
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
   }
   .proof-quote {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-body);
     line-height: 1.65;
     color: var(--ink-800);
   }
   .proof-link {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-xs);
     color: var(--cobalt-500);
     text-decoration: none;
     margin-top: 20px;
@@ -859,37 +1235,116 @@
 
   /* ---------- Pain-Led Narrative Band ---------- */
   .pain-band {
-    background: var(--ink-900);
     opacity: 0;
     transform: scale(0.98);
     transition: opacity 700ms ease-out, transform 700ms ease-out;
   }
   .pain-band.is-visible { opacity: 1; transform: scale(1); }
 
+  .pain-eyebrow { color: var(--slate-300); }
+
   .pain-statement {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h3);
     line-height: 1.3;
     color: var(--paper);
     max-width: 720px;
-    margin-bottom: 24px;
+    margin-bottom: 48px;
   }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  @media (min-width: 640px) { .pain-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+  @media (min-width: 1024px) { .pain-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .pain-card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 24px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 20px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 600ms ease-out, transform 600ms ease-out;
+  }
+  .pain-band.is-visible .pain-card { opacity: 1; transform: translateY(0); }
+  .pain-band.is-visible .pain-card:nth-child(1) { transition-delay: 120ms; }
+  .pain-band.is-visible .pain-card:nth-child(2) { transition-delay: 220ms; }
+  .pain-band.is-visible .pain-card:nth-child(3) { transition-delay: 320ms; }
+  .pain-band.is-visible .pain-card:nth-child(4) { transition-delay: 420ms; }
+
+  .pain-stat {
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
+    line-height: 1;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+  }
+  .pain-stat-rule {
+    width: 32px;
+    height: 2px;
+    background: rgba(255,255,255,0.35);
+    margin: 16px 0;
+  }
+  .pain-card-label {
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-2xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--paper);
+    margin-bottom: 12px;
+  }
+  .pain-card-desc {
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+    color: var(--slate-300);
+    margin-bottom: 20px;
+  }
+  .pain-card-source {
+    margin-top: auto;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-3xs);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--slate-300);
+  }
+
   .pain-answer {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 17px;
+    padding: 28px 32px;
+    background: rgba(255,255,255,0.05);
+    border-left: 2px solid var(--paper);
+    border-radius: 4px 16px 16px 4px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-md);
     line-height: 1.6;
     color: var(--slate-300);
-    max-width: 640px;
+    max-width: 860px;
+  }
+  .pain-answer strong { font-weight: var(--fw-medium); color: var(--text-on-inverse); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pain-band, .pain-card { transition: none; }
+    .pain-card { opacity: 1; transform: none; }
   }
 
   /* ---------- Industries ---------- */
-  .industries { background: var(--paper); border-top: 1px solid var(--mist-200); }
+  .industries { position: relative; }
   .industries-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
     color: var(--ink-800);
     margin-bottom: 40px;
   }
@@ -940,9 +1395,9 @@
     padding: 24px;
   }
   .industry-card-name {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-lg);
     color: var(--ink-800);
   }
 
@@ -963,25 +1418,25 @@
   .industry-card[data-industry="public-sector"] { --industry-img: url('https://images.unsplash.com/photo-1768399808130-abac2a8442e0?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
 
   .industry-title {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-lg);
     color: var(--ink-800);
     margin-bottom: 10px;
   }
   .industry-desc {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-xs);
     line-height: 1.55;
     color: var(--slate-500);
   }
   .industry-link {
     display: inline-block;
     margin-top: 12px;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-2xs);
     color: var(--cobalt-500);
     text-decoration: none;
     transition: text-decoration 150ms ease;
@@ -996,13 +1451,13 @@
   }
 
   /* ---------- Testimonials ---------- */
-  .testimonials { background: var(--paper); border-top: 1px solid var(--mist-200); }
+  .testimonials { position: relative; }
   .testimonials-header { margin-bottom: 40px; }
 
   .testimonials-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
     color: var(--ink-800);
   }
 
@@ -1042,9 +1497,9 @@
   .testimonial-mini-card:hover { box-shadow: 0 8px 24px rgba(5,26,36,0.14); transform: translateY(-2px); }
   .testimonial-mini-quote {
     position: relative;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-xs);
     line-height: 1.6;
     color: var(--ink-800);
   }
@@ -1052,7 +1507,7 @@
     content: '\201C';
     display: block;
     font-family: Georgia, serif;
-    font-size: 40px;
+    font-size: var(--fs-h2);
     line-height: 1;
     color: var(--slate-400);
     margin-bottom: 4px;
@@ -1069,34 +1524,34 @@
     border-radius: 50%;
     background: var(--cobalt-100);
     color: var(--ink-800);
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
   .testimonial-mini-name {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-2xs);
     color: var(--ink-800);
   }
   .testimonial-mini-company {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-3xs);
     color: var(--slate-500);
   }
   .testimonial-mini-company::before { content: '\2192  '; }
 
   /* ---------- Partner Ecosystem ---------- */
-  .partners { background: var(--paper); border-top: 1px solid var(--mist-200); }
+  .partners { position: relative; }
   .partners-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
     color: var(--ink-800);
     margin-bottom: 40px;
   }
@@ -1140,9 +1595,9 @@
   }
   .partner-card:hover .partner-overlay { opacity: 1; }
   .partner-blurb {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-2xs);
     line-height: 1.5;
     color: var(--slate-500);
   }
@@ -1153,14 +1608,20 @@
     border: 1px solid var(--mist-200);
     border-radius: 9999px;
     padding: 12px 28px;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-xs);
     color: var(--ink-800);
     cursor: pointer;
-    transition: border-color 150ms ease;
+    transition: background 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 150ms ease;
   }
-  .partners-show-more:hover { border-color: var(--slate-400); }
+  .partners-show-more:hover {
+    background: var(--ink-800);
+    color: var(--white);
+    border-color: var(--ink-800);
+    box-shadow: 0 6px 16px rgba(5,26,36,0.2);
+    transform: translateY(-2px);
+  }
   @media (min-width: 1024px) {
     .partner-card-extra { display: none; }
     .partners-grid.is-expanded .partner-card-extra { display: flex; }
@@ -1168,7 +1629,7 @@
   }
 
   /* ---------- FAQ ---------- */
-  .faq { background: var(--white); border-top: 1px solid var(--mist-200); }
+  .faq { position: relative; }
 
   .faq-inner {
     display: grid;
@@ -1180,9 +1641,9 @@
   }
 
   .faq-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
     color: var(--ink-800);
   }
   .faq-item { border-bottom: 1px solid var(--mist-200); padding: 20px 0; }
@@ -1194,9 +1655,9 @@
     cursor: pointer;
   }
   .faq-question span {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-body);
     color: var(--ink-800);
   }
   .faq-chevron { width: 16px; height: 16px; flex-shrink: 0; transition: transform 250ms ease; }
@@ -1204,19 +1665,19 @@
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 300ms ease; }
   .faq-item.is-open .faq-answer { padding-top: 12px; }
   .faq-answer p {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-sm);
     line-height: 1.6;
     color: var(--slate-500);
   }
 
   /* ---------- Insights & News ---------- */
-  .insights { background: var(--paper); border-top: 1px solid var(--mist-200); }
+  .insights { position: relative; }
   .insights-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
     color: var(--ink-800);
     margin-bottom: 40px;
   }
@@ -1230,7 +1691,7 @@
     .insights-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; }
     .insight-card-featured { grid-column: span 2; grid-row: span 2; }
     .insight-card-featured .insight-media { aspect-ratio: 16/9; }
-    .insight-card-featured .insight-title { font-size: 22px; }
+    .insight-card-featured .insight-title { font-size: var(--fs-h4); }
     .insight-card-featured .insight-overlay { padding: 28px; }
     .insight-card-wide { grid-column: span 2; }
     .insight-card-wide .insight-media { aspect-ratio: 21/9; }
@@ -1270,9 +1731,9 @@
     -webkit-backdrop-filter: blur(6px);
   }
   .insight-tag {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 11px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-3xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--white);
@@ -1282,17 +1743,17 @@
     width: fit-content;
   }
   .insight-title {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-body);
     line-height: 1.3;
     color: var(--white);
   }
   .insight-link {
     display: inline-block;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-2xs);
     color: var(--white);
     opacity: 0.85;
     text-decoration: none;
@@ -1315,9 +1776,9 @@
   }
   @media (min-width: 640px) { .newsletter-band { flex-direction: row; } }
   .newsletter-copy {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-lg);
     color: var(--ink-800);
   }
   .newsletter-form { display: flex; gap: 10px; }
@@ -1325,18 +1786,18 @@
     border: 1px solid var(--mist-200);
     border-radius: 10px;
     padding: 12px 16px;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-xs);
     min-width: 240px;
   }
   .newsletter-input:focus { border-color: var(--cobalt-500); outline: none; }
   .newsletter-submit {
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-xs);
     border: none;
     border-radius: 9999px;
     padding: 12px 22px;
@@ -1348,9 +1809,7 @@
 
   /* ---------- Final CTA Band ---------- */
   .final-cta-band {
-    background: var(--paper);
-    border-top: 1px solid var(--mist-200);
-    padding: 96px 20px;
+    padding: var(--section-py) var(--section-px);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1358,9 +1817,9 @@
   }
   .final-cta-eyebrow { margin-bottom: 16px; position: relative; z-index: 2; }
   .final-cta-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-h2);
     color: var(--ink-800);
     margin-bottom: 28px;
     max-width: 640px;
@@ -1375,9 +1834,9 @@
     justify-content: center;
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
     border: none;
     border-radius: 9999px;
     padding: 14px 32px;
@@ -1393,9 +1852,9 @@
   }
   .final-cta-email {
     margin-top: 16px;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-xs);
     color: var(--slate-500);
     position: relative;
     z-index: 2;
@@ -1420,9 +1879,9 @@
 
   .footer-logo { height: 28px; margin-bottom: 16px; display: block; }
   .footer-tagline {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-xs);
     color: var(--slate-500);
     max-width: 240px;
   }
@@ -1432,9 +1891,9 @@
     border: 1px solid var(--footer-line);
     border-radius: 10px;
     padding: 10px 14px;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-2xs);
     color: var(--ink-800);
     min-width: 0;
     flex: 1;
@@ -1444,9 +1903,9 @@
   .footer-newsletter-submit {
     background: var(--cobalt-500);
     color: var(--white);
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-2xs);
     border: none;
     border-radius: 9999px;
     padding: 10px 16px;
@@ -1457,9 +1916,9 @@
   .footer-newsletter-submit:hover { background: var(--cobalt-600); }
 
   .footer-col-heading {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 500;
-    font-size: 12px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-3xs);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--slate-500);
@@ -1467,9 +1926,9 @@
   }
   .footer-col a {
     display: block;
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-xs);
     color: var(--footer-link);
     line-height: 2.2;
     transition: opacity 150ms ease;
@@ -1491,16 +1950,16 @@
   }
   @media (min-width: 640px) { .footer-bottom { flex-direction: row; } }
   .footer-copyright {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-2xs);
     color: var(--slate-500);
   }
   .footer-bottom-links { display: flex; gap: 20px; align-items: center; }
   .footer-legal-link {
-    font-family: 'PP Neue Montreal', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-2xs);
     color: var(--slate-500);
     transition: opacity 150ms ease;
   }
@@ -1513,6 +1972,118 @@
     display: block;
   }
   .footer-social-link:hover svg { fill: var(--ink-800); }
+
+  /* ============================================================
+     REFINEMENT LAYER
+     Loaded last so it wins on equal specificity. Everything here
+     is standardisation: consistent headings, retired all-caps
+     labels, accent application, and dark-section overrides.
+     ============================================================ */
+
+  /* ---- Heading normalisation ---- */
+  .services-heading, .ai-heading, .industries-heading, .testimonials-heading,
+  .partners-heading, .faq-heading, .insights-heading, .final-cta-heading,
+  .global-delivery-heading, .pain-statement, .logo-wall-heading, .proof-story-heading {
+    line-height: var(--lh-snug);
+    letter-spacing: var(--tracking-snug);
+    text-wrap: balance;
+  }
+  .hero-headline { text-wrap: balance; }
+
+  /* ---- Retire the all-caps letterspaced label treatment ----
+     .service-panel-collapsed-label is intentionally excluded: it owns
+     its own font-size/letter-spacing at the primary rule (was never
+     set to uppercase to begin with), and a stale font-size:var(--fs-xs)
+     override used to live here that silently undid the larger rail
+     type set further up the sheet. */
+  .metric-eyebrow, .pain-card-label, .pain-card-source {
+    text-transform: none;
+    letter-spacing: var(--tracking-snug);
+  }
+  .metric-eyebrow {
+    font-size: var(--fs-2xs);
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+  .pain-card-label { font-size: var(--fs-body); }
+  .pain-card-source { font-size: var(--fs-3xs); letter-spacing: 0; }
+
+  /* ---- Accent application (the site had no accent before) ---- */
+  .metric-value-accent { color: var(--accent-500); }
+  .proof-number { color: var(--accent-500); }
+  .proof-card { border-left-color: var(--accent-500); }
+  .proof-link, .industry-link { color: var(--accent-600); }
+  .pain-stat-rule { background: var(--accent-400); width: 40px; height: 3px; }
+  .pain-answer { border-left-color: var(--accent-400); }
+  .newsletter-input:focus, .footer-newsletter-input:focus { border-color: var(--accent-500); }
+  a:focus-visible, button:focus-visible, input:focus-visible,
+  textarea:focus-visible, select:focus-visible { outline-color: var(--accent-500); }
+
+  /* ---- Card elevation standardised on the shadow scale ---- */
+  .partner-card, .insight-card, .testimonial-mini-card, .proof-card,
+  .newsletter-band, .diagram-card, .service-panels { box-shadow: var(--shadow-2); }
+  .partner-card:hover, .insight-card:hover, .testimonial-mini-card:hover { box-shadow: var(--shadow-3); }
+
+  /* ============================================================
+     DARK SECTION: AI governance
+     ============================================================ */
+  .ai-automation .ai-heading { color: var(--text-on-inverse); }
+  .ai-automation .ai-spotlight { color: var(--text-on-inverse-secondary); }
+  .ai-automation .step-title { color: var(--text-on-inverse-secondary); }
+  .ai-automation .step-item { border-color: transparent; }
+  .ai-automation .step-item:hover:not(.expanded) { background: rgba(255,255,255,0.05); }
+  .ai-automation .step-item.expanded {
+    background: rgba(255,255,255,0.06);
+    border-color: var(--border-inverse);
+    box-shadow: none;
+  }
+  .ai-automation .step-item.expanded .step-title { color: var(--text-on-inverse); }
+  .ai-automation .step-item.expanded .step-description { color: var(--text-on-inverse-secondary); }
+  .ai-automation .progress-track { background: rgba(255,255,255,0.16); }
+  .ai-automation .progress-fill { background: var(--accent-400); }
+  .ai-automation .diagram-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-inverse);
+    box-shadow: none;
+  }
+
+  /* ============================================================
+     DARK SECTION: final CTA
+     ============================================================ */
+  .final-cta-heading { color: var(--text-on-inverse); }
+  .final-cta-email { color: var(--text-on-inverse-secondary); }
+  .final-cta-btn {
+    background: var(--surface-base);
+    color: var(--text-primary);
+  }
+  .final-cta-btn:hover {
+    background: var(--accent-100);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  }
+  .final-cta-band .cta-pulsate::after {
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.5);
+    animation: ctaPulseLight 2s ease-out infinite;
+  }
+  @keyframes ctaPulseLight {
+    0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+    70%  { box-shadow: 0 0 0 14px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  }
+
+  /* ---- Sunken-section cards need a visible edge ---- */
+  .services .service-panels,
+  .testimonials .testimonial-mini-card,
+  .faq .faq-item { border-color: var(--border-strong); }
+  .proof-card, .testimonial-mini-card { border: 1px solid var(--border-subtle); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1570,7 +2141,7 @@
 
 <section class="logo-wall" id="logo-wall">
   <div class="logo-wall-inner section-container">
-    <p class="section-eyebrow logo-wall-eyebrow">TRUSTED BY</p>
+    <h2 class="logo-wall-heading">Trusted by enterprise teams</h2>
     <div class="logo-wall-grid">
       <div class="logo-col logo-col-1">
         <div class="logo-col-track">
@@ -1624,120 +2195,238 @@
 
 <section class="pain-band section-padded" id="pain-band">
   <div class="pain-band-inner section-container">
-    <p class="pain-statement">Most enterprise data programs stall for the same reasons: fragmented estates, brittle integrations, rising cost, and governance risk. AI makes every one of them worse - models are only ever as trustworthy as the data underneath them.</p>
-    <p class="pain-answer">We integrate and modernize the foundation, then govern it - so your AI runs on data you can actually trust.</p>
+    <h2 class="pain-statement">Most enterprise data programs stall for the same four reasons - and AI makes every one of them worse.</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <p class="pain-stat">27%</p>
+        <div class="pain-stat-rule"></div>
+        <h3 class="pain-card-label">Fragmented estates</h3>
+        <p class="pain-card-desc">The average enterprise runs 957 applications. Just 27% of them are connected to one another.</p>
+        <p class="pain-card-source">MuleSoft Connectivity Benchmark, 2026</p>
+      </div>
+      <div class="pain-card">
+        <p class="pain-stat">39%</p>
+        <div class="pain-stat-rule"></div>
+        <h3 class="pain-card-label">Brittle integrations</h3>
+        <p class="pain-card-desc">Share of IT team time spent building and maintaining custom integrations instead of new work.</p>
+        <p class="pain-card-source">MuleSoft Connectivity Benchmark, 2025</p>
+      </div>
+      <div class="pain-card">
+        <p class="pain-stat">$12.9M</p>
+        <div class="pain-stat-rule"></div>
+        <h3 class="pain-card-label">Rising cost</h3>
+        <p class="pain-card-desc">Average annual cost of poor data quality to a single organization, before AI adds load.</p>
+        <p class="pain-card-source">Gartner</p>
+      </div>
+      <div class="pain-card">
+        <p class="pain-stat">63%</p>
+        <div class="pain-stat-rule"></div>
+        <h3 class="pain-card-label">Governance risk</h3>
+        <p class="pain-card-desc">Lack - or are unsure they have - the data management practices that AI actually requires.</p>
+        <p class="pain-card-source">Gartner, 2025</p>
+      </div>
+    </div>
+    <p class="pain-answer">Gartner expects 60% of AI projects unsupported by AI-ready data to be abandoned through 2026. <strong>We modernize the foundation, govern it, and build the AI that runs on it - one team, from assessment to production.</strong></p>
   </div>
 </section>
 
 <section class="services section-padded" id="services">
   <div class="services-inner section-container">
-    <h2 class="services-heading text-reveal">How aiDataWorks delivers AI-ready data integration</h2>
-    <p class="services-subhead">Four phases, one foundation. Every engagement moves through the same sequence.</p>
+    <h2 class="services-heading text-reveal">From fragmented estate to AI in production</h2>
+    <p class="services-subhead">Four phases, one foundation. Each one closes a gap from above, in order - ending with AI running in production, not piloted.</p>
     <div class="service-panels">
-      <div class="service-panel expanded" data-panel-index="0">
-        <div class="service-panel-collapsed-label"><span>01 · ASSESS</span></div>
+      <div class="service-panel expanded" data-panel-index="0" tabindex="0" role="button" aria-expanded="true">
+        <div class="service-panel-collapsed-label"><span>01 · Assess</span></div>
         <div class="service-panel-content">
-          <p class="service-panel-eyebrow">01</p>
+          <p class="service-phase-num" aria-hidden="true">01</p>
           <h3 class="service-panel-title">Assess</h3>
-          <p class="service-panel-desc">AI-readiness assessment, architecture review, and a target-state roadmap.</p>
+          <div class="service-panel-rule"></div>
+          <p class="service-panel-outcome">You get a clear picture of what's actually running, what's fragile, and what it will cost to fix - before you commit budget.</p>
+          <p class="service-work-label">What we do</p>
           <ul class="service-panel-accelerators">
-            <li>AI &amp; data readiness scorecards</li>
-            <li>Current-state architecture &amp; data lineage review</li>
-            <li>Governance &amp; security maturity assessment</li>
-            <li>Business case &amp; prioritized roadmap</li>
+            <li>Map every system, integration, and dependency across the estate</li>
+            <li>Score AI and data readiness against where you actually need to get to</li>
+            <li>Build the business case and sequence the work, phase by phase</li>
           </ul>
+          <div class="service-deliverable">
+            <p class="service-deliverable-label">You walk away with</p>
+            <p class="service-deliverable-text">A costed, sequenced roadmap your leadership can approve in one meeting.</p>
+          </div>
         </div>
       </div>
-      <div class="service-panel" data-panel-index="1">
-        <div class="service-panel-collapsed-label"><span>02 · MODERNIZE</span></div>
+      <div class="service-panel" data-panel-index="1" tabindex="0" role="button" aria-expanded="false">
+        <div class="service-panel-collapsed-label"><span>02 · Modernize</span></div>
         <div class="service-panel-content">
-          <p class="service-panel-eyebrow">02</p>
+          <p class="service-phase-num" aria-hidden="true">02</p>
           <h3 class="service-panel-title">Modernize</h3>
-          <p class="service-panel-desc">Migrate legacy platforms to cloud (DMC) with proven frameworks.</p>
+          <div class="service-panel-rule"></div>
+          <p class="service-panel-outcome">Your estate stops being hundreds of disconnected systems and becomes one platform your team can actually operate.</p>
+          <p class="service-work-label">What we do</p>
           <ul class="service-panel-accelerators">
-            <li>PowerCenter Cloudification &amp; Modernization (CDI-PC to IDMC)</li>
-            <li>Informatica B2B On-Prem to IDMC Migration Framework</li>
-            <li>MDM On-Prem &amp; Hosted Modernization to Cloud MDM</li>
-            <li>SAP Data Services &amp; IBM DataStage Modernization to IDMC</li>
-            <li>COBOL &amp; Mainframe Informatica Integration</li>
+            <li>Migrate legacy integration platforms to the cloud without breaking what's running today</li>
+            <li>Consolidate duplicate and overlapping systems into a single source of truth</li>
+            <li>Rebuild brittle custom integrations on frameworks we maintain, not you</li>
           </ul>
+          <div class="service-deliverable">
+            <p class="service-deliverable-label">You walk away with</p>
+            <p class="service-deliverable-text">A single, cloud-native estate - cut over without disrupting the business it runs.</p>
+          </div>
         </div>
       </div>
-      <div class="service-panel" data-panel-index="2">
-        <div class="service-panel-collapsed-label"><span>03 · GOVERN</span></div>
+      <div class="service-panel" data-panel-index="2" tabindex="0" role="button" aria-expanded="false">
+        <div class="service-panel-collapsed-label"><span>03 · Govern</span></div>
         <div class="service-panel-content">
-          <p class="service-panel-eyebrow">03</p>
+          <p class="service-phase-num" aria-hidden="true">03</p>
           <h3 class="service-panel-title">Govern</h3>
-          <p class="service-panel-desc">Embed quality, MDM, governance &amp; security for trusted, compliant data.</p>
+          <div class="service-panel-rule"></div>
+          <p class="service-panel-outcome">Every dataset gets an owner, a quality rule, and a trail - so trust in your data stops being a matter of opinion.</p>
+          <p class="service-work-label">What we do</p>
           <ul class="service-panel-accelerators">
-            <li>Master data management (MDM) design</li>
-            <li>Data quality rules &amp; continuous monitoring</li>
-            <li>Privacy, security &amp; regulatory compliance controls</li>
-            <li>Metadata management &amp; data cataloging</li>
+            <li>Establish one master record for every core entity - customer, product, account</li>
+            <li>Set data quality rules that run continuously, not once a quarter</li>
+            <li>Build the lineage and audit trail your compliance team can produce on request</li>
           </ul>
+          <div class="service-deliverable">
+            <p class="service-deliverable-label">You walk away with</p>
+            <p class="service-deliverable-text">Documented, audit-ready governance across the estate - evidence, not assurances.</p>
+          </div>
         </div>
       </div>
-      <div class="service-panel" data-panel-index="3">
-        <div class="service-panel-collapsed-label"><span>04 · ACTIVATE</span></div>
+      <div class="service-panel" data-panel-index="3" tabindex="0" role="button" aria-expanded="false">
+        <div class="service-panel-collapsed-label"><span>04 · Activate</span></div>
         <div class="service-panel-content">
-          <p class="service-panel-eyebrow">04</p>
+          <p class="service-phase-num" aria-hidden="true">04</p>
           <h3 class="service-panel-title">Activate</h3>
-          <p class="service-panel-desc">Turn governed data into analytics, custom LLMs, and agentic AI.</p>
+          <div class="service-panel-rule"></div>
+          <p class="service-panel-outcome">The foundation stops being infrastructure and starts being the thing your business runs on - live, in production.</p>
+          <p class="service-work-label">What we do</p>
           <ul class="service-panel-accelerators">
-            <li>Self-service analytics &amp; BI enablement</li>
-            <li>Custom LLM &amp; agentic AI development</li>
-            <li>Real-time data products &amp; APIs</li>
-            <li>Ongoing monitoring, optimization &amp; knowledge transfer</li>
+            <li>Build the analytics, dashboards, and self-service tools your teams have been asking for</li>
+            <li>Design and ship the LLM and agentic use cases your data can now support</li>
+            <li>Monitor, tune, and transfer knowledge so the work keeps running without us</li>
           </ul>
+          <div class="service-deliverable">
+            <p class="service-deliverable-label">You walk away with</p>
+            <p class="service-deliverable-text">Production analytics and agents - not a pilot, not a slide deck.</p>
+          </div>
         </div>
       </div>
     </div>
-    <p class="services-delivery-note">Delivery model: DMaaS - outcome-based, on-demand teams, always-on managed service.</p>
+    <p class="services-delivery-note">Delivered as DMaaS: outcome-based pricing, on-demand teams, always-on managed service.</p>
   </div>
 </section>
 
 <section class="ai-automation section-padded" id="ai-automation">
   <div class="ai-automation-inner section-container">
-    <h2 class="ai-heading text-reveal">Governing the AI your integrated data powers</h2>
-    <p class="ai-spotlight">Accountability drives action - momentum builds when there's a clear operating model.</p>
+    <h2 class="ai-heading text-reveal">Agents are easy to launch and hard to run</h2>
+    <p class="ai-spotlight">Every use case we build gets an owner, a risk tier, and a review cycle before it ships. That is what keeps AI in production instead of stuck in pilot.</p>
     <div class="ai-layout">
       <div class="ai-steps-col">
         <div class="step-list">
           <div class="step-item expanded">
-            <h3 class="step-title">AI Use-Case Inventory &amp; Risk Tiering</h3>
-            <p class="step-description">Identify, classify, and prioritize every AI use case before it's built - so risk is scored up front, not discovered after launch.</p>
+            <div class="step-head"><span class="step-num" aria-hidden="true">01</span><h3 class="step-title">Use-case inventory and risk tiering</h3></div>
+            <p class="step-description">Every AI use case is catalogued and scored for risk before it gets built, so exposure is known up front rather than discovered after launch.</p>
             <div class="progress-track"><div class="progress-fill"></div></div>
           </div>
           <div class="step-item">
-            <h3 class="step-title">Decision Stewardship Framework</h3>
-            <p class="step-description">Clear roles, approval gates, and escalation paths turn AI ambition into accountable, repeatable decision-making.</p>
+            <div class="step-head"><span class="step-num" aria-hidden="true">02</span><h3 class="step-title">Decision stewardship</h3></div>
+            <p class="step-description">Named owners, approval gates, and escalation paths - so every decision a model makes has a person accountable for it.</p>
             <div class="progress-track"><div class="progress-fill"></div></div>
           </div>
           <div class="step-item">
-            <h3 class="step-title">AI Use-Case Lifecycle Management</h3>
-            <p class="step-description">Every use case moves through the same disciplined cycle - Build, Manage, and Continuously Upgrade - nothing ships and gets forgotten.</p>
+            <div class="step-head"><span class="step-num" aria-hidden="true">03</span><h3 class="step-title">Lifecycle management</h3></div>
+            <p class="step-description">Each use case runs the same cycle - build, manage, upgrade - so nothing ships once and is quietly forgotten.</p>
             <div class="progress-track"><div class="progress-fill"></div></div>
           </div>
           <div class="step-item">
-            <h3 class="step-title">Stewardship Community &amp; Change Management</h3>
-            <p class="step-description">Literacy, ownership, and adoption programs make governance something teams actually use, not a policy binder on a shelf.</p>
+            <div class="step-head"><span class="step-num" aria-hidden="true">04</span><h3 class="step-title">Adoption and change management</h3></div>
+            <p class="step-description">Literacy and ownership programs that make governance something your teams actually use, rather than a document they route around.</p>
             <div class="progress-track"><div class="progress-fill"></div></div>
           </div>
           <div class="step-item">
-            <h3 class="step-title">Continuous Oversight &amp; Knowledge Retention</h3>
-            <p class="step-description">Agents are monitored on an ongoing basis so they don't drift from intent - audit-ready at every checkpoint, not just at launch.</p>
+            <div class="step-head"><span class="step-num" aria-hidden="true">05</span><h3 class="step-title">Continuous oversight</h3></div>
+            <p class="step-description">Agents are monitored for drift against original intent, and stay audit-ready at every checkpoint - not only on launch day.</p>
             <div class="progress-track"><div class="progress-fill"></div></div>
           </div>
         </div>
       </div>
       <div class="ai-diagram-col">
         <div class="diagram-card">
-          <img class="step-visual active" src="https://images.unsplash.com/photo-1633114128814-11fac33f707b?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="AI use-case inventory and risk tiering illustration">
-          <img class="step-visual" src="https://images.unsplash.com/photo-1758873268745-dd2cf0d677b5?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Decision stewardship framework illustration">
-          <img class="step-visual" src="https://images.unsplash.com/photo-1774901128283-64c62117216a?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="AI use-case lifecycle management illustration">
-          <img class="step-visual" src="https://images.unsplash.com/photo-1735639013995-086e648eaa38?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Stewardship community and change management illustration">
-          <img class="step-visual" src="https://images.unsplash.com/photo-1662638600476-d563fffbb072?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Continuous oversight and knowledge retention illustration">
+          <svg class="step-visual active" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <text x="34" y="46" class="d-num">01</text>
+            <circle class="d-node" cx="70" cy="60" r="7"/>
+            <circle class="d-node" cx="70" cy="105" r="7"/>
+            <circle class="d-node" cx="70" cy="150" r="7"/>
+            <circle class="d-node" cx="70" cy="195" r="7"/>
+            <circle class="d-node" cx="70" cy="240" r="7"/>
+            <line class="d-line" x1="77" y1="60" x2="255" y2="80"/>
+            <line class="d-line" x1="77" y1="105" x2="255" y2="80"/>
+            <line class="d-line" x1="77" y1="150" x2="255" y2="155"/>
+            <line class="d-line" x1="77" y1="195" x2="255" y2="230"/>
+            <line class="d-line" x1="77" y1="240" x2="255" y2="230"/>
+            <rect class="d-bin-low" x="255" y="50" width="100" height="60" rx="10"/>
+            <rect class="d-bin-med" x="255" y="125" width="100" height="60" rx="10"/>
+            <rect class="d-bin-high" x="255" y="200" width="100" height="60" rx="10"/>
+          </svg>
+          <svg class="step-visual" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <text x="34" y="46" class="d-num">02</text>
+            <line class="d-line-strong" x1="200" y1="78" x2="200" y2="112"/>
+            <circle class="d-node" cx="200" cy="60" r="18"/>
+            <polygon class="d-node-active" points="200,108 228,130 200,152 172,130"/>
+            <line class="d-line" x1="182" y1="145" x2="140" y2="205"/>
+            <line class="d-line" x1="218" y1="145" x2="260" y2="205"/>
+            <circle class="d-node" cx="130" cy="222" r="16"/>
+            <circle class="d-node" cx="270" cy="222" r="16"/>
+          </svg>
+          <svg class="step-visual" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <text x="34" y="46" class="d-num">03</text>
+            <path class="d-line" d="M200,60 A90,90 0 0 1 278,195"/>
+            <path class="d-line" d="M278,195 A90,90 0 0 1 122,195"/>
+            <path class="d-accent-line" d="M122,195 A90,90 0 0 1 200,60"/>
+            <circle class="d-node-active" cx="200" cy="60" r="14"/>
+            <circle class="d-node" cx="278" cy="195" r="14"/>
+            <circle class="d-node" cx="122" cy="195" r="14"/>
+          </svg>
+          <svg class="step-visual" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <text x="34" y="46" class="d-num">04</text>
+            <line class="d-line" x1="200" y1="150" x2="200" y2="70"/>
+            <line class="d-line" x1="200" y1="150" x2="273" y2="105"/>
+            <line class="d-line" x1="200" y1="150" x2="290" y2="185"/>
+            <line class="d-line" x1="200" y1="150" x2="240" y2="235"/>
+            <line class="d-line" x1="200" y1="150" x2="160" y2="235"/>
+            <line class="d-line" x1="200" y1="150" x2="110" y2="185"/>
+            <line class="d-line" x1="200" y1="150" x2="127" y2="105"/>
+            <circle class="d-node-active" cx="200" cy="150" r="20"/>
+            <circle class="d-node" cx="200" cy="70" r="10"/>
+            <circle class="d-node" cx="273" cy="105" r="10"/>
+            <circle class="d-node" cx="290" cy="185" r="10"/>
+            <circle class="d-node" cx="240" cy="235" r="10"/>
+            <circle class="d-node" cx="160" cy="235" r="10"/>
+            <circle class="d-node" cx="110" cy="185" r="10"/>
+            <circle class="d-node" cx="127" cy="105" r="10"/>
+          </svg>
+          <svg class="step-visual" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <text x="34" y="46" class="d-num">05</text>
+            <polyline class="d-line-strong" points="40,190 110,190 130,140 155,230 180,190 220,190 245,120 270,240 295,190 360,190"/>
+            <circle class="d-node-active" cx="130" cy="140" r="8"/>
+            <circle class="d-node-active" cx="245" cy="120" r="8"/>
+            <circle class="d-node" cx="295" cy="190" r="8"/>
+          </svg>
+          <div class="step-controls">
+            <button type="button" class="step-pause-btn" id="stepPauseBtn" aria-label="Pause automatic playback" aria-pressed="false">
+              <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>
+              <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><polygon points="7,5 19,12 7,19" fill="currentColor"/></svg>
+            </button>
+            <div class="step-dots" role="group" aria-label="Jump to governance step">
+              <button type="button" class="step-dot active" data-step-index="0" aria-label="Step 1: Use-case inventory and risk tiering" aria-current="step"></button>
+              <button type="button" class="step-dot" data-step-index="1" aria-label="Step 2: Decision stewardship"></button>
+              <button type="button" class="step-dot" data-step-index="2" aria-label="Step 3: Lifecycle management"></button>
+              <button type="button" class="step-dot" data-step-index="3" aria-label="Step 4: Adoption and change management"></button>
+              <button type="button" class="step-dot" data-step-index="4" aria-label="Step 5: Continuous oversight"></button>
+            </div>
+          </div>
         </div>
+        <p class="ai-proof">Half of enterprise AI agents already run in isolated silos, invisible to any single owner. <span class="ai-proof-source">— Salesforce, 2026</span></p>
       </div>
     </div>
   </div>
@@ -1784,8 +2473,8 @@
         <div class="partner-overlay"><p class="partner-blurb">Cloud-native data lakes, pipelines, and AI workloads on Google Cloud.</p></div>
       </div>
       <div class="partner-card partner-card-extra">
-        <img class="partner-logo" src="[PLACEHOLDER: /assets/partner-logos/gem.svg]" alt="GEM" onerror="this.onerror=null; this.src='[PLACEHOLDER: /assets/aidataworks-logo-mark.svg]'">
-        <div class="partner-overlay"><p class="partner-blurb">AI Driven Manufacturing Copilot and Precare SaaS AI/ML Analytics Platform for smart manufacturing.</p></div>
+        <img class="partner-logo" src="assets/partners/mulesoft-logo.png" alt="MuleSoft">
+        <div class="partner-overlay"><p class="partner-blurb">API-led integration and connectivity across systems, the backbone of our real-time data exchange work.</p></div>
       </div>
     </div>
     <button type="button" class="partners-show-more" id="partnersShowMore">Show all partners</button>
@@ -1793,15 +2482,95 @@
 </section>
 
 <section class="proof-story section-padded" id="proof-story">
-  <div class="proof-story-inner section-container">
-    <div class="proof-left">
-      <p class="proof-number" data-ticker-target="100" data-ticker-suffix="+">100+</p>
-      <p class="proof-caption">DT services modernized</p>
+  <div class="proof-story-inner-wrap section-container">
+    <h2 class="proof-story-heading text-reveal">Proof, not promises</h2>
+    <p class="proof-story-lede">Four recent engagements, told in full - not folded into an aggregate stat.</p>
+
+    <div class="proof-carousel">
+      <!-- Slide 0 is real, already verified content. -->
+      <div class="proof-slide active" data-slide-index="0">
+        <div class="proof-story-inner">
+          <div class="proof-left">
+            <p class="proof-tag">Insurance</p>
+            <p class="proof-number" data-ticker-target="100" data-ticker-suffix="+">100+</p>
+            <p class="proof-caption">DT services modernized</p>
+          </div>
+          <div class="proof-right">
+            <div class="proof-card">
+              <p class="proof-quote">A Tier-1 mortgage insurer needed to move off a brittle, on-premise Informatica B2B stack - PowerCenter, B2B Data Exchange, and Managed File Transfer - without disrupting EDI, X12, and MISMO trading-partner traffic. aiDataWorks re-engineered the estate onto Informatica's Cloud B2B Gateway, CDI, and CAI, modernizing 100+ data transformation services under a tight SLA - re-architected for cloud scale, not simply lifted and shifted.</p>
+              <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="proof-link">Talk to us about a similar migration →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================================
+           MOCK CONTENT - slides 1-3 below are placeholders for the
+           design/layout only. Numbers, industries, and narratives are
+           illustrative, not verified client engagements. Swap each
+           one out for a real case study (or remove the slide and its
+           matching .proof-dot) before this section ships.
+           ========================================================== -->
+      <div class="proof-slide" data-slide-index="1">
+        <div class="proof-story-inner">
+          <div class="proof-left">
+            <p class="proof-tag">Retail &amp; CPG</p>
+            <p class="proof-number" data-ticker-target="35" data-ticker-suffix="%">35%</p>
+            <p class="proof-caption">Fewer duplicate customer records</p>
+          </div>
+          <div class="proof-right">
+            <div class="proof-card">
+              <p class="proof-quote">[MOCK - replace with a real engagement] A national specialty retailer ran customer data through six disconnected systems - e-commerce, POS, loyalty, and three regional CRMs - so the same shopper could show up as four different people. aiDataWorks built a single Salesforce Data 360 and Informatica MDM pipeline that matched and merged records in near real time, cutting duplicate profiles by over a third and giving marketing one accurate view of every customer.</p>
+              <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="proof-link">Talk to us about a similar migration →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-slide" data-slide-index="2">
+        <div class="proof-story-inner">
+          <div class="proof-left">
+            <p class="proof-tag">Healthcare</p>
+            <p class="proof-number" data-ticker-target="6" data-ticker-suffix=" wks">6 wks</p>
+            <p class="proof-caption">Cut from the reconciliation cycle</p>
+          </div>
+          <div class="proof-right">
+            <div class="proof-card">
+              <p class="proof-quote">[MOCK - replace with a real engagement] A regional health system was reconciling patient records across Epic and four acquired practices by hand, with a multi-week backlog before data was trustworthy enough for reporting. aiDataWorks connected the estate through Informatica Cloud MDM and automated the match-merge rules staff had been running manually, cutting the reconciliation cycle by six weeks and clearing the backlog for good.</p>
+              <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="proof-link">Talk to us about a similar migration →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-slide" data-slide-index="3">
+        <div class="proof-story-inner">
+          <div class="proof-left">
+            <p class="proof-tag">Manufacturing</p>
+            <!-- No data-ticker-* here: animateNumberTicker() does parseInt()
+                 on the target and only ever appends a suffix (no prefix
+                 support), so it can't correctly count up to "$2.1M". -->
+            <p class="proof-number">$2.1M</p>
+            <p class="proof-caption">In avoided downtime, year one</p>
+          </div>
+          <div class="proof-right">
+            <div class="proof-card">
+              <p class="proof-quote">[MOCK - replace with a real engagement] A precision-parts manufacturer had no way to see equipment failures coming - sensor data sat in separate historian systems, disconnected from maintenance scheduling. aiDataWorks built a unified pipeline on Databricks and AWS that streamed sensor data into a single predictive-maintenance model, flagging failures days in advance and avoiding an estimated $2.1M in unplanned downtime in the first year.</p>
+              <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="proof-link">Talk to us about a similar migration →</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="proof-right">
-      <div class="proof-card">
-        <p class="proof-quote">A Tier-1 mortgage insurer needed to move off a brittle, on-premise Informatica B2B stack - PowerCenter, B2B Data Exchange, and Managed File Transfer - without disrupting EDI, X12, and MISMO trading-partner traffic. aiDataWorks re-engineered the estate onto Informatica's Cloud B2B Gateway, CDI, and CAI, modernizing 100+ data transformation services under a tight SLA - re-architected for cloud scale, not simply lifted and shifted.</p>
-        <a href="#" class="proof-link">Read the case study →</a>
+
+    <div class="proof-controls">
+      <button type="button" class="proof-pause-btn" id="proofPauseBtn" aria-label="Pause automatic playback" aria-pressed="false">
+        <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>
+        <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><polygon points="7,5 19,12 7,19" fill="currentColor"/></svg>
+      </button>
+      <div class="proof-dots" role="group" aria-label="Jump to case study">
+        <button type="button" class="proof-dot active" data-slide-index="0" aria-label="Case study 1: Insurance" aria-current="step"></button>
+        <button type="button" class="proof-dot" data-slide-index="1" aria-label="Case study 2: Retail and CPG"></button>
+        <button type="button" class="proof-dot" data-slide-index="2" aria-label="Case study 3: Healthcare"></button>
+        <button type="button" class="proof-dot" data-slide-index="3" aria-label="Case study 4: Manufacturing"></button>
       </div>
     </div>
   </div>
@@ -1810,20 +2579,20 @@
 <section class="metrics" id="metrics">
   <div class="metrics-inner">
     <div class="metric-card">
-      <p class="metric-eyebrow">YEARS AS INFORMATICA PARTNER</p>
+      <p class="metric-eyebrow">Years in service</p>
       <p class="metric-value" data-ticker-target="12" data-ticker-suffix="+">12+</p>
     </div>
     <div class="metric-card">
-      <p class="metric-eyebrow">PRODUCTIVITY UPLIFT</p>
+      <p class="metric-eyebrow">Productivity uplift</p>
       <p class="metric-value metric-value-accent" data-ticker-target="10" data-ticker-suffix="×">10×</p>
     </div>
     <div class="metric-card">
-      <p class="metric-eyebrow">MANAGED OPERATIONS</p>
+      <p class="metric-eyebrow">Managed operations</p>
       <p class="metric-value" data-ticker-target="24" data-ticker-suffix="×7">24×7</p>
     </div>
     <div class="metric-card">
-      <p class="metric-eyebrow">GLOBAL DELIVERY LOCATIONS</p>
-      <p class="metric-value" data-ticker-target="4" data-ticker-suffix="">4</p>
+      <p class="metric-eyebrow">Projects delivered</p>
+      <p class="metric-value" data-ticker-target="100" data-ticker-suffix="+">100+</p>
     </div>
   </div>
 </section>
@@ -2327,7 +3096,6 @@
 </section>
 
 <section class="final-cta-band" id="final-cta">
-  <p class="section-eyebrow final-cta-eyebrow">NEXT STEP</p>
   <h2 class="final-cta-heading text-reveal">Let's build your AI-ready data foundation.</h2>
   <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="final-cta-btn cta-pulsate">Schedule a Meeting</a>
   <p class="final-cta-email">Or email marketing@aidata.works</p>
@@ -2491,18 +3259,40 @@
   cards.forEach(function (card) { observer.observe(card); });
 
   var servicePanels = document.querySelectorAll('.service-panel');
+  function expandServicePanel(target) {
+    servicePanels.forEach(function (p) {
+      var isTarget = p === target;
+      p.classList.toggle('expanded', isTarget);
+      p.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
+    });
+  }
   servicePanels.forEach(function (panel) {
-    panel.addEventListener('mouseenter', function () {
-      servicePanels.forEach(function (p) { p.classList.remove('expanded'); });
-      panel.classList.add('expanded');
+    panel.addEventListener('mouseenter', function () { expandServicePanel(panel); });
+    panel.addEventListener('focus', function () { expandServicePanel(panel); });
+    panel.addEventListener('click', function () { expandServicePanel(panel); });
+    panel.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        expandServicePanel(panel);
+      }
     });
   });
 
   var steps = document.querySelectorAll('.step-item');
   var stepVisuals = document.querySelectorAll('.step-visual');
+  var stepDots = document.querySelectorAll('.step-dot');
+  var stepPauseBtn = document.getElementById('stepPauseBtn');
   var aiCurrent = 0;
   var aiTimer = null;
+  var aiPaused = false;
   var AI_STEP_DURATION = 5000;
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function scheduleNextAiStep(index) {
+    clearTimeout(aiTimer);
+    if (aiPaused || prefersReducedMotion) return;
+    aiTimer = setTimeout(function () { activateAiStep((index + 1) % steps.length); }, AI_STEP_DURATION);
+  }
 
   function activateAiStep(index) {
     aiCurrent = index;
@@ -2514,19 +3304,49 @@
         bar.style.transition = 'none';
         bar.style.width = '0%';
         void bar.offsetWidth;
-        bar.style.transition = 'width ' + AI_STEP_DURATION + 'ms linear';
-        bar.style.width = '100%';
+        if (!aiPaused && !prefersReducedMotion) {
+          bar.style.transition = 'width ' + AI_STEP_DURATION + 'ms linear';
+          bar.style.width = '100%';
+        }
       }
     });
     stepVisuals.forEach(function (visual, i) { visual.classList.toggle('active', i === index); });
+    stepDots.forEach(function (dot, i) {
+      var isActive = i === index;
+      dot.classList.toggle('active', isActive);
+      if (isActive) { dot.setAttribute('aria-current', 'step'); } else { dot.removeAttribute('aria-current'); }
+    });
 
-    clearTimeout(aiTimer);
-    aiTimer = setTimeout(function () { activateAiStep((index + 1) % steps.length); }, AI_STEP_DURATION);
+    scheduleNextAiStep(index);
   }
 
   steps.forEach(function (step, i) {
     step.addEventListener('click', function () { activateAiStep(i); });
   });
+
+  stepDots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () { activateAiStep(i); });
+  });
+
+  if (stepPauseBtn) {
+    stepPauseBtn.addEventListener('click', function () {
+      aiPaused = !aiPaused;
+      stepPauseBtn.classList.toggle('is-paused', aiPaused);
+      stepPauseBtn.setAttribute('aria-label', aiPaused ? 'Resume automatic playback' : 'Pause automatic playback');
+      stepPauseBtn.setAttribute('aria-pressed', aiPaused ? 'true' : 'false');
+      if (aiPaused) {
+        clearTimeout(aiTimer);
+        // Freeze the bar exactly where it is rather than letting it
+        // snap to 0 or jump to 100 while paused.
+        var activeBar = steps[aiCurrent].querySelector('.progress-fill');
+        var frozenWidth = getComputedStyle(activeBar).width;
+        activeBar.style.transition = 'none';
+        activeBar.style.width = frozenWidth;
+      } else {
+        activateAiStep(aiCurrent);
+      }
+    });
+  }
 
   var aiAutomationSection = document.getElementById('ai-automation');
   var aiAutomationObserver = new IntersectionObserver(function (entries) {
@@ -2544,13 +3364,67 @@
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        var proofNumberEl = entry.target.querySelector('.proof-number');
+        // Scoped to the active slide only - a generic '.proof-number'
+        // query would match a hidden slide's stat once slide 0 no
+        // longer has one of its own.
+        var proofNumberEl = entry.target.querySelector('.proof-slide.active .proof-number');
         if (proofNumberEl) animateNumberTicker(proofNumberEl, 1500);
         proofObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.15 });
   proofObserver.observe(proofSection);
+
+  var proofSlides = document.querySelectorAll('.proof-slide');
+  var proofDots = document.querySelectorAll('.proof-dot');
+  var proofPauseBtn = document.getElementById('proofPauseBtn');
+  var proofCurrent = 0;
+  var proofTimer = null;
+  var proofPaused = false;
+  var PROOF_SLIDE_DURATION = 7000;
+
+  function scheduleNextProofSlide(index) {
+    clearTimeout(proofTimer);
+    if (proofPaused || prefersReducedMotion || proofSlides.length < 2) return;
+    proofTimer = setTimeout(function () { activateProofSlide((index + 1) % proofSlides.length); }, PROOF_SLIDE_DURATION);
+  }
+
+  function activateProofSlide(index) {
+    proofCurrent = index;
+    proofSlides.forEach(function (slide, i) { slide.classList.toggle('active', i === index); });
+    proofDots.forEach(function (dot, i) {
+      var isActive = i === index;
+      dot.classList.toggle('active', isActive);
+      if (isActive) { dot.setAttribute('aria-current', 'step'); } else { dot.removeAttribute('aria-current'); }
+    });
+    scheduleNextProofSlide(index);
+  }
+
+  proofDots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () { activateProofSlide(i); });
+  });
+
+  if (proofPauseBtn) {
+    proofPauseBtn.addEventListener('click', function () {
+      proofPaused = !proofPaused;
+      proofPauseBtn.classList.toggle('is-paused', proofPaused);
+      proofPauseBtn.setAttribute('aria-label', proofPaused ? 'Resume automatic playback' : 'Pause automatic playback');
+      proofPauseBtn.setAttribute('aria-pressed', proofPaused ? 'true' : 'false');
+      if (proofPaused) { clearTimeout(proofTimer); } else { scheduleNextProofSlide(proofCurrent); }
+    });
+  }
+
+  if (proofSlides.length > 1) {
+    var proofCarouselObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          scheduleNextProofSlide(proofCurrent);
+          proofCarouselObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    proofCarouselObserver.observe(proofSection);
+  }
 
   var painBand = document.getElementById('pain-band');
   var painObserver = new IntersectionObserver(function (entries) {
@@ -2587,9 +3461,14 @@
 
   var methodPanels = document.querySelectorAll('.service-panel');
   var methodPanelObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry, i) {
+    entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        setTimeout(function () { entry.target.classList.add('is-visible'); }, i * 80);
+        // Stagger off the card's own index, not its position in this
+        // callback's batch. In the 2x2 grid the two rows cross the
+        // threshold separately, so a batch-relative index would restart
+        // the stagger at 0 for the second row.
+        var i = parseInt(entry.target.dataset.panelIndex, 10) || 0;
+        setTimeout(function () { entry.target.classList.add('is-visible'); }, i * 90);
         methodPanelObserver.unobserve(entry.target);
       }
     });
@@ -2679,6 +3558,357 @@
   textRevealHeadings.forEach(function (heading) { textRevealObserver.observe(heading); });
 })();
 </script>
+
+<!-- ============================================================================
+     TEMPORARY DESIGN TOOL - NOT FOR PRODUCTION
+     A floating panel for tuning the design tokens live. To remove it before
+     shipping, delete this single block (everything between this comment and
+     the matching "END TEMPORARY DESIGN TOOL" comment). Nothing else in the
+     page depends on it.
+     Open with the swatch button, bottom-right, or press Ctrl/Cmd + Shift + D.
+     ============================================================================ -->
+<style id="twe-style">
+  #twe-launch {
+    position: fixed; right: 18px; bottom: 18px; z-index: 99998;
+    width: 46px; height: 46px; border-radius: 50%; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.55);
+    background: conic-gradient(from 210deg, #1668F0, #0D212C, #F3F8FA, #1668F0);
+    box-shadow: 0 6px 22px rgba(5,26,36,0.32);
+    transition: transform 150ms ease;
+    font-size: 0;
+  }
+  #twe-launch:hover { transform: scale(1.07); }
+
+  #twe-panel {
+    position: fixed; top: 12px; right: 12px; bottom: 12px; z-index: 99999;
+    width: 328px; max-width: calc(100vw - 24px);
+    display: none; flex-direction: column;
+    background: #0F1B22; color: #E8EEF1;
+    border: 1px solid rgba(255,255,255,0.14); border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 12px; line-height: 1.45;
+  }
+  #twe-panel.twe-open { display: flex; }
+
+  .twe-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.12);
+    flex-shrink: 0;
+  }
+  .twe-head h2 { font-size: 12px; font-weight: 600; letter-spacing: 0.02em; margin: 0; }
+  .twe-head p { margin: 2px 0 0; font-size: 10.5px; color: #8FA3AD; }
+  .twe-x {
+    background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #E8EEF1;
+    width: 24px; height: 24px; border-radius: 6px; cursor: pointer; font-size: 13px;
+    line-height: 1; flex-shrink: 0;
+  }
+  .twe-x:hover { background: rgba(255,255,255,0.1); }
+
+  .twe-body { overflow-y: auto; padding: 4px 14px 14px; flex: 1; }
+  .twe-group { margin-top: 14px; }
+  .twe-group > h3 {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #7FA9C4; margin: 0 0 8px; font-weight: 600;
+  }
+  .twe-row { margin-bottom: 10px; }
+  .twe-row label {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; margin-bottom: 4px; color: #C6D3DA;
+  }
+  .twe-val { color: #7FA9C4; font-variant-numeric: tabular-nums; font-size: 10.5px; }
+  .twe-row input[type=range] { width: 100%; accent-color: #4A8DFF; height: 18px; }
+  .twe-row input[type=color] {
+    width: 100%; height: 28px; padding: 0; cursor: pointer;
+    background: transparent; border: 1px solid rgba(255,255,255,0.18); border-radius: 6px;
+  }
+  .twe-row select {
+    width: 100%; padding: 6px 8px; border-radius: 6px; cursor: pointer;
+    background: #17262E; color: #E8EEF1;
+    border: 1px solid rgba(255,255,255,0.18); font-size: 12px;
+    font-family: inherit;
+  }
+  .twe-foot {
+    display: flex; gap: 8px; padding: 10px 14px;
+    border-top: 1px solid rgba(255,255,255,0.12); flex-shrink: 0;
+  }
+  .twe-btn {
+    flex: 1; padding: 8px 10px; border-radius: 7px; cursor: pointer;
+    background: #1668F0; color: #fff; border: none;
+    font-family: inherit; font-size: 11.5px; font-weight: 600;
+  }
+  .twe-btn:hover { background: #0B4FD1; }
+  .twe-btn.twe-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.22); color: #E8EEF1; }
+  .twe-btn.twe-ghost:hover { background: rgba(255,255,255,0.09); }
+  .twe-out {
+    width: 100%; height: 108px; margin-top: 8px; resize: vertical;
+    background: #0A141A; color: #9FE3B0; border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px; padding: 8px; font-size: 10.5px; line-height: 1.4;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media print { #twe-launch, #twe-panel { display: none !important; } }
+</style>
+
+<button id="twe-launch" type="button" title="Open design tokens panel (Ctrl/Cmd + Shift + D)" aria-label="Open design tokens panel">Theme</button>
+
+<aside id="twe-panel" role="dialog" aria-label="Design token editor">
+  <div class="twe-head">
+    <div>
+      <h2>Design tokens</h2>
+      <p>Live preview - temporary tool</p>
+    </div>
+    <button class="twe-x" id="twe-close" type="button" aria-label="Close panel">&times;</button>
+  </div>
+  <div class="twe-body" id="twe-body"></div>
+  <div style="padding:0 14px 10px;">
+    <textarea class="twe-out" id="twe-out" readonly spellcheck="false" aria-label="Generated CSS"></textarea>
+  </div>
+  <div class="twe-foot">
+    <button class="twe-btn twe-ghost" id="twe-reset" type="button">Reset</button>
+    <button class="twe-btn" id="twe-copy" type="button">Copy CSS</button>
+  </div>
+</aside>
+
+<script id="twe-script">
+(function () {
+  'use strict';
+
+  var ROOT = document.documentElement;
+  var STORE = 'twe-tokens-v1';
+
+  // Google-hosted alternatives, loaded on demand. The first entry is the
+  // typeface the site already ships with.
+  var FONTS = {
+    'PP Neue Montreal': null,
+    'Inter': 'Inter:wght@400;500;600;700',
+    'Manrope': 'Manrope:wght@400;500;600;700',
+    'Space Grotesk': 'Space+Grotesk:wght@400;500;600;700',
+    'IBM Plex Sans': 'IBM+Plex+Sans:wght@400;500;600;700',
+    'DM Sans': 'DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700',
+    'Figtree': 'Figtree:wght@400;500;600;700',
+    'Sora': 'Sora:wght@400;500;600;700',
+    'Instrument Sans': 'Instrument+Sans:wght@400;500;600;700'
+  };
+  var FALLBACK = ', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
+
+  var CONTROLS = [
+    { group: 'Typography', items: [
+      { kind: 'font',   label: 'Typeface',         prop: '--font-sans' },
+      { kind: 'range',  label: 'Type scale',       prop: '--fs-ratio',       min: 0.80, max: 1.30, step: 0.01, def: 1,     unit: '' },
+      { kind: 'select', label: 'Heading weight',   prop: '--fw-medium',      def: '500',
+        options: [['400','Regular 400'],['500','Medium 500'],['600','Semibold 600'],['700','Bold 700']] },
+      { kind: 'range',  label: 'Heading tracking', prop: '--tracking-snug',  min: -0.06, max: 0.04, step: 0.005, def: -0.01, unit: 'em' },
+      { kind: 'range',  label: 'Heading leading',  prop: '--lh-snug',        min: 1.00, max: 1.60, step: 0.01, def: 1.22,  unit: '' },
+      { kind: 'range',  label: 'Body leading',     prop: '--lh-relaxed',     min: 1.30, max: 2.00, step: 0.01, def: 1.65,  unit: '' }
+    ]},
+    { group: 'Color', items: [
+      { kind: 'color',  label: 'Accent',           prop: '--accent-500',     def: '#1668F0', derive: true },
+      { kind: 'color',  label: 'Surface base',     prop: '--surface-base',   def: '#FFFFFF' },
+      { kind: 'color',  label: 'Surface sunken',   prop: '--surface-sunken', def: '#F3F8FA' },
+      { kind: 'color',  label: 'Surface inverse',  prop: '--surface-inverse',def: '#0D212C' },
+      { kind: 'color',  label: 'Text primary',     prop: '--text-primary',   def: '#051A24' },
+      { kind: 'color',  label: 'Text secondary',   prop: '--text-secondary', def: '#3D525C' },
+      { kind: 'color',  label: 'Text muted',       prop: '--text-muted',     def: '#5A7480' },
+      { kind: 'color',  label: 'Text on dark',     prop: '--text-on-inverse-secondary', def: '#9FB4BC' },
+      { kind: 'color',  label: 'Border',           prop: '--border-subtle',  def: '#E3EBEE' }
+    ]},
+    { group: 'Layout', items: [
+      { kind: 'range',  label: 'Section padding',  prop: '--section-py', min: 40,  max: 180,  step: 4,  unit: 'px' },
+      { kind: 'range',  label: 'Container width',  prop: '--container',  min: 960, max: 1600, step: 20, def: 1200, unit: 'px' },
+      { kind: 'range',  label: 'Corner radius',    prop: '--radius-lg',  min: 0,   max: 36,   step: 2,  def: 20,   unit: 'px' }
+    ]}
+  ];
+
+  var applied = {};
+  try { applied = JSON.parse(localStorage.getItem(STORE) || '{}'); } catch (e) { applied = {}; }
+
+  // ---- helpers -------------------------------------------------------------
+  function hexToHsl(hex) {
+    var r = parseInt(hex.slice(1,3),16)/255, g = parseInt(hex.slice(3,5),16)/255, b = parseInt(hex.slice(5,7),16)/255;
+    var mx = Math.max(r,g,b), mn = Math.min(r,g,b), d = mx-mn, h = 0, s = 0, l = (mx+mn)/2;
+    if (d) {
+      s = l > 0.5 ? d/(2-mx-mn) : d/(mx+mn);
+      if (mx === r) h = ((g-b)/d + (g < b ? 6 : 0));
+      else if (mx === g) h = (b-r)/d + 2;
+      else h = (r-g)/d + 4;
+      h *= 60;
+    }
+    return [h, s*100, l*100];
+  }
+  function hsl(h, s, l) {
+    return 'hsl(' + h.toFixed(0) + ' ' + Math.max(0,Math.min(100,s)).toFixed(0) + '% ' + Math.max(0,Math.min(100,l)).toFixed(0) + '%)';
+  }
+  function setProp(prop, value) {
+    ROOT.style.setProperty(prop, value);
+    applied[prop] = value;
+  }
+  function deriveAccent(hex) {
+    var c = hexToHsl(hex);
+    setProp('--accent-400', hsl(c[0], c[1], c[2] + 14));
+    setProp('--accent-600', hsl(c[0], c[1], c[2] - 12));
+    setProp('--accent-100', hsl(c[0], Math.min(100, c[1] * 0.55), 94));
+  }
+  function fmt(v, unit) {
+    var n = parseFloat(v);
+    if (unit === 'px') return Math.round(n) + 'px';
+    if (unit === 'em') return n.toFixed(3) + 'em';
+    return (Math.round(n * 100) / 100).toString();
+  }
+  function loadFont(name) {
+    if (!FONTS[name]) return;
+    var id = 'twe-font-' + name.replace(/\W+/g, '');
+    if (document.getElementById(id)) return;
+    var l = document.createElement('link');
+    l.id = id; l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[name] + '&display=swap';
+    document.head.appendChild(l);
+  }
+
+  // ---- build UI ------------------------------------------------------------
+  var body = document.getElementById('twe-body');
+  var out  = document.getElementById('twe-out');
+
+  CONTROLS.forEach(function (g) {
+    var sec = document.createElement('div');
+    sec.className = 'twe-group';
+    sec.innerHTML = '<h3>' + g.group + '</h3>';
+
+    g.items.forEach(function (it) {
+      var row = document.createElement('div');
+      row.className = 'twe-row';
+      var readout = '<span class="twe-val" data-val="' + it.prop + '"></span>';
+      var input;
+
+      if (it.kind === 'font') {
+        row.innerHTML = '<label><span>' + it.label + '</span></label>';
+        input = document.createElement('select');
+        Object.keys(FONTS).forEach(function (n) {
+          var o = document.createElement('option');
+          o.value = n; o.textContent = n;
+          input.appendChild(o);
+        });
+        var savedFont = applied[it.prop];
+        if (savedFont) {
+          var match = Object.keys(FONTS).filter(function (n) { return savedFont.indexOf("'" + n + "'") === 0; })[0];
+          if (match) { input.value = match; loadFont(match); }
+        }
+        input.addEventListener('change', function () {
+          loadFont(input.value);
+          setProp(it.prop, "'" + input.value + "'" + FALLBACK);
+          sync();
+        });
+
+      } else if (it.kind === 'select') {
+        row.innerHTML = '<label><span>' + it.label + '</span></label>';
+        input = document.createElement('select');
+        it.options.forEach(function (pair) {
+          var o = document.createElement('option');
+          o.value = pair[0]; o.textContent = pair[1];
+          input.appendChild(o);
+        });
+        input.value = applied[it.prop] || it.def;
+        input.addEventListener('change', function () { setProp(it.prop, input.value); sync(); });
+
+      } else if (it.kind === 'color') {
+        row.innerHTML = '<label><span>' + it.label + '</span>' + readout + '</label>';
+        input = document.createElement('input');
+        input.type = 'color';
+        input.value = applied[it.prop] || it.def;
+        input.addEventListener('input', function () {
+          setProp(it.prop, input.value);
+          if (it.derive) deriveAccent(input.value);
+          sync();
+        });
+
+      } else { // range
+        row.innerHTML = '<label><span>' + it.label + '</span>' + readout + '</label>';
+        input = document.createElement('input');
+        input.type = 'range';
+        input.min = it.min; input.max = it.max; input.step = it.step;
+        var start = applied[it.prop];
+        if (start != null) {
+          input.value = parseFloat(start);
+        } else if (it.def != null) {
+          input.value = it.def;
+        } else {
+          // No declared default (fluid clamp) - seed from the computed value.
+          input.value = parseFloat(getComputedStyle(ROOT).getPropertyValue(it.prop)) || it.min;
+        }
+        input.addEventListener('input', function () {
+          setProp(it.prop, fmt(input.value, it.unit));
+          sync();
+        });
+      }
+
+      input.dataset.prop = it.prop;
+      input.dataset.unit = it.unit || '';
+      row.appendChild(input);
+      sec.appendChild(row);
+    });
+
+    body.appendChild(sec);
+  });
+
+  // ---- sync readouts + CSS output ------------------------------------------
+  function sync() {
+    body.querySelectorAll('input, select').forEach(function (el) {
+      var span = body.querySelector('[data-val="' + el.dataset.prop + '"]');
+      if (!span) return;
+      span.textContent = el.type === 'range' ? fmt(el.value, el.dataset.unit) : el.value;
+    });
+    var keys = Object.keys(applied);
+    out.value = keys.length
+      ? ':root {\n' + keys.map(function (k) { return '  ' + k + ': ' + applied[k] + ';'; }).join('\n') + '\n}'
+      : '/* No overrides yet - adjust a control above. */';
+    try { localStorage.setItem(STORE, JSON.stringify(applied)); } catch (e) {}
+  }
+
+  // Re-apply anything saved from a previous session.
+  Object.keys(applied).forEach(function (p) { ROOT.style.setProperty(p, applied[p]); });
+  sync();
+
+  // ---- panel wiring --------------------------------------------------------
+  var panel = document.getElementById('twe-panel');
+  var launch = document.getElementById('twe-launch');
+
+  function toggle(force) {
+    var open = force != null ? force : !panel.classList.contains('twe-open');
+    panel.classList.toggle('twe-open', open);
+    launch.style.display = open ? 'none' : 'block';
+  }
+  launch.addEventListener('click', function () { toggle(true); });
+  document.getElementById('twe-close').addEventListener('click', function () { toggle(false); });
+
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'D' || e.key === 'd')) {
+      e.preventDefault(); toggle();
+    }
+    if (e.key === 'Escape' && panel.classList.contains('twe-open')) toggle(false);
+  });
+
+  document.getElementById('twe-reset').addEventListener('click', function () {
+    Object.keys(applied).forEach(function (p) { ROOT.style.removeProperty(p); });
+    applied = {};
+    try { localStorage.removeItem(STORE); } catch (e) {}
+    // Rebuild so every control snaps back to its stylesheet default.
+    location.reload();
+  });
+
+  document.getElementById('twe-copy').addEventListener('click', function () {
+    var btn = this;
+    out.select();
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy CSS'; }, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(out.value).then(done, function () {
+        try { document.execCommand('copy'); done(); } catch (e) { btn.textContent = 'Select + copy'; }
+      });
+    } else {
+      try { document.execCommand('copy'); done(); } catch (e) { btn.textContent = 'Select + copy'; }
+    }
+  });
+})();
+</script>
+<!-- ===================== END TEMPORARY DESIGN TOOL ===================== -->
 
 </body>
 </html>
