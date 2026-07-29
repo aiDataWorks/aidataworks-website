@@ -70,7 +70,7 @@
 
     /* ---- Semantic surfaces ---- */
     --surface-base: #FFFFFF;
-    --surface-sunken: #F3F8FA;
+    --surface-sunken: #E9F1F6;
     --surface-raised: #FFFFFF;
     --surface-inverse: #0D212C;
     --surface-inverse-deep: #071820;
@@ -312,7 +312,7 @@
     white-space: nowrap;
   }
   .nav-cta:hover {
-    background: var(--cobalt-600);
+    background: var(--ink-800);
     box-shadow: 0 6px 16px rgba(5,26,36,0.25);
     transform: translateY(-2px);
   }
@@ -576,7 +576,7 @@
     transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
   }
   .hero-cta-primary:hover {
-    background: var(--cobalt-600);
+    background: var(--ink-800);
     box-shadow: 0 6px 16px rgba(5,26,36,0.25);
     transform: translateY(-2px);
   }
@@ -617,7 +617,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
-  @media (min-width: 768px) { .metrics-inner { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 768px) { .metrics-inner { grid-template-columns: repeat(5, 1fr); } }
 
   .metric-card {
     opacity: 0;
@@ -708,7 +708,7 @@
   .services, .proof-story, .testimonials, .faq {
     position: relative;
     background:
-      radial-gradient(115% 75% at 12% 0%, rgba(22,104,240,0.055) 0%, rgba(22,104,240,0) 58%),
+      radial-gradient(115% 75% at 12% 0%, rgba(22,104,240,0.09) 0%, rgba(22,104,240,0) 58%),
       var(--surface-sunken);
   }
 
@@ -1559,12 +1559,12 @@
     transform: rotateY(180deg);
   }
 
-  .industry-card[data-industry="healthcare"] { --industry-img: url('assets/industries/healthcare.png'); }
-  .industry-card[data-industry="financial-services"] { --industry-img: url('assets/industries/financial-services.png'); }
-  .industry-card[data-industry="insurance"] { --industry-img: url('assets/industries/insurance.png'); }
-  .industry-card[data-industry="manufacturing"] { --industry-img: url('assets/industries/manufacturing.png'); }
-  .industry-card[data-industry="retail-cpg"] { --industry-img: url('assets/industries/retail-cpg.png'); }
-  .industry-card[data-industry="public-sector"] { --industry-img: url('assets/industries/public-sector.png'); }
+  .industry-card[data-industry="healthcare"] { --industry-img: url('https://images.unsplash.com/photo-1516841273335-e39b37888115?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="financial-services"] { --industry-img: url('https://images.unsplash.com/photo-1457059315558-e754285e416b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="insurance"] { --industry-img: url('https://images.unsplash.com/photo-1763729805496-b5dbf7f00c79?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="manufacturing"] { --industry-img: url('https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="retail-cpg"] { --industry-img: url('https://images.unsplash.com/photo-1759323321196-2813db509285?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="public-sector"] { --industry-img: url('https://images.unsplash.com/photo-1768399808130-abac2a8442e0?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
 
   .industry-title {
     font-family: var(--font-sans);
@@ -1990,7 +1990,7 @@
     white-space: nowrap;
   }
   .newsletter-submit:hover {
-    background: var(--cobalt-600);
+    background: var(--ink-800);
     box-shadow: 0 6px 16px rgba(5,26,36,0.25);
     transform: translateY(-2px);
   }
@@ -2102,7 +2102,7 @@
     white-space: nowrap;
   }
   .footer-newsletter-submit:hover {
-    background: var(--cobalt-600);
+    background: var(--ink-800);
     box-shadow: 0 6px 16px rgba(5,26,36,0.25);
     transform: translateY(-2px);
   }
@@ -2995,6 +2995,10 @@
     <div class="metric-card">
       <p class="metric-eyebrow">Projects delivered</p>
       <p class="metric-value" data-ticker-target="100" data-ticker-suffix="+">100+</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-eyebrow">Global Locations</p>
+      <p class="metric-value" data-ticker-target="11">11</p>
     </div>
   </div>
 </section>
