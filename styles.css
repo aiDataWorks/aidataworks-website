@@ -455,10 +455,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 20px;
+    padding: 96px 20px 0;
   }
-  @media (min-width: 640px) { .hero { padding: 0 32px; } }
-  @media (min-width: 1024px) { .hero { padding: 0 48px; } }
+  @media (min-width: 640px) { .hero { padding: 96px 32px 0; } }
+  @media (min-width: 1024px) { .hero { padding: 96px 48px 0; } }
 
   .hero-video {
     position: absolute;
@@ -562,7 +562,7 @@
     font-weight: var(--fw-regular);
     font-size: var(--fs-lg);
     line-height: 1.6;
-    color: var(--text-on-inverse-secondary);
+    color: var(--text-on-inverse);
     max-width: 480px;
     margin: 20px auto 0;
     opacity: 0;
@@ -2564,7 +2564,7 @@
     font-weight: var(--fw-regular);
     font-size: var(--fs-lg);
     line-height: 1.6;
-    color: var(--text-on-inverse-secondary);
+    color: var(--text-on-inverse);
     max-width: 480px;
     margin: 20px auto 0;
   }
