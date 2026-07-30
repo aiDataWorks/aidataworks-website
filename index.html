@@ -4,2290 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>aiDataWorks</title>
-<style>
-  @font-face {
-    font-family: 'PP Neue Montreal';
-    src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Book.otf') format('opentype');
-    font-weight:400;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'PP Neue Montreal';
-    src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Medium.otf') format('opentype');
-    font-weight:500;
-    font-display: swap;
-  }
-
-  /* ============================================================
-     DESIGN TOKENS
-     Every value below is a knob. The theme editor overlay writes
-     directly to these custom properties at runtime.
-     ============================================================ */
-  :root {
-    /* ---- Typeface ---- */
-    --font-sans: 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
-    --fw-regular: 400;
-    --fw-medium: 500;
-
-    /* ---- Type scale (fluid; --fs-ratio scales the whole system) ---- */
-    --fs-ratio: 1;
-    --fs-display: calc(clamp(2.5rem, 5.2vw, 4rem)      * var(--fs-ratio));
-    --fs-h1:      calc(clamp(2rem, 4.2vw, 3.25rem)     * var(--fs-ratio));
-    --fs-h2:      calc(clamp(1.75rem, 3.2vw, 2.75rem)  * var(--fs-ratio));
-    --fs-h3:      calc(clamp(1.5rem, 2.6vw, 2.125rem)  * var(--fs-ratio));
-    --fs-h4:      calc(clamp(1.1875rem, 1.6vw, 1.5rem) * var(--fs-ratio));
-    --fs-lg:      calc(1.125rem  * var(--fs-ratio));
-    --fs-md:      calc(1.0625rem * var(--fs-ratio));
-    --fs-body:    calc(1rem      * var(--fs-ratio));
-    --fs-sm:      calc(0.9375rem * var(--fs-ratio));
-    --fs-xs:      calc(0.875rem  * var(--fs-ratio));
-    --fs-2xs:     calc(0.8125rem * var(--fs-ratio));
-    --fs-3xs:     calc(0.75rem   * var(--fs-ratio));
-
-    /* ---- Line height & tracking ---- */
-    --lh-tight: 1.08;
-    --lh-snug: 1.22;
-    --lh-normal: 1.5;
-    --lh-relaxed: 1.65;
-    --tracking-tight: -0.02em;
-    --tracking-snug: -0.01em;
-
-    /* ---- Spacing (4px base) ---- */
-    --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
-    --space-5: 20px;  --space-6: 24px;  --space-8: 32px;  --space-10: 40px;
-    --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
-
-    /* ---- Layout rhythm ---- */
-    --section-py: clamp(72px, 8vw, 120px);
-    --section-px: clamp(20px, 4vw, 48px);
-    --container: 1200px;
-
-    /* ---- Brand accent (the site previously had none) ---- */
-    --accent-600: #0B4FD1;
-    --accent-500: #1668F0;
-    --accent-400: #4A8DFF;
-    --accent-100: #E8F1FE;
-
-    /* ---- Semantic surfaces ---- */
-    --surface-base: #FFFFFF;
-    --surface-sunken: #DCEAF4;
-    --surface-raised: #FFFFFF;
-    --surface-inverse: #0D212C;
-    --surface-inverse-deep: #071820;
-
-    /* ---- Semantic text ---- */
-    --text-primary: #051A24;
-    --text-secondary: #3D525C;
-    --text-muted: #5A7480;
-    --text-on-inverse: #FFFFFF;
-    --text-on-inverse-secondary: #9FB4BC;
-
-    /* ---- Borders ---- */
-    --border-subtle: #E3EBEE;
-    --border-strong: #CBD9DE;
-    --border-inverse: rgba(255,255,255,0.12);
-
-    /* ---- Radii ---- */
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-    --radius-pill: 9999px;
-
-    /* ---- Elevation ---- */
-    --shadow-1: 0 1px 2px rgba(5,26,36,0.04), 0 2px 8px rgba(5,26,36,0.05);
-    --shadow-2: 0 2px 4px rgba(5,26,36,0.05), 0 8px 24px rgba(5,26,36,0.08);
-    --shadow-3: 0 4px 8px rgba(5,26,36,0.06), 0 16px 40px rgba(5,26,36,0.12);
-
-    /* ---- Legacy aliases: existing rules resolve through these ---- */
-    --paper: var(--surface-base);
-    --white: var(--surface-raised);
-    --ink-900: var(--surface-inverse);
-    --ink-800: var(--text-primary);
-    --ink-600: var(--text-secondary);
-    --slate-500: var(--text-secondary);
-    --slate-400: var(--text-muted);
-    --mist-200: var(--border-subtle);
-    --mist-100: var(--surface-sunken);
-    --cobalt-600: #16323E;
-    --cobalt-500: var(--text-primary);
-    --cobalt-100: var(--accent-100);
-    --slate-300: var(--text-on-inverse-secondary);
-    --footer-line: var(--border-subtle);
-    --footer-link: var(--text-secondary);
-    --btn-shadow:
-      0 1px 2px 0 rgba(5,26,36,0.10),
-      0 4px 4px 0 rgba(5,26,36,0.09),
-      0 9px 6px 0 rgba(5,26,36,0.05),
-      0 17px 7px 0 rgba(5,26,36,0.01),
-      0 26px 7px 0 rgba(5,26,36,0),
-      inset 0 2px 8px 0 rgba(255,255,255,0.5);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-  section[id] { scroll-margin-top: 88px; }
-
-  body {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    background: var(--paper);
-    color: var(--ink-800);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  img { max-width: 100%; display: block; }
-  button { font-family: inherit; }
-  a { text-decoration: none; color: inherit; }
-
-  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
-    outline: 2px solid var(--cobalt-500);
-    outline-offset: 2px;
-  }
-
-  /* ---------- Nav ---------- */
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20;
-    background: var(--paper);
-    border-bottom: 1px solid var(--mist-200);
-    box-shadow: 0 4px 16px rgba(5,26,36,0.06);
-    transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
-  }
-  /* Transparent-on-load / solid-on-scroll nav feature — temporarily disabled, nav is solid by default via the rule above.
-     To re-enable: replace the background/border-bottom/box-shadow lines above with `border-bottom: 1px solid transparent;`,
-     then uncomment the block below and the matching JS block in the nav scroll script.
-  .nav::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.32) 50%, rgba(255,255,255,0) 100%);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
-    transition: opacity 200ms ease;
-  }
-  .nav.is-scrolled {
-    background: var(--paper);
-    border-bottom-color: var(--mist-200);
-    box-shadow: 0 4px 16px rgba(5,26,36,0.06);
-  }
-  .nav.is-scrolled::before {
-    opacity: 0;
-  }
-  */
-
-  .nav-inner {
-    position: relative;
-    z-index: 1;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo { height: 28px; width: auto; }
-
-  .nav-links { display: none; align-items: center; gap: 32px; }
-  .nav-links a {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-xs);
-    color: var(--ink-800);
-    transition: color 200ms ease, text-shadow 200ms ease;
-  }
-  .nav-links a:hover { color: var(--cobalt-600); }
-
-  /* ---------- Nav dropdowns (desktop) ---------- */
-  .nav-item { position: relative; }
-  .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: none;
-    border: none;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-xs);
-    color: var(--ink-800);
-    cursor: pointer;
-    padding: 8px 0;
-    transition: color 200ms ease;
-  }
-  .nav-link:hover, .nav-item.is-open .nav-link { color: var(--cobalt-600); }
-  .nav-link-chevron { flex-shrink: 0; transition: transform 200ms ease; }
-  .nav-item.is-open .nav-link-chevron { transform: rotate(180deg); }
-
-  .nav-dropdown {
-    position: absolute;
-    top: calc(100% + 14px);
-    left: 50%;
-    transform: translateX(-50%) translateY(6px);
-    display: flex;
-    flex-direction: column;
-    background: var(--white);
-    border: 1px solid var(--border-subtle);
-    border-radius: 20px;
-    box-shadow: var(--shadow-3);
-    padding: 28px;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
-    z-index: 30;
-  }
-  .nav-dropdown-row { display: flex; gap: 36px; }
-  .nav-item.is-open .nav-dropdown {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-  }
-  .nav-dropdown-col { width: 230px; }
-  .nav-dropdown-col-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-3xs);
-    color: var(--text-muted);
-    margin-bottom: 12px;
-  }
-  .nav-dropdown-link {
-    display: block;
-    padding: 8px 10px;
-    margin: 0 -10px;
-    border-radius: 10px;
-    transition: background 150ms ease;
-  }
-  .nav-dropdown-link:hover { background: var(--surface-sunken); }
-  .nav-dropdown-link-title {
-    display: block;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-xs);
-    color: var(--ink-800);
-  }
-  .nav-dropdown-link:hover .nav-dropdown-link-title { color: var(--cobalt-600); }
-  .nav-dropdown-link-desc {
-    display: block;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-3xs);
-    color: var(--slate-500);
-    margin-top: 2px;
-  }
-  .nav-dropdown-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 12px; }
-  .nav-dropdown-foot {
-    display: block;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border-subtle);
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-3xs);
-    color: var(--cobalt-600);
-  }
-  .nav-dropdown-foot:hover { color: var(--cobalt-500); }
-
-  .nav-cta {
-    background: var(--cobalt-500);
-    color: var(--white);
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-xs);
-    border: none;
-    border-radius: 9999px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
-    white-space: nowrap;
-  }
-  .nav-cta:hover, .nav-cta:active {
-    background: var(--ink-800);
-    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
-    transform: translateY(-2px);
-  }
-
-  .nav-desktop-cta { display: none; }
-
-  .nav-hamburger {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid var(--mist-200);
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  .nav-hamburger span {
-    width: 18px;
-    height: 1.5px;
-    background: var(--ink-800);
-    display: block;
-  }
-
-  .nav-mobile-panel {
-    position: relative;
-    z-index: 1;
-    display: none;
-    flex-direction: column;
-    gap: 16px;
-    background: var(--white);
-    border-bottom: 1px solid var(--mist-200);
-    padding: 16px 20px;
-  }
-  .nav-mobile-panel.is-open { display: flex; }
-  .nav-mobile-panel a {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-body);
-    color: var(--ink-800);
-  }
-  .nav-mobile-cta { width: 100%; text-align: center; }
-
-  .nav-mobile-item { border-bottom: 1px solid var(--mist-200); }
-  .nav-mobile-item:last-of-type { border-bottom: none; }
-  .nav-mobile-link {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: none;
-    border: none;
-    padding: 12px 0;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-body);
-    color: var(--ink-800);
-    cursor: pointer;
-  }
-  .nav-mobile-chevron { flex-shrink: 0; transition: transform 200ms ease; }
-  .nav-mobile-item.is-open .nav-mobile-chevron { transform: rotate(180deg); }
-  .nav-mobile-submenu { max-height: 0; overflow: hidden; transition: max-height 250ms ease; }
-  .nav-mobile-submenu-inner { padding: 2px 0 16px; display: flex; flex-direction: column; gap: 14px; }
-  .nav-mobile-submenu-inner a { display: block; }
-  .nav-mobile-sublink-title {
-    display: block;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-2xs);
-    color: var(--ink-800);
-  }
-  .nav-mobile-sublink-desc {
-    display: block;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-3xs);
-    color: var(--slate-500);
-    margin-top: 2px;
-  }
-  .nav-mobile-sublink-title:hover { color: var(--cobalt-600); }
-
-  /* Six links plus a logo and CTA do not fit until ~1024px; below that the
-     desktop CTA was rendering off the right edge of the viewport. */
-  @media (min-width: 1024px) {
-    .nav-logo { height: 36px; }
-    .nav-links { display: flex; }
-    .nav-desktop-cta { display: inline-block; }
-    .nav-hamburger { display: none; }
-    .nav-mobile-panel { display: none !important; }
-  }
-
-  /* ---------- Hero ---------- */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    min-height: 100svh;
-    overflow: hidden;
-    isolation: isolate;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 20px;
-  }
-  @media (min-width: 640px) { .hero { padding: 0 32px; } }
-  @media (min-width: 1024px) { .hero { padding: 0 48px; } }
-
-  .hero-video {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    filter: brightness(1.15) contrast(0.8) saturate(0.75) sepia(0.05);
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    background: rgba(255,255,255,0.3);
-  }
-
-  .hero-inner {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 640px;
-  }
-
-  .hero-eyebrow {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-2xs);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-800);
-    filter: blur(3px);
-    opacity: 0;
-    animation: eyebrowFade 500ms ease-out 100ms forwards;
-  }
-  @keyframes eyebrowFade { to { opacity: 1; } }
-
-  .hero-badges-grid {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px 32px;
-    width: 100%;
-    opacity: 0;
-    animation: badgeRowFade 500ms ease-out 100ms forwards;
-  }
-  @media (max-width: 639px) {
-    .hero-badges-grid { justify-content: center; }
-  }
-  @keyframes badgeRowFade {
-    from { opacity: 0; filter: blur(3px); }
-    to { opacity: 1; filter: blur(0); }
-  }
-  .hero-badge-img { height: 96px; width: auto; object-fit: contain; display: block; }
-
-  .hero-headline {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h1);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    color: var(--ink-800);
-    min-height: 2.4em;
-    margin-top: 16px;
-  }
-
-  .blink-cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1em;
-    background: var(--ink-800);
-    vertical-align: middle;
-    margin-left: 2px;
-    animation: blink 1s step-end infinite;
-  }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-  .hero-subhead {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-lg);
-    line-height: 1.6;
-    color: var(--ink-600);
-    max-width: 480px;
-    margin-top: 20px;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 400ms ease, transform 400ms ease;
-  }
-  .hero-subhead.is-visible { opacity: 1; transform: translateY(0); }
-
-  .hero-bottom-row {
-    margin-top: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  @media (min-width: 1024px) {
-    .hero-bottom-row {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-    }
-  }
-
-  .hero-cta-row {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    gap: 16px;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 400ms ease, transform 400ms ease;
-  }
-  @media (min-width: 640px) { .hero-cta-row { flex-direction: row; } }
-  .hero-cta-row.is-visible { opacity: 1; transform: translateY(0); }
-
-  .hero-cta-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    white-space: nowrap;
-    background: var(--cobalt-500);
-    color: var(--white);
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-sm);
-    border: none;
-    border-radius: 9999px;
-    padding: 14px 28px;
-    cursor: pointer;
-    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
-  }
-  .hero-cta-primary:hover, .hero-cta-primary:active {
-    background: var(--ink-800);
-    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
-    transform: translateY(-2px);
-  }
-
-  .hero-cta-secondary {
-    flex-shrink: 0;
-    white-space: nowrap;
-    background: var(--white);
-    color: var(--ink-800);
-    border: none;
-    border-radius: 9999px;
-    padding: 13px 27px;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-sm);
-    cursor: pointer;
-    box-shadow: 0 0 0 0.5px rgba(5,26,36,0.05), 0 4px 16px rgba(5,26,36,0.08);
-    transition: background 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 150ms ease;
-  }
-  .hero-cta-secondary:hover, .hero-cta-secondary:active {
-    background: var(--ink-800);
-    color: var(--white);
-    box-shadow: 0 6px 16px rgba(5,26,36,0.2);
-    transform: translateY(-2px);
-  }
-
-  /* ---------- Metrics ---------- */
-  .metrics {
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-    padding: var(--space-12) var(--section-px);
-  }
-
-  .metrics-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  @media (min-width: 768px) { .metrics-inner { grid-template-columns: repeat(5, 1fr); } }
-
-  .metric-card {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 500ms ease-out, transform 500ms ease-out;
-  }
-  .metric-card.is-visible { opacity: 1; transform: translateY(0); }
-
-  .metric-eyebrow {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-3xs);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--slate-400);
-    margin-bottom: 8px;
-  }
-
-  .metric-value {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-  }
-  .metric-value-accent { color: var(--cobalt-500); }
-
-  /* ---------- Global Delivery Map ---------- */
-  .global-delivery {
-    padding: var(--section-py) var(--section-px);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 500ms ease-out, transform 500ms ease-out;
-  }
-  .global-delivery.is-visible { opacity: 1; transform: translateY(0); }
-
-  .global-delivery-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h3);
-    color: var(--ink-800);
-    margin-bottom: 12px;
-  }
-  .global-delivery-subhead {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-md);
-    line-height: 1.6;
-    color: var(--slate-500);
-    max-width: 480px;
-    margin-bottom: 40px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .dotted-map-wrap { overflow-x: auto; overflow-y: hidden; }
-  .dotted-map { width: 100%; min-width: 600px; height: auto; display: block; }
-  .map-world { fill: var(--slate-400); }
-  .map-marker-ring { fill: var(--white); stroke: var(--cobalt-500); stroke-width: 2.5; }
-  .map-marker-flag { font-size: 20px; text-anchor: middle; dominant-baseline: central; }
-  .map-marker-pill { fill: var(--mist-100); }
-  .map-marker-label {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-xs);
-    fill: var(--ink-600);
-    text-anchor: middle;
-    dominant-baseline: central;
-  }
-
-  /* ---------- Shared section utilities ---------- */
-  .section-container { max-width: var(--container); margin: 0 auto; }
-  .section-padded { padding: var(--section-py) var(--section-px); }
-
-  /* ============================================================
-     SURFACE SYSTEM
-     Three roles only. Sections are assigned a role below, which
-     produces the page's light / dark rhythm. Hairline rules are
-     used only where two same-coloured surfaces meet.
-     ============================================================ */
-
-  /* -- Base: plain paper -- */
-  .logo-wall, .partners, .industries, .insights, .metrics, .global-delivery, .site-footer {
-    background: var(--surface-base);
-  }
-
-  /* -- Sunken: tinted, recedes -- */
-  .services, .proof-story, .testimonials, .faq {
-    position: relative;
-    background:
-      radial-gradient(115% 75% at 12% 0%, rgba(22,104,240,0.16) 0%, rgba(22,104,240,0) 58%),
-      var(--surface-sunken);
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  /* -- Inverse: the feature moments -- */
-  .pain-band, .ai-automation, .final-cta-band {
-    position: relative;
-    background:
-      radial-gradient(85% 65% at 88% 2%,  rgba(74,141,255,0.20) 0%, rgba(74,141,255,0) 60%),
-      radial-gradient(70% 60% at 4% 100%, rgba(22,104,240,0.16) 0%, rgba(22,104,240,0) 58%),
-      var(--surface-inverse);
-    color: var(--text-on-inverse);
-  }
-
-  /* Boundary hairlines: only between two base surfaces. */
-  .metrics + .global-delivery,
-  .industries + .insights { border-top: 1px solid var(--border-subtle); }
-
-  /* ---------- Shared section heading rhythm ---------- */
-  .section-title {
-    font-size: var(--fs-h2);
-    font-weight: var(--fw-medium);
-    line-height: var(--lh-snug);
-    letter-spacing: var(--tracking-snug);
-  }
-  .section-lede {
-    font-size: var(--fs-md);
-    line-height: var(--lh-relaxed);
-    color: var(--text-secondary);
-    max-width: 62ch;
-  }
-  .pain-band .section-lede,
-  .ai-automation .section-lede,
-  .final-cta-band .section-lede { color: var(--text-on-inverse-secondary); }
-
-  .text-reveal-word {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 800ms ease-out, transform 800ms ease-out;
-  }
-  .text-reveal-word.is-visible { opacity: 1; transform: translateY(0); }
-
-  .cta-pulsate { position: relative; }
-  .cta-pulsate::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    box-shadow: 0 0 0 0 rgba(5, 26, 36, 0.45);
-    animation: ctaPulse 2s ease-out infinite;
-    pointer-events: none;
-  }
-  @keyframes ctaPulse {
-    0% { box-shadow: 0 0 0 0 rgba(5, 26, 36, 0.45); }
-    70% { box-shadow: 0 0 0 14px rgba(5, 26, 36, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(5, 26, 36, 0); }
-  }
-
-  /* ---------- Client Logo Wall ---------- */
-  .logo-wall {
-    padding: var(--space-20) var(--section-px);
-    overflow: hidden;
-  }
-
-  .logo-wall-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .logo-wall-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  @media (min-width: 768px) { .logo-wall-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .logo-wall-grid { grid-template-columns: repeat(3, 1fr); } }
-
-  .logo-col {
-    height: 360px;
-    overflow: hidden;
-    position: relative;
-    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-  }
-
-  .logo-col-track {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 48px;
-  }
-  .logo-col:hover .logo-col-track { animation-play-state: paused; }
-
-  .logo-col-1 .logo-col-track { animation: scrollUp 44s linear infinite; }
-  .logo-col-2 .logo-col-track { animation: scrollDown 56s linear infinite; }
-  .logo-col-3 .logo-col-track { animation: scrollUp 50s linear infinite; }
-
-  @keyframes scrollUp { from { transform: translateY(0); } to { transform: translateY(-50%); } }
-  @keyframes scrollDown { from { transform: translateY(-50%); } to { transform: translateY(0); } }
-
-  .logo-col img {
-    height: 32px;
-    width: auto;
-    object-fit: contain;
-    filter: grayscale(0%) opacity(1);
-    transition: filter 300ms ease;
-  }
-  .logo-col img:hover { filter: grayscale(100%) opacity(0.6); }
-
-  /* ---------- Services Framework ---------- */
-  .services { position: relative; }
-
-  .services-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-    margin-bottom: 8px;
-  }
-  .services-subhead {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-body);
-    color: var(--slate-500);
-    margin-bottom: 48px;
-    text-align: center;
-    max-width: 62ch;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* ============================================================
-     METHOD CARDS - horizontal accordion
-     One panel expanded at a time. Desktop: hover to switch, click
-     or Enter/Space also expand (so touch and keyboard reach every
-     phase, which plain :hover could not do). Mobile: no accordion,
-     all four panels render open and stacked.
-     ============================================================ */
-  .service-panels {
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    /* Sized to the tallest real content (~444px, measured at the
-       narrowest row-layout width, 900px) plus the panel's own 30px
-       top/bottom padding and a small buffer - not an arbitrary round
-       number. Shorter cards (fewer lines at wider widths) no longer
-       get stretched to match. */
-    height: 530px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .service-panel {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(16px);
-    transition: flex 450ms cubic-bezier(.2,.7,.3,1), opacity 500ms ease-out, transform 400ms cubic-bezier(.2,.7,.3,1);
-  }
-  .service-panel.is-visible { opacity: 1; transform: translateY(0); }
-
-  /* Photography sits behind the copy as texture, not subject matter. */
-  .service-panel::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    background-image: var(--panel-img);
-    background-size: cover;
-    background-position: center;
-    opacity: 0.24;
-    transition: opacity 400ms ease;
-  }
-  .service-panel::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(180deg,
-      rgba(7,24,32,0.55) 0%,
-      rgba(7,24,32,0.88) 60%,
-      rgba(7,24,32,0.97) 100%);
-  }
-  .service-panel:not(.expanded):hover::before,
-  .service-panel:not(.expanded):focus-visible::before { opacity: 0.34; }
-
-  .service-panel[data-panel-index="0"] { --panel-img: url('https://images.unsplash.com/photo-1764690690771-b4522d66b433?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .service-panel[data-panel-index="1"] { --panel-img: url('https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .service-panel[data-panel-index="2"] { --panel-img: url('https://images.unsplash.com/photo-1633265486064-086b219458ec?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .service-panel[data-panel-index="3"] { --panel-img: url('https://images.unsplash.com/photo-1767424412548-1a1ac7f4b9bc?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-
-  .service-panel.expanded {
-    flex: 3.4;
-    align-items: stretch;
-    justify-content: flex-end;
-    padding: 30px 36px;
-    cursor: default;
-  }
-
-  /* ---- Collapsed: vertical rail ----
-     Bumped well past --fs-xs: at 500px of card height there is no
-     risk of the longest label ("04 · Activate") running out of
-     room, so there is no reason for this to read as a caption. */
-  .service-panel-collapsed-label {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-weight: var(--fw-medium);
-    font-size: calc(clamp(1.375rem, 1.9vw, 1.875rem) * var(--fs-ratio));
-    letter-spacing: 0.01em;
-    color: #FFFFFF;
-    white-space: nowrap;
-  }
-  .service-panel.expanded .service-panel-collapsed-label { display: none; }
-
-  /* ---- Expanded: full content stack ---- */
-  .service-panel-content { display: none; flex-direction: column; height: 100%; }
-  .service-panel.expanded .service-panel-content { display: flex; }
-
-  /* Bigger and less faint - at 0.2 this was nearly invisible against
-     the dark scrim, which is why it read as "no contrast." */
-  .service-phase-num {
-    position: absolute;
-    top: 22px;
-    right: 30px;
-    font-weight: var(--fw-medium);
-    font-size: calc(clamp(2.5rem, 4vw, 3.5rem) * var(--fs-ratio));
-    line-height: 1;
-    color: rgba(255,255,255,0.4);
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .service-panel-title {
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h3);
-    line-height: var(--lh-snug);
-    color: #FFFFFF;
-    padding-right: 92px;
-  }
-  .service-panel-rule {
-    width: 44px;
-    height: 3px;
-    background: var(--accent-400);
-    margin: 12px 0 16px;
-    flex-shrink: 0;
-  }
-
-  .service-panel-outcome {
-    font-size: var(--fs-md);
-    line-height: 1.5;
-    color: rgba(255,255,255,0.9);
-    max-width: 500px;
-    margin-bottom: 20px;
-  }
-
-  .service-work-label {
-    font-size: var(--fs-2xs);
-    color: rgba(255,255,255,0.58);
-    margin-bottom: 8px;
-  }
-
-  .service-panel-accelerators {
-    /* No longer margin-bottom:auto. That forced "You walk away with"
-       to the card's bottom edge, so shorter cards showed a large,
-       unexplained gap between the last bullet and the deliverable
-       line instead of the two sitting close together. */
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .service-panel-accelerators li {
-    position: relative;
-    padding-left: 18px;
-    font-size: var(--fs-sm);
-    line-height: 1.5;
-    color: rgba(255,255,255,0.82);
-    max-width: 480px;
-  }
-  .service-panel-accelerators li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.65em;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent-400);
-  }
-
-  .service-deliverable {
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px solid rgba(255,255,255,0.14);
-  }
-  .service-deliverable-label {
-    font-size: var(--fs-2xs);
-    color: rgba(255,255,255,0.58);
-    margin-bottom: 6px;
-  }
-  .service-deliverable-text {
-    font-size: var(--fs-md);
-    font-weight: var(--fw-medium);
-    line-height: 1.4;
-    color: #FFFFFF;
-  }
-
-  .services-delivery-note {
-    font-style: italic;
-    font-size: var(--fs-xs);
-    color: var(--text-secondary);
-    margin-top: 28px;
-  }
-
-  @media (max-width: 899px) {
-    .service-panels { flex-direction: column; height: auto; }
-    .service-panel {
-      flex: none;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-end;
-      padding: 32px 26px;
-      cursor: default;
-    }
-    .service-panel-collapsed-label { display: none; }
-    .service-panel-content { display: flex; }
-    .service-panel::before { opacity: 0.24 !important; }
-  }
-
-  /* ---------- AI & Automation ---------- */
-  .ai-automation { position: relative; }
-
-  .ai-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-    max-width: 640px;
-    margin-bottom: 16px;
-  }
-  .ai-spotlight {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-md);
-    line-height: 1.6;
-    color: var(--ink-600);
-    max-width: 620px;
-    margin-bottom: 48px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .ai-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-  @media (min-width: 1024px) { .ai-layout { grid-template-columns: 0.85fr 1.15fr; } }
-
-  .step-list { display: flex; flex-direction: column; gap: 4px; }
-
-  .step-item {
-    padding: 18px 20px;
-    cursor: pointer;
-    border-radius: 16px;
-    border: 1px solid transparent;
-    transition: background 200ms ease, padding 250ms ease, border-color 250ms ease, border-radius 250ms ease, box-shadow 250ms ease;
-  }
-  .step-item:hover:not(.expanded) { background: var(--paper); }
-
-  /* Numeral echoes the phase-numeral treatment already used on the
-     methodology cards above this section, and matches the numeral
-     drawn into each diagram on the right. */
-  .step-head {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    transition: margin-bottom 250ms ease;
-  }
-  .step-num {
-    flex-shrink: 0;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-sm);
-    color: var(--accent-400);
-  }
-
-  .step-title {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-body);
-    color: var(--slate-500);
-    transition: color 250ms ease;
-  }
-
-  .step-description, .progress-track { display: none; }
-
-  .step-item.expanded {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 24px 28px;
-    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
-  }
-  .step-item.expanded .step-head { margin-bottom: 10px; }
-  .step-item.expanded .step-title { color: var(--ink-800); }
-  .step-item.expanded .step-description {
-    display: block;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-xs);
-    line-height: 1.6;
-    color: var(--ink-600);
-    margin-bottom: 16px;
-  }
-  .step-item.expanded .progress-track { display: block; }
-
-  .progress-track {
-    height: 3px;
-    width: 100%;
-    background: var(--mist-200);
-    border-radius: 9999px;
-    overflow: hidden;
-    margin-top: 4px;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--cobalt-500);
-    border-radius: 9999px;
-    width: 0%;
-  }
-
-  .diagram-card {
-    position: relative;
-    background: var(--white);
-    border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
-    aspect-ratio: 4/3;
-    overflow: hidden;
-  }
-  .step-visual {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 400ms ease;
-  }
-  .step-visual.active { opacity: 1; }
-
-  /* ---- Diagram line-art (replaces unrelated stock photography) ----
-     Shared utility classes so all five diagrams read as one family
-     and retint automatically if --accent-400 changes via the theme
-     editor, instead of five independently hard-coded illustrations. */
-  .d-line { fill: none; stroke: rgba(255,255,255,0.32); stroke-width: 2; stroke-linecap: round; }
-  .d-line-strong { fill: none; stroke: rgba(255,255,255,0.55); stroke-width: 2.5; stroke-linecap: round; }
-  .d-accent-line { fill: none; stroke: var(--accent-400); stroke-width: 2.5; stroke-linecap: round; }
-  .d-node { fill: rgba(255,255,255,0.10); stroke: rgba(255,255,255,0.55); stroke-width: 1.75; }
-  .d-node-active { fill: var(--accent-400); stroke: var(--accent-400); }
-  .d-bin-low { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.35); stroke-width: 1.5; }
-  .d-bin-med { fill: rgba(255,255,255,0.09); stroke: rgba(255,255,255,0.45); stroke-width: 1.5; }
-  .d-bin-high { fill: rgba(74,141,255,0.16); stroke: var(--accent-400); stroke-width: 1.75; }
-  .d-num { font-family: var(--font-sans); font-weight: var(--fw-medium); font-size: 20px; fill: rgba(255,255,255,0.24); }
-
-  /* ---- Playback controls, overlaid on the diagram card ---- */
-  .step-controls {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 18px;
-    background: linear-gradient(to top, rgba(7,24,32,0.6) 0%, rgba(7,24,32,0) 100%);
-  }
-  .step-pause-btn {
-    flex-shrink: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.32);
-    background: rgba(255,255,255,0.08);
-    color: #FFFFFF;
-    cursor: pointer;
-    transition: background 150ms ease, border-color 150ms ease;
-  }
-  .step-pause-btn:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); }
-  .step-pause-btn .icon-play { display: none; }
-  .step-pause-btn.is-paused .icon-pause { display: none; }
-  .step-pause-btn.is-paused .icon-play { display: block; }
-
-  .step-dots { display: flex; align-items: center; gap: 8px; }
-  .step-dot {
-    width: 8px;
-    height: 8px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.32);
-    cursor: pointer;
-    transition: background 200ms ease, transform 200ms ease;
-  }
-  .step-dot:hover { background: rgba(255,255,255,0.55); }
-  .step-dot.active { background: var(--accent-400); transform: scale(1.3); }
-
-  .ai-proof {
-    margin-top: 16px;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-xs);
-    line-height: 1.5;
-    color: var(--text-on-inverse-secondary);
-    max-width: 480px;
-  }
-  .ai-proof-source { color: rgba(255,255,255,0.62); }
-
-  /* ---------- Flagship Proof Story ---------- */
-  .proof-story {
-    position: relative;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 500ms ease-out, transform 500ms ease-out;
-  }
-  .proof-story.is-visible { opacity: 1; transform: translateY(0); }
-
-  .proof-story-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-    margin-bottom: 12px;
-  }
-  .proof-story-lede {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-md);
-    color: var(--slate-500);
-    max-width: 560px;
-    margin-bottom: 40px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .proof-story-inner {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-  @media (min-width: 1024px) {
-    .proof-story-inner { grid-template-columns: 0.9fr 1.1fr; }
-  }
-
-  /* ---- Carousel: one .proof-slide active at a time ---- */
-  .proof-slide { display: none; }
-  .proof-slide.active { display: block; }
-
-  .proof-tag {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-3xs);
-    color: var(--accent-600);
-    background: var(--accent-100);
-    padding: 4px 12px;
-    border-radius: var(--radius-pill);
-    margin-bottom: 12px;
-  }
-
-  .proof-controls {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-top: 32px;
-  }
-  .proof-pause-btn {
-    flex-shrink: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid var(--border-strong);
-    background: var(--surface-base);
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: background 150ms ease, border-color 150ms ease;
-  }
-  .proof-pause-btn:hover { background: var(--surface-sunken); border-color: var(--text-muted); }
-  .proof-pause-btn .icon-play { display: none; }
-  .proof-pause-btn.is-paused .icon-pause { display: none; }
-  .proof-pause-btn.is-paused .icon-play { display: block; }
-
-  .proof-dots { display: flex; align-items: center; gap: 8px; }
-  .proof-dot {
-    width: 8px;
-    height: 8px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: var(--border-strong);
-    cursor: pointer;
-    transition: background 200ms ease, transform 200ms ease;
-  }
-  .proof-dot:hover { background: var(--text-muted); }
-  .proof-dot.active { background: var(--accent-500); transform: scale(1.3); }
-
-  .proof-number {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-display);
-    color: var(--cobalt-500);
-    line-height: 1;
-    margin-top: 16px;
-  }
-  .proof-caption {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-sm);
-    color: var(--slate-500);
-    margin-top: 8px;
-  }
-
-  .proof-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 40px;
-    border-left: 4px solid var(--cobalt-500);
-    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
-  }
-  .proof-quote {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-body);
-    line-height: 1.65;
-    color: var(--ink-800);
-  }
-  .proof-link {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-xs);
-    color: var(--cobalt-500);
-    text-decoration: none;
-    margin-top: 20px;
-    display: inline-block;
-  }
-  .proof-link:hover { text-decoration: underline; }
-
-  /* ---------- Pain-Led Narrative Band ---------- */
-  .pain-band {
-    opacity: 0;
-    transform: scale(0.98);
-    transition: opacity 700ms ease-out, transform 700ms ease-out;
-  }
-  .pain-band.is-visible { opacity: 1; transform: scale(1); }
-
-  .pain-eyebrow { color: var(--slate-300); }
-
-  .pain-statement {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h3);
-    line-height: 1.3;
-    color: var(--paper);
-    max-width: 720px;
-    margin-bottom: 48px;
-  }
-
-  .pain-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-  @media (min-width: 640px) { .pain-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
-  @media (min-width: 1024px) { .pain-grid { grid-template-columns: repeat(4, 1fr); } }
-
-  .pain-card {
-    display: flex;
-    flex-direction: column;
-    padding: 28px 24px;
-    background: rgba(255,255,255,0.035);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 20px;
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 600ms ease-out, transform 600ms ease-out;
-  }
-  .pain-band.is-visible .pain-card { opacity: 1; transform: translateY(0); }
-  .pain-band.is-visible .pain-card:nth-child(1) { transition-delay: 120ms; }
-  .pain-band.is-visible .pain-card:nth-child(2) { transition-delay: 220ms; }
-  .pain-band.is-visible .pain-card:nth-child(3) { transition-delay: 320ms; }
-  .pain-band.is-visible .pain-card:nth-child(4) { transition-delay: 420ms; }
-
-  .pain-stat {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    line-height: 1;
-    color: var(--paper);
-    letter-spacing: -0.01em;
-  }
-  .pain-stat-rule {
-    width: 32px;
-    height: 2px;
-    background: rgba(255,255,255,0.35);
-    margin: 16px 0;
-  }
-  .pain-card-label {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-2xs);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--paper);
-    margin-bottom: 12px;
-  }
-  .pain-card-desc {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-sm);
-    line-height: 1.55;
-    color: var(--slate-300);
-    margin-bottom: 20px;
-  }
-  .pain-card-source {
-    margin-top: auto;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-3xs);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--slate-300);
-  }
-
-  .pain-answer {
-    padding: 28px 32px;
-    background: rgba(255,255,255,0.05);
-    border-left: 2px solid var(--paper);
-    border-radius: 4px 16px 16px 4px;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-md);
-    line-height: 1.6;
-    color: var(--slate-300);
-    max-width: 860px;
-  }
-  .pain-answer strong { font-weight: var(--fw-medium); color: var(--text-on-inverse); }
-
-  @media (prefers-reduced-motion: reduce) {
-    .pain-band, .pain-card { transition: none; }
-    .pain-card { opacity: 1; transform: none; }
-  }
-
-  /* ---------- Industries ---------- */
-  .industries { position: relative; }
-  .industries-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-    margin-bottom: 40px;
-  }
-  .industries-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  @media (min-width: 640px) { .industries-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .industries-grid { grid-template-columns: repeat(3, 1fr); } }
-
-  .industry-card {
-    perspective: 1200px;
-    height: 260px;
-    opacity: 0;
-    transform: translateY(16px);
-    filter: drop-shadow(0 4px 16px rgba(5,26,36,0.08));
-    transition: opacity 500ms ease-out, transform 200ms ease, filter 200ms ease;
-  }
-  .industry-card.is-visible { opacity: 1; transform: translateY(0); }
-
-  .industry-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 600ms cubic-bezier(0.4,0,0.2,1), box-shadow 200ms ease;
-    transform-style: preserve-3d;
-  }
-  .industry-card:hover .industry-card-inner { transform: rotateY(180deg); }
-  .industry-card:hover { filter: drop-shadow(0 8px 24px rgba(5,26,36,0.14)); }
-
-  .industry-card-front, .industry-card-back {
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    backface-visibility: hidden;
-    overflow: hidden;
-  }
-
-  .industry-card-front {
-    background-color: var(--mist-100);
-    background-image: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 25%, rgba(255,255,255,0) 55%), var(--industry-img);
-    background-size: cover, cover;
-    background-position: center, center 25%;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: flex-end;
-    padding: 24px;
-  }
-  .industry-card-name {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-lg);
-    color: var(--ink-800);
-  }
-
-  .industry-card-back {
-    background: var(--white);
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transform: rotateY(180deg);
-  }
-
-  .industry-card[data-industry="healthcare"] { --industry-img: url('https://images.unsplash.com/photo-1516841273335-e39b37888115?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="financial-services"] { --industry-img: url('https://images.unsplash.com/photo-1457059315558-e754285e416b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="insurance"] { --industry-img: url('https://images.unsplash.com/photo-1763729805496-b5dbf7f00c79?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="manufacturing"] { --industry-img: url('https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="retail-cpg"] { --industry-img: url('https://images.unsplash.com/photo-1759323321196-2813db509285?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="public-sector"] { --industry-img: url('https://images.unsplash.com/photo-1768399808130-abac2a8442e0?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-
-  .industry-title {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-lg);
-    color: var(--ink-800);
-    margin-bottom: 10px;
-  }
-  .industry-desc {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-xs);
-    line-height: 1.55;
-    color: var(--slate-500);
-  }
-  .industry-link {
-    display: inline-block;
-    margin-top: 12px;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-2xs);
-    color: var(--cobalt-500);
-    text-decoration: none;
-    transition: text-decoration 150ms ease;
-  }
-  .industry-link:hover { text-decoration: underline; }
-
-  @media (hover: none), (pointer: coarse) {
-    .industry-card { height: auto; }
-    .industry-card-inner { transform: none !important; }
-    .industry-card-front { display: none; }
-    .industry-card-back { position: relative; transform: none; }
-  }
-
-  /* ---------- Testimonials ---------- */
-  .testimonials { position: relative; }
-  .testimonials-header { margin-bottom: 40px; }
-
-  .testimonials-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-  }
-
-  .testimonial-carousel {
-    display: grid;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-  .testimonial-slide {
-    grid-area: 1 / 1;
-    opacity: 0;
-    transform: translateX(40px);
-    transition: opacity 600ms ease, transform 600ms ease;
-    pointer-events: none;
-  }
-  .testimonial-slide.active {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-    z-index: 2;
-  }
-  .testimonial-slide.prev { transform: translateX(-40px); }
-
-  .testimonial-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-top: 32px;
-  }
-  .testimonial-pause-btn {
-    flex-shrink: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid var(--border-strong);
-    background: var(--surface-base);
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: background 150ms ease, border-color 150ms ease;
-  }
-  .testimonial-pause-btn:hover { background: var(--surface-sunken); border-color: var(--text-muted); }
-  .testimonial-pause-btn .icon-play { display: none; }
-  .testimonial-pause-btn.is-paused .icon-pause { display: none; }
-  .testimonial-pause-btn.is-paused .icon-play { display: block; }
-
-  .testimonial-dots { display: flex; align-items: center; gap: 8px; }
-  .testimonial-dot {
-    width: 8px;
-    height: 8px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: var(--border-strong);
-    cursor: pointer;
-    transition: background 200ms ease, transform 200ms ease;
-  }
-  .testimonial-dot:hover { background: var(--text-muted); }
-  .testimonial-dot.active { background: var(--accent-500); transform: scale(1.3); }
-
-  .testimonial-mini-card {
-    width: 100%;
-    background: var(--white);
-    border-radius: 28px;
-    padding: 40px 44px;
-    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
-    transition: box-shadow 200ms ease, transform 200ms ease;
-  }
-  .testimonial-mini-card:hover { box-shadow: 0 8px 24px rgba(5,26,36,0.14); transform: translateY(-2px); }
-  .testimonial-mini-quote {
-    position: relative;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-md);
-    line-height: 1.6;
-    color: var(--ink-800);
-  }
-  .testimonial-mini-quote::before {
-    content: '\201C';
-    display: block;
-    font-family: Georgia, serif;
-    font-size: var(--fs-h2);
-    line-height: 1;
-    color: var(--slate-400);
-    margin-bottom: 4px;
-  }
-  .testimonial-mini-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 16px;
-  }
-  .testimonial-mini-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--cobalt-100);
-    color: var(--ink-800);
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .testimonial-mini-name {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-2xs);
-    color: var(--ink-800);
-  }
-  .testimonial-mini-company {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-3xs);
-    color: var(--slate-500);
-  }
-  .testimonial-mini-company::before { content: '\2192  '; }
-
-  /* ---------- Partner Ecosystem ---------- */
-  .partners { position: relative; }
-  .partners-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-    margin-bottom: 40px;
-  }
-  .partners-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  @media (min-width: 640px) { .partners-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .partners-grid { grid-template-columns: repeat(5, 1fr); } }
-
-  .partner-card {
-    position: relative;
-    overflow: hidden;
-    height: 132px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--white);
-    border-radius: 18px;
-    padding: 18px;
-    text-align: left;
-    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
-    transition: transform 200ms ease, box-shadow 200ms ease;
-  }
-  .partner-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(5,26,36,0.14);
-  }
-  .partner-logo { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .partner-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    padding: 18px;
-    background: var(--white);
-    opacity: 0;
-    transition: opacity 200ms ease;
-    pointer-events: none;
-  }
-  .partner-card:hover .partner-overlay { opacity: 1; }
-  .partner-blurb {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-2xs);
-    line-height: 1.5;
-    color: var(--slate-500);
-  }
-  .partners-show-more {
-    display: none;
-    margin: 32px auto 0;
-    background: var(--white);
-    border: 1px solid var(--mist-200);
-    border-radius: 9999px;
-    padding: 12px 28px;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-xs);
-    color: var(--ink-800);
-    cursor: pointer;
-    transition: background 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 150ms ease;
-  }
-  .partners-show-more:hover, .partners-show-more:active {
-    background: var(--ink-800);
-    color: var(--white);
-    border-color: var(--ink-800);
-    box-shadow: 0 6px 16px rgba(5,26,36,0.2);
-    transform: translateY(-2px);
-  }
-  @media (min-width: 1024px) {
-    .partner-card-extra { display: none; }
-    .partners-grid.is-expanded .partner-card-extra { display: flex; }
-    .partners-show-more { display: block; }
-  }
-
-  /* ---------- FAQ ---------- */
-  .faq { position: relative; }
-
-  .faq-inner {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  @media (min-width: 1024px) {
-    .faq-inner { grid-template-columns: 320px 1fr; gap: 64px; }
-  }
-
-  .faq-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-  }
-  .faq-item { border-bottom: 1px solid var(--mist-200); padding: 20px 0; }
-  .faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    cursor: pointer;
-  }
-  .faq-question span {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-body);
-    color: var(--ink-800);
-  }
-  .faq-chevron { width: 16px; height: 16px; flex-shrink: 0; transition: transform 250ms ease; }
-  .faq-item.is-open .faq-chevron { transform: rotate(180deg); }
-  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 300ms ease; }
-  .faq-item.is-open .faq-answer { padding-top: 12px; }
-  .faq-answer p {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-sm);
-    line-height: 1.6;
-    color: var(--slate-500);
-  }
-
-  /* ---------- Insights & News ---------- */
-  .insights { position: relative; }
-  .insights-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-    margin-bottom: 40px;
-  }
-  .insights-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  @media (min-width: 640px) { .insights-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) {
-    .insights-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; }
-    .insight-card-featured { grid-column: span 2; grid-row: span 2; }
-    .insight-card-featured .insight-media { aspect-ratio: 16/9; }
-    .insight-card-featured .insight-title { font-size: var(--fs-h4); }
-    .insight-card-featured .insight-overlay { padding: 28px; }
-    .insight-card-wide { grid-column: span 2; }
-    .insight-card-wide .insight-media { aspect-ratio: 21/9; }
-  }
-
-  .insight-card {
-    background: var(--white);
-    border-radius: 20px;
-    height: 100%;
-    overflow: hidden;
-    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
-    transition: transform 200ms ease, box-shadow 200ms ease;
-  }
-  .insight-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(5,26,36,0.14); }
-  .insight-media {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 4/3;
-  }
-  .insight-thumb {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background: var(--mist-100);
-    display: block;
-  }
-  .insight-thumb-placeholder { object-fit: contain; padding: 28px; }
-  .insight-overlay {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(13,33,44,0.92) 0%, rgba(13,33,44,0.6) 55%, rgba(13,33,44,0) 100%);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-  .insight-tag {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-3xs);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--white);
-    background: var(--cobalt-500);
-    padding: 3px 8px;
-    margin-bottom: 10px;
-    width: fit-content;
-  }
-  .insight-title {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-body);
-    line-height: 1.3;
-    color: var(--white);
-  }
-  .insight-link {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-2xs);
-    color: var(--white);
-    opacity: 0.85;
-    text-decoration: none;
-    margin-top: 10px;
-    transition: opacity 150ms ease;
-  }
-  .insight-link:hover { text-decoration: underline; opacity: 1; }
-
-  .newsletter-band {
-    margin-top: 48px;
-    background: var(--white);
-    border-radius: 24px;
-    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  @media (min-width: 640px) { .newsletter-band { flex-direction: row; } }
-  .newsletter-copy {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-lg);
-    color: var(--ink-800);
-  }
-  .newsletter-form { display: flex; gap: 10px; }
-  .newsletter-input {
-    border: 1px solid var(--mist-200);
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-xs);
-    min-width: 240px;
-  }
-  .newsletter-input:focus { border-color: var(--cobalt-500); outline: none; }
-  .newsletter-submit {
-    background: var(--cobalt-500);
-    color: var(--white);
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-xs);
-    border: none;
-    border-radius: 9999px;
-    padding: 12px 22px;
-    cursor: pointer;
-    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
-    white-space: nowrap;
-  }
-  .newsletter-submit:hover, .newsletter-submit:active {
-    background: var(--ink-800);
-    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
-    transform: translateY(-2px);
-  }
-
-  /* ---------- Final CTA Band ---------- */
-  .final-cta-band {
-    padding: var(--section-py) var(--section-px);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    cursor: default;
-  }
-  .final-cta-eyebrow { margin-bottom: 16px; position: relative; z-index: 2; }
-  .final-cta-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
-    color: var(--ink-800);
-    margin-bottom: 28px;
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: 2;
-  }
-  .final-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--cobalt-500);
-    color: var(--white);
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-sm);
-    border: none;
-    border-radius: 9999px;
-    padding: 14px 32px;
-    cursor: pointer;
-    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
-    position: relative;
-    z-index: 2;
-  }
-  .final-cta-btn:hover {
-    background: var(--cobalt-600);
-    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
-    transform: translateY(-2px);
-  }
-  .final-cta-email {
-    margin-top: 16px;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-xs);
-    color: var(--slate-500);
-    position: relative;
-    z-index: 2;
-  }
-  .cta-trail-fragment { position: absolute; z-index: 1; }
-
-  /* ---------- Footer ---------- */
-  .site-footer {
-    background: var(--paper);
-    color: var(--ink-800);
-    padding: 64px 20px 32px;
-  }
-  .footer-top {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid var(--footer-line);
-  }
-  @media (min-width: 768px) { .footer-top { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .footer-top { grid-template-columns: 1.4fr repeat(4, 1fr); } }
-
-  .footer-logo { height: 28px; margin-bottom: 16px; display: block; }
-  .footer-tagline {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-xs);
-    color: var(--slate-500);
-    max-width: 240px;
-  }
-  .footer-newsletter { margin-top: 20px; display: flex; gap: 8px; }
-  .footer-newsletter-input {
-    background: var(--white);
-    border: 1px solid var(--footer-line);
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-2xs);
-    color: var(--ink-800);
-    min-width: 0;
-    flex: 1;
-  }
-  .footer-newsletter-input::placeholder { color: var(--slate-400); }
-  .footer-newsletter-input:focus { border-color: var(--cobalt-500); outline: none; }
-  .footer-newsletter-submit {
-    background: var(--cobalt-500);
-    color: var(--white);
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-2xs);
-    border: none;
-    border-radius: 9999px;
-    padding: 10px 16px;
-    cursor: pointer;
-    transition: background 150ms ease, box-shadow 200ms ease, transform 150ms ease;
-    white-space: nowrap;
-  }
-  .footer-newsletter-submit:hover, .footer-newsletter-submit:active {
-    background: var(--ink-800);
-    box-shadow: 0 6px 16px rgba(5,26,36,0.25);
-    transform: translateY(-2px);
-  }
-
-  .footer-col-heading {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-3xs);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--slate-500);
-    margin-bottom: 14px;
-  }
-  .footer-col a {
-    display: block;
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-xs);
-    color: var(--footer-link);
-    line-height: 2.2;
-    transition: opacity 150ms ease;
-  }
-  .footer-col a:hover { opacity: 0.7; }
-
-  .footer-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding-top: 24px; }
-  .footer-badge-img { height: 48px; width: auto; object-fit: contain; display: block; }
-
-  .footer-bottom {
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid var(--footer-line);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
-  @media (min-width: 640px) { .footer-bottom { flex-direction: row; } }
-  .footer-copyright {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-2xs);
-    color: var(--slate-500);
-  }
-  .footer-bottom-links { display: flex; gap: 20px; align-items: center; }
-  .footer-legal-link {
-    font-family: var(--font-sans);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-2xs);
-    color: var(--slate-500);
-    transition: opacity 150ms ease;
-  }
-  .footer-legal-link:hover { opacity: 0.7; }
-  .footer-social-link svg {
-    width: 18px;
-    height: 18px;
-    fill: var(--slate-500);
-    transition: fill 150ms ease;
-    display: block;
-  }
-  .footer-social-link:hover svg { fill: var(--ink-800); }
-
-  /* ============================================================
-     REFINEMENT LAYER
-     Loaded last so it wins on equal specificity. Everything here
-     is standardisation: consistent headings, retired all-caps
-     labels, accent application, and dark-section overrides.
-     ============================================================ */
-
-  /* ---- Heading normalisation ---- */
-  .services-heading, .ai-heading, .industries-heading, .testimonials-heading,
-  .partners-heading, .faq-heading, .insights-heading, .final-cta-heading,
-  .global-delivery-heading, .pain-statement, .logo-wall-heading, .proof-story-heading {
-    line-height: var(--lh-snug);
-    letter-spacing: var(--tracking-snug);
-    text-wrap: balance;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .hero-headline { text-wrap: balance; }
-
-  /* ---- Retire the all-caps letterspaced label treatment ----
-     .service-panel-collapsed-label is intentionally excluded: it owns
-     its own font-size/letter-spacing at the primary rule (was never
-     set to uppercase to begin with), and a stale font-size:var(--fs-xs)
-     override used to live here that silently undid the larger rail
-     type set further up the sheet. */
-  .metric-eyebrow, .pain-card-label, .pain-card-source {
-    text-transform: none;
-    letter-spacing: var(--tracking-snug);
-  }
-  .metric-eyebrow {
-    font-size: var(--fs-2xs);
-    color: var(--text-muted);
-    margin-bottom: var(--space-2);
-  }
-  .pain-card-label { font-size: var(--fs-body); }
-  .pain-card-source { font-size: var(--fs-3xs); letter-spacing: 0; }
-
-  /* ---- Accent application (the site had no accent before) ---- */
-  .metric-value-accent { color: var(--accent-500); }
-  .proof-number { color: var(--accent-500); }
-  .proof-card { border-left-color: var(--accent-500); }
-  .proof-link, .industry-link { color: var(--accent-600); }
-  .pain-stat-rule { background: var(--accent-400); width: 40px; height: 3px; }
-  .pain-answer { border-left-color: var(--accent-400); }
-  .newsletter-input:focus, .footer-newsletter-input:focus { border-color: var(--accent-500); }
-  a:focus-visible, button:focus-visible, input:focus-visible,
-  textarea:focus-visible, select:focus-visible { outline-color: var(--accent-500); }
-
-  /* ---- Card elevation standardised on the shadow scale ---- */
-  .partner-card, .insight-card, .testimonial-mini-card, .proof-card,
-  .newsletter-band, .diagram-card, .service-panels { box-shadow: var(--shadow-2); }
-  .partner-card:hover, .insight-card:hover, .testimonial-mini-card:hover { box-shadow: var(--shadow-3); }
-
-  /* ============================================================
-     DARK SECTION: AI governance
-     ============================================================ */
-  .ai-automation .ai-heading { color: var(--text-on-inverse); }
-  .ai-automation .ai-spotlight { color: var(--text-on-inverse-secondary); }
-  .ai-automation .step-title { color: var(--text-on-inverse-secondary); }
-  .ai-automation .step-item { border-color: transparent; }
-  .ai-automation .step-item:hover:not(.expanded) { background: rgba(255,255,255,0.05); }
-  .ai-automation .step-item.expanded {
-    background: rgba(255,255,255,0.06);
-    border-color: var(--border-inverse);
-    box-shadow: none;
-  }
-  .ai-automation .step-item.expanded .step-title { color: var(--text-on-inverse); }
-  .ai-automation .step-item.expanded .step-description { color: var(--text-on-inverse-secondary); }
-  .ai-automation .progress-track { background: rgba(255,255,255,0.16); }
-  .ai-automation .progress-fill { background: var(--accent-400); }
-  .ai-automation .diagram-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border-inverse);
-    box-shadow: none;
-  }
-
-  /* ============================================================
-     DARK SECTION: final CTA
-     ============================================================ */
-  .final-cta-heading { color: var(--text-on-inverse); }
-  .final-cta-email { color: var(--text-on-inverse-secondary); }
-  .final-cta-btn {
-    background: var(--surface-base);
-    color: var(--text-primary);
-  }
-  .final-cta-btn:hover {
-    background: var(--accent-100);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-  }
-  .final-cta-band .cta-pulsate::after {
-    box-shadow: 0 0 0 0 rgba(255,255,255,0.5);
-    animation: ctaPulseLight 2s ease-out infinite;
-  }
-  @keyframes ctaPulseLight {
-    0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
-    70%  { box-shadow: 0 0 0 14px rgba(255,255,255,0); }
-    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-  }
-
-  /* ---- Sunken-section cards need a visible edge ---- */
-  .services .service-panels,
-  .testimonials .testimonial-mini-card,
-  .faq .faq-item { border-color: var(--border-strong); }
-  .proof-card, .testimonial-mini-card { border: 1px solid var(--border-subtle); }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <img class="nav-logo" src="uploads/aidataworks-primary.svg" alt="aiDataWorks">
+    <a href="index.html" class="nav-logo-link" aria-label="aiDataWorks home"><img class="nav-logo" src="uploads/aidataworks-primary.svg" alt="aiDataWorks"></a>
     <nav class="nav-links" aria-label="Primary">
       <div class="nav-item" data-nav-item>
         <button type="button" class="nav-link" aria-expanded="false" aria-controls="dropdown-services">
@@ -2296,21 +19,72 @@
         </button>
         <div class="nav-dropdown" id="dropdown-services" role="group">
           <div class="nav-dropdown-row">
-            <div class="nav-dropdown-col">
-              <p class="nav-dropdown-col-heading">Our methodology</p>
-              <a class="nav-dropdown-link" href="#services"><span class="nav-dropdown-link-title">Assess</span><span class="nav-dropdown-link-desc">Audit your data &amp; AI readiness</span></a>
-              <a class="nav-dropdown-link" href="#services"><span class="nav-dropdown-link-title">Modernize</span><span class="nav-dropdown-link-desc">Migrate off brittle legacy platforms</span></a>
-              <a class="nav-dropdown-link" href="#services"><span class="nav-dropdown-link-title">Govern</span><span class="nav-dropdown-link-desc">Embed quality, security &amp; compliance</span></a>
-              <a class="nav-dropdown-link" href="#ai-automation"><span class="nav-dropdown-link-title">Activate</span><span class="nav-dropdown-link-desc">Put AI safely into production</span></a>
+            <div class="nav-dropdown-tablist" role="tablist" aria-label="Service categories" data-service-tablist>
+              <button type="button" class="nav-dropdown-tab is-active" role="tab" aria-selected="true" aria-controls="panel-cloud-data" data-service-tab="0">
+                <span class="nav-dropdown-tab-title">Cloud Data Platforms</span>
+                <span class="nav-dropdown-tab-desc">Modern warehouse &amp; lakehouse foundations, tuned for scale and cost.</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-analytics" data-service-tab="1">
+                <span class="nav-dropdown-tab-title">Analytics &amp; Insights</span>
+                <span class="nav-dropdown-tab-desc">Turn trusted data into decisions across the business.</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-dataops" data-service-tab="2">
+                <span class="nav-dropdown-tab-title">DataOps &amp; Observability</span>
+                <span class="nav-dropdown-tab-desc">Keep data flowing reliably, with quality you can prove.</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-mdm" data-service-tab="3">
+                <span class="nav-dropdown-tab-title">Master Data Management</span>
+                <span class="nav-dropdown-tab-desc">One trusted, 360&deg; view of your core business entities.</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-governance" data-service-tab="4">
+                <span class="nav-dropdown-tab-title">Governance, Quality &amp; Catalog</span>
+                <span class="nav-dropdown-tab-desc">Trust, lineage, and compliance built in by design.</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-dmaas" data-service-tab="5">
+                <span class="nav-dropdown-tab-title">Managed Services &mdash; DMaaS</span>
+                <span class="nav-dropdown-tab-desc">Outcome-based delivery with on-demand expert teams.</span>
+              </button>
             </div>
-            <div class="nav-dropdown-col">
-              <p class="nav-dropdown-col-heading">How we deliver</p>
-              <a class="nav-dropdown-link" href="#faq"><span class="nav-dropdown-link-title">Data Management as a Service</span><span class="nav-dropdown-link-desc">Outcome-based, not time-and-materials</span></a>
-              <a class="nav-dropdown-link" href="#faq"><span class="nav-dropdown-link-title">Expert Teams On Demand</span><span class="nav-dropdown-link-desc">Flexible staffing without the ramp-up</span></a>
-              <a class="nav-dropdown-link" href="#proof-story"><span class="nav-dropdown-link-title">Case Studies</span><span class="nav-dropdown-link-desc">Real engagements, told in full</span></a>
+            <div class="nav-dropdown-tabpanels">
+              <div class="nav-dropdown-tabpanel is-active" role="tabpanel" id="panel-cloud-data">
+                <a class="nav-dropdown-link" href="service-cloud-data-platforms.html"><span class="nav-dropdown-link-title">Snowflake, Databricks &amp; BigQuery</span></a>
+                <a class="nav-dropdown-link" href="service-cloud-data-platforms.html"><span class="nav-dropdown-link-title">Lakehouse &amp; Medallion Architecture</span></a>
+                <a class="nav-dropdown-link" href="service-cloud-data-platforms.html"><span class="nav-dropdown-link-title">Performance Tuning &amp; FinOps</span></a>
+                <a class="nav-dropdown-link" href="service-cloud-data-platforms.html"><span class="nav-dropdown-link-title">Storage &amp; Workload Management</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-analytics">
+                <a class="nav-dropdown-link" href="service-analytics-insights.html"><span class="nav-dropdown-link-title">Self-Service BI &amp; Dashboards</span></a>
+                <a class="nav-dropdown-link" href="service-analytics-insights.html"><span class="nav-dropdown-link-title">Semantic Layers &amp; Governed Metrics</span></a>
+                <a class="nav-dropdown-link" href="service-analytics-insights.html"><span class="nav-dropdown-link-title">Advanced &amp; Predictive Analytics</span></a>
+                <a class="nav-dropdown-link" href="service-analytics-insights.html"><span class="nav-dropdown-link-title">Embedded &amp; Operational Analytics</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-dataops">
+                <a class="nav-dropdown-link" href="service-dataops-observability.html"><span class="nav-dropdown-link-title">Pipeline Monitoring &amp; Alerting</span></a>
+                <a class="nav-dropdown-link" href="service-dataops-observability.html"><span class="nav-dropdown-link-title">Data Observability &amp; Quality SLAs</span></a>
+                <a class="nav-dropdown-link" href="service-dataops-observability.html"><span class="nav-dropdown-link-title">CI/CD &amp; Automation for Data</span></a>
+                <a class="nav-dropdown-link" href="service-dataops-observability.html"><span class="nav-dropdown-link-title">Reliability &amp; Incident Response</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-mdm">
+                <a class="nav-dropdown-link" href="service-master-data-management.html"><span class="nav-dropdown-link-title">Customer, Product &amp; Supplier 360</span></a>
+                <a class="nav-dropdown-link" href="service-master-data-management.html"><span class="nav-dropdown-link-title">Match, Merge &amp; Survivorship</span></a>
+                <a class="nav-dropdown-link" href="service-master-data-management.html"><span class="nav-dropdown-link-title">Reference &amp; Hierarchy Management</span></a>
+                <a class="nav-dropdown-link" href="service-master-data-management.html"><span class="nav-dropdown-link-title">Stewardship &amp; Data-as-a-Service</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-governance">
+                <a class="nav-dropdown-link" href="service-governance-quality-catalog.html"><span class="nav-dropdown-link-title">Data Quality &amp; Profiling</span></a>
+                <a class="nav-dropdown-link" href="service-governance-quality-catalog.html"><span class="nav-dropdown-link-title">Catalog, Lineage &amp; Discovery</span></a>
+                <a class="nav-dropdown-link" href="service-governance-quality-catalog.html"><span class="nav-dropdown-link-title">Policy, Privacy &amp; Security Controls</span></a>
+                <a class="nav-dropdown-link" href="service-governance-quality-catalog.html"><span class="nav-dropdown-link-title">Audit-Ready Compliance Frameworks</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-dmaas">
+                <a class="nav-dropdown-link" href="service-managed-dmaas.html"><span class="nav-dropdown-link-title">Data Management as a Service</span></a>
+                <a class="nav-dropdown-link" href="service-managed-dmaas.html"><span class="nav-dropdown-link-title">Licensing, Implementation &amp; Reselling</span></a>
+                <a class="nav-dropdown-link" href="service-managed-dmaas.html"><span class="nav-dropdown-link-title">Run, Monitor &amp; Optimize</span></a>
+                <a class="nav-dropdown-link" href="service-managed-dmaas.html"><span class="nav-dropdown-link-title">Flexible, On-Demand Resources</span></a>
+              </div>
             </div>
           </div>
-          <a class="nav-dropdown-foot" href="#services">See our full approach →</a>
+          <a class="nav-dropdown-foot" href="#services">See our full approach &rarr;</a>
         </div>
       </div>
       <div class="nav-item" data-nav-item>
@@ -2334,7 +108,7 @@
               <a class="nav-dropdown-link" href="#ai-automation"><span class="nav-dropdown-link-title">Custom LLM &amp; Agent Flows</span><span class="nav-dropdown-link-desc">Built on your governed data</span></a>
             </div>
           </div>
-          <a class="nav-dropdown-foot" href="#partners">Explore the integration stack →</a>
+          <a class="nav-dropdown-foot" href="#partners">Explore the integration stack &rarr;</a>
         </div>
       </div>
       <div class="nav-item" data-nav-item>
@@ -2345,15 +119,15 @@
         <div class="nav-dropdown" id="dropdown-industries" role="group">
           <div class="nav-dropdown-row">
             <div class="nav-dropdown-col nav-dropdown-grid">
-              <a class="nav-dropdown-link" href="#industries"><span class="nav-dropdown-link-title">Healthcare</span></a>
-              <a class="nav-dropdown-link" href="#industries"><span class="nav-dropdown-link-title">Financial Services</span></a>
-              <a class="nav-dropdown-link" href="#industries"><span class="nav-dropdown-link-title">Insurance</span></a>
-              <a class="nav-dropdown-link" href="#industries"><span class="nav-dropdown-link-title">Manufacturing</span></a>
-              <a class="nav-dropdown-link" href="#industries"><span class="nav-dropdown-link-title">Retail &amp; CPG</span></a>
-              <a class="nav-dropdown-link" href="#industries"><span class="nav-dropdown-link-title">Public Sector</span></a>
+              <a class="nav-dropdown-link" href="industry-healthcare.html"><span class="nav-dropdown-link-title">Healthcare</span></a>
+              <a class="nav-dropdown-link" href="industry-financial-services.html"><span class="nav-dropdown-link-title">Financial Services</span></a>
+              <a class="nav-dropdown-link" href="industry-insurance.html"><span class="nav-dropdown-link-title">Insurance</span></a>
+              <a class="nav-dropdown-link" href="industry-manufacturing.html"><span class="nav-dropdown-link-title">Manufacturing</span></a>
+              <a class="nav-dropdown-link" href="industry-retail-cpg.html"><span class="nav-dropdown-link-title">Retail &amp; CPG</span></a>
+              <a class="nav-dropdown-link" href="industry-public-sector.html"><span class="nav-dropdown-link-title">Public Sector</span></a>
             </div>
           </div>
-          <a class="nav-dropdown-foot" href="#industries">See where we do our best work →</a>
+          <a class="nav-dropdown-foot" href="#industries">See where we do our best work &rarr;</a>
         </div>
       </div>
       <div class="nav-item" data-nav-item>
@@ -2378,7 +152,7 @@
               <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">MuleSoft Certified Partner</span></a>
             </div>
           </div>
-          <a class="nav-dropdown-foot" href="#partners">View all partners →</a>
+          <a class="nav-dropdown-foot" href="#partners">View all partners &rarr;</a>
         </div>
       </div>
       <div class="nav-item" data-nav-item>
@@ -2389,11 +163,11 @@
         <div class="nav-dropdown" id="dropdown-about" role="group">
           <div class="nav-dropdown-row">
             <div class="nav-dropdown-col">
-              <a class="nav-dropdown-link" href="#"><span class="nav-dropdown-link-title">Who We Are</span></a>
-              <a class="nav-dropdown-link" href="#faq"><span class="nav-dropdown-link-title">Our Approach</span></a>
-              <a class="nav-dropdown-link" href="#"><span class="nav-dropdown-link-title">Careers</span></a>
+              <a class="nav-dropdown-link" href="about.html"><span class="nav-dropdown-link-title">Who We Are</span></a>
+              <a class="nav-dropdown-link" href="#services"><span class="nav-dropdown-link-title">Our Approach</span></a>
+              <a class="nav-dropdown-link" href="careers.html"><span class="nav-dropdown-link-title">Careers</span></a>
               <a class="nav-dropdown-link" href="#insights"><span class="nav-dropdown-link-title">Newsroom</span></a>
-              <a class="nav-dropdown-link" href="#final-cta"><span class="nav-dropdown-link-title">Contact Us</span></a>
+              <a class="nav-dropdown-link" href="contact.html"><span class="nav-dropdown-link-title">Contact Us</span></a>
             </div>
           </div>
         </div>
@@ -2407,16 +181,16 @@
           <div class="nav-dropdown-row">
             <div class="nav-dropdown-col">
               <a class="nav-dropdown-link" href="#insights"><span class="nav-dropdown-link-title">Insights &amp; Blog</span></a>
-              <a class="nav-dropdown-link" href="#proof-story"><span class="nav-dropdown-link-title">Case Studies</span></a>
+              <a class="nav-dropdown-link" href="case-studies.html"><span class="nav-dropdown-link-title">Case Studies</span></a>
               <a class="nav-dropdown-link" href="#faq"><span class="nav-dropdown-link-title">FAQs</span></a>
-              <a class="nav-dropdown-link" href="#"><span class="nav-dropdown-link-title">Webinars &amp; Events</span></a>
+              <a class="nav-dropdown-link" href="webinars.html"><span class="nav-dropdown-link-title">Webinars &amp; Events</span></a>
               <a class="nav-dropdown-link" href="#insights"><span class="nav-dropdown-link-title">Newsletter</span></a>
             </div>
           </div>
         </div>
       </div>
     </nav>
-    <button type="button" class="nav-cta nav-desktop-cta">Talk to an Expert</button>
+    <a href="contact.html" class="nav-cta nav-desktop-cta">Talk to an Expert</a>
     <button type="button" class="nav-hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobilePanel">
       <span></span><span></span><span></span>
     </button>
@@ -2429,12 +203,12 @@
       </button>
       <div class="nav-mobile-submenu">
         <div class="nav-mobile-submenu-inner">
-          <a href="#services"><span class="nav-mobile-sublink-title">Assess</span><span class="nav-mobile-sublink-desc">Audit your data &amp; AI readiness</span></a>
-          <a href="#services"><span class="nav-mobile-sublink-title">Modernize</span><span class="nav-mobile-sublink-desc">Migrate off brittle legacy platforms</span></a>
-          <a href="#services"><span class="nav-mobile-sublink-title">Govern</span><span class="nav-mobile-sublink-desc">Embed quality, security &amp; compliance</span></a>
-          <a href="#ai-automation"><span class="nav-mobile-sublink-title">Activate</span><span class="nav-mobile-sublink-desc">Put AI safely into production</span></a>
-          <a href="#faq"><span class="nav-mobile-sublink-title">Data Management as a Service</span><span class="nav-mobile-sublink-desc">Outcome-based, not time-and-materials</span></a>
-          <a href="#proof-story"><span class="nav-mobile-sublink-title">Case Studies</span><span class="nav-mobile-sublink-desc">Real engagements, told in full</span></a>
+          <a href="service-cloud-data-platforms.html"><span class="nav-mobile-sublink-title">Cloud Data Platforms</span><span class="nav-mobile-sublink-desc">Modern warehouse &amp; lakehouse foundations</span></a>
+          <a href="service-analytics-insights.html"><span class="nav-mobile-sublink-title">Analytics &amp; Insights</span><span class="nav-mobile-sublink-desc">Turn trusted data into decisions</span></a>
+          <a href="service-dataops-observability.html"><span class="nav-mobile-sublink-title">DataOps &amp; Observability</span><span class="nav-mobile-sublink-desc">Reliable pipelines, quality you can prove</span></a>
+          <a href="service-master-data-management.html"><span class="nav-mobile-sublink-title">Master Data Management</span><span class="nav-mobile-sublink-desc">One trusted, 360&deg; view of your data</span></a>
+          <a href="service-governance-quality-catalog.html"><span class="nav-mobile-sublink-title">Governance, Quality &amp; Catalog</span><span class="nav-mobile-sublink-desc">Trust, lineage &amp; compliance by design</span></a>
+          <a href="service-managed-dmaas.html"><span class="nav-mobile-sublink-title">Managed Services &mdash; DMaaS</span><span class="nav-mobile-sublink-desc">Outcome-based, on-demand expert teams</span></a>
         </div>
       </div>
     </div>
@@ -2461,12 +235,12 @@
       </button>
       <div class="nav-mobile-submenu">
         <div class="nav-mobile-submenu-inner">
-          <a href="#industries"><span class="nav-mobile-sublink-title">Healthcare</span></a>
-          <a href="#industries"><span class="nav-mobile-sublink-title">Financial Services</span></a>
-          <a href="#industries"><span class="nav-mobile-sublink-title">Insurance</span></a>
-          <a href="#industries"><span class="nav-mobile-sublink-title">Manufacturing</span></a>
-          <a href="#industries"><span class="nav-mobile-sublink-title">Retail &amp; CPG</span></a>
-          <a href="#industries"><span class="nav-mobile-sublink-title">Public Sector</span></a>
+          <a href="industry-healthcare.html"><span class="nav-mobile-sublink-title">Healthcare</span></a>
+          <a href="industry-financial-services.html"><span class="nav-mobile-sublink-title">Financial Services</span></a>
+          <a href="industry-insurance.html"><span class="nav-mobile-sublink-title">Insurance</span></a>
+          <a href="industry-manufacturing.html"><span class="nav-mobile-sublink-title">Manufacturing</span></a>
+          <a href="industry-retail-cpg.html"><span class="nav-mobile-sublink-title">Retail &amp; CPG</span></a>
+          <a href="industry-public-sector.html"><span class="nav-mobile-sublink-title">Public Sector</span></a>
         </div>
       </div>
     </div>
@@ -2492,11 +266,11 @@
       </button>
       <div class="nav-mobile-submenu">
         <div class="nav-mobile-submenu-inner">
-          <a href="#"><span class="nav-mobile-sublink-title">Who We Are</span></a>
-          <a href="#faq"><span class="nav-mobile-sublink-title">Our Approach</span></a>
-          <a href="#"><span class="nav-mobile-sublink-title">Careers</span></a>
+          <a href="about.html"><span class="nav-mobile-sublink-title">Who We Are</span></a>
+          <a href="#services"><span class="nav-mobile-sublink-title">Our Approach</span></a>
+          <a href="careers.html"><span class="nav-mobile-sublink-title">Careers</span></a>
           <a href="#insights"><span class="nav-mobile-sublink-title">Newsroom</span></a>
-          <a href="#final-cta"><span class="nav-mobile-sublink-title">Contact Us</span></a>
+          <a href="contact.html"><span class="nav-mobile-sublink-title">Contact Us</span></a>
         </div>
       </div>
     </div>
@@ -2508,28 +282,62 @@
       <div class="nav-mobile-submenu">
         <div class="nav-mobile-submenu-inner">
           <a href="#insights"><span class="nav-mobile-sublink-title">Insights &amp; Blog</span></a>
-          <a href="#proof-story"><span class="nav-mobile-sublink-title">Case Studies</span></a>
+          <a href="case-studies.html"><span class="nav-mobile-sublink-title">Case Studies</span></a>
           <a href="#faq"><span class="nav-mobile-sublink-title">FAQs</span></a>
-          <a href="#"><span class="nav-mobile-sublink-title">Webinars &amp; Events</span></a>
+          <a href="webinars.html"><span class="nav-mobile-sublink-title">Webinars &amp; Events</span></a>
           <a href="#insights"><span class="nav-mobile-sublink-title">Newsletter</span></a>
         </div>
       </div>
     </div>
-    <button type="button" class="nav-cta nav-mobile-cta">Talk to an Expert</button>
+    <a href="contact.html" class="nav-cta nav-mobile-cta">Talk to an Expert</a>
   </div>
 </header>
 
 <section class="hero" id="hero">
   <video class="hero-video" src="assets/hero-background.mp4" muted playsinline autoplay loop preload="auto"></video>
   <div class="hero-overlay"></div>
+  <button type="button" class="hero-carousel-arrow hero-carousel-arrow-prev" id="heroPrevBtn" aria-label="Previous slide">
+    <span class="hero-carousel-arrow-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </button>
+  <button type="button" class="hero-carousel-arrow hero-carousel-arrow-next" id="heroNextBtn" aria-label="Next slide">
+    <span class="hero-carousel-arrow-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </button>
   <div class="hero-inner">
     <div class="hero-content">
-      <h1 class="hero-headline" id="heroHeadline" aria-label="Enterprise AI Adoption Runs on Integrated Data"></h1>
-      <p class="hero-subhead" id="heroSubhead">We integrate, modernize, and govern the data estate your AI runs on - delivered as a service by an Informatica Platinum, Salesforce, GoAnywhere, and Epic partner.</p>
-      <div class="hero-bottom-row">
-        <div class="hero-cta-row" id="heroCtaRow">
-          <a class="hero-cta-primary cta-pulsate" href="https://calendly.com/aidata-marketing/discovery-with-aidataworks">Schedule a Meeting</a>
-          <button type="button" class="hero-cta-secondary">Explore Case Studies</button>
+      <div class="hero-carousel" id="heroCarousel">
+        <div class="hero-carousel-track">
+          <div class="hero-slide is-active" data-hero-slide="0">
+            <h1 class="hero-headline" id="heroHeadline" aria-label="Enterprise AI Adoption Runs on Integrated Data"></h1>
+            <p class="hero-subhead" id="heroSubhead">We integrate, modernize, and govern the data estate your AI runs on - delivered as a service by an Informatica Platinum, Salesforce, GoAnywhere, and Epic partner.</p>
+            <div class="hero-bottom-row">
+              <div class="hero-cta-row" id="heroCtaRow">
+                <a class="hero-cta-primary cta-pulsate" href="https://calendly.com/aidata-marketing/discovery-with-aidataworks">Schedule a Meeting</a>
+                <a class="hero-cta-secondary" href="case-studies.html">Explore Case Studies</a>
+              </div>
+            </div>
+          </div>
+          <!-- [MOCK] placeholder second slide - replace with real news/campaign
+               content, or add more .hero-slide blocks for a longer rotation. -->
+          <div class="hero-slide" data-hero-slide="1">
+            <p class="hero-slide-tag">News</p>
+            <h2 class="hero-slide-headline">aiDataWorks Becomes a Certified Salesforce &amp; MuleSoft Partner</h2>
+            <p class="hero-slide-subhead">[MOCK] Now certified across the Salesforce Data 360 and MuleSoft stack, extending our real-time integration practice.</p>
+            <div class="hero-bottom-row">
+              <div class="hero-cta-row is-visible">
+                <a class="hero-cta-secondary" href="#insights">Read More &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-carousel-controls">
+          <div class="hero-carousel-dots" role="group" aria-label="Hero slides">
+            <button type="button" class="hero-carousel-dot is-active" data-hero-slide="0" aria-label="Slide 1" aria-current="step"></button>
+            <button type="button" class="hero-carousel-dot" data-hero-slide="1" aria-label="Slide 2"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -2716,7 +524,6 @@
         </div>
       </div>
     </div>
-    <p class="services-delivery-note">Delivered as DMaaS: outcome-based pricing, on-demand teams, always-on managed service.</p>
   </div>
 </section>
 
@@ -2830,7 +637,6 @@
             </div>
           </div>
         </div>
-        <p class="ai-proof">Half of enterprise AI agents already run in isolated silos, invisible to any single owner. <span class="ai-proof-source">— Salesforce, 2026</span></p>
       </div>
     </div>
   </div>
@@ -3216,40 +1022,6 @@
   </div>
 </section>
 
-<section class="faq section-padded" id="faq">
-  <div class="faq-inner section-container">
-    <div class="faq-heading-col">
-      <h2 class="faq-heading text-reveal">Questions, answered</h2>
-    </div>
-    <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-question"><span>How is aiDataWorks different from a typical Informatica reseller?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>We're a Platinum Informatica partner and Informatica Migration Factory partner, but we deliver full lifecycle outcomes - assess, modernize, govern, and activate - not just licensing. Most engagements run as DMaaS, an outcome-based managed service, not time-and-materials staffing.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question"><span>What does the DMaaS engagement model actually include?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>Data Management as a Service is priced to business results and SLAs, not billable hours or headcount. You get flexible, on-demand expert teams and continuous run-monitor-optimize delivery, so your data platform keeps improving after go-live instead of sitting with whoever built it.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question"><span>How long does a typical modernization or migration engagement take?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>It depends on scope, but most engagements start with a framework-based proof of concept to validate feasibility and timeline before a full commitment.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question"><span>How do you handle data security and compliance during migration?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>Governance, quality, and security controls are embedded from the Assess phase onward - audit-ready compliance frameworks and policy/privacy controls are part of the Govern step of every engagement.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question"><span>Do you work with organizations that aren't yet on Informatica?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>Yes - we also work across Databricks, Snowflake, Salesforce, AWS, Azure, and Google Cloud, and can advise on the right platform mix before recommending Informatica specifically.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question"><span>Do you offer AI capabilities beyond data management?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="faq-answer"><p>Yes - our Agentic AI Copilot for Informatica &amp; Snowflake, custom LLM and agent-flow development, and purpose-built platforms like our GEM AI Manufacturing Copilot bring AI directly into daily operations, not just into the data layer.</p></div>
-    </div>
-    </div>
-  </div>
-</section>
-
 <section class="insights section-padded" id="insights">
   <div class="insights-inner section-container">
     <h2 class="insights-heading text-reveal">Recent thinking on data integration and AI</h2>
@@ -3302,6 +1074,40 @@
   </div>
 </section>
 
+<section class="faq section-padded" id="faq">
+  <div class="faq-inner section-container">
+    <div class="faq-heading-col">
+      <h2 class="faq-heading text-reveal">Questions, answered</h2>
+    </div>
+    <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question"><span>How is aiDataWorks different from a typical Informatica reseller?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>We're a Platinum Informatica partner and Informatica Migration Factory partner, but we deliver full lifecycle outcomes - assess, modernize, govern, and activate - not just licensing. Most engagements run as DMaaS, an outcome-based managed service, not time-and-materials staffing.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span>What does the DMaaS engagement model actually include?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>Data Management as a Service is priced to business results and SLAs, not billable hours or headcount. You get flexible, on-demand expert teams and continuous run-monitor-optimize delivery, so your data platform keeps improving after go-live instead of sitting with whoever built it.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span>How long does a typical modernization or migration engagement take?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>It depends on scope, but most engagements start with a framework-based proof of concept to validate feasibility and timeline before a full commitment.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span>How do you handle data security and compliance during migration?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>Governance, quality, and security controls are embedded from the Assess phase onward - audit-ready compliance frameworks and policy/privacy controls are part of the Govern step of every engagement.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span>Do you work with organizations that aren't yet on Informatica?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>Yes - we also work across Databricks, Snowflake, Salesforce, AWS, Azure, and Google Cloud, and can advise on the right platform mix before recommending Informatica specifically.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span>Do you offer AI capabilities beyond data management?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#4A5D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><p>Yes - our Agentic AI Copilot for Informatica &amp; Snowflake, custom LLM and agent-flow development, and purpose-built platforms like our GEM AI Manufacturing Copilot bring AI directly into daily operations, not just into the data layer.</p></div>
+    </div>
+    </div>
+  </div>
+</section>
+
 <section class="final-cta-band" id="final-cta">
   <h2 class="final-cta-heading text-reveal">Let's build your AI-ready data foundation.</h2>
   <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="final-cta-btn cta-pulsate">Schedule a Meeting</a>
@@ -3321,31 +1127,44 @@
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">Services</p>
-        <a href="#">Consulting Services</a>
-        <a href="#">Informatica Implementation</a>
-        <a href="#">Salesforce Implementation</a>
-        <a href="#">AWS/Azure/GCP Implementation</a>
-        <a href="#">Training &amp; Enablement</a>
+        <a href="service-cloud-data-platforms.html">Cloud Data Platforms</a>
+        <a href="service-analytics-insights.html">Analytics &amp; Insights</a>
+        <a href="service-dataops-observability.html">DataOps &amp; Observability</a>
+        <a href="service-master-data-management.html">Master Data Management</a>
+        <a href="service-governance-quality-catalog.html">Governance, Quality &amp; Catalog</a>
+        <a href="service-managed-dmaas.html">Managed Services (DMaaS)</a>
       </div>
       <div class="footer-col">
-        <p class="footer-col-heading">Solutions</p>
-        <a href="#">AI &amp; Automation</a>
-        <a href="#">Master Data Management</a>
-        <a href="#">Data Quality &amp; Governance</a>
-        <a href="#">Modernization Accelerators</a>
+        <p class="footer-col-heading">Industries</p>
+        <a href="industry-healthcare.html">Healthcare</a>
+        <a href="industry-financial-services.html">Financial Services</a>
+        <a href="industry-insurance.html">Insurance</a>
+        <a href="industry-manufacturing.html">Manufacturing</a>
+        <a href="industry-retail-cpg.html">Retail &amp; CPG</a>
+        <a href="industry-public-sector.html">Public Sector</a>
       </div>
       <div class="footer-col">
-        <p class="footer-col-heading">Company</p>
-        <a href="#">About</a>
-        <a href="#">Partners</a>
-        <a href="#">Careers</a>
-        <a href="#">News</a>
+        <p class="footer-col-heading">Partners</p>
+        <a href="#partners">Informatica</a>
+        <a href="#partners">Salesforce &amp; MuleSoft</a>
+        <a href="#partners">Databricks &amp; Snowflake</a>
+        <a href="#partners">AWS, Azure &amp; Google Cloud</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-heading">About</p>
+        <a href="about.html">Who We Are</a>
+        <a href="#services">Our Approach</a>
+        <a href="careers.html">Careers</a>
+        <a href="#insights">Newsroom</a>
+        <a href="contact.html">Contact Us</a>
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">Resources</p>
-        <a href="#">Insights</a>
-        <a href="#">Case Studies</a>
-        <a href="#">Contact</a>
+        <a href="#insights">Insights &amp; Blog</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="#faq">FAQs</a>
+        <a href="webinars.html">Webinars &amp; Events</a>
+        <a href="#insights">Newsletter</a>
       </div>
     </div>
     <div class="footer-badges">
@@ -3356,10 +1175,10 @@
       <img class="footer-badge-img" src="assets/badges/badge-mulesoft.png" alt="MuleSoft Certified Partner">
     </div>
     <div class="footer-bottom">
-      <p class="footer-copyright">© 2026 aiDataWorks. All rights reserved.</p>
+      <p class="footer-copyright">&copy; 2026 aiDataWorks. All rights reserved.</p>
       <div class="footer-bottom-links">
-        <a href="#" class="footer-legal-link">Privacy</a>
-        <a href="#" class="footer-legal-link">Terms</a>
+        <a href="privacy.html" class="footer-legal-link">Privacy</a>
+        <a href="terms.html" class="footer-legal-link">Terms</a>
         <a href="[PLACEHOLDER: real aiDataWorks LinkedIn company URL]" target="_blank" rel="noopener" class="footer-social-link" aria-label="aiDataWorks on LinkedIn">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
         </a>
@@ -3368,6 +1187,7 @@
   </div>
 </footer>
 
+<script src="site.js"></script>
 <script>
 (function () {
   // Transparent-on-load / solid-on-scroll nav feature — temporarily disabled (see matching CSS comment on .nav).
@@ -3380,70 +1200,6 @@
   // window.addEventListener('scroll', onScroll);
   // onScroll();
 
-  var hamburgerBtn = document.getElementById('hamburgerBtn');
-  var mobilePanel = document.getElementById('mobilePanel');
-  hamburgerBtn.addEventListener('click', function () {
-    var isOpen = mobilePanel.classList.toggle('is-open');
-    hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    if (!isOpen) { closeAllMobileSubmenus(); }
-  });
-
-  // ---- Desktop nav dropdowns ----
-  var navItems = document.querySelectorAll('[data-nav-item]');
-  function closeAllNavDropdowns(except) {
-    navItems.forEach(function (item) {
-      if (item === except) return;
-      item.classList.remove('is-open');
-      item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
-    });
-  }
-  navItems.forEach(function (item) {
-    var trigger = item.querySelector('.nav-link');
-    trigger.addEventListener('click', function () {
-      var wasOpen = item.classList.contains('is-open');
-      closeAllNavDropdowns(item);
-      item.classList.toggle('is-open', !wasOpen);
-      trigger.setAttribute('aria-expanded', !wasOpen ? 'true' : 'false');
-    });
-    item.querySelectorAll('.nav-dropdown-link, .nav-dropdown-foot').forEach(function (link) {
-      link.addEventListener('click', function () { closeAllNavDropdowns(); });
-    });
-  });
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('[data-nav-item]')) { closeAllNavDropdowns(); }
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { closeAllNavDropdowns(); }
-  });
-
-  // ---- Mobile nav accordion ----
-  var navMobileItems = document.querySelectorAll('[data-nav-mobile-item]');
-  function closeAllMobileSubmenus(except) {
-    navMobileItems.forEach(function (item) {
-      if (item === except) return;
-      item.classList.remove('is-open');
-      item.querySelector('.nav-mobile-link').setAttribute('aria-expanded', 'false');
-      item.querySelector('.nav-mobile-submenu').style.maxHeight = '';
-    });
-  }
-  navMobileItems.forEach(function (item) {
-    var trigger = item.querySelector('.nav-mobile-link');
-    var submenu = item.querySelector('.nav-mobile-submenu');
-    trigger.addEventListener('click', function () {
-      var wasOpen = item.classList.contains('is-open');
-      closeAllMobileSubmenus(item);
-      item.classList.toggle('is-open', !wasOpen);
-      trigger.setAttribute('aria-expanded', !wasOpen ? 'true' : 'false');
-      submenu.style.maxHeight = !wasOpen ? submenu.scrollHeight + 'px' : '';
-    });
-    submenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        mobilePanel.classList.remove('is-open');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-        closeAllMobileSubmenus();
-      });
-    });
-  });
 
   /* Cursor-scrubbed video disabled for now - video just autoplays on loop instead.
   var video = document.querySelector('.hero-video');
@@ -3491,6 +1247,41 @@
   setTimeout(function () {
     document.getElementById('heroCtaRow').classList.add('is-visible');
   }, 400);
+
+  // ---- Hero carousel ----
+  var heroCarousel = document.getElementById('heroCarousel');
+  if (heroCarousel) {
+    var heroSlides = heroCarousel.querySelectorAll('.hero-slide');
+    var heroDots = heroCarousel.querySelectorAll('.hero-carousel-dot');
+    var heroPrevBtn = document.getElementById('heroPrevBtn');
+    var heroNextBtn = document.getElementById('heroNextBtn');
+    var heroCurrent = 0;
+    var heroTimer = null;
+    var heroPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function activateHeroSlide(index) {
+      heroCurrent = (index + heroSlides.length) % heroSlides.length;
+      heroSlides.forEach(function (slide, i) { slide.classList.toggle('is-active', i === heroCurrent); });
+      heroDots.forEach(function (dot, i) {
+        dot.classList.toggle('is-active', i === heroCurrent);
+        dot.setAttribute('aria-current', i === heroCurrent ? 'step' : 'false');
+      });
+    }
+    function scheduleNextHeroSlide() {
+      if (heroPrefersReducedMotion || heroSlides.length < 2) return;
+      clearTimeout(heroTimer);
+      heroTimer = setTimeout(function () {
+        activateHeroSlide(heroCurrent + 1);
+        scheduleNextHeroSlide();
+      }, 7000);
+    }
+    heroDots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { activateHeroSlide(i); scheduleNextHeroSlide(); });
+    });
+    heroPrevBtn.addEventListener('click', function () { activateHeroSlide(heroCurrent - 1); scheduleNextHeroSlide(); });
+    heroNextBtn.addEventListener('click', function () { activateHeroSlide(heroCurrent + 1); scheduleNextHeroSlide(); });
+    scheduleNextHeroSlide();
+  }
 
   function animateNumberTicker(el, duration) {
     var target = parseInt(el.getAttribute('data-ticker-target'), 10);
@@ -3851,34 +1642,6 @@
     partnersShowMoreBtn.style.display = 'none';
   });
 
-  function prepareTextReveal(el) {
-    var words = el.textContent.split(' ');
-    el.textContent = '';
-    words.forEach(function (word, i) {
-      var span = document.createElement('span');
-      span.className = 'text-reveal-word';
-      span.textContent = word;
-      el.appendChild(span);
-      if (i < words.length - 1) { el.appendChild(document.createTextNode(' ')); }
-    });
-  }
-  function triggerTextReveal(el) {
-    var words = el.querySelectorAll('.text-reveal-word');
-    words.forEach(function (word, i) {
-      setTimeout(function () { word.classList.add('is-visible'); }, i * 100);
-    });
-  }
-  var textRevealHeadings = document.querySelectorAll('.text-reveal');
-  textRevealHeadings.forEach(function (heading) { prepareTextReveal(heading); });
-  var textRevealObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        triggerTextReveal(entry.target);
-        textRevealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-  textRevealHeadings.forEach(function (heading) { textRevealObserver.observe(heading); });
 })();
 </script>
 
