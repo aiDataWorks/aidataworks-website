@@ -63,17 +63,20 @@
 
     /* ---- Semantic surfaces ---- */
     --surface-base: #FFFFFF;
-    --surface-sunken: #DCEAF4;
+    --surface-sunken: #EEF5FA;
     --surface-raised: #FFFFFF;
     --surface-inverse: #0D212C;
     --surface-inverse-deep: #071820;
 
-    /* ---- Semantic text ---- */
+    /* ---- Semantic text ----
+       Secondary/muted tiers collapse into primary/inverse: every
+       text color on site is now either solid black (light bg) or
+       solid white (dark bg), never a grey in between. */
     --text-primary: #051A24;
-    --text-secondary: #3D525C;
-    --text-muted: #5A7480;
+    --text-secondary: var(--text-primary);
+    --text-muted: var(--text-primary);
     --text-on-inverse: #FFFFFF;
-    --text-on-inverse-secondary: #9FB4BC;
+    --text-on-inverse-secondary: var(--text-on-inverse);
 
     /* ---- Borders ---- */
     --border-subtle: #E3EBEE;
@@ -181,7 +184,7 @@
   .nav-inner {
     position: relative;
     z-index: 1;
-    max-width: 1200px;
+    max-width: var(--container);
     margin: 0 auto;
     padding: 12px 20px;
     display: flex;
@@ -234,7 +237,7 @@
     flex-direction: column;
     background: var(--white);
     border: 1px solid var(--border-subtle);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-3);
     padding: 28px;
     opacity: 0;
@@ -481,11 +484,11 @@
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
-    background: rgba(13,33,44,0.38);
+    background: rgba(13,33,44,0.6);
   }
 
   .hero-inner {
-    max-width: 1200px;
+    max-width: var(--container);
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -651,7 +654,7 @@
   }
 
   .metrics-inner {
-    max-width: 1200px;
+    max-width: var(--container);
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -718,7 +721,12 @@
   .map-world { fill: var(--slate-400); }
   .map-marker-ring { fill: var(--white); stroke: var(--cobalt-500); stroke-width: 2.5; }
   .map-marker-flag { font-size: 20px; text-anchor: middle; dominant-baseline: central; }
-  .map-marker-pill { fill: var(--mist-100); }
+  .map-marker-pill {
+    fill: var(--mist-100);
+    opacity: 0;
+    transition: opacity 180ms ease;
+    pointer-events: none;
+  }
   .map-marker-label {
     font-family: var(--font-sans);
     font-weight: var(--fw-medium);
@@ -726,7 +734,17 @@
     fill: var(--ink-600);
     text-anchor: middle;
     dominant-baseline: central;
+    opacity: 0;
+    transition: opacity 180ms ease;
+    pointer-events: none;
   }
+  .map-marker:hover .map-marker-pill,
+  .map-marker:hover .map-marker-label,
+  .map-marker:focus-visible .map-marker-pill,
+  .map-marker:focus-visible .map-marker-label {
+    opacity: 1;
+  }
+  .map-marker-ring, .map-marker-flag { cursor: pointer; }
 
   /* ---------- Shared section utilities ---------- */
   .section-container { max-width: var(--container); margin: 0 auto; }
@@ -744,7 +762,7 @@
   .logo-wall, .partners, .industries, .global-delivery {
     position: relative;
     background:
-      radial-gradient(115% 75% at 12% 0%, rgba(22,104,240,0.16) 0%, rgba(22,104,240,0) 58%),
+      radial-gradient(115% 75% at 12% 0%, rgba(22,104,240,0.08) 0%, rgba(22,104,240,0) 58%),
       var(--surface-sunken);
     border-top: 1px solid var(--border-subtle);
     border-bottom: 1px solid var(--border-subtle);
@@ -841,7 +859,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: 56px;
   }
   .logo-col:hover .logo-col-track { animation-play-state: paused; }
 
@@ -853,8 +871,9 @@
   @keyframes scrollDown { from { transform: translateY(-50%); } to { transform: translateY(0); } }
 
   .logo-col img {
-    height: 32px;
+    height: 64px;
     width: auto;
+    max-width: 260px;
     object-fit: contain;
     filter: grayscale(0%) opacity(1);
     transition: filter 300ms ease;
@@ -985,7 +1004,7 @@
     font-weight: var(--fw-medium);
     font-size: calc(clamp(2.5rem, 4vw, 3.5rem) * var(--fs-ratio));
     line-height: 1;
-    color: rgba(255,255,255,0.4);
+    color: #FFFFFF;
     pointer-events: none;
     user-select: none;
   }
@@ -1008,14 +1027,14 @@
   .service-panel-outcome {
     font-size: var(--fs-md);
     line-height: 1.5;
-    color: rgba(255,255,255,0.9);
+    color: #FFFFFF;
     max-width: 500px;
     margin-bottom: 20px;
   }
 
   .service-work-label {
     font-size: var(--fs-2xs);
-    color: rgba(255,255,255,0.58);
+    color: #FFFFFF;
     margin-bottom: 8px;
   }
 
@@ -1036,7 +1055,7 @@
     padding-left: 18px;
     font-size: var(--fs-sm);
     line-height: 1.5;
-    color: rgba(255,255,255,0.82);
+    color: #FFFFFF;
     max-width: 480px;
   }
   .service-panel-accelerators li::before {
@@ -1057,7 +1076,7 @@
   }
   .service-deliverable-label {
     font-size: var(--fs-2xs);
-    color: rgba(255,255,255,0.58);
+    color: #FFFFFF;
     margin-bottom: 6px;
   }
   .service-deliverable-text {
@@ -1147,7 +1166,7 @@
   .step-title {
     font-family: var(--font-sans);
     font-weight: var(--fw-medium);
-    font-size: var(--fs-body);
+    font-size: calc(var(--fs-body) * 1.3);
     color: var(--slate-500);
     transition: color 250ms ease;
   }
@@ -1191,7 +1210,7 @@
   .diagram-card {
     position: relative;
     background: var(--white);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
     aspect-ratio: 4/3;
     overflow: hidden;
@@ -1210,19 +1229,13 @@
   }
   .step-visual.active { opacity: 1; }
 
-  /* ---- Diagram line-art (replaces unrelated stock photography) ----
-     Shared utility classes so all five diagrams read as one family
-     and retint automatically if --accent-400 changes via the theme
-     editor, instead of five independently hard-coded illustrations. */
-  .d-line { fill: none; stroke: rgba(255,255,255,0.32); stroke-width: 2; stroke-linecap: round; }
-  .d-line-strong { fill: none; stroke: rgba(255,255,255,0.55); stroke-width: 2.5; stroke-linecap: round; }
-  .d-accent-line { fill: none; stroke: var(--accent-400); stroke-width: 2.5; stroke-linecap: round; }
-  .d-node { fill: rgba(255,255,255,0.10); stroke: rgba(255,255,255,0.55); stroke-width: 1.75; }
-  .d-node-active { fill: var(--accent-400); stroke: var(--accent-400); }
-  .d-bin-low { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.35); stroke-width: 1.5; }
-  .d-bin-med { fill: rgba(255,255,255,0.09); stroke: rgba(255,255,255,0.45); stroke-width: 1.5; }
-  .d-bin-high { fill: rgba(74,141,255,0.16); stroke: var(--accent-400); stroke-width: 1.75; }
-  .d-num { font-family: var(--font-sans); font-weight: var(--fw-medium); font-size: 20px; fill: rgba(255,255,255,0.24); }
+  .diagram-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(7,20,26,0.28);
+    pointer-events: none;
+  }
 
   /* ---- Playback controls, overlaid on the diagram card ---- */
   .step-controls {
@@ -1382,7 +1395,7 @@
 
   .proof-card {
     background: var(--white);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     padding: 40px;
     border-left: 4px solid var(--cobalt-500);
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
@@ -1421,8 +1434,19 @@
     font-size: var(--fs-h3);
     line-height: 1.3;
     color: var(--paper);
-    max-width: 720px;
-    margin-bottom: 48px;
+    max-width: 900px;
+    margin-bottom: 12px;
+  }
+
+  .pain-subhead {
+    font-family: var(--font-sans);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-body);
+    line-height: 1.5;
+    color: var(--slate-300);
+    max-width: 560px;
+    margin: 0 auto 48px;
+    text-align: center;
   }
 
   .pain-grid {
@@ -1440,7 +1464,7 @@
     padding: 28px 24px;
     background: rgba(255,255,255,0.035);
     border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 600ms ease-out, transform 600ms ease-out;
@@ -1456,7 +1480,7 @@
     font-weight: var(--fw-medium);
     font-size: var(--fs-h2);
     line-height: 1;
-    color: var(--paper);
+    color: var(--accent-400);
     letter-spacing: -0.01em;
   }
   .pain-stat-rule {
@@ -1485,6 +1509,7 @@
   .pain-card-source {
     margin-top: auto;
     font-family: var(--font-sans);
+    font-style: italic;
     font-weight: var(--fw-regular);
     font-size: var(--fs-3xs);
     letter-spacing: 0.05em;
@@ -1503,6 +1528,7 @@
     line-height: 1.6;
     color: var(--slate-300);
     max-width: 860px;
+    margin: 0 auto;
   }
   .pain-answer strong { font-weight: var(--fw-medium); color: var(--text-on-inverse); }
 
@@ -1551,7 +1577,7 @@
   .industry-card-front, .industry-card-back {
     position: absolute;
     inset: 0;
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     backface-visibility: hidden;
     overflow: hidden;
   }
@@ -1696,7 +1722,7 @@
   .testimonial-mini-card {
     width: 100%;
     background: var(--white);
-    border-radius: 28px;
+    border-radius: var(--radius-xl);
     padding: 40px 44px;
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
     transition: box-shadow 200ms ease, transform 200ms ease;
@@ -1906,7 +1932,7 @@
 
   .insight-card {
     background: var(--white);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     height: 100%;
     overflow: hidden;
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
@@ -2109,7 +2135,9 @@
     min-width: 0;
     flex: 1;
   }
-  .footer-newsletter-input::placeholder { color: var(--slate-400); }
+  /* Deliberately kept grey (not collapsed to black) - placeholder
+     text needs to stay visually distinct from real typed input. */
+  .footer-newsletter-input::placeholder { color: #5A7480; }
   .footer-newsletter-input:focus { border-color: var(--cobalt-500); outline: none; }
   .footer-newsletter-submit {
     background: var(--cobalt-500);
@@ -2223,7 +2251,7 @@
     color: var(--text-muted);
     margin-bottom: var(--space-2);
   }
-  .pain-card-label { font-size: var(--fs-body); }
+  .pain-card-label { font-size: calc(var(--fs-body) * 1.3); }
   .pain-card-source { font-size: var(--fs-3xs); letter-spacing: 0; }
 
   /* ---- Accent application (the site had no accent before) ---- */
@@ -2471,7 +2499,7 @@
     position: relative;
     padding: 18px 20px 18px 44px;
     background: var(--white);
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-2);
     font-family: var(--font-sans);
     font-weight: var(--fw-medium);
@@ -2665,7 +2693,7 @@
   @media (min-width: 768px) { .case-studies-grid { grid-template-columns: repeat(2, 1fr); } }
   .case-study-card {
     background: var(--white);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     padding: 32px;
     box-shadow: var(--shadow-2);
     display: flex;
