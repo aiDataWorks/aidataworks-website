@@ -1,4 +1,12 @@
 (function () {
+  // ---- Nav shrinks back to its compact size once the page scrolls ----
+  var nav = document.querySelector('.nav');
+  function updateNavScrollState() {
+    nav.classList.toggle('is-scrolled', window.scrollY > 20);
+  }
+  window.addEventListener('scroll', updateNavScrollState, { passive: true });
+  updateNavScrollState();
+
   var hamburgerBtn = document.getElementById('hamburgerBtn');
   var mobilePanel = document.getElementById('mobilePanel');
   hamburgerBtn.addEventListener('click', function () {
