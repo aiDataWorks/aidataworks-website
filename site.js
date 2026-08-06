@@ -119,4 +119,18 @@
     });
   }, { threshold: 0.4 });
   textRevealHeadings.forEach(function (heading) { textRevealObserver.observe(heading); });
+
+  // ---- Global delivery map fade-in (only present on some pages) ----
+  var globalDelivery = document.getElementById('global-delivery');
+  if (globalDelivery) {
+    var globalDeliveryObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          globalDeliveryObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    globalDeliveryObserver.observe(globalDelivery);
+  }
 })();
