@@ -18,73 +18,83 @@
           <svg class="nav-link-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="nav-dropdown" id="dropdown-services" role="group">
+          <div class="nav-dropdown-inner">
           <div class="nav-dropdown-row">
             <div class="nav-dropdown-tablist" role="tablist" aria-label="Service categories" data-service-tablist>
-              <button type="button" class="nav-dropdown-tab is-active" role="tab" aria-selected="true" aria-controls="panel-cloud-data" data-service-tab="0">
-                <span class="nav-dropdown-tab-title">Cloud Data Platforms</span>
-                <span class="nav-dropdown-tab-desc">Modern warehouse &amp; lakehouse foundations, tuned for scale and cost.</span>
+              <button type="button" class="nav-dropdown-tab is-active" role="tab" aria-selected="true" aria-controls="panel-advisory" data-service-tab="0">
+                <span class="nav-dropdown-tab-title">Advisory &amp; Assessment</span>
+                <span class="nav-dropdown-tab-desc">Fixed-scope reviews that de-risk the work ahead.</span>
               </button>
-              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-analytics" data-service-tab="1">
-                <span class="nav-dropdown-tab-title">Analytics &amp; Insights</span>
-                <span class="nav-dropdown-tab-desc">Turn trusted data into decisions across the business.</span>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-implementation" data-service-tab="1">
+                <span class="nav-dropdown-tab-title">Implementation &amp; Delivery</span>
+                <span class="nav-dropdown-tab-desc">Project-based build work across every major platform.</span>
               </button>
-              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-dataops" data-service-tab="2">
-                <span class="nav-dropdown-tab-title">DataOps &amp; Observability</span>
-                <span class="nav-dropdown-tab-desc">Keep data flowing reliably, with quality you can prove.</span>
-              </button>
-              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-mdm" data-service-tab="3">
-                <span class="nav-dropdown-tab-title">Master Data Management</span>
-                <span class="nav-dropdown-tab-desc">One trusted, 360&deg; view of your core business entities.</span>
-              </button>
-              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-governance" data-service-tab="4">
-                <span class="nav-dropdown-tab-title">Governance, Quality &amp; Catalog</span>
-                <span class="nav-dropdown-tab-desc">Trust, lineage, and compliance built in by design.</span>
-              </button>
-              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-dmaas" data-service-tab="5">
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-managed-dmaas" data-service-tab="2">
                 <span class="nav-dropdown-tab-title">Managed Services &mdash; DMaaS</span>
                 <span class="nav-dropdown-tab-desc">Outcome-based delivery with on-demand expert teams.</span>
               </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-licensing" data-service-tab="3">
+                <span class="nav-dropdown-tab-title">Licensing &amp; Reselling</span>
+                <span class="nav-dropdown-tab-desc">Certified resale, compliance, and contract advisory.</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-training" data-service-tab="4">
+                <span class="nav-dropdown-tab-title">Training &amp; Enablement</span>
+                <span class="nav-dropdown-tab-desc">Workshops and product training for your team.</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-staffing" data-service-tab="5">
+                <span class="nav-dropdown-tab-title">Staff Augmentation</span>
+                <span class="nav-dropdown-tab-desc">Dedicated and shared-pool experts, globally delivered.</span>
+              </button>
             </div>
             <div class="nav-dropdown-tabpanels">
-              <div class="nav-dropdown-tabpanel is-active" role="tabpanel" id="panel-cloud-data">
-                <a class="nav-dropdown-link" href="service-cloud-data-platforms.html"><span class="nav-dropdown-link-title">Snowflake, Databricks &amp; BigQuery</span></a>
-                <a class="nav-dropdown-link" href="service-cloud-data-platforms.html"><span class="nav-dropdown-link-title">Lakehouse &amp; Medallion Architecture</span></a>
-                <a class="nav-dropdown-link" href="service-cloud-data-platforms.html"><span class="nav-dropdown-link-title">Performance Tuning &amp; FinOps</span></a>
-                <a class="nav-dropdown-link" href="service-cloud-data-platforms.html"><span class="nav-dropdown-link-title">Storage &amp; Workload Management</span></a>
+              <div class="nav-dropdown-tabpanel is-active" role="tabpanel" id="panel-advisory">
+                <a class="nav-dropdown-link" href="services.html#advisory-assessment"><span class="nav-dropdown-link-title">AI Readiness Assessment</span></a>
+                <a class="nav-dropdown-link" href="services.html#advisory-assessment"><span class="nav-dropdown-link-title">Data Management Strategy &amp; Roadmap</span></a>
+                <a class="nav-dropdown-link" href="services.html#advisory-assessment"><span class="nav-dropdown-link-title">Architecture Review &amp; Advisory</span></a>
+                <a class="nav-dropdown-link" href="services.html#advisory-assessment"><span class="nav-dropdown-link-title">Data Governance Maturity Assessment</span></a>
+                <a class="nav-dropdown-link" href="services.html#advisory-assessment"><span class="nav-dropdown-link-title">Cloud Cost &amp; FinOps Review</span></a>
               </div>
-              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-analytics">
-                <a class="nav-dropdown-link" href="service-analytics-insights.html"><span class="nav-dropdown-link-title">Self-Service BI &amp; Dashboards</span></a>
-                <a class="nav-dropdown-link" href="service-analytics-insights.html"><span class="nav-dropdown-link-title">Semantic Layers &amp; Governed Metrics</span></a>
-                <a class="nav-dropdown-link" href="service-analytics-insights.html"><span class="nav-dropdown-link-title">Advanced &amp; Predictive Analytics</span></a>
-                <a class="nav-dropdown-link" href="service-analytics-insights.html"><span class="nav-dropdown-link-title">Embedded &amp; Operational Analytics</span></a>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-implementation">
+                <a class="nav-dropdown-link" href="services.html#implementation-delivery"><span class="nav-dropdown-link-title">Informatica</span></a>
+                <a class="nav-dropdown-link" href="services.html#implementation-delivery"><span class="nav-dropdown-link-title">Salesforce &amp; MuleSoft</span></a>
+                <a class="nav-dropdown-link" href="services.html#implementation-delivery"><span class="nav-dropdown-link-title">Cloud Platforms &mdash; AWS, Azure, GCP</span></a>
+                <a class="nav-dropdown-link" href="services.html#implementation-delivery"><span class="nav-dropdown-link-title">Data Platforms &mdash; Snowflake, Databricks</span></a>
+                <a class="nav-dropdown-link" href="services.html#implementation-delivery"><span class="nav-dropdown-link-title">Healthcare Systems &mdash; Epic</span></a>
+                <a class="nav-dropdown-link" href="services.html#implementation-delivery"><span class="nav-dropdown-link-title">Application &amp; Full-Stack Development</span></a>
               </div>
-              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-dataops">
-                <a class="nav-dropdown-link" href="service-dataops-observability.html"><span class="nav-dropdown-link-title">Pipeline Monitoring &amp; Alerting</span></a>
-                <a class="nav-dropdown-link" href="service-dataops-observability.html"><span class="nav-dropdown-link-title">Data Observability &amp; Quality SLAs</span></a>
-                <a class="nav-dropdown-link" href="service-dataops-observability.html"><span class="nav-dropdown-link-title">CI/CD &amp; Automation for Data</span></a>
-                <a class="nav-dropdown-link" href="service-dataops-observability.html"><span class="nav-dropdown-link-title">Reliability &amp; Incident Response</span></a>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-managed-dmaas">
+                <a class="nav-dropdown-link" href="services.html#managed-dmaas"><span class="nav-dropdown-link-title">Run, Monitor &amp; Optimize &mdash; 24/7</span></a>
+                <a class="nav-dropdown-link" href="services.html#managed-dmaas"><span class="nav-dropdown-link-title">SLA-Backed Support &amp; Administration</span></a>
+                <a class="nav-dropdown-link" href="services.html#managed-dmaas"><span class="nav-dropdown-link-title">Outcome-Based Pricing</span></a>
+                <a class="nav-dropdown-link" href="services.html#managed-dmaas"><span class="nav-dropdown-link-title">Fixed, Predictable Monthly Cost</span></a>
               </div>
-              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-mdm">
-                <a class="nav-dropdown-link" href="service-master-data-management.html"><span class="nav-dropdown-link-title">Customer, Product &amp; Supplier 360</span></a>
-                <a class="nav-dropdown-link" href="service-master-data-management.html"><span class="nav-dropdown-link-title">Match, Merge &amp; Survivorship</span></a>
-                <a class="nav-dropdown-link" href="service-master-data-management.html"><span class="nav-dropdown-link-title">Reference &amp; Hierarchy Management</span></a>
-                <a class="nav-dropdown-link" href="service-master-data-management.html"><span class="nav-dropdown-link-title">Stewardship &amp; Data-as-a-Service</span></a>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-licensing">
+                <a class="nav-dropdown-link" href="services.html#licensing-reselling"><span class="nav-dropdown-link-title">Informatica License Resale</span></a>
+                <a class="nav-dropdown-link" href="services.html#licensing-reselling"><span class="nav-dropdown-link-title">Salesforce &amp; MuleSoft License Resale</span></a>
+                <a class="nav-dropdown-link" href="services.html#licensing-reselling"><span class="nav-dropdown-link-title">License Compliance &amp; Entitlement Management</span></a>
+                <a class="nav-dropdown-link" href="services.html#licensing-reselling"><span class="nav-dropdown-link-title">Contract Advisory &amp; Renewal Management</span></a>
               </div>
-              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-governance">
-                <a class="nav-dropdown-link" href="service-governance-quality-catalog.html"><span class="nav-dropdown-link-title">Data Quality &amp; Profiling</span></a>
-                <a class="nav-dropdown-link" href="service-governance-quality-catalog.html"><span class="nav-dropdown-link-title">Catalog, Lineage &amp; Discovery</span></a>
-                <a class="nav-dropdown-link" href="service-governance-quality-catalog.html"><span class="nav-dropdown-link-title">Policy, Privacy &amp; Security Controls</span></a>
-                <a class="nav-dropdown-link" href="service-governance-quality-catalog.html"><span class="nav-dropdown-link-title">Audit-Ready Compliance Frameworks</span></a>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-training">
+                <a class="nav-dropdown-link" href="services.html#training-enablement"><span class="nav-dropdown-link-title">Digital Transformation Workshops</span></a>
+                <a class="nav-dropdown-link" href="services.html#training-enablement"><span class="nav-dropdown-link-title">Product Training &mdash; Informatica, Salesforce, Cloud</span></a>
+                <a class="nav-dropdown-link" href="services.html#training-enablement"><span class="nav-dropdown-link-title">On-Site, Off-Site &amp; Remote Delivery</span></a>
+                <a class="nav-dropdown-link" href="services.html#training-enablement"><span class="nav-dropdown-link-title">Center of Excellence Enablement</span></a>
               </div>
-              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-dmaas">
-                <a class="nav-dropdown-link" href="service-managed-dmaas.html"><span class="nav-dropdown-link-title">Data Management as a Service</span></a>
-                <a class="nav-dropdown-link" href="service-managed-dmaas.html"><span class="nav-dropdown-link-title">Licensing, Implementation &amp; Reselling</span></a>
-                <a class="nav-dropdown-link" href="service-managed-dmaas.html"><span class="nav-dropdown-link-title">Run, Monitor &amp; Optimize</span></a>
-                <a class="nav-dropdown-link" href="service-managed-dmaas.html"><span class="nav-dropdown-link-title">Flexible, On-Demand Resources</span></a>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-staffing">
+                <a class="nav-dropdown-link" href="services.html#staff-augmentation"><span class="nav-dropdown-link-title">Dedicated Resource Placement</span></a>
+                <a class="nav-dropdown-link" href="services.html#staff-augmentation"><span class="nav-dropdown-link-title">Shared-Pool &amp; Fractional Coverage</span></a>
+                <a class="nav-dropdown-link" href="services.html#staff-augmentation"><span class="nav-dropdown-link-title">Multiple Coverage Models &amp; Time-Zone Alignment</span></a>
+                <a class="nav-dropdown-link" href="services.html#staff-augmentation"><span class="nav-dropdown-link-title">Global Delivery &mdash; US, India, Philippines, Israel</span></a>
               </div>
             </div>
+            <div class="nav-dropdown-promo">
+              <h4 class="nav-dropdown-promo-heading">Our Services</h4>
+              <p class="nav-dropdown-promo-text">Advisory, delivery, managed operations, and enablement &mdash; one team across the engagement lifecycle.</p>
+              <a class="nav-dropdown-promo-link" href="services.html">See our full approach &rarr;</a>
+            </div>
           </div>
-          <a class="nav-dropdown-foot" href="index.html#services">See our full approach &rarr;</a>
+          <a class="nav-dropdown-foot" href="services.html">See our full approach &rarr;</a>
+          </div>
         </div>
       </div>
       <div class="nav-item" data-nav-item>
@@ -93,22 +103,110 @@
           <svg class="nav-link-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="nav-dropdown" id="dropdown-solutions" role="group">
+          <div class="nav-dropdown-inner">
           <div class="nav-dropdown-row">
-            <div class="nav-dropdown-col">
-              <p class="nav-dropdown-col-heading">By platform</p>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">Informatica Cloud &amp; IDMC</span><span class="nav-dropdown-link-desc">Migration, modernization, IICS</span></a>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">Salesforce Data 360</span><span class="nav-dropdown-link-desc">Unified customer &amp; data insights</span></a>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">MuleSoft API-Led Integration</span><span class="nav-dropdown-link-desc">Connect systems in real time</span></a>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">Databricks &amp; Snowflake</span><span class="nav-dropdown-link-desc">Lakehouse &amp; cloud data platforms</span></a>
+            <div class="nav-dropdown-tablist" role="tablist" aria-label="Solution domains" data-service-tablist>
+              <button type="button" class="nav-dropdown-tab is-active" role="tab" aria-selected="true" aria-controls="panel-legacy-modernization" data-service-tab="0">
+                <span class="nav-dropdown-tab-title">Legacy Modernization &amp; Cloud Migration</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-cloud-data-platforms" data-service-tab="1">
+                <span class="nav-dropdown-tab-title">Cloud Data Platforms</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-data-integration" data-service-tab="2">
+                <span class="nav-dropdown-tab-title">Data Integration &amp; Interoperability</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-mdm" data-service-tab="3">
+                <span class="nav-dropdown-tab-title">Master Data Management</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-governance" data-service-tab="4">
+                <span class="nav-dropdown-tab-title">Governance, Quality &amp; Catalog</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-analytics" data-service-tab="5">
+                <span class="nav-dropdown-tab-title">Analytics &amp; Insights</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-b2b" data-service-tab="6">
+                <span class="nav-dropdown-tab-title">B2B &amp; Data Exchange</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-security" data-service-tab="7">
+                <span class="nav-dropdown-tab-title">Data Security &amp; Privacy</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-dataops" data-service-tab="8">
+                <span class="nav-dropdown-tab-title">DataOps &amp; Observability</span>
+              </button>
+              <button type="button" class="nav-dropdown-tab" role="tab" aria-selected="false" aria-controls="panel-ai-agentic" data-service-tab="9">
+                <span class="nav-dropdown-tab-title">AI &amp; Agentic Solutions</span>
+              </button>
             </div>
-            <div class="nav-dropdown-col">
-              <p class="nav-dropdown-col-heading">AI solutions</p>
-              <a class="nav-dropdown-link" href="index.html#ai-automation"><span class="nav-dropdown-link-title">Agentic AI Copilot</span><span class="nav-dropdown-link-desc">For Informatica &amp; Snowflake</span></a>
-              <a class="nav-dropdown-link" href="index.html#ai-automation"><span class="nav-dropdown-link-title">GEM AI Manufacturing Copilot</span><span class="nav-dropdown-link-desc">Purpose-built shop-floor AI</span></a>
-              <a class="nav-dropdown-link" href="index.html#ai-automation"><span class="nav-dropdown-link-title">Custom LLM &amp; Agent Flows</span><span class="nav-dropdown-link-desc">Built on your governed data</span></a>
+            <div class="nav-dropdown-tabpanels">
+              <div class="nav-dropdown-tabpanel is-active" role="tabpanel" id="panel-legacy-modernization">
+                <a class="nav-dropdown-link" href="solutions.html#legacy-modernization"><span class="nav-dropdown-link-title">PowerCenter Cloudification to IDMC</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#legacy-modernization"><span class="nav-dropdown-link-title">Competitor Platform Migration &mdash; SAP, IBM, BizTalk</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#legacy-modernization"><span class="nav-dropdown-link-title">Migration Factory &mdash; Accelerated Delivery</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#legacy-modernization"><span class="nav-dropdown-link-title">Automated Mapping, Validation &amp; Lineage Tracking</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-cloud-data-platforms">
+                <a class="nav-dropdown-link" href="solutions.html#cloud-data-platforms"><span class="nav-dropdown-link-title">Snowflake, Databricks &amp; BigQuery</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#cloud-data-platforms"><span class="nav-dropdown-link-title">Lakehouse &amp; Medallion Architecture</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#cloud-data-platforms"><span class="nav-dropdown-link-title">Performance Tuning &amp; FinOps</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#cloud-data-platforms"><span class="nav-dropdown-link-title">Storage &amp; Workload Management</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-data-integration">
+                <a class="nav-dropdown-link" href="solutions.html#data-integration"><span class="nav-dropdown-link-title">Cloud Data Integration &mdash; Batch &amp; Real-Time</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#data-integration"><span class="nav-dropdown-link-title">Data Integration Hub</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#data-integration"><span class="nav-dropdown-link-title">API &amp; Application Integration &mdash; MuleSoft</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#data-integration"><span class="nav-dropdown-link-title">Cross-Cloud Vendor Integration</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-mdm">
+                <a class="nav-dropdown-link" href="solutions.html#mdm"><span class="nav-dropdown-link-title">Customer, Product &amp; Supplier 360</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#mdm"><span class="nav-dropdown-link-title">Match, Merge &amp; Survivorship</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#mdm"><span class="nav-dropdown-link-title">Reference &amp; Hierarchy Management</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#mdm"><span class="nav-dropdown-link-title">Stewardship &amp; Data-as-a-Service</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-governance">
+                <a class="nav-dropdown-link" href="solutions.html#governance-quality-catalog"><span class="nav-dropdown-link-title">Data Quality &amp; Profiling</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#governance-quality-catalog"><span class="nav-dropdown-link-title">Catalog, Lineage &amp; Discovery</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#governance-quality-catalog"><span class="nav-dropdown-link-title">Policy, Privacy &amp; Security Controls</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#governance-quality-catalog"><span class="nav-dropdown-link-title">Audit-Ready Compliance Frameworks</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-analytics">
+                <a class="nav-dropdown-link" href="solutions.html#analytics-insights"><span class="nav-dropdown-link-title">Self-Service BI &amp; Dashboards</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#analytics-insights"><span class="nav-dropdown-link-title">Semantic Layers &amp; Governed Metrics</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#analytics-insights"><span class="nav-dropdown-link-title">Advanced &amp; Predictive Analytics</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#analytics-insights"><span class="nav-dropdown-link-title">Embedded &amp; Operational Analytics</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-b2b">
+                <a class="nav-dropdown-link" href="solutions.html#b2b-data-exchange"><span class="nav-dropdown-link-title">B2B Data Exchange &mdash; EDI-X12, HL7, SWIFT</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#b2b-data-exchange"><span class="nav-dropdown-link-title">Managed File Transfer &mdash; Informatica MFT, Cleo</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#b2b-data-exchange"><span class="nav-dropdown-link-title">Partner Onboarding &amp; Trading-Partner Management</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#b2b-data-exchange"><span class="nav-dropdown-link-title">Secure Partner Network Expansion</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-security">
+                <a class="nav-dropdown-link" href="solutions.html#data-security-privacy"><span class="nav-dropdown-link-title">Data Masking &mdash; Static &amp; Dynamic</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#data-security-privacy"><span class="nav-dropdown-link-title">Test Data Management (TDM)</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#data-security-privacy"><span class="nav-dropdown-link-title">Secure@Source &amp; Sensitive Data Discovery</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#data-security-privacy"><span class="nav-dropdown-link-title">Intelligent Access Controls &amp; Compliance</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-dataops">
+                <a class="nav-dropdown-link" href="solutions.html#dataops-observability"><span class="nav-dropdown-link-title">Pipeline Monitoring &amp; Alerting</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#dataops-observability"><span class="nav-dropdown-link-title">Data Observability &amp; Quality SLAs</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#dataops-observability"><span class="nav-dropdown-link-title">CI/CD &amp; Automation for Data</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#dataops-observability"><span class="nav-dropdown-link-title">Reliability &amp; Incident Response</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-ai-agentic">
+                <a class="nav-dropdown-link" href="solutions.html#ai-agentic-solutions"><span class="nav-dropdown-link-title">Agentic AI Copilot &mdash; Informatica &amp; Snowflake</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#ai-agentic-solutions"><span class="nav-dropdown-link-title">GEM AI Manufacturing Copilot</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#ai-agentic-solutions"><span class="nav-dropdown-link-title">Custom LLMs &amp; Agent Flows</span></a>
+                <a class="nav-dropdown-link" href="solutions.html#ai-agentic-solutions"><span class="nav-dropdown-link-title">AI-Driven Data Management &amp; MLOps</span></a>
+              </div>
+            </div>
+            <div class="nav-dropdown-promo">
+              <h4 class="nav-dropdown-promo-heading">Solutions</h4>
+              <p class="nav-dropdown-promo-text">Ten capability domains, each with a repeatable method &mdash; from legacy modernization to agentic AI.</p>
+              <a class="nav-dropdown-promo-link" href="solutions.html">Explore our solutions &rarr;</a>
             </div>
           </div>
-          <a class="nav-dropdown-foot" href="index.html#partners">Explore the integration stack &rarr;</a>
+          <a class="nav-dropdown-foot" href="solutions.html">Explore our solutions &rarr;</a>
+          </div>
         </div>
       </div>
       <div class="nav-item" data-nav-item>
@@ -117,17 +215,24 @@
           <svg class="nav-link-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="nav-dropdown" id="dropdown-industries" role="group">
+          <div class="nav-dropdown-inner">
           <div class="nav-dropdown-row">
             <div class="nav-dropdown-col nav-dropdown-grid">
-              <a class="nav-dropdown-link" href="industry-healthcare.html"><span class="nav-dropdown-link-title">Healthcare</span></a>
-              <a class="nav-dropdown-link" href="industry-financial-services.html"><span class="nav-dropdown-link-title">Financial Services</span></a>
-              <a class="nav-dropdown-link" href="industry-insurance.html"><span class="nav-dropdown-link-title">Insurance</span></a>
-              <a class="nav-dropdown-link" href="industry-manufacturing.html"><span class="nav-dropdown-link-title">Manufacturing</span></a>
-              <a class="nav-dropdown-link" href="industry-retail-cpg.html"><span class="nav-dropdown-link-title">Retail &amp; CPG</span></a>
-              <a class="nav-dropdown-link" href="industry-public-sector.html"><span class="nav-dropdown-link-title">Public Sector</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="industry-healthcare.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span><span class="nav-dropdown-link-title">Healthcare</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="industry-financial-services.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span class="nav-dropdown-link-title">Financial Services</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="industry-insurance.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="nav-dropdown-link-title">Insurance</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="industry-manufacturing.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><span class="nav-dropdown-link-title">Manufacturing</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="industry-retail-cpg.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span><span class="nav-dropdown-link-title">Retail &amp; CPG</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="industry-public-sector.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><span class="nav-dropdown-link-title">Public Sector</span></a>
+            </div>
+            <div class="nav-dropdown-promo">
+              <h4 class="nav-dropdown-promo-heading">Industries we serve</h4>
+              <p class="nav-dropdown-promo-text">Purpose-built data and AI solutions for regulated, high-stakes environments.</p>
+              <a class="nav-dropdown-promo-link" href="#industries">See all industries &rarr;</a>
             </div>
           </div>
-          <a class="nav-dropdown-foot" href="index.html#industries">See where we do our best work &rarr;</a>
+          <a class="nav-dropdown-foot" href="#industries">See where we do our best work &rarr;</a>
+          </div>
         </div>
       </div>
       <div class="nav-item" data-nav-item>
@@ -136,23 +241,48 @@
           <svg class="nav-link-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="nav-dropdown" id="dropdown-partners" role="group">
+          <div class="nav-dropdown-inner">
           <div class="nav-dropdown-row">
-            <div class="nav-dropdown-col">
-              <p class="nav-dropdown-col-heading">Technology alliances</p>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">Informatica</span></a>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">Salesforce &amp; MuleSoft</span></a>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">Databricks &amp; Snowflake</span></a>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">AWS, Azure &amp; Google Cloud</span></a>
+            <div class="nav-dropdown-tablist" data-service-tablist>
+              <p class="nav-dropdown-col-heading">Technology Alliances</p>
+              <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Informatica</span></a>
+              <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Salesforce</span></a>
+              <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">MuleSoft</span></a>
+              <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Fortra</span></a>
+              <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Epic</span></a>
+              <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Oracle Fusion</span></a>
+              <button type="button" class="nav-dropdown-tab nav-dropdown-tab--expand is-active" role="tab" aria-selected="true" aria-controls="panel-cloud-platforms" data-service-tab="0">
+                <span class="nav-dropdown-tab-title">Cloud Platforms</span>
+                <svg class="nav-dropdown-tab-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button type="button" class="nav-dropdown-tab nav-dropdown-tab--expand" role="tab" aria-selected="false" aria-controls="panel-ai-platforms" data-service-tab="1">
+                <span class="nav-dropdown-tab-title">AI Platforms</span>
+                <svg class="nav-dropdown-tab-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
             </div>
-            <div class="nav-dropdown-col">
-              <p class="nav-dropdown-col-heading">Certifications</p>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">Informatica Platinum Partner</span></a>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">Informatica Delivery Partner</span></a>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">Salesforce Data 360 Consultant</span></a>
-              <a class="nav-dropdown-link" href="index.html#partners"><span class="nav-dropdown-link-title">MuleSoft Certified Partner</span></a>
+            <div class="nav-dropdown-tabpanels">
+              <div class="nav-dropdown-tabpanel is-active" role="tabpanel" id="panel-cloud-platforms">
+                <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Databricks</span></a>
+                <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Snowflake</span></a>
+                <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">AWS</span></a>
+                <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Microsoft Azure</span></a>
+                <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Google Cloud</span></a>
+              </div>
+              <div class="nav-dropdown-tabpanel" role="tabpanel" id="panel-ai-platforms">
+                <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Claude</span></a>
+                <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">OpenAI</span></a>
+                <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Grok</span></a>
+                <a class="nav-dropdown-link" href="#partners"><span class="nav-dropdown-link-title">Perplexity</span></a>
+              </div>
+            </div>
+            <div class="nav-dropdown-promo">
+              <h4 class="nav-dropdown-promo-heading">Our Partners</h4>
+              <p class="nav-dropdown-promo-text">Certified expertise across the platforms enterprises already run on.</p>
+              <a class="nav-dropdown-promo-link" href="#partners">View all partners &rarr;</a>
             </div>
           </div>
-          <a class="nav-dropdown-foot" href="index.html#partners">View all partners &rarr;</a>
+          <a class="nav-dropdown-foot" href="#partners">View all partners &rarr;</a>
+          </div>
         </div>
       </div>
       <div class="nav-item" data-nav-item>
@@ -162,12 +292,16 @@
         </button>
         <div class="nav-dropdown" id="dropdown-about" role="group">
           <div class="nav-dropdown-row">
-            <div class="nav-dropdown-col">
-              <a class="nav-dropdown-link" href="about.html"><span class="nav-dropdown-link-title">Who We Are</span></a>
-              <a class="nav-dropdown-link" href="index.html#services"><span class="nav-dropdown-link-title">Our Approach</span></a>
-              <a class="nav-dropdown-link" href="careers.html"><span class="nav-dropdown-link-title">Careers</span></a>
-              <a class="nav-dropdown-link" href="index.html#insights"><span class="nav-dropdown-link-title">Newsroom</span></a>
-              <a class="nav-dropdown-link" href="contact.html"><span class="nav-dropdown-link-title">Contact Us</span></a>
+            <div class="nav-dropdown-col nav-dropdown-grid">
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="about.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="nav-dropdown-link-title">Who We Are</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="#services"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="nav-dropdown-link-title">Our Approach</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="careers.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><span class="nav-dropdown-link-title">Careers</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="contact.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span><span class="nav-dropdown-link-title">Contact Us</span></a>
+            </div>
+            <div class="nav-dropdown-promo">
+              <h4 class="nav-dropdown-promo-heading">Who We Are</h4>
+              <p class="nav-dropdown-promo-text">An Informatica Platinum, Salesforce, and MuleSoft partner helping enterprises turn fragmented data into governed, AI-ready systems.</p>
+              <a class="nav-dropdown-promo-link" href="about.html">About aiDataWorks &rarr;</a>
             </div>
           </div>
         </div>
@@ -179,12 +313,18 @@
         </button>
         <div class="nav-dropdown" id="dropdown-resources" role="group">
           <div class="nav-dropdown-row">
-            <div class="nav-dropdown-col">
-              <a class="nav-dropdown-link" href="index.html#insights"><span class="nav-dropdown-link-title">Insights &amp; Blog</span></a>
-              <a class="nav-dropdown-link" href="case-studies.html"><span class="nav-dropdown-link-title">Case Studies</span></a>
-              <a class="nav-dropdown-link" href="index.html#faq"><span class="nav-dropdown-link-title">FAQs</span></a>
-              <a class="nav-dropdown-link" href="webinars.html"><span class="nav-dropdown-link-title">Webinars &amp; Events</span></a>
-              <a class="nav-dropdown-link" href="index.html#insights"><span class="nav-dropdown-link-title">Newsletter</span></a>
+            <div class="nav-dropdown-col nav-dropdown-grid">
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="#insights"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><span class="nav-dropdown-link-title">Blogs</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="case-studies.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-dropdown-link-title">Case Studies</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="#faq"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><span class="nav-dropdown-link-title">FAQs</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="webinars.html"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></span><span class="nav-dropdown-link-title">Events</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="#insights"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></span><span class="nav-dropdown-link-title">Whitepapers</span></a>
+              <a class="nav-dropdown-link nav-dropdown-link--icon" href="#insights"><span class="nav-dropdown-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span><span class="nav-dropdown-link-title">Newsroom</span></a>
+            </div>
+            <div class="nav-dropdown-promo">
+              <h4 class="nav-dropdown-promo-heading">Resources</h4>
+              <p class="nav-dropdown-promo-text">Guides, case studies, and events on enterprise data, governance, and AI adoption.</p>
+              <a class="nav-dropdown-promo-link" href="#insights">Explore insights &rarr;</a>
             </div>
           </div>
         </div>
@@ -203,12 +343,12 @@
       </button>
       <div class="nav-mobile-submenu">
         <div class="nav-mobile-submenu-inner">
-          <a href="service-cloud-data-platforms.html"><span class="nav-mobile-sublink-title">Cloud Data Platforms</span><span class="nav-mobile-sublink-desc">Modern warehouse &amp; lakehouse foundations</span></a>
-          <a href="service-analytics-insights.html"><span class="nav-mobile-sublink-title">Analytics &amp; Insights</span><span class="nav-mobile-sublink-desc">Turn trusted data into decisions</span></a>
-          <a href="service-dataops-observability.html"><span class="nav-mobile-sublink-title">DataOps &amp; Observability</span><span class="nav-mobile-sublink-desc">Reliable pipelines, quality you can prove</span></a>
-          <a href="service-master-data-management.html"><span class="nav-mobile-sublink-title">Master Data Management</span><span class="nav-mobile-sublink-desc">One trusted, 360&deg; view of your data</span></a>
-          <a href="service-governance-quality-catalog.html"><span class="nav-mobile-sublink-title">Governance, Quality &amp; Catalog</span><span class="nav-mobile-sublink-desc">Trust, lineage &amp; compliance by design</span></a>
-          <a href="service-managed-dmaas.html"><span class="nav-mobile-sublink-title">Managed Services &mdash; DMaaS</span><span class="nav-mobile-sublink-desc">Outcome-based, on-demand expert teams</span></a>
+          <a href="services.html#advisory-assessment"><span class="nav-mobile-sublink-title">Advisory &amp; Assessment</span><span class="nav-mobile-sublink-desc">Fixed-scope reviews that de-risk the work ahead</span></a>
+          <a href="services.html#implementation-delivery"><span class="nav-mobile-sublink-title">Implementation &amp; Delivery</span><span class="nav-mobile-sublink-desc">Project-based build work across every platform</span></a>
+          <a href="services.html#managed-dmaas"><span class="nav-mobile-sublink-title">Managed Services &mdash; DMaaS</span><span class="nav-mobile-sublink-desc">Outcome-based, on-demand expert teams</span></a>
+          <a href="services.html#licensing-reselling"><span class="nav-mobile-sublink-title">Licensing &amp; Reselling</span><span class="nav-mobile-sublink-desc">Certified resale, compliance &amp; contract advisory</span></a>
+          <a href="services.html#training-enablement"><span class="nav-mobile-sublink-title">Training &amp; Enablement</span><span class="nav-mobile-sublink-desc">Workshops and product training for your team</span></a>
+          <a href="services.html#staff-augmentation"><span class="nav-mobile-sublink-title">Staff Augmentation</span><span class="nav-mobile-sublink-desc">Dedicated and shared-pool experts, globally delivered</span></a>
         </div>
       </div>
     </div>
@@ -219,12 +359,16 @@
       </button>
       <div class="nav-mobile-submenu">
         <div class="nav-mobile-submenu-inner">
-          <a href="index.html#partners"><span class="nav-mobile-sublink-title">Informatica Cloud &amp; IDMC</span><span class="nav-mobile-sublink-desc">Migration, modernization, IICS</span></a>
-          <a href="index.html#partners"><span class="nav-mobile-sublink-title">Salesforce Data 360</span><span class="nav-mobile-sublink-desc">Unified customer &amp; data insights</span></a>
-          <a href="index.html#partners"><span class="nav-mobile-sublink-title">MuleSoft API-Led Integration</span><span class="nav-mobile-sublink-desc">Connect systems in real time</span></a>
-          <a href="index.html#partners"><span class="nav-mobile-sublink-title">Databricks &amp; Snowflake</span><span class="nav-mobile-sublink-desc">Lakehouse &amp; cloud data platforms</span></a>
-          <a href="index.html#ai-automation"><span class="nav-mobile-sublink-title">Agentic AI Copilot</span><span class="nav-mobile-sublink-desc">For Informatica &amp; Snowflake</span></a>
-          <a href="index.html#ai-automation"><span class="nav-mobile-sublink-title">GEM AI Manufacturing Copilot</span><span class="nav-mobile-sublink-desc">Purpose-built shop-floor AI</span></a>
+          <a href="solutions.html#legacy-modernization"><span class="nav-mobile-sublink-title">Legacy Modernization &amp; Cloud Migration</span><span class="nav-mobile-sublink-desc">Migration Factory, accelerated delivery</span></a>
+          <a href="solutions.html#cloud-data-platforms"><span class="nav-mobile-sublink-title">Cloud Data Platforms</span><span class="nav-mobile-sublink-desc">Snowflake, Databricks &amp; BigQuery</span></a>
+          <a href="solutions.html#data-integration"><span class="nav-mobile-sublink-title">Data Integration &amp; Interoperability</span><span class="nav-mobile-sublink-desc">Batch, real-time &amp; API integration</span></a>
+          <a href="solutions.html#mdm"><span class="nav-mobile-sublink-title">Master Data Management</span><span class="nav-mobile-sublink-desc">Customer, product &amp; supplier 360</span></a>
+          <a href="solutions.html#governance-quality-catalog"><span class="nav-mobile-sublink-title">Governance, Quality &amp; Catalog</span><span class="nav-mobile-sublink-desc">Trust, lineage &amp; compliance by design</span></a>
+          <a href="solutions.html#analytics-insights"><span class="nav-mobile-sublink-title">Analytics &amp; Insights</span><span class="nav-mobile-sublink-desc">Turn trusted data into decisions</span></a>
+          <a href="solutions.html#b2b-data-exchange"><span class="nav-mobile-sublink-title">B2B &amp; Data Exchange</span><span class="nav-mobile-sublink-desc">EDI-X12, HL7, SWIFT &amp; managed file transfer</span></a>
+          <a href="solutions.html#data-security-privacy"><span class="nav-mobile-sublink-title">Data Security &amp; Privacy</span><span class="nav-mobile-sublink-desc">Masking, TDM &amp; access controls</span></a>
+          <a href="solutions.html#dataops-observability"><span class="nav-mobile-sublink-title">DataOps &amp; Observability</span><span class="nav-mobile-sublink-desc">Reliable pipelines, quality you can prove</span></a>
+          <a href="solutions.html#ai-agentic-solutions"><span class="nav-mobile-sublink-title">AI &amp; Agentic Solutions</span><span class="nav-mobile-sublink-desc">Copilots, custom LLMs &amp; MLOps</span></a>
         </div>
       </div>
     </div>
@@ -251,11 +395,21 @@
       </button>
       <div class="nav-mobile-submenu">
         <div class="nav-mobile-submenu-inner">
-          <a href="index.html#partners"><span class="nav-mobile-sublink-title">Informatica</span></a>
-          <a href="index.html#partners"><span class="nav-mobile-sublink-title">Salesforce &amp; MuleSoft</span></a>
-          <a href="index.html#partners"><span class="nav-mobile-sublink-title">Databricks &amp; Snowflake</span></a>
-          <a href="index.html#partners"><span class="nav-mobile-sublink-title">AWS, Azure &amp; Google Cloud</span></a>
-          <a href="index.html#partners"><span class="nav-mobile-sublink-title">Certifications &amp; badges</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Informatica</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Salesforce</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">MuleSoft</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Fortra</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Epic</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Oracle Fusion</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Databricks</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Snowflake</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">AWS</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Microsoft Azure</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Google Cloud</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Claude</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">OpenAI</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Grok</span></a>
+          <a href="#partners"><span class="nav-mobile-sublink-title">Perplexity</span></a>
         </div>
       </div>
     </div>
@@ -267,9 +421,9 @@
       <div class="nav-mobile-submenu">
         <div class="nav-mobile-submenu-inner">
           <a href="about.html"><span class="nav-mobile-sublink-title">Who We Are</span></a>
-          <a href="index.html#services"><span class="nav-mobile-sublink-title">Our Approach</span></a>
+          <a href="#services"><span class="nav-mobile-sublink-title">Our Approach</span></a>
           <a href="careers.html"><span class="nav-mobile-sublink-title">Careers</span></a>
-          <a href="index.html#insights"><span class="nav-mobile-sublink-title">Newsroom</span></a>
+          <a href="#insights"><span class="nav-mobile-sublink-title">Newsroom</span></a>
           <a href="contact.html"><span class="nav-mobile-sublink-title">Contact Us</span></a>
         </div>
       </div>
@@ -281,11 +435,13 @@
       </button>
       <div class="nav-mobile-submenu">
         <div class="nav-mobile-submenu-inner">
-          <a href="index.html#insights"><span class="nav-mobile-sublink-title">Insights &amp; Blog</span></a>
+          <a href="#insights"><span class="nav-mobile-sublink-title">Blogs</span></a>
           <a href="case-studies.html"><span class="nav-mobile-sublink-title">Case Studies</span></a>
-          <a href="index.html#faq"><span class="nav-mobile-sublink-title">FAQs</span></a>
-          <a href="webinars.html"><span class="nav-mobile-sublink-title">Webinars &amp; Events</span></a>
-          <a href="index.html#insights"><span class="nav-mobile-sublink-title">Newsletter</span></a>
+          <a href="#faq"><span class="nav-mobile-sublink-title">FAQs</span></a>
+          <a href="webinars.html"><span class="nav-mobile-sublink-title">Webinars</span></a>
+          <a href="webinars.html"><span class="nav-mobile-sublink-title">Events</span></a>
+          <a href="#insights"><span class="nav-mobile-sublink-title">Whitepapers</span></a>
+          <a href="#insights"><span class="nav-mobile-sublink-title">Newsletter</span></a>
         </div>
       </div>
     </div>
@@ -320,10 +476,27 @@
   </div>
 </section>
 
+<section class="page-section" id="case-studies">
+  <div class="page-section-inner">
+    <p class="page-section-eyebrow">Proof, not promises</p>
+    <h2 class="page-section-heading text-reveal">Retail &amp; CPG case studies</h2>
+    <div class="industry-case-grid">
+      <article class="industry-case-card">
+        <div class="industry-case-media" style="background-image:url('assets/industries/retail-cpg.png');"></div>
+        <div class="industry-case-body">
+          <h3 class="industry-case-title"><a href="case-studies/retail-bde-cloud-migration/index.html">Unblocking a Tier 1 Retailer's Big Data Engineering Upgrade and Cloud Cost</a></h3>
+          <p class="industry-case-summary">aiDataWorks upgraded the platform to unblock the migration and redesigned the AWS architecture to cut ongoing infrastructure spend.</p>
+          <a href="case-studies/retail-bde-cloud-migration/index.html" class="case-study-link">Read case study &rarr;</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="final-cta-band" id="final-cta">
   <h2 class="final-cta-heading text-reveal">Let's build your AI-ready data foundation.</h2>
-  <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="final-cta-btn cta-pulsate">Schedule a Meeting</a>
-  <p class="final-cta-email">Or email marketing@aidata.works</p>
+  <a href="https://calendly.com/sam-singh-aidata/30min" class="final-cta-btn cta-pulsate">Schedule a Meeting</a>
+  <p class="final-cta-email">Or email sam.singh@aidata.works</p>
 </section>
 <footer class="site-footer">
   <div class="footer-inner section-container">
@@ -338,12 +511,21 @@
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">Services</p>
+        <a href="#">Advisory &amp; Assessment</a>
+        <a href="#partners">Implementation &amp; Delivery</a>
+        <a href="service-managed-dmaas.html">Managed Services (DMaaS)</a>
+        <a href="#">Licensing &amp; Reselling</a>
+        <a href="#">Training &amp; Enablement</a>
+        <a href="#">Staff Augmentation</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-heading">Solutions</p>
         <a href="service-cloud-data-platforms.html">Cloud Data Platforms</a>
-        <a href="service-analytics-insights.html">Analytics &amp; Insights</a>
-        <a href="service-dataops-observability.html">DataOps &amp; Observability</a>
         <a href="service-master-data-management.html">Master Data Management</a>
         <a href="service-governance-quality-catalog.html">Governance, Quality &amp; Catalog</a>
-        <a href="service-managed-dmaas.html">Managed Services (DMaaS)</a>
+        <a href="service-analytics-insights.html">Analytics &amp; Insights</a>
+        <a href="service-dataops-observability.html">DataOps &amp; Observability</a>
+        <a href="#ai-automation">AI &amp; Agentic Solutions</a>
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">Industries</p>
@@ -356,26 +538,28 @@
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">Partners</p>
-        <a href="index.html#partners">Informatica</a>
-        <a href="index.html#partners">Salesforce &amp; MuleSoft</a>
-        <a href="index.html#partners">Databricks &amp; Snowflake</a>
-        <a href="index.html#partners">AWS, Azure &amp; Google Cloud</a>
+        <a href="#partners">Informatica</a>
+        <a href="#partners">Salesforce</a>
+        <a href="#partners">MuleSoft</a>
+        <a href="#partners">Fortra</a>
+        <a href="#partners">Epic</a>
+        <a href="#partners">Oracle Fusion</a>
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">About</p>
         <a href="about.html">Who We Are</a>
-        <a href="index.html#services">Our Approach</a>
+        <a href="#services">Our Approach</a>
         <a href="careers.html">Careers</a>
-        <a href="index.html#insights">Newsroom</a>
         <a href="contact.html">Contact Us</a>
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">Resources</p>
-        <a href="index.html#insights">Insights &amp; Blog</a>
+        <a href="#insights">Blogs</a>
         <a href="case-studies.html">Case Studies</a>
-        <a href="index.html#faq">FAQs</a>
-        <a href="webinars.html">Webinars &amp; Events</a>
-        <a href="index.html#insights">Newsletter</a>
+        <a href="#faq">FAQs</a>
+        <a href="webinars.html">Events</a>
+        <a href="#insights">Whitepapers</a>
+        <a href="#insights">Newsroom</a>
       </div>
     </div>
     <div class="footer-badges">
