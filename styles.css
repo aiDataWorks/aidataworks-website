@@ -399,6 +399,10 @@
     color: var(--slate-500);
     margin-top: 2px;
   }
+  .nav-dropdown-tab--expand { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 -12px; }
+  .nav-dropdown-tab-chevron { flex-shrink: 0; color: var(--slate-500); transition: color 150ms ease; }
+  .nav-dropdown-tab--expand:hover .nav-dropdown-tab-chevron,
+  .nav-dropdown-tab--expand.is-active .nav-dropdown-tab-chevron { color: var(--cobalt-600); }
   .nav-dropdown-tabpanels { flex: 1 1 0; }
   .nav-dropdown-tabpanel { display: none; flex-direction: column; }
   .nav-dropdown-tabpanel.is-active { display: flex; }
