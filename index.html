@@ -10,7 +10,7 @@
 
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo-link" aria-label="aiDataWorks home"><img class="nav-logo" src="uploads/aidataworks-primary.svg" alt="aiDataWorks"></a>
+    <a href="index.html" class="nav-logo-link" aria-label="aiDataWorks home"><img class="nav-logo" src="uploads/aidataworks-logo.png" alt="aiDataWorks"></a>
     <nav class="nav-links" aria-label="Primary">
       <div class="nav-item" data-nav-item>
         <button type="button" class="nav-link" aria-expanded="false" aria-controls="dropdown-services">
@@ -489,11 +489,11 @@
   </div>
   <div class="hero-inner">
     <div class="hero-badges-grid">
+      <img class="hero-badge-img" src="assets/informatica-platinum.png" alt="Informatica Platinum Partner">
       <img class="hero-badge-img" src="assets/salesforce-partner.png" alt="Salesforce Partner">
       <img class="hero-badge-img" src="assets/mulesoft-partner.png" alt="MuleSoft Partner">
-      <img class="hero-badge-img" src="assets/informatica-platinum.png" alt="Informatica Platinum Partner">
-      <img class="hero-badge-img" src="assets/epic-partner.png" alt="Epic Partner">
       <img class="hero-badge-img" src="assets/fortra-partner.png" alt="Fortra Partner">
+      <img class="hero-badge-img" src="assets/epic-partner.png" alt="Epic Partner">
     </div>
   </div>
 </section>
@@ -815,46 +815,38 @@
     <p class="proof-story-lede">Four recent engagements, told in full - not folded into an aggregate stat.</p>
 
     <div class="proof-carousel">
-      <!-- Slide 0 is real, already verified content. -->
+      <!-- All 4 slides are real, published case studies - see /case-studies/. -->
       <div class="proof-slide active" data-slide-index="0">
         <div class="proof-story-inner">
           <div class="proof-left">
-            <p class="proof-tag">Insurance</p>
-            <p class="proof-number" data-ticker-target="100" data-ticker-suffix="+">100+</p>
-            <p class="proof-caption">DT services modernized</p>
+            <p class="proof-tag">Healthcare</p>
+            <p class="proof-number" data-ticker-target="100" data-ticker-suffix="%">100%</p>
+            <p class="proof-caption">Applications migrated off unsupported Windows Server 2012</p>
           </div>
           <div class="proof-right">
-            <div class="proof-card" data-industry="insurance">
-              <div class="proof-card-media" role="img" aria-label="Insurance operations"></div>
+            <div class="proof-card" data-industry="healthcare">
+              <div class="proof-card-media" role="img" aria-label="Healthcare operations"></div>
               <div class="proof-card-body">
-                <p class="proof-quote">A Tier-1 mortgage insurer needed to move off a brittle, on-premise Informatica B2B stack - PowerCenter, B2B Data Exchange, and Managed File Transfer - without disrupting EDI, X12, and MISMO trading-partner traffic. aiDataWorks re-engineered the estate onto Informatica's Cloud B2B Gateway, CDI, and CAI, <strong class="proof-quote-highlight">modernizing 100+ data transformation services</strong> under a tight SLA - re-architected for cloud scale, not simply lifted and shifted.</p>
-                <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="proof-cta">Talk to an Expert &rarr;</a>
+                <p class="proof-quote">Corewell Health's Priority Health applications were running on end-of-life Windows Server 2012, with passwords stored directly in server files and PHI/PII surfacing in application logs. aiDataWorks moved every application to SDK-based, PAM-secured credentials on Windows Server 2022, <strong class="proof-quote-highlight">migrating 100% of in-scope applications</strong> off unsupported infrastructure and closing the logging exposure for good.</p>
+                <a href="case-studies/corewell-health-credentials-modernization/index.html" class="proof-cta">Read the full case study &rarr;</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- ==========================================================
-           MOCK CONTENT - slides 1-3 below are placeholders for the
-           design/layout only. Numbers, industries, and narratives are
-           illustrative, not verified client engagements. Swap each
-           one out for a real case study (or remove the slide and its
-           matching .proof-dot) before this section ships.
-           ========================================================== -->
       <div class="proof-slide" data-slide-index="1">
         <div class="proof-story-inner">
           <div class="proof-left">
-            <p class="proof-tag">Retail &amp; CPG</p>
-            <p class="proof-number" data-ticker-target="35" data-ticker-suffix="%">35%</p>
-            <p class="proof-caption">Fewer duplicate customer records</p>
+            <p class="proof-tag">Insurance</p>
+            <p class="proof-number">Full Lineage</p>
+            <p class="proof-caption">Across every legacy mainframe COBOL copybook</p>
           </div>
           <div class="proof-right">
-            <div class="proof-card" data-industry="retail-cpg">
-              <div class="proof-card-media" role="img" aria-label="Retail and CPG operations"></div>
+            <div class="proof-card" data-industry="insurance">
+              <div class="proof-card-media" role="img" aria-label="Insurance operations"></div>
               <div class="proof-card-body">
-                <p class="proof-quote">A national specialty retailer ran customer data through six disconnected systems - e-commerce, POS, loyalty, and three regional CRMs - so the same shopper could show up as four different people. aiDataWorks built a single Salesforce Data 360 and Informatica MDM pipeline that matched and merged records in near real time, <strong class="proof-quote-highlight">cutting duplicate profiles by over a third</strong> and giving marketing one accurate view of every customer.</p>
-                <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="proof-cta">Talk to an Expert &rarr;</a>
+                <p class="proof-quote">A tier 1 health insurer's Informatica Data Catalog had never been configured or smoke-tested, leaving decades of mainframe COBOL data feeding a modern Hadoop landing zone with zero governance or lineage. aiDataWorks built custom COBOL copybook scanners and brought the catalog fully live, <strong class="proof-quote-highlight">taking lineage visibility from zero to complete coverage</strong> with automated discovery replacing manual documentation.</p>
+                <a href="case-studies/health-insurer-mainframe-governance/index.html" class="proof-cta">Read the full case study &rarr;</a>
               </div>
             </div>
           </div>
@@ -864,15 +856,15 @@
         <div class="proof-story-inner">
           <div class="proof-left">
             <p class="proof-tag">Healthcare</p>
-            <p class="proof-number" data-ticker-target="6" data-ticker-suffix=" wks">6 wks</p>
-            <p class="proof-caption">Cut from the reconciliation cycle</p>
+            <p class="proof-number" data-ticker-target="8" data-ticker-suffix="x">8x</p>
+            <p class="proof-caption">Faster root-cause resolution on recurring file failures</p>
           </div>
           <div class="proof-right">
             <div class="proof-card" data-industry="healthcare">
               <div class="proof-card-media" role="img" aria-label="Healthcare operations"></div>
               <div class="proof-card-body">
-                <p class="proof-quote">A regional health system was reconciling patient records across Epic and four acquired practices by hand, with a multi-week backlog before data was trustworthy enough for reporting. aiDataWorks connected the estate through Informatica Cloud MDM and automated the match-merge rules staff had been running manually, <strong class="proof-quote-highlight">cutting the reconciliation cycle by six weeks</strong> and clearing the backlog for good.</p>
-                <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="proof-cta">Talk to an Expert &rarr;</a>
+                <p class="proof-quote">A tier 1 healthcare customer's Informatica, B2B, and cloud data stack needed steady hands after go-live, not another project team. aiDataWorks' L2/L3 managed services cut root-cause time on a recurring file-ordering issue from eight hours to one, reclaimed roughly 100 GB through archive cleanup, and <strong class="proof-quote-highlight">lifted B2B processing performance by an estimated 25%</strong> through ongoing error-event cleanup.</p>
+                <a href="case-studies/healthcare-managed-services-post-golive/index.html" class="proof-cta">Read the full case study &rarr;</a>
               </div>
             </div>
           </div>
@@ -884,16 +876,16 @@
             <p class="proof-tag">Manufacturing</p>
             <!-- No data-ticker-* here: animateNumberTicker() does parseInt()
                  on the target and only ever appends a suffix (no prefix
-                 support), so it can't correctly count up to "$2.1M". -->
-            <p class="proof-number">$2.1M</p>
-            <p class="proof-caption">In avoided downtime, year one</p>
+                 support), so it can't correctly count up to "$1-2M". -->
+            <p class="proof-number">$1-2M</p>
+            <p class="proof-caption">Estimated annual revenue unlocked, per factory</p>
           </div>
           <div class="proof-right">
             <div class="proof-card" data-industry="manufacturing">
               <div class="proof-card-media" role="img" aria-label="Manufacturing operations"></div>
               <div class="proof-card-body">
-                <p class="proof-quote">A precision-parts manufacturer had no way to see equipment failures coming - sensor data sat in separate historian systems, disconnected from maintenance scheduling. aiDataWorks built a unified pipeline on Databricks and AWS that streamed sensor data into a single predictive-maintenance model, flagging failures days in advance and <strong class="proof-quote-highlight">avoiding an estimated $2.1M in unplanned downtime</strong> in the first year.</p>
-                <a href="https://calendly.com/aidata-marketing/discovery-with-aidataworks" class="proof-cta">Talk to an Expert &rarr;</a>
+                <p class="proof-quote">A global semiconductor manufacturer's shop-floor IIoT data sat disconnected from sensitive product and pricing metadata, leaving operators without the context to act on real-time signals. aiDataWorks joined GEMBO's IIoT edge platform with Informatica's data security stack to deliver a masked, secured pipeline into a private cloud data warehouse, <strong class="proof-quote-highlight">unlocking an estimated $1-2 million per factory, per year</strong> in secured, real-time data access.</p>
+                <a href="case-studies/semiconductor-data-security-cloud-warehouse/index.html" class="proof-cta">Read the full case study &rarr;</a>
               </div>
             </div>
           </div>
@@ -907,10 +899,10 @@
         <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><polygon points="7,5 19,12 7,19" fill="currentColor"/></svg>
       </button>
       <div class="proof-dots" role="group" aria-label="Jump to case study">
-        <button type="button" class="proof-dot active" data-slide-index="0" aria-label="Case study 1: Insurance" aria-current="step"></button>
-        <button type="button" class="proof-dot" data-slide-index="1" aria-label="Case study 2: Retail and CPG"></button>
-        <button type="button" class="proof-dot" data-slide-index="2" aria-label="Case study 3: Healthcare"></button>
-        <button type="button" class="proof-dot" data-slide-index="3" aria-label="Case study 4: Manufacturing"></button>
+        <button type="button" class="proof-dot active" data-slide-index="0" aria-label="Case study 1: Corewell Health, Healthcare" aria-current="step"></button>
+        <button type="button" class="proof-dot" data-slide-index="1" aria-label="Case study 2: Health Insurer, Insurance"></button>
+        <button type="button" class="proof-dot" data-slide-index="2" aria-label="Case study 3: Healthcare Managed Services"></button>
+        <button type="button" class="proof-dot" data-slide-index="3" aria-label="Case study 4: Semiconductor Manufacturing"></button>
       </div>
     </div>
   </div>
@@ -1055,7 +1047,7 @@
           <div class="industry-card-back">
             <h3 class="industry-title">Healthcare</h3>
             <p class="industry-desc">KPI-powered dashboards for diagnosis, clinical data, patient care quality, and business management.</p>
-            <a href="industry-healthcare.html" class="industry-link">Read More &rarr;</a>
+            <a href="case-studies.html?industry=Healthcare" class="industry-link">Read More &rarr;</a>
           </div>
         </div>
       </div>
@@ -1067,7 +1059,7 @@
           <div class="industry-card-back">
             <h3 class="industry-title">Financial Services</h3>
             <p class="industry-desc">Custom manager diagnostic dashboards for deeper market insights and portfolio management, plus BI advisory.</p>
-            <a href="industry-financial-services.html" class="industry-link">Read More &rarr;</a>
+            <a href="case-studies.html?industry=Financial%20Services" class="industry-link">Read More &rarr;</a>
           </div>
         </div>
       </div>
@@ -1079,7 +1071,7 @@
           <div class="industry-card-back">
             <h3 class="industry-title">Insurance</h3>
             <p class="industry-desc">Sales performance dashboards collecting data from multiple sources with real-time, interactive analytics.</p>
-            <a href="industry-insurance.html" class="industry-link">Read More &rarr;</a>
+            <a href="case-studies.html?industry=Insurance" class="industry-link">Read More &rarr;</a>
           </div>
         </div>
       </div>
@@ -1091,7 +1083,7 @@
           <div class="industry-card-back">
             <h3 class="industry-title">Manufacturing</h3>
             <p class="industry-desc">Data Science and Big Data-powered solutions for price optimization, demand forecasting, preventive maintenance, and fault prediction.</p>
-            <a href="industry-manufacturing.html" class="industry-link">Read More →</a>
+            <a href="case-studies.html?industry=Manufacturing" class="industry-link">Read More →</a>
           </div>
         </div>
       </div>
@@ -1103,7 +1095,7 @@
           <div class="industry-card-back">
             <h3 class="industry-title">Retail &amp; CPG</h3>
             <p class="industry-desc">Recommendation engines tracking cart abandonment, purchase behavior, and cross-selling opportunities.</p>
-            <a href="industry-retail-cpg.html" class="industry-link">Read More &rarr;</a>
+            <a href="case-studies.html?industry=Retail%20%26%20CPG" class="industry-link">Read More &rarr;</a>
           </div>
         </div>
       </div>
@@ -1115,7 +1107,7 @@
           <div class="industry-card-back">
             <h3 class="industry-title">Public Sector</h3>
             <p class="industry-desc">Modernized case-management and constituent-data platforms so agencies see one citizen record across departments.</p>
-            <a href="industry-public-sector.html" class="industry-link">Read More &rarr;</a>
+            <a href="case-studies.html?industry=Public%20Sector" class="industry-link">Read More &rarr;</a>
           </div>
         </div>
       </div>
@@ -1129,7 +1121,7 @@
     <div class="insights-grid">
       <div class="insight-card insight-card-featured">
         <div class="insight-media">
-          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
+          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-logo.png" alt="">
           <div class="insight-overlay">
             <span class="insight-tag">NEWS</span>
             <h3 class="insight-title">aiDataWorks Becomes a Certified Salesforce &amp; MuleSoft Partner</h3>
@@ -1139,7 +1131,7 @@
       </div>
       <div class="insight-card">
         <div class="insight-media">
-          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
+          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-logo.png" alt="">
           <div class="insight-overlay">
             <h3 class="insight-title">Choosing a Migration Path off Legacy ETL</h3>
             <a href="#" class="insight-link">Read more →</a>
@@ -1148,7 +1140,7 @@
       </div>
       <div class="insight-card">
         <div class="insight-media">
-          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
+          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-logo.png" alt="">
           <div class="insight-overlay">
             <h3 class="insight-title">What Good Data Governance Actually Looks Like</h3>
             <a href="#" class="insight-link">Read more →</a>
@@ -1157,7 +1149,7 @@
       </div>
       <div class="insight-card insight-card-wide">
         <div class="insight-media">
-          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-primary.svg" alt="">
+          <img class="insight-thumb insight-thumb-placeholder" src="uploads/aidataworks-logo.png" alt="">
           <div class="insight-overlay">
             <h3 class="insight-title">Running Informatica in a Multi-Cloud Estate</h3>
             <a href="#" class="insight-link">Read more →</a>
@@ -1219,7 +1211,7 @@
   <div class="footer-inner section-container">
     <div class="footer-top">
       <div class="footer-col footer-col-brand">
-        <img class="footer-logo" src="uploads/aidataworks-primary.svg" alt="aiDataWorks">
+        <img class="footer-logo" src="uploads/aidataworks-logo.png" alt="aiDataWorks">
         <p class="footer-tagline">AI-first data modernization, governance, and management.</p>
         <form class="footer-newsletter" onsubmit="return false;">
           <input type="email" class="footer-newsletter-input" placeholder="you@company.com" required>
@@ -1228,12 +1220,21 @@
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">Services</p>
+        <a href="#">Advisory &amp; Assessment</a>
+        <a href="#partners">Implementation &amp; Delivery</a>
+        <a href="service-managed-dmaas.html">Managed Services (DMaaS)</a>
+        <a href="#">Licensing &amp; Reselling</a>
+        <a href="#">Training &amp; Enablement</a>
+        <a href="#">Staff Augmentation</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-heading">Solutions</p>
         <a href="service-cloud-data-platforms.html">Cloud Data Platforms</a>
-        <a href="service-analytics-insights.html">Analytics &amp; Insights</a>
-        <a href="service-dataops-observability.html">DataOps &amp; Observability</a>
         <a href="service-master-data-management.html">Master Data Management</a>
         <a href="service-governance-quality-catalog.html">Governance, Quality &amp; Catalog</a>
-        <a href="service-managed-dmaas.html">Managed Services (DMaaS)</a>
+        <a href="service-analytics-insights.html">Analytics &amp; Insights</a>
+        <a href="service-dataops-observability.html">DataOps &amp; Observability</a>
+        <a href="#ai-automation">AI &amp; Agentic Solutions</a>
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">Industries</p>
@@ -1249,18 +1250,15 @@
         <a href="#partners">Informatica</a>
         <a href="#partners">Salesforce</a>
         <a href="#partners">MuleSoft</a>
-        <a href="#partners">Databricks</a>
-        <a href="#partners">Snowflake</a>
-        <a href="#partners">AWS</a>
-        <a href="#partners">Azure</a>
-        <a href="#partners">Google Cloud</a>
+        <a href="#partners">Fortra</a>
+        <a href="#partners">Epic</a>
+        <a href="#partners">Oracle Fusion</a>
       </div>
       <div class="footer-col">
         <p class="footer-col-heading">About</p>
         <a href="about.html">Who We Are</a>
         <a href="#services">Our Approach</a>
         <a href="careers.html">Careers</a>
-        <a href="#insights">Newsroom</a>
         <a href="contact.html">Contact Us</a>
       </div>
       <div class="footer-col">
@@ -1268,10 +1266,9 @@
         <a href="#insights">Blogs</a>
         <a href="case-studies.html">Case Studies</a>
         <a href="#faq">FAQs</a>
-        <a href="webinars.html">Webinars</a>
         <a href="webinars.html">Events</a>
         <a href="#insights">Whitepapers</a>
-        <a href="#insights">Newsletter</a>
+        <a href="#insights">Newsroom</a>
       </div>
     </div>
     <div class="footer-badges">
@@ -1615,7 +1612,7 @@
   var proofCurrent = 0;
   var proofTimer = null;
   var proofPaused = false;
-  var PROOF_SLIDE_DURATION = 7000;
+  var PROOF_SLIDE_DURATION = 9100; // 7000ms base, +30%
 
   function scheduleNextProofSlide(index) {
     clearTimeout(proofTimer);

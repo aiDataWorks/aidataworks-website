@@ -7,18 +7,19 @@
 <!-- ==========================================================================
      PAGE META
      ========================================================================== -->
-<title>Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange — Case Study | aiDataWorks</title>
-<meta name="description" content="How aiDataWorks helped Frost Bank replace a third-party conversion service with an in-house Informatica B2B stack for NACHA-to-EDI-X12-4010 820 exchange.">
-<link rel="canonical" href="https://www.aidata.works/case-studies/frost-bank-b2b-nacha-edi-modernization/">
+<title>Industry 4.0 and OEE Analytics Transition for a Semiconductor Manufacturer — Case Study | aiDataWorks</title>
+<meta name="description" content="How aiDataWorks, with technology partner GEMBO, unified legacy and modern factory-floor data for a semiconductor manufacturer to lift OEE by 30-40%, reaching scores as high as 90%.">
+<link rel="canonical" href="https://www.aidata.works/case-studies/semiconductor-industry40-analytics-transition/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange — Case Study">
-<meta property="og:description" content="aiDataWorks helped Frost Bank retire a third-party conversion dependency and stand up an in-house Informatica B2B exchange for NACHA-to-EDI 820 processing.">
-<meta property="og:url" content="https://www.aidata.works/case-studies/frost-bank-b2b-nacha-edi-modernization/">
-<meta property="og:image" content="https://www.aidata.works/assets/case-studies/frost-bank-b2b-nacha-edi-modernization-hero.jpg">
+<meta property="og:title" content="Industry 4.0 and OEE Analytics Transition for a Semiconductor Manufacturer — Case Study">
+<meta property="og:description" content="Legacy and modern factory machines unified into real-time OEE, MTBF and MTBA analytics — OEE gains of 30-40%, scores as high as 90%.">
+<meta property="og:image" content="https://www.aidata.works/assets/case-studies/semiconductor-industry40-analytics-transition-hero.jpg">
+<meta property="og:url" content="https://www.aidata.works/case-studies/semiconductor-industry40-analytics-transition/">
 
 <style>
 /* ==========================================================================
-   1. TOKENS
+   1. TOKENS — REPLACE THESE with the site's existing variables.
+      Everything below references these; nothing hardcodes a colour.
    ========================================================================== */
 .case-study {
   --cs-ink:            #1b1d21;
@@ -30,7 +31,7 @@
   --cs-accent:         #2b3a67;   /* primary brand */
   --cs-accent-soft:    #eef1f8;
   --cs-signal:         #1f7a5a;   /* results / positive */
-  --cs-placeholder:    #e7e9ec;   /* diagram placeholder fill */
+  --cs-placeholder:    #e7e9ec;   /* wireframe fill */
 
   --cs-font-display:   Georgia, 'Times New Roman', serif;
   --cs-font-body:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -53,7 +54,7 @@
 
   --cs-container: 1200px;
   --cs-radius:    6px;
-  --cs-header-offset: 96px;  /* height of fixed header, for sticky offset */
+  --cs-header-offset: 96px;  /* height of your fixed header, for sticky offset */
 }
 
 /* ==========================================================================
@@ -104,7 +105,32 @@
 }
 
 /* ==========================================================================
-   3. BREADCRUMB  [1]
+   3. WIREFRAME ANNOTATION LAYER
+      Toggleable. Delete this whole section once the page is real.
+   ========================================================================== */
+.cs-annotate {
+  position: fixed; top: 12px; right: 12px; z-index: 60;
+  font: 600 var(--cs-step--1)/1 var(--cs-font-mono);
+  background: var(--cs-ink); color: #fff;
+  border: 0; border-radius: 999px;
+  padding: 0.7em 1.2em; cursor: pointer;
+}
+.cs-block { position: relative; }
+[data-annotations="off"] .cs-tag { display: none; }
+[data-annotations="off"] .cs-block { outline: none !important; }
+.cs-tag {
+  display: inline-block;
+  font: 600 0.6875rem/1 var(--cs-font-mono);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--cs-ink-faint);
+  border: 1px dashed var(--cs-rule);
+  border-radius: 3px;
+  padding: 0.35em 0.6em;
+  margin-bottom: var(--cs-space-1);
+}
+
+/* ==========================================================================
+   4. BREADCRUMB  [1]
    ========================================================================== */
 .cs-breadcrumb {
   font-size: var(--cs-step--1);
@@ -116,7 +142,7 @@
 .cs-breadcrumb [aria-current] { color: var(--cs-ink-soft); }
 
 /* ==========================================================================
-   4. HERO  [2]
+   5. HERO  [2]
    ========================================================================== */
 .cs-hero {
   background: var(--cs-accent);
@@ -144,7 +170,7 @@
 }
 
 /* ==========================================================================
-   5. TWO-COLUMN BODY  [3]
+   6. TWO-COLUMN BODY  [3]
    ========================================================================== */
 .cs-body {
   display: grid;
@@ -237,7 +263,7 @@
 .cs-approach > div { border-top: 1px solid var(--cs-rule); padding-top: var(--cs-space-2); }
 
 /* ==========================================================================
-   6. OUTCOMES  [10]
+   7. OUTCOMES  [10]
    ========================================================================== */
 .cs-metrics {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -259,14 +285,29 @@
 }
 
 /* ==========================================================================
-   7. CLOSING CTA  [12]
+   8. QUOTE  [11]
+   ========================================================================== */
+.cs-quote { margin: 0; text-align: center; max-width: 46ch; margin-inline: auto; }
+.cs-quote blockquote {
+  margin: 0 0 var(--cs-space-2);
+  font-family: var(--cs-font-display);
+  font-size: var(--cs-step-3); line-height: 1.3;
+}
+.cs-quote figcaption {
+  font: 600 var(--cs-step--1)/1.4 var(--cs-font-mono);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--cs-ink-faint);
+}
+
+/* ==========================================================================
+   9. CLOSING CTA  [12]
    ========================================================================== */
 .cs-cta { background: var(--cs-ink); color: #fff; text-align: center; }
 .cs-cta h2 { font-size: var(--cs-step-3); margin-bottom: var(--cs-space-2); }
 .cs-cta p { margin-inline: auto; opacity: 0.8; }
 
 /* ==========================================================================
-   8. RELATED  [13]
+   10. RELATED  [13]
    ========================================================================== */
 .cs-related { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--cs-space-3); }
 .cs-rcard { border: 1px solid var(--cs-rule); border-radius: var(--cs-radius); overflow: hidden; }
@@ -292,7 +333,7 @@
 }
 
 /* ==========================================================================
-   9. LIGHTBOX
+   11. LIGHTBOX
    ========================================================================== */
 .cs-lightbox {
   position: fixed; inset: 0; z-index: 100;
@@ -315,7 +356,7 @@
 }
 
 /* ==========================================================================
-   10. RESPONSIVE
+   12. RESPONSIVE
    ========================================================================== */
 @media (max-width: 900px) {
   .case-study { --cs-step-5: 2.25rem; --cs-step-4: 1.875rem; --cs-step-3: 1.5rem; }
@@ -332,7 +373,7 @@
   }
 }
 @media print {
-  .cs-ctacard, .cs-cta, .cs-related, .cs-lightbox { display: none !important; }
+  .cs-annotate, .cs-ctacard, .cs-cta, .cs-related, .cs-lightbox { display: none !important; }
   .cs-body { grid-template-columns: 1fr; }
 }
 </style>
@@ -791,23 +832,23 @@
     <ol>
       <li><a href="../../index.html">Home</a></li>
       <li><a href="../../case-studies.html">Case Studies</a></li>
-      <li><span aria-current="page">Frost Bank</span></li>
+      <li><span aria-current="page" data-cs-field="title-short">Industry 4.0 &amp; OEE Analytics</span></li>
     </ol>
   </nav>
 
   <!-- [2] HERO ========================================================== -->
-  <header class="cs-hero">
+  <header class="cs-hero cs-block">
     <div class="cs-container cs-hero__inner">
       <p class="cs-eyebrow">
-        Case Study <span aria-hidden="true">&middot;</span>
-        <span>Financial Services</span>
+        Case Study <span aria-hidden="true">·</span>
+        <span data-cs-field="industry">Manufacturing</span>
       </p>
-      <h1>Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange on Informatica B2B</h1>
-      <p class="cs-hero__sub">
-        Replacing a third-party conversion dependency with a governed, in-house B2B data exchange stack
+      <h1 data-cs-field="title">Industry 4.0 and OEE Analytics Transition for a Semiconductor Manufacturer</h1>
+      <p class="cs-hero__sub" data-cs-field="subtitle">
+        Unifying legacy and modern factory-floor machine data into real-time OEE, MTBF, and MTBA analytics &mdash; in partnership with technology partner GEMBO's Precare platform
       </p>
-      <p class="cs-hero__outcome">
-        GlobalPay dependency retired &mdash; in-house NACHA-to-EDI 820 exchange live
+      <p class="cs-hero__outcome" data-cs-field="outcome-line">
+        OEE gains of 30-40%, scores as high as 90%
       </p>
     </div>
   </header>
@@ -818,48 +859,53 @@
     <div class="cs-main">
 
       <!-- [4] EXECUTIVE SUMMARY -->
-      <section aria-labelledby="h-summary">
+      <section class="cs-block" aria-labelledby="h-summary">
         <h2 class="cs-h2" id="h-summary">Summary</h2>
-        <p>
-          aiDataWorks helped Frost Bank build an in-house Informatica B2B foundation &mdash;
-          PowerCenter, B2B Data Exchange, and Managed File Transfer &mdash; to replace its
-          reliance on the third-party GlobalPay conversion service, centered on a
-          NACHA-to-EDI-X12-4010 820 conversion pipeline. Mid-implementation, the team diagnosed
-          and engineered a workaround for a critical Informatica DX 10.2HF2 installer defect
-          (an SSL / SQL Server 16 incompatibility) that could have derailed the bank's fixed
-          migration timeline. The engagement delivered a working first prototype of the
-          conversion pipeline and gave Frost Bank in-house capability it could extend into a
-          service offering for its own customers.
+        <p data-cs-field="summary">
+          A semiconductor manufacturer with fragmented, hard-to-access machine data across legacy and
+          modern equipment, siloed IT and OT teams, and incompatible protocols and formats was unable
+          to optimize Overall Equipment Effectiveness (OEE) across its manufacturing sites. aiDataWorks,
+          working with technology partner GEMBO's Precare platform, conducted an infrastructure
+          assessment and architecture plan &mdash; using Precare itself to accelerate discovery &mdash;
+          then deployed an edge-agent architecture to normalize machine data and deliver real-time OEE,
+          MTBF, and MTBA analytics through a unified dashboard, without a full OT hardware overhaul. The
+          engagement concluded with a transition to managed production-monitoring services, delivering
+          OEE gains of 30-40% with resulting OEE scores as high as 90%.
         </p>
       </section>
 
       <!-- [5] THE CHALLENGE -->
-      <section aria-labelledby="h-challenge">
+      <section class="cs-block" aria-labelledby="h-challenge">
         <h2 class="cs-h2" id="h-challenge">The challenge</h2>
-        <ul class="cs-problems">
+        <ul class="cs-problems" data-cs-field="challenge">
           <li>
-            <b>Dependent on a third-party converter.</b>
-            <span>Frost Bank relied on a third-party application, GlobalPay, to convert
-            partner NACHA files into EDI-X12-4010 820 format rather than handling the
-            conversion in-house.</span>
+            <b>Legacy, heterogeneous factory-floor machines.</b>
+            <span>Equipment from different OEMs running older operating systems and PLCs lacked the
+            real-time status, performance, quality, and availability data needed to predict maintenance
+            and optimize OEE.</span>
           </li>
           <li>
-            <b>No B2B product stack in place.</b>
-            <span>None of Informatica's B2B products &mdash; PowerCenter, B2B Data Exchange,
-            or B2B Managed File Transfer &mdash; were set up on the bank's TEST or PROD
-            environments, so the foundation had to be built from scratch.</span>
+            <b>Siloed IT and OT teams.</b>
+            <span>IT and operational technology teams and systems had been kept apart for legacy
+            reasons, hindering the cross-functional collaboration a digital transformation like this
+            required.</span>
           </li>
           <li>
-            <b>Critical installer failure against a fixed deadline.</b>
-            <span>During setup, the B2B Data Exchange 10.2HF2 installer failed to connect to
-            the database, blocking progress against a migration deadline that could not
-            move.</span>
+            <b>Incompatible protocols and formats.</b>
+            <span>Machine data access was often batch-only or missing entirely, delivered in formats
+            incompatible with standard IIoT formats and spread across multiple incompatible
+            communication protocols.</span>
+          </li>
+          <li>
+            <b>Decision-makers without the data to act.</b>
+            <span>Stakeholders from the factory floor to the corporate office lacked the data needed to
+            make informed decisions to optimize OEE and grow revenue.</span>
           </li>
         </ul>
       </section>
 
       <!-- [6] ARCHITECTURE DIAGRAM -->
-      <section aria-labelledby="h-solution">
+      <section class="cs-block" aria-labelledby="h-solution">
         <h2 class="cs-h2" id="h-solution">The solution</h2>
         <figure class="cs-figure">
           <button class="cs-figure__frame" type="button" id="diagram-open"
@@ -871,49 +917,58 @@
             </span>
           </button>
           <figcaption>
-            <span>
-              Solution architecture: partner NACHA file (GlobalScape SFTP/SCP) &rarr; DT Parser
-              (NACHA to XML) &rarr; DT Mapper (XML transform) &rarr; EDI-X12-4010 820
-              serialization &rarr; outbound delivery (GlobalScape SFTP/SCP), with monitor-flag
-              checks and email notifications at each stage
+            <span data-cs-field="diagram-caption">
+              Solution architecture: legacy and modern factory machines &rarr; GEMBO Precare edge agents
+              &rarr; normalized IIoT data &rarr; unified OEE analytics dashboard
             </span>
-            <a href="../../img/case-studies/frost-bank-b2b-nacha-edi-architecture.pdf" download>Download diagram (PDF)</a>
+            <a href="../../assets/case-studies/semiconductor-industry40-analytics-transition-architecture.pdf" download>Download diagram (PDF)</a>
           </figcaption>
         </figure>
       </section>
 
       <!-- [7] APPROACH -->
-      <section aria-labelledby="h-approach">
+      <section class="cs-block" aria-labelledby="h-approach">
         <h2 class="cs-h2" id="h-approach">How we built it</h2>
-        <div class="cs-approach">
+        <div class="cs-approach" data-cs-field="approach">
 
           <div>
-            <h3 class="cs-h3">Standing up the B2B stack</h3>
+            <h3 class="cs-h3">Infrastructure assessment &amp; architecture planning</h3>
             <ul>
-              <li>Stood up the full Informatica B2B product stack &mdash; PowerCenter, B2B Data Exchange, and B2B Managed File Transfer &mdash; across both TEST and PROD environments.</li>
-              <li>Built the foundation from the ground up, since no prior B2B stack existed at Frost Bank for this use case.</li>
-              <li>Configured PowerExchange and Informatica Data Quality (IDQ) alongside the core B2B components to support the file-conversion workflow.</li>
+              <li>Performed an assessment of the customer's factory-floor infrastructure across its
+              manufacturing sites and defined the target architecture and project plan.</li>
+              <li>Used the GEMBO Precare platform itself as an accelerator during the initial
+              investigation, making the assessment faster, more comprehensive, and more accurate.</li>
             </ul>
           </div>
 
           <div>
-            <h3 class="cs-h3">Diagnosing and fixing the installer defect</h3>
+            <h3 class="cs-h3">Edge-agent deployment &amp; data normalization</h3>
             <ul>
-              <li>Traced the B2B Data Exchange 10.2HF2 installer's database connection failure to a known product bug: DX 10.2HF2 fails on Windows Server 16 when SSL encryption is enabled on SQL Server 16.</li>
-              <li>Raised an Emergency Bug Fix (EBF) request with Informatica while engineering a workaround in parallel, so the fixed migration deadline was not put at risk.</li>
-              <li>Applied the workaround: disabled SSL, installed DX, took the environment down, re-enabled SSL, added <code>SSL=True</code> to the DX configuration, replaced an ODBC jar file in the DX library, and restarted services.</li>
-              <li>Documented the fix as a reusable install/SSL procedure for future DX 10.2HF2 deployments.</li>
+              <li>Executed a holistic deployment of edge agents to collect real-time data from both
+              legacy and modern machines across the shop floor.</li>
+              <li>Normalized disparate data formats &mdash; carried over SECS/GEM, SCADA, RS232/485,
+              Industrial Ethernet, and OPC-UA &mdash; into a uniform format, with low-latency edge
+              processing and secure agent-to-cloud connectivity.</li>
             </ul>
           </div>
 
           <div>
-            <h3 class="cs-h3">Building the NACHA-to-EDI 820 pipeline</h3>
+            <h3 class="cs-h3">Unified OEE, MTBF &amp; MTBA analytics dashboard</h3>
             <ul>
-              <li>Received partner NACHA batch files over GlobalScape SFTP/SCP as the inbound transport.</li>
-              <li>Used a DT Parser to convert the incoming NACHA file into XML.</li>
-              <li>Applied a DT Mapper to transform the parsed XML into the target structure.</li>
-              <li>Serialized the transformed data into EDI-X12-4010 820 format and delivered it back out over GlobalScape SFTP/SCP.</li>
-              <li>Added monitor-flag checks and email notifications across the pipeline so failures and completions were visible without manual polling.</li>
+              <li>Delivered big data analytics &mdash; OEE, MTBF, MTBA, and predictive maintenance
+              &mdash; through a unified, machine-agnostic dashboard.</li>
+              <li>Configured a visually programmable rule engine with multi-channel notifications, so
+              stakeholders from the factory floor to the corporate office could act on the same data.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="cs-h3">Managed production monitoring</h3>
+            <ul>
+              <li>Rolled out managed services for ongoing production monitoring once the platform was
+              live, hosted on hybrid cloud infrastructure.</li>
+              <li>Kept the analytics environment observed and tuned after go-live, in support of maximum
+              uptime for the new OEE capability.</li>
             </ul>
           </div>
 
@@ -925,26 +980,24 @@
     <!-- [8] + [9] SIDEBAR -->
     <aside class="cs-aside">
 
-      <div class="cs-card">
+      <div class="cs-card cs-block">
         <div class="cs-card__head">At a glance</div>
         <div class="cs-card__body">
           <dl class="cs-facts">
-            <dt>Industry</dt>  <dd>Financial Services (Banking)</dd>
-            <dt>Region</dt>    <dd>San Antonio, Texas, USA</dd>
-            <dt>Services</dt>  <dd>Informatica B2B Data Exchange, Managed File Transfer</dd>
+            <dt>Industry</dt>  <dd data-cs-field="industry">Manufacturing (Semiconductor)</dd>
+            <dt>Services</dt>  <dd data-cs-field="services">Industry 4.0 / IIoT Analytics Transition</dd>
           </dl>
-          <div class="cs-chips">
-            <span class="cs-chip">Informatica PowerCenter</span>
-            <span class="cs-chip">B2B Data Exchange</span>
-            <span class="cs-chip">B2B MFT</span>
-            <span class="cs-chip">PowerExchange</span>
-            <span class="cs-chip">NACHA</span>
-            <span class="cs-chip">EDI-X12 820</span>
+          <div class="cs-chips" data-cs-field="tech-stack">
+            <span class="cs-chip">GEMBO Precare</span>
+            <span class="cs-chip">Edge Agents</span>
+            <span class="cs-chip">OEE Analytics</span>
+            <span class="cs-chip">IIoT Protocols (SECS/GEM, OPC-UA)</span>
+            <span class="cs-chip">Managed Monitoring</span>
           </div>
         </div>
       </div>
 
-      <div class="cs-card cs-ctacard">
+      <div class="cs-card cs-ctacard cs-block">
         <div class="cs-card__head">Same problem?</div>
         <div class="cs-card__body">
           <p>Tell us where your customer data lives today and we will map the gap.</p>
@@ -961,36 +1014,42 @@
   </div><!-- /.cs-body -->
 
   <!-- [10] OUTCOMES ===================================================== -->
-  <section class="cs-band cs-band--tint" aria-labelledby="h-outcomes">
+  <section class="cs-band cs-band--tint cs-block" aria-labelledby="h-outcomes">
     <div class="cs-container">
       <h2 class="cs-h2" id="h-outcomes">Outcomes</h2>
 
-      <div class="cs-metrics">
+      <div class="cs-metrics" data-cs-field="results">
         <div class="cs-metric">
-          <span class="cs-metric__value">In-house</span>
-          <span class="cs-metric__label">B2B file conversion capability</span>
-          <span class="cs-metric__delta">was: third-party GlobalPay</span>
+          <span class="cs-metric__value" data-cs-field="result-1-metric">30-40%</span>
+          <span class="cs-metric__label" data-cs-field="result-1-label">OEE improvement</span>
+          <span class="cs-metric__delta" data-cs-field="result-1-delta">across monitored production lines</span>
         </div>
         <div class="cs-metric">
-          <span class="cs-metric__value">First prototype</span>
-          <span class="cs-metric__label">NACHA-to-EDI 820 pipeline delivered</span>
+          <span class="cs-metric__value" data-cs-field="result-2-metric">Up to 90%</span>
+          <span class="cs-metric__label" data-cs-field="result-2-label">Post-deployment OEE score</span>
+          <span class="cs-metric__delta" data-cs-field="result-2-delta">after full rollout</span>
         </div>
         <div class="cs-metric">
-          <span class="cs-metric__value">Reusable</span>
-          <span class="cs-metric__label">DX 10.2HF2 SSL workaround documented</span>
+          <span class="cs-metric__value" data-cs-field="result-3-metric">No overhaul</span>
+          <span class="cs-metric__label" data-cs-field="result-3-label">Significant savings vs. full OT infrastructure replacement</span>
+          <span class="cs-metric__delta" data-cs-field="result-3-delta">existing equipment retained</span>
         </div>
       </div>
 
-      <ul>
-        <li>Frost Bank replaced its dependency on the third-party GlobalPay conversion service with an in-house Informatica B2B stack it owns and controls.</li>
-        <li>The engagement delivered a working first prototype of the NACHA-to-EDI 820 conversion pipeline, establishing a proven path from partner file intake to compliant EDI output.</li>
-        <li>By diagnosing and documenting the DX 10.2HF2 SSL workaround, the team protected the fixed migration deadline and left Frost Bank with a reusable fix for future deployments, plus a foundation it can extend into a file-conversion service for its own customers.</li>
+      <ul data-cs-field="outcome-note">
+        <li>OEE gains of 30-40% translated into higher effective capacity across the customer's
+        monitored production lines, with post-deployment OEE scores reaching as high as 90%.</li>
+        <li>Reaching those gains required no full overhaul of existing OT infrastructure, delivering
+        significant cost savings compared with replacing shop-floor equipment outright.</li>
+        <li>The transition to managed production-monitoring services after deployment gave the customer
+        maximum uptime, sustaining the new analytics capability without standing up an in-house
+        monitoring function from scratch.</li>
       </ul>
     </div>
   </section>
 
   <!-- [12] CLOSING CTA ================================================== -->
-  <section class="cs-band cs-cta">
+  <section class="cs-band cs-cta cs-block">
     <div class="cs-container">
       <h2>Solving something similar?</h2>
       <p>We will walk your current data landscape and show you what a governed customer view would take.</p>
@@ -1001,7 +1060,7 @@
 </article>
 
   <!-- [13] RELATED ====================================================== -->
-  <section class="cs-band" aria-labelledby="h-related">
+  <section class="cs-band cs-block" aria-labelledby="h-related">
     <div class="cs-container">
       <h2 class="cs-h2" id="h-related">Related case studies</h2>
       <div class="cs-related">
@@ -1009,16 +1068,8 @@
         <article class="cs-rcard">
           <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
           <div class="cs-rcard__body">
-            <span class="cs-rcard__industry">Insurance</span>
-            <h3><a href="../health-insurer-mainframe-governance/index.html">Governing Legacy Mainframe COBOL Data for a Tier 1 Health Insurer</a></h3>
-          </div>
-        </article>
-
-        <article class="cs-rcard">
-          <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
-          <div class="cs-rcard__body">
-            <span class="cs-rcard__industry">Cross-Industry</span>
-            <h3><a href="../ai-data-quality-governance-idmc/index.html">Automating Data Quality, Governance &amp; Predictive Insights on Informatica IDMC</a></h3>
+            <span class="cs-rcard__industry">Manufacturing</span>
+            <h3><a href="../semiconductor-data-security-cloud-warehouse/index.html">Securing Shop-Floor Data in the Cloud for a Global Semiconductor Manufacturer</a></h3>
           </div>
         </article>
 
@@ -1027,6 +1078,14 @@
           <div class="cs-rcard__body">
             <span class="cs-rcard__industry">Retail &amp; CPG</span>
             <h3><a href="../retail-bde-cloud-migration/index.html">Unblocking a Tier 1 Retailer's Big Data Engineering Upgrade and Cloud Cost</a></h3>
+          </div>
+        </article>
+
+        <article class="cs-rcard">
+          <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
+          <div class="cs-rcard__body">
+            <span class="cs-rcard__industry">Cross-Industry</span>
+            <h3><a href="../ai-data-quality-governance-idmc/index.html">Automating Data Quality, Governance &amp; Predictive Insights on Informatica IDMC</a></h3>
           </div>
         </article>
 
@@ -1123,26 +1182,26 @@
   </div>
 </footer>
 
-<!-- STRUCTURED DATA -->
+<!-- STRUCTURED DATA — keep in sync with the fields above -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Article",
-      "headline": "Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange on Informatica B2B",
-      "description": "aiDataWorks helped Frost Bank replace a third-party conversion service with an in-house Informatica B2B stack for NACHA-to-EDI-X12-4010 820 exchange.",
+      "headline": "Industry 4.0 and OEE Analytics Transition for a Semiconductor Manufacturer",
+      "description": "How aiDataWorks, with technology partner GEMBO, unified legacy and modern factory-floor data for a semiconductor manufacturer to lift OEE by 30-40%, reaching scores as high as 90%.",
       "datePublished": "2026-08-07",
       "author": { "@type": "Organization", "name": "aiDataWorks" },
       "publisher": { "@type": "Organization", "name": "aiDataWorks" },
-      "about": "B2B Data Exchange"
+      "about": "Industry 4.0 / IIoT Analytics Transition"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.aidata.works/" },
         { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://www.aidata.works/case-studies.html" },
-        { "@type": "ListItem", "position": 3, "name": "Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange on Informatica B2B" }
+        { "@type": "ListItem", "position": 3, "name": "Industry 4.0 and OEE Analytics Transition for a Semiconductor Manufacturer", "item": "https://www.aidata.works/case-studies/semiconductor-industry40-analytics-transition/" }
       ]
     }
   ]

@@ -13,6 +13,7 @@
 /* ---- Resource-type tab row ---- */
 .cs-index-tabs {
   display: flex;
+  justify-content: center;
   gap: 8px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -44,8 +45,12 @@
   margin: 0 auto;
   padding: 0 var(--section-px) 8px;
 }
-.cs-filter-group { margin-bottom: 18px; }
-.cs-filter-group:last-of-type { margin-bottom: 0; }
+.cs-filter-row {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+.cs-filter-group { flex: 1 1 0; min-width: 0; }
 .cs-filter-group-label {
   display: block;
   font-family: var(--font-sans);
@@ -56,32 +61,29 @@
   color: var(--text-muted);
   margin-bottom: 10px;
 }
-.cs-chip-row {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
-}
-.cs-chip {
-  flex-shrink: 0;
+.cs-filter-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
   font-family: var(--font-sans);
   font-weight: var(--fw-medium);
   font-size: var(--fs-xs);
   color: var(--ink-800);
-  background: var(--white);
+  background: var(--white) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23566970" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>') no-repeat right 14px center;
+  background-size: 14px;
   border: 1px solid var(--border-strong);
-  padding: 8px 16px;
+  padding: 10px 38px 10px 16px;
   border-radius: var(--radius-pill);
   cursor: pointer;
-  white-space: nowrap;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+  transition: border-color 150ms ease;
 }
-.cs-chip:hover { border-color: var(--accent-500); }
-.cs-chip.is-active {
-  background: var(--accent-500);
-  border-color: var(--accent-500);
-  color: var(--white);
+.cs-filter-select:hover { border-color: var(--accent-500); }
+.cs-filter-select:focus-visible { outline: 2px solid var(--accent-500); outline-offset: 2px; }
+
+@media (max-width: 900px) {
+  .cs-filter-row { flex-direction: column; gap: 0; }
+  .cs-filter-group { margin-bottom: 18px; }
+  .cs-filter-group:last-of-type { margin-bottom: 0; }
 }
 
 .cs-filters-meta {
@@ -141,6 +143,22 @@
   aspect-ratio: 16 / 9;
   background-size: cover;
   background-position: center;
+}
+
+.cs-card-media--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-sunken);
+  border: 1px dashed var(--border-subtle);
+}
+.cs-card-media--placeholder span {
+  font-family: var(--font-sans);
+  font-size: var(--fs-3xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .cs-card-body { padding: 28px; min-width: 0; }

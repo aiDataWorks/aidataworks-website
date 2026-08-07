@@ -7,18 +7,18 @@
 <!-- ==========================================================================
      PAGE META
      ========================================================================== -->
-<title>Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange — Case Study | aiDataWorks</title>
-<meta name="description" content="How aiDataWorks helped Frost Bank replace a third-party conversion service with an in-house Informatica B2B stack for NACHA-to-EDI-X12-4010 820 exchange.">
-<link rel="canonical" href="https://www.aidata.works/case-studies/frost-bank-b2b-nacha-edi-modernization/">
+<title>Post-Go-Live Managed Services for a Healthcare Informatica Estate — Case Study | aiDataWorks</title>
+<meta name="description" content="aiDataWorks' L2/L3 managed services cut root-cause time from 8 hours to 1, reclaimed ~100 GB of archive storage, and lifted B2B processing performance ~25% for a tier 1 healthcare Informatica estate.">
+<link rel="canonical" href="https://www.aidata.works/case-studies/healthcare-managed-services-post-golive/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange — Case Study">
-<meta property="og:description" content="aiDataWorks helped Frost Bank retire a third-party conversion dependency and stand up an in-house Informatica B2B exchange for NACHA-to-EDI 820 processing.">
-<meta property="og:url" content="https://www.aidata.works/case-studies/frost-bank-b2b-nacha-edi-modernization/">
-<meta property="og:image" content="https://www.aidata.works/assets/case-studies/frost-bank-b2b-nacha-edi-modernization-hero.jpg">
+<meta property="og:title" content="Post-Go-Live Managed Services for a Tier 1 Healthcare Informatica Estate — Case Study">
+<meta property="og:description" content="Faster root-cause resolution, ~100 GB of storage reclaimed, and a ~25% performance lift from ongoing L2/L3 managed services across a healthcare Informatica, B2B, and cloud stack.">
+<meta property="og:image" content="https://www.aidata.works/assets/case-studies/healthcare-managed-services-post-golive-hero.jpg">
 
 <style>
 /* ==========================================================================
-   1. TOKENS
+   1. TOKENS — REPLACE THESE with the site's existing variables.
+      Everything below references these; nothing hardcodes a colour.
    ========================================================================== */
 .case-study {
   --cs-ink:            #1b1d21;
@@ -30,7 +30,7 @@
   --cs-accent:         #2b3a67;   /* primary brand */
   --cs-accent-soft:    #eef1f8;
   --cs-signal:         #1f7a5a;   /* results / positive */
-  --cs-placeholder:    #e7e9ec;   /* diagram placeholder fill */
+  --cs-placeholder:    #e7e9ec;   /* wireframe fill */
 
   --cs-font-display:   Georgia, 'Times New Roman', serif;
   --cs-font-body:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -53,7 +53,7 @@
 
   --cs-container: 1200px;
   --cs-radius:    6px;
-  --cs-header-offset: 96px;  /* height of fixed header, for sticky offset */
+  --cs-header-offset: 96px;  /* height of your fixed header, for sticky offset */
 }
 
 /* ==========================================================================
@@ -104,7 +104,7 @@
 }
 
 /* ==========================================================================
-   3. BREADCRUMB  [1]
+   4. BREADCRUMB  [1]
    ========================================================================== */
 .cs-breadcrumb {
   font-size: var(--cs-step--1);
@@ -116,7 +116,7 @@
 .cs-breadcrumb [aria-current] { color: var(--cs-ink-soft); }
 
 /* ==========================================================================
-   4. HERO  [2]
+   5. HERO  [2]
    ========================================================================== */
 .cs-hero {
   background: var(--cs-accent);
@@ -144,7 +144,7 @@
 }
 
 /* ==========================================================================
-   5. TWO-COLUMN BODY  [3]
+   6. TWO-COLUMN BODY  [3]
    ========================================================================== */
 .cs-body {
   display: grid;
@@ -237,7 +237,7 @@
 .cs-approach > div { border-top: 1px solid var(--cs-rule); padding-top: var(--cs-space-2); }
 
 /* ==========================================================================
-   6. OUTCOMES  [10]
+   7. OUTCOMES  [10]
    ========================================================================== */
 .cs-metrics {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -259,14 +259,29 @@
 }
 
 /* ==========================================================================
-   7. CLOSING CTA  [12]
+   8. QUOTE  [11]
+   ========================================================================== */
+.cs-quote { margin: 0; text-align: center; max-width: 46ch; margin-inline: auto; }
+.cs-quote blockquote {
+  margin: 0 0 var(--cs-space-2);
+  font-family: var(--cs-font-display);
+  font-size: var(--cs-step-3); line-height: 1.3;
+}
+.cs-quote figcaption {
+  font: 600 var(--cs-step--1)/1.4 var(--cs-font-mono);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--cs-ink-faint);
+}
+
+/* ==========================================================================
+   9. CLOSING CTA  [12]
    ========================================================================== */
 .cs-cta { background: var(--cs-ink); color: #fff; text-align: center; }
 .cs-cta h2 { font-size: var(--cs-step-3); margin-bottom: var(--cs-space-2); }
 .cs-cta p { margin-inline: auto; opacity: 0.8; }
 
 /* ==========================================================================
-   8. RELATED  [13]
+   10. RELATED  [13]
    ========================================================================== */
 .cs-related { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--cs-space-3); }
 .cs-rcard { border: 1px solid var(--cs-rule); border-radius: var(--cs-radius); overflow: hidden; }
@@ -292,7 +307,7 @@
 }
 
 /* ==========================================================================
-   9. LIGHTBOX
+   11. LIGHTBOX
    ========================================================================== */
 .cs-lightbox {
   position: fixed; inset: 0; z-index: 100;
@@ -315,7 +330,7 @@
 }
 
 /* ==========================================================================
-   10. RESPONSIVE
+   12. RESPONSIVE
    ========================================================================== */
 @media (max-width: 900px) {
   .case-study { --cs-step-5: 2.25rem; --cs-step-4: 1.875rem; --cs-step-3: 1.5rem; }
@@ -791,23 +806,23 @@
     <ol>
       <li><a href="../../index.html">Home</a></li>
       <li><a href="../../case-studies.html">Case Studies</a></li>
-      <li><span aria-current="page">Frost Bank</span></li>
+      <li><span aria-current="page">Post-Go-Live Managed Services</span></li>
     </ol>
   </nav>
 
   <!-- [2] HERO ========================================================== -->
-  <header class="cs-hero">
+  <header class="cs-hero cs-block">
     <div class="cs-container cs-hero__inner">
       <p class="cs-eyebrow">
-        Case Study <span aria-hidden="true">&middot;</span>
-        <span>Financial Services</span>
+        Case Study <span aria-hidden="true">·</span>
+        <span>Healthcare</span>
       </p>
-      <h1>Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange on Informatica B2B</h1>
+      <h1>Post-Go-Live Managed Services for a Tier 1 Healthcare Informatica Estate</h1>
       <p class="cs-hero__sub">
-        Replacing a third-party conversion dependency with a governed, in-house B2B data exchange stack
+        Ongoing L2/L3 support, application maintenance, and application development across a tier 1 healthcare customer's Informatica, B2B, and cloud data stack
       </p>
       <p class="cs-hero__outcome">
-        GlobalPay dependency retired &mdash; in-house NACHA-to-EDI 820 exchange live
+        8x faster root-cause resolution &middot; ~100 GB storage reclaimed &middot; ~25% performance improvement
       </p>
     </div>
   </header>
@@ -818,48 +833,59 @@
     <div class="cs-main">
 
       <!-- [4] EXECUTIVE SUMMARY -->
-      <section aria-labelledby="h-summary">
+      <section class="cs-block" aria-labelledby="h-summary">
         <h2 class="cs-h2" id="h-summary">Summary</h2>
         <p>
-          aiDataWorks helped Frost Bank build an in-house Informatica B2B foundation &mdash;
-          PowerCenter, B2B Data Exchange, and Managed File Transfer &mdash; to replace its
-          reliance on the third-party GlobalPay conversion service, centered on a
-          NACHA-to-EDI-X12-4010 820 conversion pipeline. Mid-implementation, the team diagnosed
-          and engineered a workaround for a critical Informatica DX 10.2HF2 installer defect
-          (an SSL / SQL Server 16 incompatibility) that could have derailed the bank's fixed
-          migration timeline. The engagement delivered a working first prototype of the
-          conversion pipeline and gave Frost Bank in-house capability it could extend into a
-          service offering for its own customers.
+          aiDataWorks delivers post-go-live managed services &mdash; Support
+          Operations, Application Maintenance, and Application Development
+          &mdash; for a tier 1 healthcare customer across a stack spanning
+          Informatica PowerCenter, ILM/Data Archive, B2B Data Exchange and
+          Managed File Transfer, Oracle, IBM MQ, Salesforce Cloud, and AWS.
+          The customer's own team handles first-line (L1) support; aiDataWorks
+          owns L2/L3. Under this ongoing engagement, aiDataWorks resolved
+          three production issues: out-of-order file processing failures in
+          B2B Data Exchange, slow partner file processing caused by an
+          unmanaged error-event archive backlog, and a broken SMTP
+          configuration blocking email notifications. Each was resolved
+          through targeted root-cause analysis and fixes &mdash; a
+          pacing/staging workflow, a one-time archive cleanup with a new
+          review process, and an SMTP reconfiguration &mdash; delivering
+          faster resolution times, fewer recurrences, roughly 100 GB of
+          storage reclaimed, and a roughly 25% performance improvement versus
+          the customer handling these issues internally.
         </p>
       </section>
 
       <!-- [5] THE CHALLENGE -->
-      <section aria-labelledby="h-challenge">
+      <section class="cs-block" aria-labelledby="h-challenge">
         <h2 class="cs-h2" id="h-challenge">The challenge</h2>
         <ul class="cs-problems">
           <li>
-            <b>Dependent on a third-party converter.</b>
-            <span>Frost Bank relied on a third-party application, GlobalPay, to convert
-            partner NACHA files into EDI-X12-4010 820 format rather than handling the
-            conversion in-house.</span>
+            <b>Out-of-order file processing in B2B Data Exchange.</b>
+            <span>When multiple incoming partner files arrived at the same
+            time, DX events fired concurrently and issued overlapping,
+            out-of-order database queries against the same tables, putting
+            processing sequence and data integrity at risk.</span>
           </li>
           <li>
-            <b>No B2B product stack in place.</b>
-            <span>None of Informatica's B2B products &mdash; PowerCenter, B2B Data Exchange,
-            or B2B Managed File Transfer &mdash; were set up on the bank's TEST or PROD
-            environments, so the foundation had to be built from scratch.</span>
+            <b>Slow partner file processing from an archive backlog.</b>
+            <span>Error-state DX events with file attachments were excluded
+            from ILM archiving, so the repository kept growing unchecked,
+            which in turn slowed down partner file processing through B2B
+            Data Exchange.</span>
           </li>
           <li>
-            <b>Critical installer failure against a fixed deadline.</b>
-            <span>During setup, the B2B Data Exchange 10.2HF2 installer failed to connect to
-            the database, blocking progress against a migration deadline that could not
-            move.</span>
+            <b>SMTP notifications silently failing.</b>
+            <span>The B2B server could not send email notifications because
+            an obsolete SMTP configuration &mdash; left over from a prior
+            upgrade's metadata migration &mdash; was still in place across
+            Informatica PowerCenter and the B2B applications.</span>
           </li>
         </ul>
       </section>
 
       <!-- [6] ARCHITECTURE DIAGRAM -->
-      <section aria-labelledby="h-solution">
+      <section class="cs-block" aria-labelledby="h-solution">
         <h2 class="cs-h2" id="h-solution">The solution</h2>
         <figure class="cs-figure">
           <button class="cs-figure__frame" type="button" id="diagram-open"
@@ -872,48 +898,48 @@
           </button>
           <figcaption>
             <span>
-              Solution architecture: partner NACHA file (GlobalScape SFTP/SCP) &rarr; DT Parser
-              (NACHA to XML) &rarr; DT Mapper (XML transform) &rarr; EDI-X12-4010 820
-              serialization &rarr; outbound delivery (GlobalScape SFTP/SCP), with monitor-flag
-              checks and email notifications at each stage
+              Managed-services view: partner files flow through B2B Data
+              Exchange and Managed File Transfer into the staging/pacing
+              workflow, error-state DX events feed the ILM/Data Archive
+              cleanup and review process, and B2B/PowerCenter SMTP
+              notifications route out to the customer &mdash; all monitored
+              and supported by aiDataWorks' L2/L3 managed-services layer,
+              with the customer's L1 team as first responder.
             </span>
-            <a href="../../img/case-studies/frost-bank-b2b-nacha-edi-architecture.pdf" download>Download diagram (PDF)</a>
+            <a href="#" download>Download diagram (PDF)</a>
           </figcaption>
         </figure>
       </section>
 
       <!-- [7] APPROACH -->
-      <section aria-labelledby="h-approach">
+      <section class="cs-block" aria-labelledby="h-approach">
         <h2 class="cs-h2" id="h-approach">How we built it</h2>
         <div class="cs-approach">
 
           <div>
-            <h3 class="cs-h3">Standing up the B2B stack</h3>
+            <h3 class="cs-h3">File-ordering fix: a pacing workflow</h3>
             <ul>
-              <li>Stood up the full Informatica B2B product stack &mdash; PowerCenter, B2B Data Exchange, and B2B Managed File Transfer &mdash; across both TEST and PROD environments.</li>
-              <li>Built the foundation from the ground up, since no prior B2B stack existed at Frost Bank for this use case.</li>
-              <li>Configured PowerExchange and Informatica Data Quality (IDQ) alongside the core B2B components to support the file-conversion workflow.</li>
+              <li>Routed incoming partner files to a staging location instead of processing them directly on arrival.</li>
+              <li>Built a scheduled batch workflow &mdash; a "pacing profile" &mdash; that delivers one file at a time, oldest-first, to preserve processing order.</li>
+              <li>Eliminated the overlapping, concurrent database queries that were causing DX events to fail when multiple files landed simultaneously.</li>
             </ul>
           </div>
 
           <div>
-            <h3 class="cs-h3">Diagnosing and fixing the installer defect</h3>
+            <h3 class="cs-h3">Archive backlog cleanup and performance recovery</h3>
             <ul>
-              <li>Traced the B2B Data Exchange 10.2HF2 installer's database connection failure to a known product bug: DX 10.2HF2 fails on Windows Server 16 when SSL encryption is enabled on SQL Server 16.</li>
-              <li>Raised an Emergency Bug Fix (EBF) request with Informatica while engineering a workaround in parallel, so the fixed migration deadline was not put at risk.</li>
-              <li>Applied the workaround: disabled SSL, installed DX, took the environment down, re-enabled SSL, added <code>SSL=True</code> to the DX configuration, replaced an ODBC jar file in the DX library, and restarted services.</li>
-              <li>Documented the fix as a reusable install/SSL procedure for future DX 10.2HF2 deployments.</li>
+              <li>Ran root cause analysis and traced the slowdown to error-state DX events with file attachments being excluded from ILM archiving.</li>
+              <li>Identified and marked stale ILM jobs stuck in "Error" state to unblock the archive project.</li>
+              <li>Executed a one-time archive cleanup and defined a going-forward review process for error events so the backlog cannot recur unmanaged.</li>
             </ul>
           </div>
 
           <div>
-            <h3 class="cs-h3">Building the NACHA-to-EDI 820 pipeline</h3>
+            <h3 class="cs-h3">SMTP root-cause and reconfiguration</h3>
             <ul>
-              <li>Received partner NACHA batch files over GlobalScape SFTP/SCP as the inbound transport.</li>
-              <li>Used a DT Parser to convert the incoming NACHA file into XML.</li>
-              <li>Applied a DT Mapper to transform the parsed XML into the target structure.</li>
-              <li>Serialized the transformed data into EDI-X12-4010 820 format and delivered it back out over GlobalScape SFTP/SCP.</li>
-              <li>Added monitor-flag checks and email notifications across the pipeline so failures and completions were visible without manual polling.</li>
+              <li>Ran root cause analysis on the B2B server's failure to send email notifications.</li>
+              <li>Traced the fault to an obsolete SMTP configuration left over from an earlier platform upgrade's metadata migration.</li>
+              <li>Corrected the SMTP configuration across Informatica PowerCenter and all B2B applications to restore notification delivery.</li>
             </ul>
           </div>
 
@@ -925,26 +951,24 @@
     <!-- [8] + [9] SIDEBAR -->
     <aside class="cs-aside">
 
-      <div class="cs-card">
+      <div class="cs-card cs-block">
         <div class="cs-card__head">At a glance</div>
         <div class="cs-card__body">
           <dl class="cs-facts">
-            <dt>Industry</dt>  <dd>Financial Services (Banking)</dd>
-            <dt>Region</dt>    <dd>San Antonio, Texas, USA</dd>
-            <dt>Services</dt>  <dd>Informatica B2B Data Exchange, Managed File Transfer</dd>
+            <dt>Industry</dt>  <dd>Healthcare</dd>
+            <dt>Services</dt>  <dd>Managed Services &mdash; Support Operations &amp; Application Maintenance</dd>
           </dl>
           <div class="cs-chips">
             <span class="cs-chip">Informatica PowerCenter</span>
             <span class="cs-chip">B2B Data Exchange</span>
-            <span class="cs-chip">B2B MFT</span>
-            <span class="cs-chip">PowerExchange</span>
-            <span class="cs-chip">NACHA</span>
-            <span class="cs-chip">EDI-X12 820</span>
+            <span class="cs-chip">ILM/Data Archive</span>
+            <span class="cs-chip">Oracle</span>
+            <span class="cs-chip">AWS</span>
           </div>
         </div>
       </div>
 
-      <div class="cs-card cs-ctacard">
+      <div class="cs-card cs-ctacard cs-block">
         <div class="cs-card__head">Same problem?</div>
         <div class="cs-card__body">
           <p>Tell us where your customer data lives today and we will map the gap.</p>
@@ -961,36 +985,38 @@
   </div><!-- /.cs-body -->
 
   <!-- [10] OUTCOMES ===================================================== -->
-  <section class="cs-band cs-band--tint" aria-labelledby="h-outcomes">
+  <section class="cs-band cs-band--tint cs-block" aria-labelledby="h-outcomes">
     <div class="cs-container">
       <h2 class="cs-h2" id="h-outcomes">Outcomes</h2>
 
       <div class="cs-metrics">
         <div class="cs-metric">
-          <span class="cs-metric__value">In-house</span>
-          <span class="cs-metric__label">B2B file conversion capability</span>
-          <span class="cs-metric__delta">was: third-party GlobalPay</span>
+          <span class="cs-metric__value">1 hr</span>
+          <span class="cs-metric__label">Root-cause time on the file-ordering issue</span>
+          <span class="cs-metric__delta">was 8 hrs self-handled</span>
         </div>
         <div class="cs-metric">
-          <span class="cs-metric__value">First prototype</span>
-          <span class="cs-metric__label">NACHA-to-EDI 820 pipeline delivered</span>
+          <span class="cs-metric__value">~100 GB</span>
+          <span class="cs-metric__label">Storage reclaimed from archive cleanup</span>
+          <span class="cs-metric__delta">one-time ILM cleanup</span>
         </div>
         <div class="cs-metric">
-          <span class="cs-metric__value">Reusable</span>
-          <span class="cs-metric__label">DX 10.2HF2 SSL workaround documented</span>
+          <span class="cs-metric__value">~25%</span>
+          <span class="cs-metric__label">Performance improvement</span>
+          <span class="cs-metric__delta">from error-event cleanup</span>
         </div>
       </div>
 
       <ul>
-        <li>Frost Bank replaced its dependency on the third-party GlobalPay conversion service with an in-house Informatica B2B stack it owns and controls.</li>
-        <li>The engagement delivered a working first prototype of the NACHA-to-EDI 820 conversion pipeline, establishing a proven path from partner file intake to compliant EDI output.</li>
-        <li>By diagnosing and documenting the DX 10.2HF2 SSL workaround, the team protected the fixed migration deadline and left Frost Bank with a reusable fix for future deployments, plus a foundation it can extend into a file-conversion service for its own customers.</li>
+        <li>File-ordering recurrence dropped from 3 prior occurrences to 1, with corrective-action time cut from an estimated 8 days to 2 days.</li>
+        <li>The archive backlog issue was root-caused in 2 hours versus an estimated 12 hours, and corrective action took 0.5 days versus "a few days" of self-directed effort.</li>
+        <li>The SMTP configuration fault &mdash; which the customer's own resources could not root-cause &mdash; was corrected in 0.25 days once aiDataWorks traced it to the leftover migration setting.</li>
       </ul>
     </div>
   </section>
 
   <!-- [12] CLOSING CTA ================================================== -->
-  <section class="cs-band cs-cta">
+  <section class="cs-band cs-cta cs-block">
     <div class="cs-container">
       <h2>Solving something similar?</h2>
       <p>We will walk your current data landscape and show you what a governed customer view would take.</p>
@@ -1001,7 +1027,7 @@
 </article>
 
   <!-- [13] RELATED ====================================================== -->
-  <section class="cs-band" aria-labelledby="h-related">
+  <section class="cs-band cs-block" aria-labelledby="h-related">
     <div class="cs-container">
       <h2 class="cs-h2" id="h-related">Related case studies</h2>
       <div class="cs-related">
@@ -1009,24 +1035,27 @@
         <article class="cs-rcard">
           <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
           <div class="cs-rcard__body">
-            <span class="cs-rcard__industry">Insurance</span>
-            <h3><a href="../health-insurer-mainframe-governance/index.html">Governing Legacy Mainframe COBOL Data for a Tier 1 Health Insurer</a></h3>
+            <span class="cs-rcard__industry">Healthcare</span>
+            <h3><a href="../corewell-health-credentials-modernization/index.html">Corewell Health Modernizes Application Credentials Off Windows Server 2012</a></h3>
+            <div class="cs-rcard__stats"><span>Credentials modernization</span></div>
           </div>
         </article>
 
         <article class="cs-rcard">
           <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
           <div class="cs-rcard__body">
-            <span class="cs-rcard__industry">Cross-Industry</span>
-            <h3><a href="../ai-data-quality-governance-idmc/index.html">Automating Data Quality, Governance &amp; Predictive Insights on Informatica IDMC</a></h3>
+            <span class="cs-rcard__industry">Healthcare</span>
+            <h3><a href="../healthcare-hl7-realtime-integration/index.html">Near-Real-Time HL7 Integration for a Cloud Help Desk Platform</a></h3>
+            <div class="cs-rcard__stats"><span>HL7 integration</span></div>
           </div>
         </article>
 
         <article class="cs-rcard">
           <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
           <div class="cs-rcard__body">
-            <span class="cs-rcard__industry">Retail &amp; CPG</span>
-            <h3><a href="../retail-bde-cloud-migration/index.html">Unblocking a Tier 1 Retailer's Big Data Engineering Upgrade and Cloud Cost</a></h3>
+            <span class="cs-rcard__industry">Enterprise IT</span>
+            <h3><a href="../life-sciences-mft-migration/index.html">Migrating from Cleo to Informatica MFT Without Slowing the Business Down</a></h3>
+            <div class="cs-rcard__stats"><span>MFT migration</span></div>
           </div>
         </article>
 
@@ -1130,19 +1159,19 @@
   "@graph": [
     {
       "@type": "Article",
-      "headline": "Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange on Informatica B2B",
-      "description": "aiDataWorks helped Frost Bank replace a third-party conversion service with an in-house Informatica B2B stack for NACHA-to-EDI-X12-4010 820 exchange.",
+      "headline": "Post-Go-Live Managed Services for a Tier 1 Healthcare Informatica Estate",
+      "description": "aiDataWorks delivers post-go-live managed services for a tier 1 healthcare customer's Informatica, B2B, and cloud data stack, resolving file-ordering, archive backlog, and SMTP issues.",
       "datePublished": "2026-08-07",
       "author": { "@type": "Organization", "name": "aiDataWorks" },
       "publisher": { "@type": "Organization", "name": "aiDataWorks" },
-      "about": "B2B Data Exchange"
+      "about": "Managed Services"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.aidata.works/" },
-        { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://www.aidata.works/case-studies.html" },
-        { "@type": "ListItem", "position": 3, "name": "Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange on Informatica B2B" }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+        { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "/case-studies/" },
+        { "@type": "ListItem", "position": 3, "name": "Post-Go-Live Managed Services" }
       ]
     }
   ]

@@ -7,14 +7,14 @@
 <!-- ==========================================================================
      PAGE META
      ========================================================================== -->
-<title>Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange — Case Study | aiDataWorks</title>
-<meta name="description" content="How aiDataWorks helped Frost Bank replace a third-party conversion service with an in-house Informatica B2B stack for NACHA-to-EDI-X12-4010 820 exchange.">
-<link rel="canonical" href="https://www.aidata.works/case-studies/frost-bank-b2b-nacha-edi-modernization/">
+<title>Securing Shop-Floor Data in the Cloud for a Semiconductor Manufacturer — Case Study | aiDataWorks</title>
+<meta name="description" content="How aiDataWorks combined GEMBO's IIoT edge platform with Informatica's data security stack to give a global semiconductor manufacturer secured, real-time access to shop-floor and product data — worth an estimated $1-2 million per factory per year.">
+<link rel="canonical" href="https://www.aidata.works/case-studies/semiconductor-data-security-cloud-warehouse/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange — Case Study">
-<meta property="og:description" content="aiDataWorks helped Frost Bank retire a third-party conversion dependency and stand up an in-house Informatica B2B exchange for NACHA-to-EDI 820 processing.">
-<meta property="og:url" content="https://www.aidata.works/case-studies/frost-bank-b2b-nacha-edi-modernization/">
-<meta property="og:image" content="https://www.aidata.works/assets/case-studies/frost-bank-b2b-nacha-edi-modernization-hero.jpg">
+<meta property="og:title" content="Securing Shop-Floor Data in the Cloud for a Semiconductor Manufacturer — Case Study">
+<meta property="og:description" content="Secured, real-time shop-floor and product data access worth an estimated $1-2 million per factory per year for a global semiconductor manufacturer.">
+<meta property="og:image" content="https://www.aidata.works/assets/case-studies/semiconductor-data-security-cloud-warehouse-hero.jpg">
+<meta property="og:url" content="https://www.aidata.works/case-studies/semiconductor-data-security-cloud-warehouse/">
 
 <style>
 /* ==========================================================================
@@ -30,7 +30,7 @@
   --cs-accent:         #2b3a67;   /* primary brand */
   --cs-accent-soft:    #eef1f8;
   --cs-signal:         #1f7a5a;   /* results / positive */
-  --cs-placeholder:    #e7e9ec;   /* diagram placeholder fill */
+  --cs-placeholder:    #e7e9ec;   /* wireframe fill */
 
   --cs-font-display:   Georgia, 'Times New Roman', serif;
   --cs-font-body:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -53,7 +53,7 @@
 
   --cs-container: 1200px;
   --cs-radius:    6px;
-  --cs-header-offset: 96px;  /* height of fixed header, for sticky offset */
+  --cs-header-offset: 96px;  /* height of your fixed header, for sticky offset */
 }
 
 /* ==========================================================================
@@ -791,23 +791,23 @@
     <ol>
       <li><a href="../../index.html">Home</a></li>
       <li><a href="../../case-studies.html">Case Studies</a></li>
-      <li><span aria-current="page">Frost Bank</span></li>
+      <li><span aria-current="page" data-cs-field="title-short">Shop-Floor Data Security</span></li>
     </ol>
   </nav>
 
   <!-- [2] HERO ========================================================== -->
-  <header class="cs-hero">
+  <header class="cs-hero cs-block">
     <div class="cs-container cs-hero__inner">
       <p class="cs-eyebrow">
-        Case Study <span aria-hidden="true">&middot;</span>
-        <span>Financial Services</span>
+        Case Study <span aria-hidden="true">·</span>
+        <span data-cs-field="industry">Manufacturing</span>
       </p>
-      <h1>Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange on Informatica B2B</h1>
-      <p class="cs-hero__sub">
-        Replacing a third-party conversion dependency with a governed, in-house B2B data exchange stack
+      <h1 data-cs-field="title">Securing Shop-Floor Data in the Cloud for a Global Semiconductor Manufacturer</h1>
+      <p class="cs-hero__sub" data-cs-field="subtitle">
+        Joining IIoT shop-floor data with sensitive product and pricing metadata through a secured, masked pipeline into a private cloud data warehouse
       </p>
-      <p class="cs-hero__outcome">
-        GlobalPay dependency retired &mdash; in-house NACHA-to-EDI 820 exchange live
+      <p class="cs-hero__outcome" data-cs-field="outcome-line">
+        An estimated $1-2M per factory per year unlocked by secured, real-time data access
       </p>
     </div>
   </header>
@@ -818,48 +818,55 @@
     <div class="cs-main">
 
       <!-- [4] EXECUTIVE SUMMARY -->
-      <section aria-labelledby="h-summary">
+      <section class="cs-block" aria-labelledby="h-summary">
         <h2 class="cs-h2" id="h-summary">Summary</h2>
-        <p>
-          aiDataWorks helped Frost Bank build an in-house Informatica B2B foundation &mdash;
-          PowerCenter, B2B Data Exchange, and Managed File Transfer &mdash; to replace its
-          reliance on the third-party GlobalPay conversion service, centered on a
-          NACHA-to-EDI-X12-4010 820 conversion pipeline. Mid-implementation, the team diagnosed
-          and engineered a workaround for a critical Informatica DX 10.2HF2 installer defect
-          (an SSL / SQL Server 16 incompatibility) that could have derailed the bank's fixed
-          migration timeline. The engagement delivered a working first prototype of the
-          conversion pipeline and gave Frost Bank in-house capability it could extend into a
-          service offering for its own customers.
+        <p data-cs-field="summary">
+          A top-tier, globally distributed Silicon Power IC semiconductor manufacturer needed real-time
+          and historical visibility into shop-floor manufacturing data joined with sensitive product,
+          pricing, and material metadata &mdash; but could not securely expose that data across systems.
+          The problem was compounded by COVID-19-driven demand shifts that required fast, low-manpower
+          operational decisions. aiDataWorks combined technology partner GEMBO&rsquo;s Precare IIoT
+          platform for edge data collection and OEE analytics with Informatica&rsquo;s data security,
+          masking, quality, and cloud integration stack (TDM, BDE, IICS, IDQ) to build a secured
+          pipeline from the shop floor to a private cloud data warehouse. The engagement progressed
+          from environment assessment through platform installation, selective data masking, quality
+          rule application, and data lake loading for downstream analytics. The customer gained secured,
+          real-time, multi-user access to previously siloed shop-floor and product data, with estimated
+          combined benefits in the millions of dollars annually from improved OEE performance and faster,
+          better-informed operational decisions.
         </p>
       </section>
 
       <!-- [5] THE CHALLENGE -->
-      <section aria-labelledby="h-challenge">
+      <section class="cs-block" aria-labelledby="h-challenge">
         <h2 class="cs-h2" id="h-challenge">The challenge</h2>
-        <ul class="cs-problems">
+        <ul class="cs-problems" data-cs-field="challenge">
           <li>
-            <b>Dependent on a third-party converter.</b>
-            <span>Frost Bank relied on a third-party application, GlobalPay, to convert
-            partner NACHA files into EDI-X12-4010 820 format rather than handling the
-            conversion in-house.</span>
+            <b>Shop-floor data isolated from product metadata.</b>
+            <span>IIoT data captured on the factory floor could not be securely connected to sensitive
+            product metadata &mdash; pricing and material costs &mdash; held in a separate warehouse
+            outside the factory.</span>
           </li>
           <li>
-            <b>No B2B product stack in place.</b>
-            <span>None of Informatica's B2B products &mdash; PowerCenter, B2B Data Exchange,
-            or B2B Managed File Transfer &mdash; were set up on the bank's TEST or PROD
-            environments, so the foundation had to be built from scratch.</span>
+            <b>Real-time optimization blocked.</b>
+            <span>The inability to expose and secure shop-floor data prevented real-time optimization
+            of operations, directly hurting productivity and revenue.</span>
           </li>
           <li>
-            <b>Critical installer failure against a fixed deadline.</b>
-            <span>During setup, the B2B Data Exchange 10.2HF2 installer failed to connect to
-            the database, blocking progress against a migration deadline that could not
-            move.</span>
+            <b>Decisions made offline and late.</b>
+            <span>Without a secured, joined data pipeline, operational decisions were made offline,
+            introducing delay and inaccuracy instead of real-time responsiveness.</span>
+          </li>
+          <li>
+            <b>COVID-19 ramp-up pressure.</b>
+            <span>The pandemic forced a rapid ramp-up of operations with reduced manpower, requiring
+            fast, secure, multi-user access to data for capacity and scheduling decisions.</span>
           </li>
         </ul>
       </section>
 
       <!-- [6] ARCHITECTURE DIAGRAM -->
-      <section aria-labelledby="h-solution">
+      <section class="cs-block" aria-labelledby="h-solution">
         <h2 class="cs-h2" id="h-solution">The solution</h2>
         <figure class="cs-figure">
           <button class="cs-figure__frame" type="button" id="diagram-open"
@@ -871,49 +878,49 @@
             </span>
           </button>
           <figcaption>
-            <span>
-              Solution architecture: partner NACHA file (GlobalScape SFTP/SCP) &rarr; DT Parser
-              (NACHA to XML) &rarr; DT Mapper (XML transform) &rarr; EDI-X12-4010 820
-              serialization &rarr; outbound delivery (GlobalScape SFTP/SCP), with monitor-flag
-              checks and email notifications at each stage
+            <span data-cs-field="diagram-caption">
+              Solution architecture: shop-floor IIoT data + product metadata &rarr; masking &amp;
+              security layer &rarr; private cloud data lake &rarr; downstream analytics
             </span>
-            <a href="../../img/case-studies/frost-bank-b2b-nacha-edi-architecture.pdf" download>Download diagram (PDF)</a>
+            <a href="../../assets/case-studies/semiconductor-data-security-cloud-warehouse-architecture.pdf" download>Download diagram (PDF)</a>
           </figcaption>
         </figure>
       </section>
 
       <!-- [7] APPROACH -->
-      <section aria-labelledby="h-approach">
+      <section class="cs-block" aria-labelledby="h-approach">
         <h2 class="cs-h2" id="h-approach">How we built it</h2>
-        <div class="cs-approach">
+        <div class="cs-approach" data-cs-field="approach">
 
           <div>
-            <h3 class="cs-h3">Standing up the B2B stack</h3>
+            <h3 class="cs-h3">Environment assessment &amp; architecture</h3>
             <ul>
-              <li>Stood up the full Informatica B2B product stack &mdash; PowerCenter, B2B Data Exchange, and B2B Managed File Transfer &mdash; across both TEST and PROD environments.</li>
-              <li>Built the foundation from the ground up, since no prior B2B stack existed at Frost Bank for this use case.</li>
-              <li>Configured PowerExchange and Informatica Data Quality (IDQ) alongside the core B2B components to support the file-conversion workflow.</li>
+              <li>Assessed the existing shop-floor and product-metadata environment and collected requirements from stakeholders across the factory network.</li>
+              <li>Produced a consolidated requirements and architecture document to guide the joint deployment of GEMBO and Informatica components.</li>
             </ul>
           </div>
 
           <div>
-            <h3 class="cs-h3">Diagnosing and fixing the installer defect</h3>
+            <h3 class="cs-h3">GEMBO Precare edge deployment</h3>
             <ul>
-              <li>Traced the B2B Data Exchange 10.2HF2 installer's database connection failure to a known product bug: DX 10.2HF2 fails on Windows Server 16 when SSL encryption is enabled on SQL Server 16.</li>
-              <li>Raised an Emergency Bug Fix (EBF) request with Informatica while engineering a workaround in parallel, so the fixed migration deadline was not put at risk.</li>
-              <li>Applied the workaround: disabled SSL, installed DX, took the environment down, re-enabled SSL, added <code>SSL=True</code> to the DX configuration, replaced an ODBC jar file in the DX library, and restarted services.</li>
-              <li>Documented the fix as a reusable install/SSL procedure for future DX 10.2HF2 deployments.</li>
+              <li>Installed, configured, and smoke-tested GEMBO Precare Cloud/Edge for IIoT edge data collection and OEE analytics.</li>
+              <li>Validated edge data collection across factories spread across the USA, Europe, and Asia Pacific.</li>
             </ul>
           </div>
 
           <div>
-            <h3 class="cs-h3">Building the NACHA-to-EDI 820 pipeline</h3>
+            <h3 class="cs-h3">Informatica security &amp; integration stack rollout</h3>
             <ul>
-              <li>Received partner NACHA batch files over GlobalScape SFTP/SCP as the inbound transport.</li>
-              <li>Used a DT Parser to convert the incoming NACHA file into XML.</li>
-              <li>Applied a DT Mapper to transform the parsed XML into the target structure.</li>
-              <li>Serialized the transformed data into EDI-X12-4010 820 format and delivered it back out over GlobalScape SFTP/SCP.</li>
-              <li>Added monitor-flag checks and email notifications across the pipeline so failures and completions were visible without manual polling.</li>
+              <li>Installed, configured, and smoke-tested Informatica Test Data Management (TDM), Platform, IICS Agents, and Big Data Engineering (BDE).</li>
+              <li>Established the integration layer needed to move shop-floor and product metadata securely into a shared pipeline.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="cs-h3">Data masking, quality &amp; cloud data lake loading</h3>
+            <ul>
+              <li>Performed selective source shop-floor data scanning and metadata masking to protect sensitive pricing and material-cost data.</li>
+              <li>Applied data quality and cleansing rules, then loaded secured data into a private cloud data lake and exposed it for downstream analytics.</li>
             </ul>
           </div>
 
@@ -925,26 +932,25 @@
     <!-- [8] + [9] SIDEBAR -->
     <aside class="cs-aside">
 
-      <div class="cs-card">
+      <div class="cs-card cs-block">
         <div class="cs-card__head">At a glance</div>
         <div class="cs-card__body">
           <dl class="cs-facts">
-            <dt>Industry</dt>  <dd>Financial Services (Banking)</dd>
-            <dt>Region</dt>    <dd>San Antonio, Texas, USA</dd>
-            <dt>Services</dt>  <dd>Informatica B2B Data Exchange, Managed File Transfer</dd>
+            <dt>Industry</dt>  <dd data-cs-field="industry">Manufacturing (Semiconductor / Industrial)</dd>
+            <dt>Region</dt>    <dd data-cs-field="region">USA, Europe &amp; Asia Pacific</dd>
+            <dt>Services</dt>  <dd data-cs-field="services">Shop-Floor Data Security &amp; Cloud Integration</dd>
           </dl>
-          <div class="cs-chips">
-            <span class="cs-chip">Informatica PowerCenter</span>
-            <span class="cs-chip">B2B Data Exchange</span>
-            <span class="cs-chip">B2B MFT</span>
-            <span class="cs-chip">PowerExchange</span>
-            <span class="cs-chip">NACHA</span>
-            <span class="cs-chip">EDI-X12 820</span>
+          <div class="cs-chips" data-cs-field="tech-stack">
+            <span class="cs-chip">Informatica BDE</span>
+            <span class="cs-chip">IICS</span>
+            <span class="cs-chip">TDM</span>
+            <span class="cs-chip">GEMBO Precare</span>
+            <span class="cs-chip">Data Masking</span>
           </div>
         </div>
       </div>
 
-      <div class="cs-card cs-ctacard">
+      <div class="cs-card cs-ctacard cs-block">
         <div class="cs-card__head">Same problem?</div>
         <div class="cs-card__body">
           <p>Tell us where your customer data lives today and we will map the gap.</p>
@@ -961,36 +967,38 @@
   </div><!-- /.cs-body -->
 
   <!-- [10] OUTCOMES ===================================================== -->
-  <section class="cs-band cs-band--tint" aria-labelledby="h-outcomes">
+  <section class="cs-band cs-band--tint cs-block" aria-labelledby="h-outcomes">
     <div class="cs-container">
       <h2 class="cs-h2" id="h-outcomes">Outcomes</h2>
 
-      <div class="cs-metrics">
+      <div class="cs-metrics" data-cs-field="results">
         <div class="cs-metric">
-          <span class="cs-metric__value">In-house</span>
-          <span class="cs-metric__label">B2B file conversion capability</span>
-          <span class="cs-metric__delta">was: third-party GlobalPay</span>
+          <span class="cs-metric__value" data-cs-field="result-1-metric">3-5%</span>
+          <span class="cs-metric__label" data-cs-field="result-1-label">OEE performance affected by metadata inaccessibility</span>
+          <span class="cs-metric__delta" data-cs-field="result-1-delta">roughly 33% of overall OEE</span>
         </div>
         <div class="cs-metric">
-          <span class="cs-metric__value">First prototype</span>
-          <span class="cs-metric__label">NACHA-to-EDI 820 pipeline delivered</span>
+          <span class="cs-metric__value" data-cs-field="result-2-metric">$1-2M</span>
+          <span class="cs-metric__label" data-cs-field="result-2-label">Estimated annual revenue impact per factory</span>
+          <span class="cs-metric__delta" data-cs-field="result-2-delta">from the metadata-access problem</span>
         </div>
         <div class="cs-metric">
-          <span class="cs-metric__value">Reusable</span>
-          <span class="cs-metric__label">DX 10.2HF2 SSL workaround documented</span>
+          <span class="cs-metric__value" data-cs-field="result-3-metric">$2M</span>
+          <span class="cs-metric__label" data-cs-field="result-3-label">Estimated quarterly value from real-time visibility</span>
+          <span class="cs-metric__delta" data-cs-field="result-3-delta">during the COVID-19 ramp-up</span>
         </div>
       </div>
 
-      <ul>
-        <li>Frost Bank replaced its dependency on the third-party GlobalPay conversion service with an in-house Informatica B2B stack it owns and controls.</li>
-        <li>The engagement delivered a working first prototype of the NACHA-to-EDI 820 conversion pipeline, establishing a proven path from partner file intake to compliant EDI output.</li>
-        <li>By diagnosing and documenting the DX 10.2HF2 SSL workaround, the team protected the fixed migration deadline and left Frost Bank with a reusable fix for future deployments, plus a foundation it can extend into a file-conversion service for its own customers.</li>
+      <ul data-cs-field="outcome-note">
+        <li>Product metadata inaccessibility was estimated to affect 3-5% of OEE performance, roughly a third of overall OEE, translating to an estimated $1-2 million in lost revenue per factory per year.</li>
+        <li>During the COVID-19 ramp-up, real-time visibility into secured shop-floor and product data was estimated to be worth approximately $2 million per quarter in customer-contract competitiveness.</li>
+        <li>Combined, the customer estimated the benefits of secured, real-time data access at millions of dollars per year &mdash; a figure that excludes additional customer-retention value.</li>
       </ul>
     </div>
   </section>
 
   <!-- [12] CLOSING CTA ================================================== -->
-  <section class="cs-band cs-cta">
+  <section class="cs-band cs-cta cs-block">
     <div class="cs-container">
       <h2>Solving something similar?</h2>
       <p>We will walk your current data landscape and show you what a governed customer view would take.</p>
@@ -1001,10 +1009,18 @@
 </article>
 
   <!-- [13] RELATED ====================================================== -->
-  <section class="cs-band" aria-labelledby="h-related">
+  <section class="cs-band cs-block" aria-labelledby="h-related">
     <div class="cs-container">
       <h2 class="cs-h2" id="h-related">Related case studies</h2>
       <div class="cs-related">
+
+        <article class="cs-rcard">
+          <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
+          <div class="cs-rcard__body">
+            <span class="cs-rcard__industry">Manufacturing</span>
+            <h3><a href="../semiconductor-industry40-analytics-transition/index.html">Industry 4.0 and OEE Analytics Transition for a Semiconductor Manufacturer</a></h3>
+          </div>
+        </article>
 
         <article class="cs-rcard">
           <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
@@ -1017,16 +1033,8 @@
         <article class="cs-rcard">
           <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
           <div class="cs-rcard__body">
-            <span class="cs-rcard__industry">Cross-Industry</span>
-            <h3><a href="../ai-data-quality-governance-idmc/index.html">Automating Data Quality, Governance &amp; Predictive Insights on Informatica IDMC</a></h3>
-          </div>
-        </article>
-
-        <article class="cs-rcard">
-          <div class="cs-rcard__thumb">[ thumbnail 16:9 ]</div>
-          <div class="cs-rcard__body">
-            <span class="cs-rcard__industry">Retail &amp; CPG</span>
-            <h3><a href="../retail-bde-cloud-migration/index.html">Unblocking a Tier 1 Retailer's Big Data Engineering Upgrade and Cloud Cost</a></h3>
+            <span class="cs-rcard__industry">Healthcare</span>
+            <h3><a href="../healthcare-sensitive-data-protection/index.html">Identifying, Masking and Democratizing Sensitive Patient Data on IDMC</a></h3>
           </div>
         </article>
 
@@ -1130,19 +1138,19 @@
   "@graph": [
     {
       "@type": "Article",
-      "headline": "Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange on Informatica B2B",
-      "description": "aiDataWorks helped Frost Bank replace a third-party conversion service with an in-house Informatica B2B stack for NACHA-to-EDI-X12-4010 820 exchange.",
+      "headline": "Securing Shop-Floor Data in the Cloud for a Global Semiconductor Manufacturer",
+      "description": "How aiDataWorks combined GEMBO's IIoT edge platform with Informatica's data security stack to give a global semiconductor manufacturer secured, real-time access to shop-floor and product data.",
       "datePublished": "2026-08-07",
       "author": { "@type": "Organization", "name": "aiDataWorks" },
       "publisher": { "@type": "Organization", "name": "aiDataWorks" },
-      "about": "B2B Data Exchange"
+      "about": "Shop-Floor Data Security & Cloud Integration"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.aidata.works/" },
         { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://www.aidata.works/case-studies.html" },
-        { "@type": "ListItem", "position": 3, "name": "Frost Bank Builds an In-House NACHA-to-EDI 820 Exchange on Informatica B2B" }
+        { "@type": "ListItem", "position": 3, "name": "Shop-Floor Data Security" }
       ]
     }
   ]

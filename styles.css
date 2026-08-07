@@ -1569,10 +1569,11 @@
     background-size: cover;
     background-position: center;
   }
-  .proof-card[data-industry="insurance"] { --proof-img: url('https://images.unsplash.com/photo-1763729805496-b5dbf7f00c79?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .proof-card[data-industry="retail-cpg"] { --proof-img: url('https://images.unsplash.com/photo-1759323321196-2813db509285?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .proof-card[data-industry="healthcare"] { --proof-img: url('https://images.unsplash.com/photo-1516841273335-e39b37888115?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .proof-card[data-industry="manufacturing"] { --proof-img: url('https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .proof-card[data-industry="insurance"] { --proof-img: url('assets/industries/insurance.png'); }
+  .proof-card[data-industry="retail-cpg"] { --proof-img: url('assets/industries/retail-cpg.png'); }
+  .proof-card[data-industry="healthcare"] { --proof-img: url('assets/industries/healthcare.png'); }
+  .proof-card[data-industry="manufacturing"] { --proof-img: url('assets/industries/manufacturing.png'); }
+  .proof-card[data-industry="financial-services"] { --proof-img: url('assets/industries/financial-services.png'); }
 
   .proof-card-body {
     position: relative;
@@ -1837,12 +1838,12 @@
     transform: rotateY(180deg);
   }
 
-  .industry-card[data-industry="healthcare"] { --industry-img: url('https://images.unsplash.com/photo-1516841273335-e39b37888115?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="financial-services"] { --industry-img: url('https://images.unsplash.com/photo-1457059315558-e754285e416b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="insurance"] { --industry-img: url('https://images.unsplash.com/photo-1763729805496-b5dbf7f00c79?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="manufacturing"] { --industry-img: url('https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="retail-cpg"] { --industry-img: url('https://images.unsplash.com/photo-1759323321196-2813db509285?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
-  .industry-card[data-industry="public-sector"] { --industry-img: url('https://images.unsplash.com/photo-1768399808130-abac2a8442e0?fm=jpg&q=80&w=1200&auto=format&fit=crop'); }
+  .industry-card[data-industry="healthcare"] { --industry-img: url('assets/industries/healthcare.png'); }
+  .industry-card[data-industry="financial-services"] { --industry-img: url('assets/industries/financial-services.png'); }
+  .industry-card[data-industry="insurance"] { --industry-img: url('assets/industries/insurance.png'); }
+  .industry-card[data-industry="manufacturing"] { --industry-img: url('assets/industries/manufacturing.png'); }
+  .industry-card[data-industry="retail-cpg"] { --industry-img: url('assets/industries/retail-cpg.png'); }
+  .industry-card[data-industry="public-sector"] { --industry-img: url('assets/industries/public-sector.png'); }
 
   .industry-title {
     font-family: var(--font-sans);
@@ -2367,7 +2368,7 @@
     border-bottom: 1px solid var(--footer-line);
   }
   @media (min-width: 768px) { .footer-top { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .footer-top { grid-template-columns: 1.3fr repeat(5, 1fr); gap: 24px; } }
+  @media (min-width: 1024px) { .footer-top { grid-template-columns: 1.1fr repeat(6, 1fr); gap: 20px; } }
 
   .footer-logo { height: 28px; margin-bottom: 16px; display: block; }
   .footer-tagline {
