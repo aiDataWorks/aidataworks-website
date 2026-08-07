@@ -68,12 +68,16 @@
       if (item === except) return;
       item.classList.remove('is-open');
       item.querySelector('.nav-mobile-link').setAttribute('aria-expanded', 'false');
-      item.querySelector('.nav-mobile-submenu').style.maxHeight = '';
+      var openSubmenu = item.querySelector('.nav-mobile-submenu');
+      if (openSubmenu) { openSubmenu.style.maxHeight = ''; }
     });
   }
   navMobileItems.forEach(function (item) {
     var trigger = item.querySelector('.nav-mobile-link');
     var submenu = item.querySelector('.nav-mobile-submenu');
+    // Items whose dropdown/submenu has been disabled (commented out) in favor
+    // of a standalone page have no submenu here - let the link just navigate.
+    if (!submenu) { return; }
     trigger.addEventListener('click', function () {
       var wasOpen = item.classList.contains('is-open');
       closeAllMobileSubmenus(item);

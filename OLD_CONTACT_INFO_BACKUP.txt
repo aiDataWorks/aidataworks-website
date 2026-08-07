@@ -1,0 +1,43 @@
+aiDataWorks website — previous contact details (superseded 2026-08-08)
+==============================================================================
+
+These are the contact details that were replaced site-wide on 2026-08-08.
+Kept here for reference in case anything needs to be reverted or cross-checked.
+
+Old email:            marketing@aidata.works
+Old phone:             +1 402-346-1122
+Old Calendly link:     https://calendly.com/aidata-marketing/discovery-with-aidataworks
+
+Replaced with:
+
+New email:             sam.singh@aidata.works
+New phone:              +1 630 346-1120
+New Calendly link:      https://calendly.com/sam-singh-aidata/30min
+
+------------------------------------------------------------------------------
+Files that referenced the old details (all updated):
+
+about.html
+careers.html
+case-studies.html
+case-studies/bfsi-microfinance-platform-modernization/index.html
+contact.html
+index-v1.html
+index.html
+industry-financial-services.html
+industry-healthcare.html
+industry-insurance.html
+industry-manufacturing.html
+industry-public-sector.html
+industry-retail-cpg.html
+privacy.html
+service-analytics-insights.html
+service-cloud-data-platforms.html
+service-dataops-observability.html
+service-governance-quality-catalog.html
+service-managed-dmaas.html
+service-master-data-management.html
+services.html
+solutions.html
+terms.html
+webinars.html
