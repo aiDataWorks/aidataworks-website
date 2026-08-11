@@ -1079,7 +1079,7 @@
     display: flex;
     flex-direction: row;
     gap: 8px;
-    background: var(--surface-inverse);
+    background: var(--surface-sunken);
     /* 10% shorter than the original 530px (itself sized to the tallest
        real content, ~444px, measured at the narrowest row-layout width,
        900px, plus the panel's own 30px top/bottom padding and a small
@@ -2864,18 +2864,6 @@
     font-family: var(--font-sans);
     font-size: var(--fs-md);
     margin: 0 0 16px;
-  }
-
-  .page-mock-note {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 6px 14px;
-    border-radius: var(--radius-pill);
-    background: var(--accent-100);
-    color: var(--accent-600);
-    font-family: var(--font-sans);
-    font-weight: var(--fw-medium);
-    font-size: var(--fs-3xs);
   }
 
   /* ============================================================
