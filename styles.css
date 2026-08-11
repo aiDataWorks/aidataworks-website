@@ -1,3 +1,5 @@
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+
   @font-face {
     font-family: 'PP Neue Montreal';
     src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Book.otf') format('opentype');
@@ -18,13 +20,13 @@
      ============================================================ */
   :root {
     /* ---- Typeface ---- */
-    --font-sans: 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
+    --font-sans: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --fw-regular: 400;
     --fw-medium: 500;
     --fw-semibold: 600;
 
     /* ---- Type scale (fluid; --fs-ratio scales the whole system) ---- */
-    --fs-ratio: 1;
+    --fs-ratio: 0.9;
     --fs-display: calc(clamp(2.5rem, 5.2vw, 4rem)      * var(--fs-ratio));
     --fs-h1:      calc(clamp(2rem, 4.2vw, 3.25rem)     * var(--fs-ratio));
     --fs-h2:      calc(clamp(1.75rem, 3.2vw, 2.75rem)  * var(--fs-ratio));
@@ -40,11 +42,11 @@
 
     /* ---- Line height & tracking ---- */
     --lh-tight: 1.08;
-    --lh-snug: 1.22;
+    --lh-snug: 1.21;
     --lh-normal: 1.5;
-    --lh-relaxed: 1.65;
+    --lh-relaxed: 1.64;
     --tracking-tight: -0.02em;
-    --tracking-snug: -0.01em;
+    --tracking-snug: -0.010em;
 
     /* ---- Spacing (4px base) ---- */
     --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
@@ -52,21 +54,21 @@
     --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
 
     /* ---- Layout rhythm ---- */
-    --section-py: clamp(72px, 8vw, 120px);
+    --section-py: 44px;
     --section-px: clamp(20px, 4vw, 48px);
     --container: clamp(1200px, 88vw, 1600px);
 
     /* ---- Brand accent (the site previously had none) ---- */
-    --accent-600: #0B4FD1;
-    --accent-500: #1668F0;
-    --accent-400: #4A8DFF;
-    --accent-100: #E8F1FE;
+    --accent-600: hsl(217 88% 39%);
+    --accent-500: #1668f0;
+    --accent-400: hsl(217 88% 65%);
+    --accent-100: hsl(217 48% 94%);
 
     /* ---- Semantic surfaces ---- */
-    --surface-base: #FFFFFF;
-    --surface-sunken: #EEF5FA;
+    --surface-base: #ffffff;
+    --surface-sunken: #ffffff;
     --surface-raised: #FFFFFF;
-    --surface-inverse: #0D212C;
+    --surface-inverse: #0d212c;
     --surface-inverse-deep: #071820;
 
     /* ---- Semantic text ----
@@ -87,10 +89,10 @@
     /* ---- Radii ---- */
     --radius-sm: 8px;
     --radius-md: 14px;
-    --radius-lg: 20px;
+    --radius-lg: 4px;
     --radius-xl: 28px;
     --radius-pill: 9999px;
-    --radius-btn: 30px;
+    --radius-btn: 6px;
 
     /* ---- Elevation ---- */
     --shadow-1: 0 1px 2px rgba(5,26,36,0.04), 0 2px 8px rgba(5,26,36,0.05);
@@ -198,9 +200,12 @@
 
   .nav-logo { height: 32px; width: auto; transition: height 200ms ease; }
   .nav.is-scrolled .nav-logo { height: 28px; }
-  /* Landing page only - 2x the standard nav logo size. */
-  .nav-logo.nav-logo--lg { height: 64px; }
-  .nav.is-scrolled .nav-logo.nav-logo--lg { height: 56px; }
+  /* Landing page only - large nav logo size. */
+  .nav-logo.nav-logo--lg { height: 51px; }
+  .nav.is-scrolled .nav-logo.nav-logo--lg { height: 45px; }
+  /* Pulls the landing-page logo closer to the edge without touching the shared
+     nav-inner padding/max-width used on every page. */
+  .nav-logo-link:has(.nav-logo--lg) { margin-left: -14px; }
 
   .nav-links { display: none; align-items: center; gap: 4px; }
   .nav-links a {
@@ -287,7 +292,7 @@
     display: block;
     padding: 8px 10px;
     margin: 0 -10px;
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     transition: background 150ms ease;
   }
   .nav-dropdown-link:hover { background: var(--surface-sunken); }
@@ -379,7 +384,7 @@
     text-align: left;
     background: none;
     border: none;
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     padding: 10px 12px;
     cursor: pointer;
     transition: background 150ms ease;
@@ -514,8 +519,8 @@
   @media (min-width: 1024px) {
     .nav-logo { height: 40px; }
     .nav.is-scrolled .nav-logo { height: 36px; }
-    .nav-logo.nav-logo--lg { height: 80px; }
-    .nav.is-scrolled .nav-logo.nav-logo--lg { height: 72px; }
+    .nav-logo.nav-logo--lg { height: 64px; }
+    .nav.is-scrolled .nav-logo.nav-logo--lg { height: 58px; }
     .nav-links { display: flex; }
     .nav-desktop-cta { display: inline-block; }
     .nav-hamburger { display: none; }
@@ -1073,14 +1078,14 @@
   .service-panels {
     display: flex;
     flex-direction: row;
-    gap: 4px;
+    gap: 8px;
     background: var(--surface-inverse);
-    /* Sized to the tallest real content (~444px, measured at the
-       narrowest row-layout width, 900px) plus the panel's own 30px
-       top/bottom padding and a small buffer - not an arbitrary round
-       number. Shorter cards (fewer lines at wider widths) no longer
-       get stretched to match. */
-    height: 530px;
+    /* 10% shorter than the original 530px (itself sized to the tallest
+       real content, ~444px, measured at the narrowest row-layout width,
+       900px, plus the panel's own 30px top/bottom padding and a small
+       buffer). Re-verify against current copy if content is ever added
+       back - this is tighter than that original buffer. */
+    height: 477px;
     border-radius: var(--radius-lg);
     overflow: hidden;
   }
@@ -1293,16 +1298,16 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 48px;
-    align-items: center;
+    align-items: stretch;
   }
   @media (min-width: 1024px) { .ai-layout { grid-template-columns: 0.85fr 1.15fr; } }
 
-  .step-list { display: flex; flex-direction: column; gap: 4px; }
+  .step-list { display: flex; flex-direction: column; gap: 4px; height: 100%; justify-content: space-between; }
 
   .step-item {
     padding: 18px 20px;
     cursor: pointer;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     border: 1px solid transparent;
     transition: background 200ms ease, padding 250ms ease, border-color 250ms ease, border-radius 250ms ease, box-shadow 250ms ease;
   }
@@ -1337,7 +1342,7 @@
 
   .step-item.expanded {
     background: var(--white);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     padding: 24px 28px;
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
   }
@@ -1484,9 +1489,20 @@
     .proof-story-inner { grid-template-columns: 0.6fr 1.4fr; }
   }
 
-  /* ---- Carousel: one .proof-slide active at a time ---- */
-  .proof-slide { display: none; }
-  .proof-slide.active { display: block; }
+  /* ---- Carousel: all slides stacked in the same grid cell so the container
+     height locks to the tallest slide instead of reflowing per-slide. ---- */
+  .proof-carousel { display: grid; }
+  .proof-slide {
+    grid-area: 1 / 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+  }
+  .proof-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+  }
 
   .proof-tag {
     display: inline-block;
@@ -1666,6 +1682,8 @@
   .pain-card {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     padding: 28px 24px;
     background: rgba(255,255,255,0.035);
     border: 1px solid rgba(255,255,255,0.10);
@@ -1679,18 +1697,6 @@
     border-color: rgba(255,255,255,0.22);
     transform: translateY(-4px);
   }
-  .pain-card-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin-bottom: 20px;
-    border-radius: var(--radius-sm);
-    background: rgba(74,141,255,0.14);
-    color: var(--accent-400);
-  }
-  .pain-card-icon svg { width: 20px; height: 20px; }
   .pain-band.is-visible .pain-card { opacity: 1; transform: translateY(0); }
   .pain-band.is-visible .pain-card:nth-child(1) { transition-delay: 120ms; }
   .pain-band.is-visible .pain-card:nth-child(2) { transition-delay: 220ms; }
@@ -1700,7 +1706,7 @@
   .pain-stat {
     font-family: var(--font-sans);
     font-weight: var(--fw-medium);
-    font-size: var(--fs-h2);
+    font-size: calc(var(--fs-h2) * 1.3);
     line-height: 1;
     color: var(--accent-400);
     letter-spacing: -0.01em;
@@ -1969,7 +1975,7 @@
   .testimonial-mini-card {
     width: 100%;
     background: var(--white);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-lg);
     padding: 40px 44px;
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
     transition: box-shadow 200ms ease, transform 200ms ease;
@@ -2051,7 +2057,7 @@
     align-items: center;
     justify-content: center;
     background: var(--white);
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
     padding: 18px;
     text-align: left;
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
@@ -2259,7 +2265,7 @@
   .newsletter-band {
     margin-top: 48px;
     background: var(--white);
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
     box-shadow: 0 4px 16px rgba(5,26,36,0.08);
     padding: 32px;
     display: flex;
@@ -2278,7 +2284,7 @@
   .newsletter-form { display: flex; gap: 10px; }
   .newsletter-input {
     border: 1px solid var(--mist-200);
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     padding: 12px 16px;
     font-family: var(--font-sans);
     font-weight: var(--fw-regular);
@@ -2376,8 +2382,8 @@
   @media (min-width: 1024px) { .footer-top { grid-template-columns: 1.1fr repeat(6, 1fr); gap: 20px; } }
 
   .footer-logo { height: 28px; margin-bottom: 16px; display: block; }
-  /* Landing page only - 2x the standard footer logo size. */
-  .footer-logo.footer-logo--lg { height: 56px; }
+  /* Landing page only - large footer logo size. */
+  .footer-logo.footer-logo--lg { height: 50px; }
   .footer-tagline {
     font-family: var(--font-sans);
     font-weight: var(--fw-regular);
@@ -2389,7 +2395,7 @@
   .footer-newsletter-input {
     background: var(--white);
     border: 1px solid var(--footer-line);
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     padding: 10px 14px;
     font-family: var(--font-sans);
     font-weight: var(--fw-regular);
@@ -2541,14 +2547,15 @@
   .ai-automation .step-item { border-color: transparent; }
   .ai-automation .step-item:hover:not(.expanded) { background: rgba(255,255,255,0.05); }
   .ai-automation .step-item.expanded {
-    background: rgba(255,255,255,0.06);
-    border-color: var(--border-inverse);
-    box-shadow: none;
+    background: var(--white);
+    border-color: transparent;
+    box-shadow: 0 4px 16px rgba(5,26,36,0.08);
   }
-  .ai-automation .step-item.expanded .step-title { color: var(--text-on-inverse); }
-  .ai-automation .step-item.expanded .step-description { color: var(--text-on-inverse-secondary); }
-  .ai-automation .progress-track { background: rgba(255,255,255,0.16); }
-  .ai-automation .progress-fill { background: var(--accent-400); }
+  .ai-automation .step-item.expanded .step-num { color: var(--accent-500); }
+  .ai-automation .step-item.expanded .step-title { color: var(--ink-800); }
+  .ai-automation .step-item.expanded .step-description { color: var(--ink-600); }
+  .ai-automation .progress-track { background: var(--mist-200); }
+  .ai-automation .progress-fill { background: var(--cobalt-500); }
   .ai-automation .diagram-card {
     background: rgba(255,255,255,0.05);
     border: 1px solid var(--border-inverse);
@@ -2614,7 +2621,7 @@
   .faq-list { display: flex; flex-direction: column; gap: 12px; }
   .faq-item {
     background: var(--surface-inverse);
-    border-radius: 16px;
+    border-radius: var(--radius-md);
     padding: 20px 24px;
     border-bottom: none;
   }
