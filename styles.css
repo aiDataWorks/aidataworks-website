@@ -198,8 +198,8 @@
   }
   .nav.is-scrolled .nav-inner { padding: 12px 20px; }
 
-  .nav-logo { height: 32px; width: auto; transition: height 200ms ease; }
-  .nav.is-scrolled .nav-logo { height: 28px; }
+  .nav-logo { height: 38px; width: auto; transition: height 200ms ease; }
+  .nav.is-scrolled .nav-logo { height: 34px; }
   /* Landing page only - large nav logo size. */
   .nav-logo.nav-logo--lg { height: 51px; }
   .nav.is-scrolled .nav-logo.nav-logo--lg { height: 45px; }
@@ -517,8 +517,8 @@
   /* Six links plus a logo and CTA do not fit until ~1024px; below that the
      desktop CTA was rendering off the right edge of the viewport. */
   @media (min-width: 1024px) {
-    .nav-logo { height: 40px; }
-    .nav.is-scrolled .nav-logo { height: 36px; }
+    .nav-logo { height: 48px; }
+    .nav.is-scrolled .nav-logo { height: 43px; }
     .nav-logo.nav-logo--lg { height: 64px; }
     .nav.is-scrolled .nav-logo.nav-logo--lg { height: 58px; }
     .nav-links { display: flex; }
@@ -2924,6 +2924,73 @@
     color: var(--text-on-inverse);
     max-width: 480px;
     margin: 20px auto 0;
+  }
+
+  /* ---- Feature slide: reusable two-column layout for Event/News-type
+     slides (anything besides the primary slide 0). Text left, media
+     right. Switches to the row layout at 640px rather than 1024px -
+     the stacked (image-on-top) layout only has enough vertical budget
+     to work below that, verified against .hero-carousel's per-breakpoint
+     min-height (which is sized to slide 0 and must not change - see
+     that rule's own comment). Every width below was checked against
+     that fixed budget with the real content, not guessed. ---- */
+  .hero-slide--feature {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+  /* Secondary slide - doesn't need slide 0's full display-scale headline. */
+  .hero-slide--feature .hero-slide-headline { font-size: var(--fs-h2); }
+  .hero-slide--feature .hero-feature-content { max-width: 480px; }
+  .hero-slide--feature .hero-slide-headline,
+  .hero-slide--feature .hero-slide-subhead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Fixed 16:9 box, cropped - so every future event/news image drops into
+     the same standard shape regardless of its own native dimensions. */
+  .hero-slide--feature .hero-feature-media {
+    width: 100%;
+    max-width: 240px;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-3);
+    overflow: hidden;
+  }
+  .hero-slide--feature .hero-feature-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (min-width: 640px) {
+    .hero-slide--feature {
+      flex-direction: row;
+      justify-content: center;
+      text-align: left;
+      gap: 32px;
+    }
+    .hero-slide--feature .hero-feature-content { max-width: 400px; }
+    .hero-slide--feature .hero-slide-headline,
+    .hero-slide--feature .hero-slide-subhead {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: none;
+    }
+    .hero-slide--feature .hero-bottom-row { justify-content: flex-start; }
+    .hero-slide--feature .hero-cta-row { align-items: flex-start; }
+    .hero-slide--feature .hero-feature-media { max-width: 240px; }
+  }
+  @media (min-width: 1024px) {
+    .hero-slide--feature { gap: 56px; }
+    .hero-slide--feature .hero-feature-content { max-width: 460px; }
+    .hero-slide--feature .hero-feature-media { max-width: 520px; }
+  }
+  @media (min-width: 1280px) {
+    .hero-slide--feature .hero-feature-media { max-width: 600px; }
   }
 
   .hero-carousel-controls {
