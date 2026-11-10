@@ -1,0 +1,302 @@
+/* ============================================================
+   POSTS — shared by the Blog, Whitepapers, Events, Newsroom and
+   FAQ pages. Reuses the design tokens and global classes
+   (.page-hero, .case-study-tag, .final-cta-band) from styles.css.
+   ============================================================ */
+
+/* ============================================================
+   LISTING PAGES: cards in a grid
+   ============================================================ */
+.post-list-heading {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--section-py) var(--section-px) 0;
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-h4);
+  color: var(--ink-800);
+}
+
+.post-grid {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 32px var(--section-px) var(--section-py);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.post-list-heading + .post-grid { padding-top: 20px; }
+@media (min-width: 700px)  { .post-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .post-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.post-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+.post-card:hover { box-shadow: var(--shadow-3); transform: translateY(-2px); }
+.post-card:focus-within { outline: 2px solid var(--accent-500); outline-offset: 2px; }
+
+/* Optional image at the top of a card. */
+.post-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--surface-sunken);
+}
+
+.post-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+  min-width: 0;
+}
+.post-card-title {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-lg);
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.post-card-title a { color: var(--ink-800); text-decoration: none; }
+/* Whole card is clickable via the title link's stretched hit area. */
+.post-card-title a::after { content: ''; position: absolute; inset: 0; }
+.post-card:hover .post-card-title a,
+.post-card-title a:focus-visible { color: var(--accent-600); text-decoration: underline; }
+.post-card-title a:focus-visible { outline: none; }
+
+.post-card-excerpt {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--slate-500);
+  margin-bottom: 16px;
+}
+.post-card-meta {
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-3xs);
+  color: var(--text-muted);
+}
+
+/* A grid with no cards in it yet takes no space. */
+.post-grid:not(:has(.post-card)) { display: none; }
+
+/* Shown on a listing page with nothing in it yet. */
+.post-empty {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--section-py) var(--section-px);
+  text-align: center;
+}
+.post-empty .page-section-body { margin: 0 auto 20px; }
+/* Short "nothing here yet" note under a list heading (e.g. Upcoming events). */
+.post-list-heading ~ .post-empty { max-width: var(--container); text-align: left; padding: 16px var(--section-px) 8px; }
+.post-list-heading ~ .post-empty .page-section-body { margin: 0; }
+
+/* ============================================================
+   DETAIL PAGES: one blog post, whitepaper, event or news item
+   ============================================================ */
+.post-page .page-hero { padding-bottom: 40px; }
+.post-page .page-hero-heading { max-width: 880px; }
+.post-page .page-hero-lede { max-width: 680px; }
+
+.post-eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.02em;
+  color: var(--accent-600);
+  background: var(--accent-100);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 18px;
+}
+.post-byline {
+  margin-top: 20px;
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.post-byline strong { font-weight: var(--fw-semibold); }
+
+/* Primary action under the hero: download, register, etc. */
+.post-action {
+  display: inline-block;
+  margin-top: 24px;
+  background: var(--accent-500);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  border-radius: var(--radius-btn);
+  padding: 14px 26px;
+  text-decoration: none;
+  transition: background 150ms ease, transform 150ms ease;
+}
+.post-action:hover { background: var(--accent-600); transform: translateY(-2px); }
+
+/* ---- Prose: everything inside <article class="post-prose"> ---- */
+.post-prose {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-md);
+  line-height: 1.75;
+  color: var(--ink-800);
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--section-py) var(--section-px) calc(var(--section-py) * 1.5);
+}
+.post-prose > * + * { margin-top: 1.25em; }
+.post-prose h2 {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-snug);
+  margin-top: 2.2em;
+}
+.post-prose h3 {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-lg);
+  line-height: 1.35;
+  margin-top: 1.8em;
+}
+.post-prose h2 + *, .post-prose h3 + * { margin-top: 0.6em; }
+.post-prose a { color: var(--accent-600); text-underline-offset: 3px; }
+.post-prose a:hover { color: var(--accent-500); }
+.post-prose strong { font-weight: var(--fw-semibold); }
+.post-prose ul, .post-prose ol { padding-left: 1.4em; }
+.post-prose li + li { margin-top: 0.5em; }
+.post-prose li::marker { color: var(--accent-500); }
+.post-prose hr { border: none; border-top: 1px solid var(--border-subtle); margin: 2.5em 0; }
+
+.post-prose blockquote {
+  border-left: 3px solid var(--accent-500);
+  padding: 4px 0 4px 24px;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  line-height: 1.55;
+}
+.post-prose blockquote cite {
+  display: block;
+  margin-top: 10px;
+  font-size: var(--fs-xs);
+  font-style: normal;
+  font-weight: var(--fw-regular);
+  color: var(--text-muted);
+}
+
+.post-prose figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+.post-prose figcaption {
+  margin-top: 10px;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Highlighted box inside an article. */
+.post-prose .post-callout {
+  background: var(--accent-100);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+}
+.post-prose .post-callout > * + * { margin-top: 0.75em; }
+.post-prose .post-callout-title {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+}
+
+/* Outlined summary box: key takeaways, "what's inside", event details. */
+.post-prose .post-summary {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+}
+.post-prose .post-summary h2 { margin-top: 0; font-size: var(--fs-lg); }
+.post-prose .post-summary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 20px; }
+.post-prose .post-summary dt { font-weight: var(--fw-semibold); }
+
+/* Small print, e.g. press release boilerplate and media contacts. */
+.post-prose .post-fineprint { font-size: var(--fs-xs); line-height: 1.6; color: var(--text-muted); }
+
+/* ============================================================
+   FAQ PAGE: native <details> questions, no JavaScript needed
+   ============================================================ */
+.faq-page-list {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--section-py) var(--section-px) calc(var(--section-py) * 1.5);
+}
+.faq-page-group + .faq-page-group { margin-top: 48px; }
+.faq-page-group-heading {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-h4);
+  color: var(--ink-800);
+  margin-bottom: 12px;
+}
+.faq-page-item { border-bottom: 1px solid var(--border-subtle); }
+.faq-page-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-md);
+  color: var(--ink-800);
+}
+.faq-page-item summary::-webkit-details-marker { display: none; }
+.faq-page-item summary::after {
+  content: '';
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-3px);
+  transition: transform 200ms ease;
+}
+.faq-page-item[open] summary::after { transform: rotate(-135deg) translateY(-3px); }
+.faq-page-item summary:hover { color: var(--accent-600); }
+.faq-page-item summary:focus-visible { outline: 2px solid var(--accent-500); outline-offset: 4px; }
+.faq-page-answer {
+  padding: 0 0 20px;
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--slate-500);
+}
+.faq-page-answer > * + * { margin-top: 0.75em; }
+.faq-page-answer a { color: var(--accent-600); }
+
+@media (prefers-reduced-motion: reduce) {
+  .post-card, .post-action, .faq-page-item summary::after { transition: none; }
+  .post-card:hover, .post-action:hover { transform: none; }
+}

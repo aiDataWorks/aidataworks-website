@@ -6,7 +6,7 @@ partials/header.html and partials/footer.html are the single source of
 truth. Edit those, then run this script - it stamps the rendered header/
 footer into every page's <header>...</header> and <footer>...</footer>,
 adjusting relative paths (assets/, styles.css, other pages) automatically
-for how deep the page sits (root vs case-studies/<slug>/index.html).
+for how deep the page sits (root vs <section>/<slug>/index.html).
 
 index.html is the one page that intentionally differs: it gets the larger
 nav-logo--lg / footer-logo--lg logo variants. Nothing else about the header
@@ -39,13 +39,15 @@ def render(partial_text, root_prefix, is_landing):
 
 def target_pages():
     pages = [p for p in ROOT.glob("*.html")]
-    pages += list(ROOT.glob("case-studies/*/index.html"))
+    # Every <section>/<slug>/index.html: case-studies, blog, whitepapers,
+    # events, news - and any section added later.
+    pages += list(ROOT.glob("*/*/index.html"))
     return sorted(pages)
 
 
 def root_prefix_for(page_path):
     rel = page_path.relative_to(ROOT)
-    depth = len(rel.parts) - 1  # case-studies/<slug>/index.html -> depth 2
+    depth = len(rel.parts) - 1  # <section>/<slug>/index.html -> depth 2
     return "../" * depth
 
 

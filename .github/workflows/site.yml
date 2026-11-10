@@ -1,0 +1,65 @@
+# Builds and checks the site on every pull request and every push to main.
+#
+#   1. Fills in the shared header/footer on every page (scripts/build_nav.py)
+#      and regenerates sitemap.xml (scripts/build_sitemap.py).
+#   2. Checks for broken pages (scripts/check_site.py). If anything is wrong
+#      the run fails with a plain-English error and nothing is committed.
+#   3. Commits the filled-in files back to the branch, so whatever is merged
+#      to main - and picked up by the deploy to www.aidata.works - is complete.
+#
+# Commits made here use GITHUB_TOKEN, which doesn't trigger this workflow
+# again, so there's no loop.
+
+name: Build and check site
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Check out the branch itself (not the PR merge commit) so fixes can be pushed to it.
+          ref: ${{ github.head_ref || github.ref_name }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          # Full history: the sitemap uses each page's last commit date.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fill in header, footer and sitemap
+        run: |
+          python scripts/build_nav.py
+          python scripts/build_sitemap.py
+
+      - name: Check for broken pages
+        run: python scripts/check_site.py
+
+      - name: Commit filled-in files
+        # Pull requests from forks can't be pushed to; they still get checked.
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git add -A -- '*.html' sitemap.xml
+          if git diff --cached --quiet; then
+            echo "Nothing to commit - pages were already complete."
+            exit 0
+          fi
+          git diff --cached --stat
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Fill in site header/footer and sitemap [automated]"
+          git push
