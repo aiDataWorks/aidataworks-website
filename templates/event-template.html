@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<!--
+  EVENT TEMPLATE
+
+  1. Copy this file to events/<slug>/index.html
+     (the slug becomes the URL: https://www.aidata.works/events/<slug>/)
+  2. Replace everything in [BRACKETS]. Delete sections you don't need.
+  3. Add a card for it in webinars.html.
+     Upcoming events go in the "Upcoming" list; move the card to "Past"
+     once the event is over.
+  4. Open a pull request. A GitHub check fills in the site header, footer
+     and sitemap automatically, and fails with a plain-English message if
+     anything is missing (leftover [BRACKETS], no card in webinars.html, a
+     broken image link...). Merge once it's green.
+
+  Leave the empty header and footer elements below in place - that's
+  where the site header and footer get filled in.
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Event name] | aiDataWorks Events</title>
+<meta name="description" content="[One or two sentence summary, ~160 characters.]">
+<link rel="canonical" href="https://www.aidata.works/events/[slug]/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="[Event name]">
+<meta property="og:description" content="[Same summary as above.]">
+<meta property="og:url" content="https://www.aidata.works/events/[slug]/">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="icon" type="image/png" href="../../assets/company-logo/aidataworks-ai-logo-bg-removed.png">
+<link rel="stylesheet" href="../../css/posts.css">
+</head>
+<body class="post-page">
+
+<!-- Site header: filled in automatically. Don't delete. -->
+<header class="nav" id="nav"></header>
+
+<main>
+<section class="page-hero">
+  <p class="page-breadcrumb"><a href="../../index.html">Home</a> / <a href="../../webinars.html">Events</a> / [Event name]</p>
+  <p class="post-eyebrow">[Conference / Webinar / Meetup]</p>
+  <h1 class="page-hero-heading text-reveal">[Event name]</h1>
+  <p class="page-hero-lede">[One sentence: what it is and why to come.]</p>
+  <p class="post-byline">[Mon D&ndash;D, YYYY] &middot; [City, ST or Online]</p>
+  <!-- Registration or official event page. Delete if there isn't one. -->
+  <a class="post-action" href="[https://registration-or-event-page]" target="_blank" rel="noopener">[Register / Event details]</a>
+</section>
+
+<article class="post-prose">
+
+  <div class="post-summary">
+    <h2>The details</h2>
+    <dl>
+      <dt>When</dt><dd>[Mon D&ndash;D, YYYY, times and time zone if relevant]</dd>
+      <dt>Where</dt><dd>[Venue, City, ST &mdash; or Online]</dd>
+      <dt>Where to find us</dt><dd>[Booth number, session room, or "around the venue"]</dd>
+    </dl>
+  </div>
+
+  <h2>Who you'll meet</h2>
+  <p>[Names and roles of the people attending or presenting.]</p>
+
+  <h2>What we'll be talking about</h2>
+  <ul>
+    <li>[Topic]</li>
+    <li>[Topic]</li>
+  </ul>
+
+  <p>[Closing line: how to set up a meeting.]</p>
+
+</article>
+</main>
+
+<section class="final-cta-band" id="final-cta">
+  <h2 class="final-cta-heading text-reveal">[Want to meet us there?]</h2>
+  <a href="https://calendly.com/sam-singh-aidata/30min" class="final-cta-btn cta-pulsate">Schedule a Meeting</a>
+  <p class="final-cta-email">Or email sam.singh@aidata.works</p>
+</section>
+
+<!-- Site footer: filled in automatically. Don't delete. -->
+<footer class="site-footer"></footer>
+
+<script src="../../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<!--
+  NEWS / PRESS RELEASE TEMPLATE
+
+  1. Copy this file to news/<slug>/index.html
+     (the slug becomes the URL: https://www.aidata.works/news/<slug>/)
+  2. Replace everything in [BRACKETS]. Delete sections you don't need.
+  3. Add a card for it in newsroom.html.
+  4. Open a pull request. A GitHub check fills in the site header, footer
+     and sitemap automatically, and fails with a plain-English message if
+     anything is missing (leftover [BRACKETS], no card in newsroom.html, a
+     broken image link...). Merge once it's green.
+
+  Leave the empty header and footer elements below in place - that's
+  where the site header and footer get filled in.
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Headline] | aiDataWorks Newsroom</title>
+<meta name="description" content="[One or two sentence summary, ~160 characters.]">
+<link rel="canonical" href="https://www.aidata.works/news/[slug]/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Headline]">
+<meta property="og:description" content="[Same summary as above.]">
+<meta property="og:url" content="https://www.aidata.works/news/[slug]/">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="icon" type="image/png" href="../../assets/company-logo/aidataworks-ai-logo-bg-removed.png">
+<link rel="stylesheet" href="../../css/posts.css">
+</head>
+<body class="post-page">
+
+<!-- Site header: filled in automatically. Don't delete. -->
+<header class="nav" id="nav"></header>
+
+<main>
+<section class="page-hero">
+  <p class="page-breadcrumb"><a href="../../index.html">Home</a> / <a href="../../newsroom.html">Newsroom</a> / [Headline]</p>
+  <p class="post-eyebrow">[Press Release / Company News]</p>
+  <h1 class="page-hero-heading text-reveal">[Headline]</h1>
+  <p class="page-hero-lede">[Subheadline: one sentence.]</p>
+  <p class="post-byline">[Mon D, YYYY] &middot; [City, ST]</p>
+</section>
+
+<article class="post-prose">
+
+  <p>[Opening paragraph: who, what, when, where, why.]</p>
+
+  <p>&ldquo;[Approved quote.]&rdquo; said [Full Name], [Title] of [Company].</p>
+
+  <p>[Details: what the announcement means for customers.]</p>
+
+  <hr>
+
+  <h2>About aiDataWorks</h2>
+  <p>aiDataWorks is a leading AI-first data management and integration company, helping enterprises modernize, govern, and activate their data to accelerate AI adoption. Through Data Management as a Service (DMaaS), aiDataWorks delivers enterprise AI adoption from proof-of-concept through production, focused on data integration, data foundations, and data management. Backed by strategic technology partnerships, aiDataWorks embeds governance and quality &mdash; turning data into a durable AI advantage trusted by Fortune-ranked enterprises. Learn more at <a href="https://www.aidata.works" target="_blank" rel="noopener">www.aidata.works</a>.</p>
+
+  <p class="post-fineprint"><strong>Media Contact</strong><br>[Name, Title] &mdash; aiDataWorks &mdash; <a href="mailto:marketing@aidata.works">marketing@aidata.works</a></p>
+
+</article>
+</main>
+
+<section class="final-cta-band" id="final-cta">
+  <h2 class="final-cta-heading text-reveal">Press inquiry?</h2>
+  <a href="https://calendly.com/sam-singh-aidata/30min" class="final-cta-btn cta-pulsate">Schedule a Meeting</a>
+  <p class="final-cta-email">Or email sam.singh@aidata.works</p>
+</section>
+
+<!-- Site footer: filled in automatically. Don't delete. -->
+<footer class="site-footer"></footer>
+
+<script src="../../site.js"></script>
+</body>
+</html>

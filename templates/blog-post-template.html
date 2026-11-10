@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<!--
+  BLOG POST TEMPLATE
+
+  1. Copy this file to blog/<post-slug>/index.html
+     (the slug becomes the URL: https://www.aidata.works/blog/<post-slug>/)
+  2. Replace everything in [BRACKETS]. Delete sections you don't need.
+  3. Add a card for the post at the top of the list in blog.html.
+  4. Open a pull request. A GitHub check fills in the site header, footer
+     and sitemap automatically, and fails with a plain-English message if
+     anything is missing (leftover [BRACKETS], no card in blog.html, a
+     broken image link...). Merge once it's green.
+
+  Leave the empty header and footer elements below in place - that's
+  where the site header and footer get filled in.
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Post title] | aiDataWorks Blog</title>
+<meta name="description" content="[One or two sentence summary, ~160 characters.]">
+<link rel="canonical" href="https://www.aidata.works/blog/[post-slug]/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Post title]">
+<meta property="og:description" content="[Same summary as above.]">
+<meta property="og:url" content="https://www.aidata.works/blog/[post-slug]/">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="icon" type="image/png" href="../../assets/company-logo/aidataworks-ai-logo-bg-removed.png">
+<link rel="stylesheet" href="../../css/posts.css">
+</head>
+<body class="post-page">
+
+<!-- Site header: filled in automatically. Don't delete. -->
+<header class="nav" id="nav"></header>
+
+<main>
+<section class="page-hero">
+  <p class="page-breadcrumb"><a href="../../index.html">Home</a> / <a href="../../blog.html">Blog</a> / [Post title]</p>
+  <p class="post-eyebrow">[Category]</p>
+  <h1 class="page-hero-heading text-reveal">[Post title]</h1>
+  <p class="page-hero-lede">[Same summary as the meta description.]</p>
+  <p class="post-byline">By <strong>[Author name]</strong> &middot; [Mon D, YYYY]</p>
+</section>
+
+<article class="post-prose">
+
+  <p>[Opening paragraph.]</p>
+
+  <h2>[Section heading]</h2>
+  <p>[Paragraph.]</p>
+
+  <h3>[Sub-heading]</h3>
+  <ul>
+    <li>[List item]</li>
+    <li>[List item]</li>
+  </ul>
+
+  <!-- Images go in assets/blog/ -->
+  <figure>
+    <img src="../../assets/blog/[image-file]" alt="[What the image shows]">
+    <figcaption>[Caption]</figcaption>
+  </figure>
+
+  <blockquote>
+    <p>[Quote]</p>
+    <cite>&mdash; [Name, Role]</cite>
+  </blockquote>
+
+  <!-- Optional highlighted box -->
+  <div class="post-callout">
+    <p class="post-callout-title">[Label, e.g. Field note]</p>
+    <p>[Short aside.]</p>
+  </div>
+
+  <h2>[Closing section heading]</h2>
+  <p>[Closing paragraph with the next step.]</p>
+
+</article>
+</main>
+
+<section class="final-cta-band" id="final-cta">
+  <h2 class="final-cta-heading text-reveal">Let's build your AI-ready data foundation.</h2>
+  <a href="https://calendly.com/sam-singh-aidata/30min" class="final-cta-btn cta-pulsate">Schedule a Meeting</a>
+  <p class="final-cta-email">Or email sam.singh@aidata.works</p>
+</section>
+
+<!-- Site footer: filled in automatically. Don't delete. -->
+<footer class="site-footer"></footer>
+
+<script src="../../site.js"></script>
+</body>
+</html>

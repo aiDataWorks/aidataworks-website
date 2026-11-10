@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<!--
+  WHITEPAPER TEMPLATE
+
+  1. Copy this file to whitepapers/<slug>/index.html
+     (the slug becomes the URL: https://www.aidata.works/whitepapers/<slug>/)
+  2. Replace everything in [BRACKETS]. Delete sections you don't need.
+  3. Add a card for it in whitepapers.html.
+     The PDF itself goes in assets/whitepapers/<slug>.pdf.
+  4. Open a pull request. A GitHub check fills in the site header, footer
+     and sitemap automatically, and fails with a plain-English message if
+     anything is missing (leftover [BRACKETS], no card in whitepapers.html, a
+     broken image link...). Merge once it's green.
+
+  Leave the empty header and footer elements below in place - that's
+  where the site header and footer get filled in.
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Whitepaper title] | aiDataWorks Whitepaper</title>
+<meta name="description" content="[One or two sentence summary, ~160 characters.]">
+<link rel="canonical" href="https://www.aidata.works/whitepapers/[slug]/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Whitepaper title]">
+<meta property="og:description" content="[Same summary as above.]">
+<meta property="og:url" content="https://www.aidata.works/whitepapers/[slug]/">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="icon" type="image/png" href="../../assets/company-logo/aidataworks-ai-logo-bg-removed.png">
+<link rel="stylesheet" href="../../css/posts.css">
+</head>
+<body class="post-page">
+
+<!-- Site header: filled in automatically. Don't delete. -->
+<header class="nav" id="nav"></header>
+
+<main>
+<section class="page-hero">
+  <p class="page-breadcrumb"><a href="../../index.html">Home</a> / <a href="../../whitepapers.html">Whitepapers</a> / [Whitepaper title]</p>
+  <p class="post-eyebrow">Whitepaper &middot; [Topic]</p>
+  <h1 class="page-hero-heading text-reveal">[Whitepaper title]</h1>
+  <p class="page-hero-lede">[Same summary as the meta description.]</p>
+  <p class="post-byline">[Mon D, YYYY] &middot; PDF, [NN] pages</p>
+  <!-- The PDF must exist in assets/whitepapers/ or the check fails. -->
+  <a class="post-action" href="../../assets/whitepapers/[slug].pdf" download>Download the whitepaper (PDF)</a>
+</section>
+
+<article class="post-prose">
+
+  <div class="post-summary">
+    <h2>What's inside</h2>
+    <ul>
+      <li>[Chapter or key topic]</li>
+      <li>[Chapter or key topic]</li>
+      <li>[Chapter or key topic]</li>
+    </ul>
+  </div>
+
+  <h2>Who it's for</h2>
+  <p>[The roles and situations this paper is written for.]</p>
+
+  <h2>Why we wrote it</h2>
+  <p>[The problem the reader has, and what they'll be able to decide or do after reading.]</p>
+
+  <!-- Optional: a short excerpt or key finding from the paper -->
+  <blockquote>
+    <p>[A short excerpt from the paper.]</p>
+  </blockquote>
+
+</article>
+</main>
+
+<section class="final-cta-band" id="final-cta">
+  <h2 class="final-cta-heading text-reveal">Want help applying this?</h2>
+  <a href="https://calendly.com/sam-singh-aidata/30min" class="final-cta-btn cta-pulsate">Schedule a Meeting</a>
+  <p class="final-cta-email">Or email sam.singh@aidata.works</p>
+</section>
+
+<!-- Site footer: filled in automatically. Don't delete. -->
+<footer class="site-footer"></footer>
+
+<script src="../../site.js"></script>
+</body>
+</html>
