@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Getting legacy COBOL copybooks into your data catalog | aiDataWorks Blog</title>
-<meta name="description" content="Mainframe COBOL files fall outside standard catalog scanning. Here is how we brought them into Informatica EDC, with lineage, for a tier-1 health insurer.">
-<link rel="canonical" href="https://www.aidata.works/blog/cobol-copybooks-into-data-catalog/">
+<title>Governing legacy mainframe COBOL data for a tier 1 health insurer | aiDataWorks Blog</title>
+<meta name="description" content="How we took a tier 1 health insurer from zero governance to full lineage visibility across every legacy mainframe COBOL copybook.">
+<link rel="canonical" href="https://www.aidata.works/blog/governing-legacy-mainframe-cobol-data/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Getting legacy COBOL copybooks into your data catalog">
-<meta property="og:description" content="Mainframe COBOL files fall outside standard catalog scanning. Here is how we brought them into Informatica EDC, with lineage, for a tier-1 health insurer.">
-<meta property="og:url" content="https://www.aidata.works/blog/cobol-copybooks-into-data-catalog/">
+<meta property="og:title" content="Governing legacy mainframe COBOL data for a tier 1 health insurer">
+<meta property="og:description" content="How we took a tier 1 health insurer from zero governance to full lineage visibility across every legacy mainframe COBOL copybook.">
+<meta property="og:url" content="https://www.aidata.works/blog/governing-legacy-mainframe-cobol-data/">
 <link rel="stylesheet" href="../../styles.css">
 <link rel="icon" type="image/png" href="../../assets/company-logo/aidataworks-ai-logo-bg-removed.png">
 <link rel="stylesheet" href="../../css/posts.css">
@@ -458,62 +458,61 @@
 
 <main>
 <section class="page-hero">
-  <p class="page-breadcrumb"><a href="../../index.html">Home</a> / <a href="../../blog.html">Blog</a> / Getting legacy COBOL copybooks into your data catalog</p>
+  <p class="page-breadcrumb"><a href="../../index.html">Home</a> / <a href="../../blog.html">Blog</a> / Governing legacy mainframe COBOL data for a tier 1 health insurer</p>
   <p class="post-eyebrow">Data Governance</p>
-  <h1 class="page-hero-heading text-reveal">Getting legacy COBOL copybooks into your data catalog</h1>
-  <p class="page-hero-lede">Mainframe COBOL files fall outside standard catalog scanning. Here is how we brought them into Informatica EDC, with lineage, for a tier-1 health insurer.</p>
-  <p class="post-byline">By <strong>Mohak Jani</strong> &middot; Nov 10, 2026</p>
+  <h1 class="page-hero-heading text-reveal">Governing legacy mainframe COBOL data for a tier 1 health insurer</h1>
+  <p class="page-hero-lede">How we took a tier 1 health insurer from zero governance to full lineage visibility across every legacy mainframe COBOL copybook.</p>
+  <p class="post-byline">By <strong>Mohak Jani</strong> &middot; Nov 11, 2026</p>
 </section>
 
 <article class="post-prose">
 
-  <p>Most data catalogs can tell you a lot about your modern platforms and almost nothing about the mainframe files that feed them. If you run governance, architecture or data engineering at an organization with decades of COBOL data landing in a modern platform, that blind spot is where audit questions get hard. This post walks through how we closed it for a tier-1 U.S. health insurer, and what you can reuse.</p>
+  <p>Picture one of the largest health insurers in the U.S., generating tens of billions of dollars in revenue a year, with decades of data still living in mainframe COBOL files. That data flows into a modern HDFS landing zone, and until recently nobody was governing the path between the two. This is the story of how we changed that, and it is written for data leaders who suspect they have the same blind spot.</p>
 
   <div class="post-summary">
     <h2 id="key-takeaways">Key takeaways</h2>
     <ul>
-      <li>Mainframe file systems often fall outside standard metadata scanning, so copybook structures stay invisible until you build a scanner for them.</li>
-      <li>Prove the catalog works end to end before you add custom code on top of it.</li>
-      <li>A governance capability only sticks once it is scheduled, visible in the catalog UI, and supported after go-live.</li>
+      <li>We took the insurer from zero governance to full lineage visibility across every COBOL copybook.</li>
+      <li>The catalog had to be configured and proven first; the mainframe scanning came second.</li>
+      <li>Scheduling, a visible UI, knowledge transfer and managed services are what made it production-live.</li>
     </ul>
   </div>
 
-  <h2>The gap: a critical data path nobody could see</h2>
-  <p>The insurer's legacy COBOL files fed a modern HDFS landing zone, and nothing governed that path. Their Informatica Enterprise Data Catalog (EDC) had been installed but never configured or smoke-tested, and it was not in production use.</p>
-  <p>Even a working catalog would not have helped on its own. The mainframe file system was outside standard metadata scanning support, so copybook structures could not be catalogued. Changes to legacy metadata were tracked by hand in documentation, which left discovery gaps and exposed the organization to audit risk.</p>
-
-  <h2>Step 1: Assess before you build</h2>
-  <p>We started with people, not tools. We interviewed the major stakeholders to learn what had already been tried with the catalog and what they now expected from governance, and we assessed the existing Informatica and mainframe environment.</p>
-  <p>The output was a single requirements and assessment document, reviewed and validated with stakeholders before any implementation began. That document is what kept later scope decisions from turning into arguments.</p>
-
-  <h2>Step 2: Make the catalog work before you extend it</h2>
-  <p>Custom scanners are only as trustworthy as the platform they plug into, so the first build work was foundational:</p>
+  <h2>Where we started</h2>
+  <p>When we arrived, the customer's Informatica Enterprise Data Catalog was installed but unconfigured. It had never been smoke-tested and was not in production use. Meanwhile, the legacy COBOL files feeding the HDFS landing zone had no governance controls at all, so a critical data path was effectively unmonitored.</p>
+  <p>Two more things made it harder:</p>
   <ul>
-    <li>Configure and smoke-test EDC 10.1 from the ground up.</li>
-    <li>Establish and validate the mainframe source connection against the customer's COBOL file systems.</li>
-    <li>Configure the HDFS landing zone targets on the Big Data Management / Big Data Engineering (BDE) 10.1 environment, fixing issues as they surfaced.</li>
+    <li><strong>Unsupported scanning.</strong> The legacy mainframe file system fell outside standard metadata scanning support, which left COBOL copybook structures invisible to the catalog.</li>
+    <li><strong>Manual tracking.</strong> Changes to legacy COBOL metadata were tracked by hand in documentation, creating discovery gaps and real audit and financial risk.</li>
   </ul>
-  <p>It is tempting to skip straight to the interesting part. We would not: a problem found later is much harder to attribute when a custom component is also in the mix.</p>
 
-  <h2>Step 3: Build the scanner the catalog doesn't have</h2>
-  <p>With the foundation proven, we built custom COBOL copybook scanners using the customer's existing code together with Informatica Data Processor (Data Transformation). Reusing what the customer already had meant the scanners reflected how their copybooks were actually written.</p>
-  <p>We then integrated the scanners with EDC so copybook structures could be catalogued and searched like any other governed asset, and loaded the scan results into the target EDC HDFS landing zone to support downstream lineage and impact analysis.</p>
+  <h2>Listening first</h2>
+  <p>Before touching the environment, we talked to people. We interviewed the major stakeholders to understand what had already been done with the catalog and what they expected from a governance program, and we carried out a technical assessment of the existing Informatica and mainframe environment.</p>
+  <p>Everything went into one consolidated requirements and assessment document, which we reviewed and validated with the stakeholders before implementation began. That review gave everyone a shared, written picture of the starting point, so the build work that followed was aimed at agreed needs rather than assumptions.</p>
+
+  <h2>Getting the foundation working</h2>
+  <p>With requirements agreed, we built the catalog up from the ground up. We configured and smoke-tested Informatica EDC 10.1, then established and validated the mainframe source connection against the customer's COBOL file systems.</p>
+  <p>On the target side, we configured the HDFS landing zone on the Big Data Management / Big Data Engineering (BDE) 10.1 environment, fixing issues as we found them. Only once the pieces were proven did we move on to the part the catalog could not do by itself.</p>
+
+  <h2>Teaching the catalog to read COBOL</h2>
+  <p>Because standard scanning did not cover the mainframe file system, we developed custom COBOL copybook scanners. We built them on the customer's existing code, together with Informatica Data Processor (Data Transformation).</p>
+  <p>We integrated the scanners with EDC so that copybook structures could be catalogued and searched like any other governed asset, then loaded the scan results into the EDC HDFS landing zone to feed downstream lineage and impact analysis.</p>
 
   <div class="post-callout">
     <p class="post-callout-title">Field note</p>
-    <p>The design goal was that a copybook should be no harder to find, or to trace, than any other asset in the catalog. If governed assets and legacy assets live in different tools, people stop checking the second one.</p>
+    <p>The goal was never a separate tool for legacy data. It was for a COBOL copybook to be as easy to find and trace as any other asset in the catalog.</p>
   </div>
 
-  <h2>Step 4: Make it operational</h2>
-  <p>A scanner that someone runs by hand is a new manual process. We integrated the solution with the broader Informatica platform and with Control-M, the corporate scheduler, and exposed scan results, lineage and copybook relationships in the EDC user interface.</p>
-  <p>We then ran QA, supported go-live, delivered knowledge transfer to the customer's team, and stayed on for post-production managed services. Handover and support are part of the build, not an afterthought.</p>
+  <h2>Making it part of the way they work</h2>
+  <p>A governance capability only helps if it runs without anyone remembering to run it. We integrated the solution with the broader Informatica platform and with Control-M, the corporate scheduler, and exposed scan results, lineage and copybook relationships in the EDC user interface.</p>
+  <p>We then performed QA, supported go-live, delivered knowledge transfer to the customer's team, and continued with post-production managed services. Handover and ongoing support were part of the engagement from the start, not an afterthought, so the customer's team could own what we built.</p>
 
-  <h2>What changed</h2>
-  <p>The insurer went from an unconfigured catalog and hand-maintained documentation to a production-live governance environment. It now offers complete lineage and impact visualization of COBOL copybooks, and metadata changes are discovered automatically rather than found in documents. We estimate the benefit at millions of dollars per year in avoided audit penalties and customer churn.</p>
-  <p>For the full engagement, see the <a href="../../case-studies/health-insurer-mainframe-governance/index.html">case study</a>.</p>
+  <h2>Where they ended up</h2>
+  <p>The customer now has a fully functional, production-live governance environment. It gives complete lineage and impact visualization of COBOL copybooks, and it discovers metadata changes automatically instead of relying on hand-maintained documentation. We estimate the benefit at millions of dollars per year in avoided audit penalties and customer churn.</p>
+  <p>You can read the full engagement in our <a href="../../case-studies/health-insurer-mainframe-governance/index.html">case study</a>.</p>
 
-  <h2>What to do next</h2>
-  <p>Start with an inventory: list the mainframe and other legacy file systems feeding your modern platforms, and mark which ones your catalog can actually scan today. Anything unmarked is a blind spot, and it is usually the oldest data you have. If you want a second pair of eyes on that list, our <a href="../../services.html#advisory-assessment">advisory and assessment</a> team can help you scope it, and our <a href="../../services.html#managed-dmaas">managed services</a> team can keep it running once it is live.</p>
+  <h2>If this sounds familiar</h2>
+  <p>If legacy mainframe data feeds your modern platforms and your catalog cannot see it, start by listing which of those sources your catalog can actually scan today. Our <a href="../../services.html#advisory-assessment">advisory and assessment</a> team can help you scope the gap, and our <a href="../../services.html#managed-dmaas">managed services</a> team can keep the solution running once it is live.</p>
 
 </article>
 </main>
